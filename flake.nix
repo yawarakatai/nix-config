@@ -44,7 +44,8 @@
             ./modules/system/storage.nix
             ./modules/system/yubikey.nix
             ./modules/system/rebuild-helper.nix
-            
+            ./modules/system/wayland.nix
+
             # Conditional modules
             (nixpkgs.lib.mkIf vars.hasNvidia ./modules/system/nvidia.nix)
             

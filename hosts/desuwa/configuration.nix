@@ -14,6 +14,11 @@
     git
     wget
     curl
+    htop
+    tree
+    file
+    pciutils
+    usbutils
   ];
   
   # User configuration
@@ -24,7 +29,6 @@
     shell = pkgs.nushell;
     
     # Initial password hash - generate with: mkpasswd -m sha-512
-    # CHANGE THIS: Replace with your actual password hash
     hashedPassword = "$6$0DllCY/akD0D.v8L$GIfCe9D4/XT9W6shjkNLBuBbU5F1plbgrLHlQ.IkhHAav5xtg/sNWt.HEOziMqC7TNPzSy5KkwEli88Bw/9qy/";
     
     # For future sops-nix migration, uncomment:

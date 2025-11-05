@@ -84,6 +84,7 @@ sudo nano /mnt/etc/nixos/configuration.nix
 ```
 
 Add this line:
+
 ```nix
 nix.settings.experimental-features = [ "nix-command" "flakes" ];
 ```
@@ -112,6 +113,7 @@ nano /etc/nixos/configuration.nix
 ```
 
 Ensure this is present:
+
 ```nix
 nix.settings.experimental-features = [ "nix-command" "flakes" ];
 ```
@@ -142,11 +144,8 @@ sudo echo "Sudo works!"
 cd ~
 mkdir -p .config
 
-# If you have this on a USB drive:
-cp -r /path/to/usb/nix-config ~/.config/
-
-# Or download from Git (if you've pushed it):
-# git clone https://github.com/yourusername/nix-config ~/.config/nix-config
+# Download from GitHub
+git clone https://github.com/yourusername/nix-config ~/.config
 ```
 
 ### 2.5 Generate Hardware Configuration
@@ -157,6 +156,7 @@ sudo nixos-generate-config --show-hardware-config > hosts/desuwa/hardware-config
 ```
 
 Review and adjust if needed:
+
 ```bash
 nano hosts/desuwa/hardware-configuration.nix
 ```
@@ -174,11 +174,13 @@ mkpasswd -m sha-512
 ```
 
 Edit configuration:
+
 ```bash
 nano hosts/desuwa/configuration.nix
 ```
 
 Replace the password hash:
+
 ```nix
 users.users.yawarakatai = {
   # ...
@@ -275,12 +277,14 @@ age-keygen -y ~/.config/sops/age/keys.txt
 ```
 
 Create `.sops.yaml`:
+
 ```bash
 cd ~/.config/nix-config
 nano .sops.yaml
 ```
 
 Add:
+
 ```yaml
 keys:
   - &user_yawarakatai age1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -317,6 +321,7 @@ sudo ln -s ~/.config/nix-config /etc/nixos
 ```
 
 Now you can use:
+
 ```bash
 sudo nixos-rebuild switch --flake /etc/nixos#desuwa
 ```
@@ -326,11 +331,13 @@ sudo nixos-rebuild switch --flake /etc/nixos#desuwa
 ### 4.1 Change Theme Colors
 
 Edit `modules/home/theme.nix`:
+
 ```bash
 hx ~/.config/nix-config/modules/home/theme.nix
 ```
 
 Change colors and rebuild:
+
 ```bash
 nos
 ```
@@ -338,6 +345,7 @@ nos
 ### 4.2 Add More Software
 
 Edit `home/yawarakatai/home.nix`:
+
 ```bash
 hx ~/.config/nix-config/home/yawarakatai/home.nix
 ```
@@ -345,6 +353,7 @@ hx ~/.config/nix-config/home/yawarakatai/home.nix
 Add packages to `home.packages = with pkgs; [ ... ];`
 
 Rebuild:
+
 ```bash
 nos
 ```
@@ -352,11 +361,13 @@ nos
 ### 4.3 Adjust Keybindings
 
 Edit niri config:
+
 ```bash
 hx ~/.config/nix-config/modules/home/wayland/niri.nix
 ```
 
 Rebuild:
+
 ```bash
 nos
 ```
@@ -388,11 +399,13 @@ lsmod | grep nvidia
 ### niri Won't Start
 
 Check logs:
+
 ```bash
 journalctl -u niri --no-pager | tail -50
 ```
 
 Try starting manually:
+
 ```bash
 niri
 ```
@@ -400,6 +413,7 @@ niri
 ### Missing Packages
 
 Some packages might not be available on nixpkgs-unstable. Check:
+
 ```bash
 nix search nixpkgs package-name
 ```
@@ -440,6 +454,7 @@ sudo nix-env --list-generations --profile /nix/var/nix/profiles/system
 From GRUB menu, select older generation.
 
 Or:
+
 ```bash
 sudo nixos-rebuild switch --rollback
 ```
