@@ -1,0 +1,104 @@
+{ config, pkgs, vars, ... }:
+
+{
+  # Bootloader
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  
+  # Hostname
+  networking.hostName = vars.hostname;
+  
+  # System packages (minimal, most packages in Home Manager)
+  environment.systemPackages = with pkgs; [
+    vim
+    git
+    wget
+    curl
+  ];
+  
+  # User configuration
+  users.users.${vars.username} = {
+    isNormalUser = true;
+    description = vars.username;
+    extraGroups = [ "networkmanager" "wheel" "video" "audio" ];
+    shell = pkgs.nushell;
+    
+    # Initial password hash - generate with: mkpasswd -m sha-512
+    # CHANGE THIS: Replace with your actual password hash
+    hashedPassword = "$6$0DllCY/akD0D.v8L$GIfCe9D4/XT9W6shjkNLBuBbU5F1plbgrLHlQ.IkhHAav5xtg/sNWt.HEOziMqC7TNPzSy5KkwEli88Bw/9qy/";
+    
+    # For future sops-nix migration, uncomment:
+    # hashedPasswordFile = config.sops.secrets.yawarakatai-password.path;
+  };
+  
+  # Disable root login
+  users.users.root.hashedPassword = "!";
+  
+  # Nix configuration
+  nix = {
+    settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+      auto-optimise-store = true;
+      trusted-users = [ "root" vars.username ];
+      
+      # Substituters
+      substituters = [
+        "https://cache.nixos.org"
+        "https://nix-community.cachix.org"
+      ];
+      trusted-public-keys = [
+        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      ];
+    };
+    
+    # Garbage collection
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 30d";
+    };
+    
+    # Optimize store
+    optimise = {
+      automatic = true;
+      dates = [ "weekly" ];
+    };
+    
+    extraOptions = ''
+      keep-outputs = true
+      keep-derivations = true
+      max-jobs = auto
+    '';
+  };
+  
+  # Limit boot generations
+  boot.loader.systemd-boot.configurationLimit = 5;
+  
+  # SSH (disabled by default, enable when needed)
+  services.openssh = {
+    enable = false;
+    settings = {
+      PermitRootLogin = "no";
+      PasswordAuthentication = false;
+    };
+  };
+  
+  # direnv for per-project development environments
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+  
+  # Enable niri compositor
+  programs.niri.enable = true;
+  
+  # XWayland support for X11 applications
+  programs.xwayland.enable = true;
+  
+  # Allow unfree packages (NVIDIA driver, etc.)
+  nixpkgs.config.allowUnfree = true;
+  
+  # State version - DO NOT CHANGE after initial install
+  system.stateVersion = "25.05";
+}

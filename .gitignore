@@ -1,0 +1,35 @@
+# Nix build results
+result
+result-*
+
+# Hardware configuration (machine-specific, regenerate on each machine)
+# Uncomment if you want to regenerate on each machine:
+# hosts/*/hardware-configuration.nix
+
+# Secrets - NEVER commit unencrypted secrets
+secrets/*.key
+secrets/*.pem
+*.age
+!secrets/README.md
+
+# Age/sops private keys - NEVER commit these!
+*.txt
+!.gitignore
+
+# But allow .sops.yaml (contains only public keys)
+!.sops.yaml
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Backup files
+*.bak
+*.backup
