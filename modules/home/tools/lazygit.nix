@@ -29,15 +29,15 @@
       };
       
       git = {
-        paging = {
+        pagers = {
           colorArg = "always";
           pager = "delta --dark --paging=never";
         };
-        
+
         commit = {
           signOff = false;
         };
-        
+
         merging = {
           manualCommit = false;
           args = "";
@@ -87,7 +87,7 @@
           scrollDownMain-alt1 = "J";
           scrollUpMain-alt2 = "<c-u>";
           scrollDownMain-alt2 = "<c-d>";
-          executeCustomCommand = ":";
+          executeShellCommand = ":";
           createRebaseOptionsMenu = "m";
           pushFiles = "P";
           pullFiles = "p";
