@@ -4,50 +4,52 @@
   services.mako = {
     enable = true;
 
-    # Font
-    font = "${theme.font.family} ${toString theme.font.size}";
+    settings = {
+      # Font
+      font = "${theme.font.family} ${toString theme.font.size}";
 
-    # Colors
-    backgroundColor = theme.colorScheme.base00;
-    textColor = theme.colorScheme.base05;
-    borderColor = theme.border.activeColor;
-    progressColor = "over ${theme.semantic.variable}";
+      # Colors
+      background-color = theme.colorScheme.base00;
+      text-color = theme.colorScheme.base05;
+      border-color = theme.border.activeColor;
+      progress-color = "over ${theme.semantic.variable}";
 
-    # Layout
-    width = 400;
-    height = 150;
-    margin = "16";
-    padding = "16";
-    borderSize = theme.border.width;
-    borderRadius = theme.rounding;
+      # Layout
+      width = 400;
+      height = 150;
+      margin = "16";
+      padding = "16";
+      border-size = theme.border.width;
+      border-radius = theme.rounding;
 
-    # Behavior
-    defaultTimeout = 5000;
-    ignoreTimeout = false;
+      # Behavior
+      default-timeout = 5000;
+      ignore-timeout = false;
 
-    # Grouping
-    groupBy = "app-name";
-    maxVisible = 5;
-    sort = "-time";
+      # Grouping
+      group-by = "app-name";
+      max-visible = 5;
+      sort = "-time";
 
-    # Icons
-    icons = true;
-    maxIconSize = 48;
-    iconPath = "${pkgs.papirus-icon-theme}/share/icons/Papirus-Dark";
+      # Icons
+      icons = true;
+      max-icon-size = 48;
+      icon-path = "${pkgs.papirus-icon-theme}/share/icons/Papirus-Dark";
 
-    # Actions
-    actions = true;
+      # Actions
+      actions = true;
+    };
 
     # Extra configuration for urgency levels
     extraConfig = ''
       [urgency=low]
       border-color=${theme.semantic.info}
       default-timeout=3000
-      
+
       [urgency=normal]
       border-color=${theme.semantic.warning}
       default-timeout=5000
-      
+
       [urgency=critical]
       border-color=${theme.semantic.error}
       default-timeout=0
