@@ -6,19 +6,18 @@
 
     config = {
       # Plugin configuration
-      plugins = with pkgs.anyrun; [
-        applications
-        rink
-        shell
-        symbols
+      plugins = [
+        "${pkgs.anyrun}/lib/libapplications.so"
+        "${pkgs.anyrun}/lib/librink.so"
+        "${pkgs.anyrun}/lib/libshell.so"
+        "${pkgs.anyrun}/lib/libsymbols.so"
       ];
 
       # Window positioning
-      width.fraction = 0.3;
-      height.fraction = 0.0;
-      position = "top";
-      verticalOffset.absolute = 0;
-      horizontalOffset.absolute = 0;
+      x = { fraction = 0.5; };
+      y = { fraction = 0.0; };
+      width = { fraction = 0.3; };
+      height = { fraction = 0.0; };
 
       # Hide icons and plugin info
       hideIcons = false;
