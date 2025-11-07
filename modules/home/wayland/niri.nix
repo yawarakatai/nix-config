@@ -3,6 +3,12 @@
 {
   programs.niri = {
     settings = {
+      # TODO: this settings should be moved to other location
+      spawn-at-startup = [
+        { command = [ "waybar" ]; }
+        { command = [ "mako" ]; }
+      ];
+
       # Input configuration
       input = {
         keyboard = {
