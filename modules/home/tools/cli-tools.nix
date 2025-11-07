@@ -4,44 +4,43 @@
   # Install CLI tools
   home.packages = with pkgs; [
     # File operations
-    eza       # ls alternative
-    bat       # cat alternative
-    fd        # find alternative
-    ripgrep   # grep alternative
-    
+    eza # ls alternative
+    bat # cat alternative
+    fd # find alternative
+    ripgrep # grep alternative
+
     # System monitoring
-    bottom    # htop/top alternative
-    duf       # df alternative
-    dust      # du alternative
-    procs     # ps alternative
-    
+    bottom # htop/top alternative
+    duf # df alternative
+    dust # du alternative
+    procs # ps alternative
+
     # Other utilities
-    tealdeer  # tldr (simplified man pages)
-    fzf       # fuzzy finder
-    jq        # JSON processor
-    yq        # YAML processor
-    
+    tealdeer # tldr (simplified man pages)
+    fzf # fuzzy finder
+    jq # JSON processor
+    yq # YAML processor
+
     # Network tools
     bandwhich # network monitor
-    
+
     # Misc
-    neofetch  # system info
-    tokei     # code statistics
+    neofetch # system info
+    tokei # code statistics
     hyperfine # benchmarking tool
   ];
-  
+
   # eza configuration
   programs.eza = {
     enable = true;
     enableNushellIntegration = true;
     git = true;
-    icons = true;
     extraOptions = [
       "--group-directories-first"
       "--header"
     ];
   };
-  
+
   # bat configuration
   programs.bat = {
     enable = true;
@@ -50,7 +49,7 @@
       style = "numbers,changes,header";
       italic-text = "always";
     };
-    
+
     # Custom theme based on our colors
     themes = {
       neon-night = {
@@ -85,12 +84,12 @@
       };
     };
   };
-  
+
   # fzf configuration
   programs.fzf = {
     enable = true;
-    enableNushellIntegration = true;
-    
+    # enableNushellIntegration = true;
+
     colors = {
       bg = theme.colorScheme.base00;
       "bg+" = theme.colorScheme.base01;
@@ -105,7 +104,7 @@
       prompt = theme.semantic.function;
       spinner = theme.semantic.warning;
     };
-    
+
     defaultOptions = [
       "--height 40%"
       "--layout=reverse"
@@ -113,18 +112,18 @@
       "--inline-info"
     ];
   };
-  
+
   # bottom configuration
   programs.bottom = {
     enable = true;
-    
+
     settings = {
       flags = {
         color = "default";
         mem_as_value = true;
         tree = true;
       };
-      
+
       colors = {
         high_battery_color = theme.semantic.success;
         medium_battery_color = theme.semantic.warning;

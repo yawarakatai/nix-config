@@ -6,10 +6,10 @@ in
 {
   home.username = vars.username;
   home.homeDirectory = "/home/${vars.username}";
-  
+
   # Make theme available to all modules
   _module.args.theme = theme;
-  
+
   # Import all home modules
   imports = [
     # Shell
@@ -17,52 +17,54 @@ in
     ../../modules/home/shell/starship.nix
     ../../modules/home/shell/zoxide.nix
     ../../modules/home/shell/atuin.nix
-    
+
     # Editors
     ../../modules/home/editors/helix.nix
     ../../modules/home/editors/vscode.nix
-    
+
     # Terminal
     ../../modules/home/terminal/ghostty.nix
-    
+
     # Wayland
     ../../modules/home/wayland/niri.nix
     ../../modules/home/wayland/waybar.nix
     ../../modules/home/wayland/tofi.nix
     ../../modules/home/wayland/mako.nix
-    
+
     # Tools
     ../../modules/home/tools/yazi.nix
     ../../modules/home/tools/lazygit.nix
     ../../modules/home/tools/cli-tools.nix
   ];
-  
+
   # User packages
   home.packages = with pkgs; [
     # Browser
     firefox
-    
+
     # Wayland utilities
     wl-clipboard
-    
+
     # System info
     neofetch
-    
+
     # File manager (GUI)
     nautilus
   ];
-  
+
   # Git configuration
   programs.git = {
     enable = true;
-    userName = vars.gitName;
-    userEmail = vars.gitEmail;
-    
-    extraConfig = {
+    settings = {
+      user = {
+        name = vars.gitName;
+        email = vars.gitEmail;
+      };
+
       init.defaultBranch = "main";
       pull.rebase = false;
       core.editor = "hx";
-      
+
       # Delta for better diffs
       core.pager = "delta";
       interactive.diffFilter = "delta --color-only";
@@ -72,27 +74,28 @@ in
         line-numbers = true;
         syntax-theme = "base16";
       };
-      
+
       merge.conflictstyle = "diff3";
       diff.colorMoved = "default";
     };
   };
-  
+
+
   # direnv
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
     enableNushellIntegration = true;
   };
-  
+
   # XDG configuration
   xdg = {
     enable = true;
-    
+
     userDirs = {
       enable = true;
       createDirectories = false;
-      
+
       desktop = "${config.home.homeDirectory}/Desktop";
       documents = "${config.home.homeDirectory}/Documents";
       download = "${config.home.homeDirectory}/Downloads";
@@ -102,7 +105,7 @@ in
       templates = "${config.home.homeDirectory}/Templates";
       publicShare = "${config.home.homeDirectory}/Public";
     };
-    
+
     mimeApps = {
       enable = true;
       defaultApplications = {
@@ -117,13 +120,13 @@ in
       };
     };
   };
-  
+
   # GTK theme (optional)
   gtk = {
     enable = true;
     theme = {
       name = "Adwaita-dark";
-      package = pkgs.gnome.gnome-themes-extra;
+      package = pkgs.gnome-themes-extra;
     };
     iconTheme = {
       name = "Papirus-Dark";
@@ -131,10 +134,10 @@ in
     };
     cursorTheme = {
       name = "Adwaita";
-      package = pkgs.gnome.adwaita-icon-theme;
+      package = pkgs.adwaita-icon-theme;
     };
   };
-  
+
   # State version - DO NOT CHANGE after initial install
   home.stateVersion = "25.05";
 }

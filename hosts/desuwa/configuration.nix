@@ -4,10 +4,20 @@
   # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  
+
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd niri-session";
+        user = "greeter";
+      };
+    };
+  };
+
   # Hostname
   networking.hostName = vars.hostname;
-  
+
   # System packages (minimal, most packages in Home Manager)
   environment.systemPackages = with pkgs; [
     vim
@@ -20,31 +30,36 @@
     pciutils
     usbutils
   ];
-  
+
   # User configuration
-  users.users.${vars.username} = {
-    isNormalUser = true;
-    description = vars.username;
-    extraGroups = [ "networkmanager" "wheel" "video" "audio" ];
-    shell = pkgs.nushell;
-    
-    # Initial password hash - generate with: mkpasswd -m sha-512
-    hashedPassword = "$6$0DllCY/akD0D.v8L$GIfCe9D4/XT9W6shjkNLBuBbU5F1plbgrLHlQ.IkhHAav5xtg/sNWt.HEOziMqC7TNPzSy5KkwEli88Bw/9qy/";
-    
-    # For future sops-nix migration, uncomment:
-    # hashedPasswordFile = config.sops.secrets.yawarakatai-password.path;
+  users = {
+    mutableUsers = false;
+
+    users.${vars.username} = {
+      isNormalUser = true;
+      description = vars.username;
+      extraGroups = [ "networkmanager" "wheel" "video" "audio" "plugdev" ];
+      shell = pkgs.nushell;
+
+      # Initial password hash - generate with: mkpasswd -m sha-512
+      hashedPassword = "$6$KtMQPtEMmQ9AW7qK$tvtWeUA5GzWyILnexkH51.OMTnM6cuzA2aEymac264HctHr5jRBH7NBOOn4twZqaF963f8KkgDdNzfpSfd54D0";
+
+      # For future sops-nix migration, uncomment:
+      # hashedPasswordFile = config.sops.secrets.yawarakatai-password.path;
+    };
+
+    # Disable root login
+    users.root.hashedPassword = "!";
   };
-  
-  # Disable root login
-  users.users.root.hashedPassword = "!";
-  
+
+
   # Nix configuration
   nix = {
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
       auto-optimise-store = true;
       trusted-users = [ "root" vars.username ];
-      
+
       # Substituters
       substituters = [
         "https://cache.nixos.org"
@@ -55,30 +70,30 @@
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
     };
-    
+
     # Garbage collection
     gc = {
       automatic = true;
       dates = "weekly";
       options = "--delete-older-than 30d";
     };
-    
+
     # Optimize store
     optimise = {
       automatic = true;
       dates = [ "weekly" ];
     };
-    
+
     extraOptions = ''
       keep-outputs = true
       keep-derivations = true
       max-jobs = auto
     '';
   };
-  
+
   # Limit boot generations
   boot.loader.systemd-boot.configurationLimit = 5;
-  
+
   # SSH (disabled by default, enable when needed)
   services.openssh = {
     enable = false;
@@ -87,22 +102,22 @@
       PasswordAuthentication = false;
     };
   };
-  
+
   # direnv for per-project development environments
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
   };
-  
+
   # Enable niri compositor
   programs.niri.enable = true;
-  
+
   # XWayland support for X11 applications
   programs.xwayland.enable = true;
-  
+
   # Allow unfree packages (NVIDIA driver, etc.)
   nixpkgs.config.allowUnfree = true;
-  
+
   # State version - DO NOT CHANGE after initial install
   system.stateVersion = "25.05";
 }
