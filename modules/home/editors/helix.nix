@@ -1,6 +1,30 @@
 { config, pkgs, theme, ... }:
 
 {
+  # Install language servers and tools needed by Helix
+  home.packages = with pkgs; [
+    # === LSP Servers ===
+    nil # Nix LSP
+    rust-analyzer # Rust LSP
+    pyright # Python LSP (fast, recommended)
+    # python312Packages.python-lsp-server  # Alternative Python LSP
+    clang-tools # C/C++ LSP (includes clangd)
+    haskell-language-server # Haskell LSP
+    nodePackages.typescript-language-server # TypeScript/JavaScript LSP
+    taplo # TOML LSP and formatter
+    yaml-language-server # YAML LSP
+    marksman # Markdown LSP
+
+    # === Formatters ===
+    nixpkgs-fmt # Nix formatter
+    rustfmt # Rust formatter
+    black # Python formatter
+    nodePackages.prettier # Web formatter (JS, TS, HTML, CSS, JSON, etc.)
+
+    # === Debug Adapters (optional) ===
+    lldb # C/C++/Rust debugger
+  ];
+
   programs.helix = {
     enable = true;
 
@@ -134,23 +158,153 @@
       "diff.delta" = theme.semantic.gitModified;
     };
 
-    # Language servers
+    # Language-specific configurations
     languages = {
       language = [
+        # Nix
         {
           name = "nix";
           auto-format = true;
-          formatter.command = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt";
+          formatter = {
+            command = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt";
+          };
+          language-servers = [ "nil" ];
         }
+
+        # Rust
         {
           name = "rust";
           auto-format = true;
+          formatter = {
+            command = "${pkgs.rustfmt}/bin/rustfmt";
+            args = [ "--edition" "2021" ];
+          };
+          language-servers = [ "rust-analyzer" ];
         }
+
+        # Python
         {
           name = "python";
           auto-format = true;
+          formatter = {
+            command = "${pkgs.black}/bin/black";
+            args = [ "--quiet" "-" ];
+          };
+          language-servers = [ "pyright" ];
+        }
+
+        # C/C++
+        {
+          name = "c";
+          auto-format = true;
+          language-servers = [ "clangd" ];
+        }
+        {
+          name = "cpp";
+          auto-format = true;
+          language-servers = [ "clangd" ];
+        }
+
+        # Haskell
+        {
+          name = "haskell";
+          auto-format = true;
+          language-servers = [ "haskell-language-server" ];
+        }
+
+        # JavaScript/TypeScript
+        {
+          name = "javascript";
+          auto-format = true;
+          formatter = {
+            command = "${pkgs.nodePackages.prettier}/bin/prettier";
+            args = [ "--parser" "typescript" ];
+          };
+          language-servers = [ "typescript-language-server" ];
+        }
+        {
+          name = "typescript";
+          auto-format = true;
+          formatter = {
+            command = "${pkgs.nodePackages.prettier}/bin/prettier";
+            args = [ "--parser" "typescript" ];
+          };
+          language-servers = [ "typescript-language-server" ];
+        }
+
+        # TOML
+        {
+          name = "toml";
+          auto-format = true;
+          language-servers = [ "taplo" ];
+        }
+
+        # YAML
+        {
+          name = "yaml";
+          auto-format = true;
+          language-servers = [ "yaml-language-server" ];
+        }
+
+        # Markdown
+        {
+          name = "markdown";
+          auto-format = true;
+          language-servers = [ "marksman" ];
         }
       ];
+
+      # Language server configurations
+      language-server = {
+        nil = {
+          command = "${pkgs.nil}/bin/nil";
+        };
+
+        rust-analyzer = {
+          command = "${pkgs.rust-analyzer}/bin/rust-analyzer";
+          config = {
+            check = {
+              command = "clippy";
+            };
+          };
+        };
+
+        pyright = {
+          command = "${pkgs.pyright}/bin/pyright-langserver";
+          args = [ "--stdio" ];
+        };
+
+        clangd = {
+          command = "${pkgs.clang-tools}/bin/clangd";
+          args = [ "--background-index" "--clang-tidy" ];
+        };
+
+        haskell-language-server = {
+          command = "${pkgs.haskell-language-server}/bin/haskell-language-server-wrapper";
+          args = [ "--lsp" ];
+        };
+
+        typescript-language-server = {
+          command = "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server";
+          args = [ "--stdio" ];
+        };
+
+        taplo = {
+          command = "${pkgs.taplo}/bin/taplo";
+          args = [ "lsp" "stdio" ];
+        };
+
+        yaml-language-server = {
+          command = "${pkgs.yaml-language-server}/bin/yaml-language-server";
+          args = [ "--stdio" ];
+        };
+
+        marksman = {
+          command = "${pkgs.marksman}/bin/marksman";
+          args = [ "server" ];
+        };
+      };
     };
   };
 }
+
