@@ -14,6 +14,7 @@
       background = theme.colorScheme.base00;
       foreground = theme.colorScheme.base05;
 
+
       # Cursor
       cursor-color = theme.semantic.variable;
       cursor-style = "block";
@@ -53,6 +54,7 @@
 
       # Opacity
       background-opacity = theme.opacity.terminal;
+      background-blur-radius = 20;
 
       # Shell integration
       # shell-integration = true;

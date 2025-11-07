@@ -39,18 +39,11 @@
 
       # Layout configuration
       layout = {
-        gaps = theme.gaps.inner;
-        border = {
-          width = theme.border.width;
-          # active-color = theme.border.activeColor;
-          # inactive-color = theme.border.color;
-        };
+        background-color = theme.colorScheme.base00;
 
-        focus-ring = {
-          width = theme.border.width;
-          # active-color = theme.border.activeColor;
-          # inactive-color = theme.border.color;
-        };
+        gaps = theme.gaps.inner;
+        border.enable = false;
+        focus-ring.enable = false;
 
         preset-column-widths = [
           { proportion = 0.33333; }
