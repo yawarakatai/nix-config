@@ -89,7 +89,40 @@ Add this line:
 nix.settings.experimental-features = [ "nix-command" "flakes" ];
 ```
 
-### 1.6 Install NixOS
+### 1.6 Configure User Account
+
+**IMPORTANT:** You must configure your user account BEFORE running nixos-install. NixOS will automatically create the user during installation.
+
+First, generate a password hash:
+
+```bash
+# Install mkpasswd in the live environment
+nix-shell -p mkpasswd
+
+# Generate password hash
+mkpasswd -m sha-512
+# Enter your password when prompted
+# Copy the output (starts with $6$...)
+```
+
+Now edit the configuration to add your user:
+
+```bash
+sudo nano /mnt/etc/nixos/configuration.nix
+```
+
+Add your user configuration (replace the hash with your generated hash):
+
+```nix
+users.users.yawarakatai = {
+  isNormalUser = true;
+  description = "Yawarakatai";
+  extraGroups = [ "wheel" "networkmanager" "video" "audio" ];
+  hashedPassword = "$6$rounds=656000$...";  # Paste your hash here
+};
+```
+
+### 1.7 Install NixOS
 
 ```bash
 sudo nixos-install
@@ -103,7 +136,7 @@ sudo nixos-install
 
 1. Remove installation media
 2. Boot into the new system
-3. Login as root (temporarily)
+3. Login as your user (yawarakatai) using the password you set
 
 ### 2.2 Enable Flakes System-wide
 
@@ -123,24 +156,10 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
 nixos-rebuild switch
 ```
 
-### 2.3 Create User Account
+### 2.3 Clone/Copy Configuration
 
 ```bash
-# Create user
-useradd -m -G wheel,networkmanager,video,audio -s /bin/bash yawarakatai
-
-# Set user password
-passwd yawarakatai
-
-# Test sudo access
-su - yawarakatai
-sudo echo "Sudo works!"
-```
-
-### 2.4 Clone/Copy Configuration
-
-```bash
-# As user yawarakatai
+# As your regular user
 cd ~
 mkdir -p .config
 
@@ -148,7 +167,7 @@ mkdir -p .config
 git clone https://github.com/yourusername/nix-config ~/.config
 ```
 
-### 2.5 Generate Hardware Configuration
+### 2.4 Generate Hardware Configuration
 
 ```bash
 cd ~/.config/nix-config
@@ -161,34 +180,7 @@ Review and adjust if needed:
 nano hosts/desuwa/hardware-configuration.nix
 ```
 
-### 2.6 Generate Password Hash
-
-```bash
-# Install mkpasswd
-nix-shell -p mkpasswd
-
-# Generate password hash
-mkpasswd -m sha-512
-# Enter your password
-# Copy the output (starts with $6$...)
-```
-
-Edit configuration:
-
-```bash
-nano hosts/desuwa/configuration.nix
-```
-
-Replace the password hash:
-
-```nix
-users.users.yawarakatai = {
-  # ...
-  hashedPassword = "$6$rounds=656000$...";  # Paste your hash here
-};
-```
-
-### 2.7 Initialize Flake
+### 2.5 Initialize Flake
 
 ```bash
 cd ~/.config/nix-config
@@ -200,7 +192,7 @@ nix flake lock
 nix flake check
 ```
 
-### 2.8 Build and Switch
+### 2.6 Build and Switch
 
 ```bash
 # Dry run (check for errors)
@@ -212,7 +204,7 @@ sudo nixos-rebuild switch --flake ~/.config/nix-config#desuwa
 
 This will take some time on first build as it downloads and compiles everything.
 
-### 2.9 Reboot
+### 2.7 Reboot
 
 ```bash
 reboot
