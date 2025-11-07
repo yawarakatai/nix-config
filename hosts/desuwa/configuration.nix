@@ -9,7 +9,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet -r --remember-session";
+        command = "${pkgs.tuigreet}/bin/tuigreet -r --remember-session --sessions ${pkgs.niri}/share/wayland-sessions";
         user = "greeter";
       };
     };
