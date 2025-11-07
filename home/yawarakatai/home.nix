@@ -31,7 +31,7 @@ in
     # Wayland
     ../../modules/home/wayland/niri.nix
     ../../modules/home/wayland/waybar.nix
-    ../../modules/home/wayland/tofi.nix
+    ../../modules/home/wayland/anyrun.nix
     ../../modules/home/wayland/mako.nix
 
     # Tools
