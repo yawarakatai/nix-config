@@ -3,10 +3,10 @@
 {
   programs.helix = {
     enable = true;
-    
+
     settings = {
       theme = "neon-night";
-      
+
       editor = {
         line-number = "relative";
         mouse = true;
@@ -15,38 +15,38 @@
         auto-save = true;
         completion-trigger-len = 1;
         true-color = true;
-        
+
         cursor-shape = {
           insert = "bar";
           normal = "block";
           select = "underline";
         };
-        
+
         file-picker = {
           hidden = false;
         };
-        
+
         statusline = {
           left = [ "mode" "spinner" "file-name" "file-modification-indicator" ];
           center = [ "diagnostics" ];
           right = [ "selections" "position" "file-encoding" "file-line-ending" "file-type" ];
         };
-        
+
         lsp = {
           display-messages = true;
           display-inlay-hints = true;
         };
-        
+
         indent-guides = {
           render = true;
           character = "│";
         };
-        
+
         soft-wrap = {
           enable = true;
         };
       };
-      
+
       keys.normal = {
         space.space = "file_picker";
         space.w = ":w";
@@ -54,12 +54,12 @@
         space.x = ":x";
         esc = [ "collapse_selection" "keep_primary_selection" ];
       };
-      
+
       keys.insert = {
         j.k = "normal_mode";
       };
     };
-    
+
     # Custom theme definition
     themes.neon-night = {
       # UI colors
@@ -87,7 +87,7 @@
       "ui.virtual.whitespace" = theme.colorScheme.base03;
       "ui.virtual.ruler" = { bg = theme.colorScheme.base01; };
       "ui.virtual.indent-guide" = theme.colorScheme.base03;
-      
+
       # Syntax highlighting
       "comment" = { fg = theme.semantic.comment; italic = true; };
       "keyword" = { fg = theme.semantic.keyword; bold = true; };
@@ -111,7 +111,7 @@
       "punctuation" = theme.colorScheme.base05;
       "punctuation.delimiter" = theme.colorScheme.base05;
       "punctuation.bracket" = theme.colorScheme.base05;
-      
+
       # Markup
       "markup.heading" = { fg = theme.semantic.function; bold = true; };
       "markup.list" = theme.semantic.keyword;
@@ -121,19 +121,19 @@
       "markup.link.text" = theme.semantic.string;
       "markup.quote" = theme.semantic.comment;
       "markup.raw" = theme.semantic.string;
-      
+
       # Diagnostics
       "error" = theme.semantic.error;
       "warning" = theme.semantic.warning;
       "info" = theme.semantic.info;
       "hint" = theme.semantic.comment;
-      
+
       # Diff
       "diff.plus" = theme.semantic.gitAdded;
       "diff.minus" = theme.semantic.gitDeleted;
       "diff.delta" = theme.semantic.gitModified;
     };
-    
+
     # Language servers
     languages = {
       language = [
