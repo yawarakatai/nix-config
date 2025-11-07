@@ -107,7 +107,7 @@
           "Mod+Shift+F".action.fullscreen-window = [ ];
 
           # Launcher
-          "Mod+D".action.spawn = [ "anyrun" ];
+          "Mod+Space".action.spawn = [ "anyrun" ];
 
           # Screenshot
           "Print".action.spawn = [ "grimblast" "copy" "area" ];
