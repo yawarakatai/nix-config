@@ -5,6 +5,8 @@
     enable = true;
 
     settings = {
+      gtk-single-instance = false;
+
       # Font configuration
       font-family = theme.font.name;
       font-size = theme.font.size;
@@ -55,10 +57,6 @@
       # Opacity
       background-opacity = theme.opacity.terminal;
       background-blur-radius = 20;
-
-      # Shell integration
-      # shell-integration = true;
-      # shell-integration-features = "cursor,sudo,title";
 
       # Mouse
       mouse-hide-while-typing = true;

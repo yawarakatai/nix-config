@@ -31,6 +31,11 @@
         "terminal.integrated.fontSize" = theme.font.size;
         "terminal.integrated.cursorBlinking" = true;
         "terminal.integrated.defaultProfile.linux" = "nushell";
+        "terminal.integrated.profiles.linux" = {
+          nushell = {
+            path = "${pkgs.nushell}/bin/nu";
+          };
+        };
 
         # Files
         "files.autoSave" = "afterDelay";

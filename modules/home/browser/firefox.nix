@@ -3,6 +3,7 @@
 {
   programs.firefox = {
     enable = true;
+
     policies = {
       DisableTelemetry = true;
       DisableFirefoxStudies = true;
@@ -23,5 +24,14 @@
       DisplayMenuBar = "default-off"; # alternatives: "always", "never" or "default-on"
       SearchBar = "unified"; # alternative: "separate"
     };
+
+    # profiles.default = {
+    #   settings = {
+    #     "browser.startup.homepage" = "about:blank";
+    #     "browser.newtabpage.enabled" = false;
+    #     "general.smoothScroll" = true;
+    #     "layers.acceleration.force-enabled" = true; # Wayland GPU acceleration
+    #   };
+    # };
   };
 }
