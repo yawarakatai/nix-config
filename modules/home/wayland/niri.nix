@@ -94,6 +94,7 @@
           "Mod+Shift+L".action.move-column-right = [ ];
           "Mod+Shift+J".action.move-window-down = [ ];
           "Mod+Shift+K".action.move-window-up = [ ];
+          "Mod+O".action.toggle-overview = [ ];
 
           # Workspaces
           "Mod+1".action.focus-workspace = 1;
@@ -119,6 +120,8 @@
           "Print".action.spawn = [ "grimblast" "copy" "area" ];
           "Shift+Print".action.spawn = [ "grimblast" "save" "area" ];
 
+          "Mod+A".action.spawn = [ "pavucontrol" ];
+
           # System
           "Mod+Shift+E".action.quit = [ ];
         };
@@ -142,6 +145,10 @@
   # Additional Wayland utilities
   home.packages = with pkgs; [
     wl-clipboard
+    wl-mirror
+    wayland-utils
     grimblast # Screenshot utility
+
+    pavucontrol
   ];
 }
