@@ -22,6 +22,9 @@ in
     ../../modules/home/editors/helix.nix
     ../../modules/home/editors/vscode.nix
 
+    # Browsers
+    ../../modules/home/browser/firefox.nix
+
     # Terminal
     ../../modules/home/terminal/ghostty.nix
 
@@ -40,7 +43,7 @@ in
   # User packages
   home.packages = with pkgs; [
     # Browser
-    firefox
+    # firefox
 
     # Wayland utilities
     wl-clipboard
@@ -51,6 +54,7 @@ in
     # File manager (GUI)
     nautilus
   ];
+
 
   # Git configuration
   programs.git = {

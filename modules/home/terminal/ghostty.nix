@@ -68,11 +68,10 @@
       clipboard-write = "allow";
       copy-on-select = true;
 
-      # Keybindings (optional)
-      # keybind = [
-      #   "ctrl+shift+c=copy_to_clipboard"
-      #   "ctrl+shift+v=paste_from_clipboard"
-      # ];
+      keybind = [
+        "ctrl+shift+c=copy_to_clipboard"
+        "ctrl+shift+v=paste_from_clipboard"
+      ];
     };
   };
 }
