@@ -107,8 +107,7 @@
           "Mod+Shift+F".action.fullscreen-window = [ ];
 
           # Launcher
-          "Mod+D".action.spawn = [ "tofi-drun" "--drun-launch=true" ];
-          "Mod+Shift+D".action.spawn = [ "tofi-run" ];
+          "Mod+D".action.spawn = [ "anyrun" ];
 
           # Screenshot
           "Print".action.spawn = [ "grimblast" "copy" "area" ];
