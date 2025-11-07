@@ -3,7 +3,7 @@
 {
   programs.nushell = {
     enable = true;
-    
+
     configFile.text = ''
       # Nushell configuration
       $env.config = {
@@ -53,14 +53,16 @@
         ]
       }
     '';
-    
+
     environmentVariables = {
       EDITOR = "hx";
       VISUAL = "hx";
       PAGER = "bat";
     };
-    
+
     shellAliases = {
+      cc = "cd ~/.config/nix-config";
+
       # Better defaults
       ll = "ls -la";
       la = "ls -a";
@@ -71,19 +73,19 @@
       df = "duf";
       ps = "procs";
       top = "btm";
-      
+
       # Git aliases
       g = "git";
       gs = "git status";
       ga = "git add";
       gc = "git commit";
+      gcm = "git commit -am";
       gp = "git push";
       gl = "git pull";
       gd = "git diff";
-      
-      # NixOS rebuil aliases (if not using helper scripts)
-      # nos = "sudo nixos-rebuild switch --flake ~/.config/nix-config#desuwa";
-      # nob = "sudo nixos-rebuild boot --flake ~/.config/nix-config#desuwa";
+      gm = "git merge";
+      gb = "git branch";
+      gch = "git checkout";
     };
   };
 }
