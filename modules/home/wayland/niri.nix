@@ -64,12 +64,12 @@
       };
 
       # Window rules
-      window-rules = [
-        {
-          matches = [{ app-id = "firefox"; }];
-          default-column-width = { proportion = 1.0; };
-        }
-      ];
+      # window-rules = [
+      #   {
+      #     matches = [{ app-id = "firefox"; }];
+      #     default-column-width = { proportion = 1.0; };
+      #   }
+      # ];
 
       # Keybindings
       binds =
