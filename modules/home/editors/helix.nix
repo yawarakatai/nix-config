@@ -41,12 +41,7 @@
         true-color = true;
 
         # Clipboard configuration for Wayland
-        clipboard-provider = {
-          copy = [ "wl-copy" ];
-          paste = [ "wl-paste" ];
-          primary-copy = [ "wl-copy" "--primary" ];
-          primary-paste = [ "wl-paste" "--primary" ];
-        };
+        clipboard-provider = "wl-clipboard";
 
         cursor-shape = {
           insert = "bar";
