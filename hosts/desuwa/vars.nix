@@ -17,6 +17,9 @@
   hasHiDPI = true;
   monitors = [ "HDMI-A-2" ]; # 4K 144Hz monitor
 
+  # Wallpaper (absolute path, not relative to config location)
+  wallpaperPath = "/home/yawarakatai/.config/nix-config/home/wallpapers/bg.png";
+
   # Storage
   mainDisk = "/dev/nvme0n1";
 
