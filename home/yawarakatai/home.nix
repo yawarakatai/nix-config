@@ -137,17 +137,17 @@ in
     };
 
     theme = {
-      name = "Adwaita-dark";
-      package = pkgs.gnome-themes-extra;
+      name = "Colloid-Dark";
+      package = pkgs.colloid-gtk-theme;
     };
     iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
+      name = "Colloid-Dark";
+      package = pkgs.colloid-icon-theme;
     };
-    cursorTheme = {
-      name = "Adwaita";
-      package = pkgs.adwaita-icon-theme;
-    };
+    # cursorTheme = {
+    #   name = "Adwaita";
+    #   package = pkgs.adwaita-icon-theme;
+    # };
   };
 
   # State version - DO NOT CHANGE after initial install
