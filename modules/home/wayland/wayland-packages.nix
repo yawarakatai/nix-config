@@ -12,19 +12,19 @@
     swaybg
 
     # Clipboard and screen utilities
-    wl-clipboard      # Wayland clipboard utilities
-    wl-mirror         # Screen mirroring
-    wayland-utils     # Wayland debugging tools
-    grim              # Screenshot tool (required by grimblast)
-    slurp             # Area selector (required by grimblast)
-    grimblast         # Screenshot utility wrapper
+    wl-clipboard # Wayland clipboard utilities
+    wl-mirror # Screen mirroring
+    wayland-utils # Wayland debugging tools
+    grim # Screenshot tool (required by grimblast)
+    slurp # Area selector (required by grimblast)
+    grimblast # Screenshot utility wrapper
 
     # Screen locking
-    swaylock          # Screen locker
+    swaylock # Screen locker
 
     # Media and system controls
-    pavucontrol       # PulseAudio volume control GUI
-    playerctl         # Media player controls
-    brightnessctl     # Brightness controls
+    pavucontrol # PulseAudio volume control GUI
+    playerctl # Media player controls
+    brightnessctl # Brightness controls
   ];
 }

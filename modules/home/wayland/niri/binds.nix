@@ -52,7 +52,8 @@
       "Mod+Shift+F".action.fullscreen-window = [ ];
 
       # Software
-      "Mod+Return".action.spawn = "alacritty";
+      "Mod+Space".action.spawn = [ "vicinae" "open" ];
+      "Mod+Return".action.spawn = [ "alacritty" ];
       "Mod+B".action.spawn = [ "firefox" ];
       "Mod+E".action.spawn = [ "nautilus" ];
       "Mod+A".action.spawn = [ "pavucontrol" ];
