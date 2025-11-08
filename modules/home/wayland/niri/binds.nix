@@ -58,21 +58,13 @@
         "copy"
         "area"
       ];
-      "Shift+Print".action.spawn = [
-        "grimblast"
-        "save"
-        "area"
-      ];
+      "Shift+Print".action.spawn = sh "grimblast save area ~/screenshot-$(date +%Y%m%d-%H%M%S).png";
       "Ctrl+Print".action.spawn = [
         "grimblast"
         "copy"
         "screen"
       ];
-      "Ctrl+Shift+Print".action.spawn = [
-        "grimblast"
-        "save"
-        "screen"
-      ];
+      "Ctrl+Shift+Print".action.spawn = sh "grimblast save screen ~/screenshot-$(date +%Y%m%d-%H%M%S).png";
       "Alt+Print".action.spawn = [
         "grimblast"
         "copy"
