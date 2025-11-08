@@ -18,5 +18,8 @@
     grimblast # Screenshot utility
 
     pavucontrol
+    playerctl # Media controls
+    brightnessctl # Brightness controls
+    swaylock # Screen locking
   ];
 }
