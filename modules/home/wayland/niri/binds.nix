@@ -3,7 +3,11 @@
 {
   programs.niri.settings.binds =
     let
-      sh = spawn: [ "sh" "-c" spawn ];
+      sh = spawn: [
+        "sh"
+        "-c"
+        spawn
+      ];
     in
     {
       # Basic window management
@@ -49,11 +53,31 @@
       "Mod+A".action.spawn = [ "pavucontrol" ];
 
       # Screenshot
-      "Print".action.spawn = [ "grimblast" "copy" "area" ];
-      "Shift+Print".action.spawn = [ "grimblast" "save" "area" ];
-      "Ctrl+Print".action.spawn = [ "grimblast" "copy" "screen" ];
-      "Ctrl+Shift+Print".action.spawn = [ "grimblast" "save" "screen" ];
-      "Alt+Print".action.spawn = [ "grimblast" "copy" "window" ];
+      "Print".action.spawn = [
+        "grimblast"
+        "copy"
+        "area"
+      ];
+      "Shift+Print".action.spawn = [
+        "grimblast"
+        "save"
+        "area"
+      ];
+      "Ctrl+Print".action.spawn = [
+        "grimblast"
+        "copy"
+        "screen"
+      ];
+      "Ctrl+Shift+Print".action.spawn = [
+        "grimblast"
+        "save"
+        "screen"
+      ];
+      "Alt+Print".action.spawn = [
+        "grimblast"
+        "copy"
+        "window"
+      ];
 
       # Media controls
       "XF86AudioPlay".action.spawn = sh "playerctl play-pause";
@@ -73,6 +97,6 @@
 
       # System
       "Mod+Shift+E".action.quit = [ ];
-      "Mod+Escape".action.spawn = sh "swaylock -f -c 000000";
+      "Mod+Shift+Escape".action.spawn = sh "swaylock -f -c 000000";
     };
 }

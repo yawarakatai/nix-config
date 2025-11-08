@@ -1,4 +1,9 @@
-{ config, pkgs, theme, ... }:
+{
+  config,
+  pkgs,
+  theme,
+  ...
+}:
 
 {
   programs.anyrun = {
@@ -14,10 +19,18 @@
       ];
 
       # Window positioning - centered with small size
-      x = { fraction = 0.5; };
-      y = { fraction = 0.5; };
-      width = { fraction = 0.18; };
-      height = { fraction = 0.0; };
+      x = {
+        fraction = 0.5;
+      };
+      y = {
+        fraction = 0.5;
+      };
+      width = {
+        fraction = 0.1;
+      };
+      height = {
+        fraction = 0.0;
+      };
 
       # Hide icons and plugin info
       hideIcons = false;

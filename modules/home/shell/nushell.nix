@@ -1,4 +1,9 @@
-{ config, pkgs, theme, ... }:
+{
+  config,
+  pkgs,
+  theme,
+  ...
+}:
 
 {
   programs.nushell = {
@@ -8,7 +13,7 @@
       # Nushell configuration
       $env.config = {
         show_banner: false
-        
+
         color_config: {
           separator: "${theme.colorScheme.base03}"
           leading_trailing_space_bg: "${theme.colorScheme.base00}"
@@ -31,14 +36,14 @@
           block: "${theme.colorScheme.base05}"
           hints: "${theme.semantic.comment}"
         }
-        
+
         completions: {
           case_sensitive: false
           quick: true
           partial: true
           algorithm: "fuzzy"
         }
-        
+
         keybindings: [
           {
             name: fuzzy_history
@@ -85,7 +90,7 @@
       gd = "git diff";
       gm = "git merge";
       gb = "git branch";
-      gch = "git checkout";
+      gco = "git checkout";
     };
   };
 }

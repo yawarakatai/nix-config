@@ -1,4 +1,9 @@
-{ config, pkgs, theme, ... }:
+{
+  config,
+  pkgs,
+  theme,
+  ...
+}:
 
 {
   programs.vscode = {
@@ -22,7 +27,7 @@
         "editor.formatOnSave" = true;
 
         # Workbench
-        "workbench.colorTheme" = "Default Dark Modern";
+        "workbench.colorTheme" = "GitHub Dark Default";
         "workbench.iconTheme" = "material-icon-theme";
         "workbench.startupEditor" = "none";
         "workbench.tree.indent" = 16;
@@ -96,6 +101,9 @@
         eamodio.gitlens
 
         # UI
+        github.github-vscode-theme
+
+        # Icon
         pkief.material-icon-theme
 
         # Formatting (uncomment as needed)
@@ -105,4 +113,3 @@
     };
   };
 }
-
