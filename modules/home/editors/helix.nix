@@ -40,6 +40,14 @@
         completion-trigger-len = 1;
         true-color = true;
 
+        # Clipboard configuration for Wayland
+        clipboard-provider = {
+          copy = [ "wl-copy" ];
+          paste = [ "wl-paste" ];
+          primary-copy = [ "wl-copy" "--primary" ];
+          primary-paste = [ "wl-paste" "--primary" ];
+        };
+
         cursor-shape = {
           insert = "bar";
           normal = "block";
