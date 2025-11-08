@@ -6,7 +6,7 @@
       spawn-at-startup = [
         { command = [ "waybar" ]; }
         { command = [ "mako" ]; }
-        { command = [ "swaybg -i /home/yawarakatai/.config/nix-config/home/wallpapers/bg.png -m fit" ]; }
+        { command = [ "swaybg" "-i" theme.wallpaper "-m" "fit" ]; }
       ];
 
       # Input configuration
