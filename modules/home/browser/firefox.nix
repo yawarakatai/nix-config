@@ -16,7 +16,6 @@
       DisablePocket = true;
       DisableFirefoxAccounts = true;
       DisableAccounts = true;
-      DisableFirefoxScreenshots = true;
       OverrideFirstRunPage = "";
       OverridePostUpdatePage = "";
       DontCheckDefaultBrowser = true;
@@ -62,7 +61,6 @@
         "layers.acceleration.force-enabled" = true; # Wayland GPU acceleration
         "browser.contentblocking.category" = "strict";
         "extensions.pocket.enabled" = false;
-        "extensions.screenshots.disabled" = true;
         "browser.topsites.contile.enabled" = false;
         "browser.formfill.enable" = false;
         "browser.search.suggest.enabled" = false;
