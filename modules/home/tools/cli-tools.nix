@@ -1,6 +1,11 @@
 { config, pkgs, theme, ... }:
 
 {
+  # Collection module for common CLI tools
+  # Note: This module groups multiple related utilities together
+  # Individual apps get their own modules (e.g., helix.nix, firefox.nix)
+  # but small CLI tools are collected here for convenience
+
   # Install CLI tools
   home.packages = with pkgs; [
     # File operations
