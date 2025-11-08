@@ -22,9 +22,11 @@
         "editor.formatOnSave" = true;
 
         # Workbench
-        "workbench.colorTheme" = "Default Dark Modern"; # Will be customized
+        "workbench.colorTheme" = "Default Dark Modern";
         "workbench.iconTheme" = "material-icon-theme";
         "workbench.startupEditor" = "none";
+        "workbench.tree.indent" = 16;
+        "workbench.activityBar.location" = "default";
 
         # Terminal
         "terminal.integrated.fontFamily" = "'${theme.font.name}'";
@@ -42,6 +44,13 @@
         "files.autoSaveDelay" = 1000;
         "files.trimTrailingWhitespace" = true;
         "files.insertFinalNewline" = true;
+        "files.exclude" = {
+          "**/.git" = true;
+          "**/.DS_Store" = true;
+          "**/node_modules" = true;
+          "**/__pycache__" = true;
+          "**/.pytest_cache" = true;
+        };
 
         # Nix
         "nix.enableLanguageServer" = true;
@@ -50,10 +59,16 @@
         # Git
         "git.autofetch" = true;
         "git.confirmSync" = false;
+        "git.enableSmartCommit" = true;
+        "git.openRepositoryInParentFolders" = "always";
 
-        # Other
+        # Wayland support
+        "window.titleBarStyle" = "custom";
+
+        # Privacy
         "telemetry.telemetryLevel" = "off";
         "update.mode" = "none"; # Updates managed by Nix
+        "extensions.autoUpdate" = false; # Extensions managed by Nix
       };
 
       extensions = with pkgs.vscode-extensions; [
@@ -76,12 +91,19 @@
         # UI
         pkief.material-icon-theme
 
-        # Other useful extensions
+        # Formatting (uncomment as needed)
         # esbenp.prettier-vscode
         # dbaeumer.vscode-eslint
       ];
     };
 
-
+    # Keybindings (can be customized further)
+    keybindings = [
+      {
+        key = "ctrl+shift+e";
+        command = "workbench.view.explorer";
+      }
+    ];
   };
 }
+

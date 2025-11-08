@@ -3,7 +3,8 @@
 {
   name = "Neon Night";
 
-  wallpaper = "/home/${vars.username}/.config/nix-config/home/wallpapers/bg.png";
+  # Wallpaper path from vars (host-specific absolute path)
+  wallpaper = vars.wallpaperPath;
 
   # Base16 color scheme
   colorScheme = {

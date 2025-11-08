@@ -18,17 +18,15 @@
   # Hostname
   networking.hostName = vars.hostname;
 
-  # System packages (minimal, most packages in Home Manager)
+  # System packages (essential tools only, user packages in Home Manager)
   environment.systemPackages = with pkgs; [
-    vim
-    git
-    wget
-    curl
-    htop
-    tree
-    file
-    pciutils
-    usbutils
+    vim       # Emergency editor
+    git       # Required for nixos-rebuild
+    wget      # Download utility
+    curl      # HTTP client
+    file      # File type identification
+    pciutils  # PCI device utilities (lspci)
+    usbutils  # USB device utilities (lsusb)
   ];
 
   # User configuration
@@ -44,8 +42,11 @@
       # Initial password hash - generate with: mkpasswd -m sha-512
       hashedPassword = "$6$KtMQPtEMmQ9AW7qK$tvtWeUA5GzWyILnexkH51.OMTnM6cuzA2aEymac264HctHr5jRBH7NBOOn4twZqaF963f8KkgDdNzfpSfd54D0";
 
-      # For future sops-nix migration, uncomment:
-      # hashedPasswordFile = config.sops.secrets.yawarakatai-password.path;
+      # TODO: Set up sops-nix for secrets management
+      # 1. Initialize sops with age or GPG key
+      # 2. Create secrets file in secrets/ directory
+      # 3. Uncomment and configure: hashedPasswordFile = config.sops.secrets.yawarakatai-password.path;
+      # 4. Set up sops configuration in flake.nix if not already done
     };
 
     # Disable root login
