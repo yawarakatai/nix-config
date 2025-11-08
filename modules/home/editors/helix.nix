@@ -3,6 +3,9 @@
 {
   # Install language servers and tools needed by Helix
   home.packages = with pkgs; [
+    # === Clipboard ===
+    wl-clipboard # Wayland clipboard support
+
     # === LSP Servers ===
     nil # Nix LSP
     rust-analyzer # Rust LSP
