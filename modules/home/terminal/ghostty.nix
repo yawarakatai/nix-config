@@ -5,7 +5,7 @@
     enable = true;
 
     settings = {
-      gtk-single-instance = false;
+      # gtk-single-instance = false;
 
       # Font configuration
       font-family = theme.font.name;
@@ -56,7 +56,7 @@
 
       # Opacity
       background-opacity = theme.opacity.terminal;
-      background-blur-radius = 20;
+      background-blur = true;
 
       # Mouse
       mouse-hide-while-typing = true;

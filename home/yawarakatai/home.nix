@@ -33,6 +33,7 @@ in
     ../../modules/home/wayland/waybar.nix
     ../../modules/home/wayland/anyrun.nix
     ../../modules/home/wayland/mako.nix
+    ../../modules/home/wayland/swaybg.nix
 
     # Tools
     ../../modules/home/tools/yazi.nix
@@ -44,6 +45,9 @@ in
   home.packages = with pkgs; [
     # Browser
     # firefox
+
+    # Background
+    swaybg
 
     # Wayland utilities
     wl-clipboard

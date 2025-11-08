@@ -71,7 +71,7 @@
 
   # Opacity settings (0.0 - 1.0)
   opacity = {
-    terminal = 0.90;
+    terminal = 0.85;
     bar = 0.90;
     launcher = 0.95;
     notification = 0.95;
