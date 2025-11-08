@@ -31,11 +31,11 @@ in
     ../../modules/home/terminal/kitty.nix
 
     # Wayland
+    ../../modules/home/wayland/wayland-packages.nix
     ../../modules/home/wayland/niri
     ../../modules/home/wayland/waybar.nix
     ../../modules/home/wayland/anyrun.nix
     ../../modules/home/wayland/mako.nix
-    ../../modules/home/wayland/swaybg.nix
 
     # Tools
     ../../modules/home/tools/yazi.nix
