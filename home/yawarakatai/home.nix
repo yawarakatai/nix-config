@@ -48,12 +48,6 @@ in
     # Browser
     # firefox
 
-    # Background
-    swaybg
-
-    # Wayland utilities
-    wl-clipboard
-
     # System info
     neofetch
 

@@ -144,6 +144,8 @@
 
   # Additional Wayland utilities
   home.packages = with pkgs; [
+    swaybg
+
     wl-clipboard
     wl-mirror
     wayland-utils
