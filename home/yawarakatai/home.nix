@@ -27,6 +27,8 @@ in
 
     # Terminal
     ../../modules/home/terminal/ghostty.nix
+    ../../modules/home/terminal/alacritty.nix
+    ../../modules/home/terminal/kitty.nix
 
     # Wayland
     ../../modules/home/wayland/niri.nix
