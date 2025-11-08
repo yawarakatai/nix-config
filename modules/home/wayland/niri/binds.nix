@@ -10,13 +10,15 @@
       ];
     in
     {
+      # Show help
+      "Mod+Shift+Slash".action.show-hotkey-overlay = [ ];
+
       # Basic window management
-      "Mod+Return".action.spawn = "alacritty";
       "Mod+Q".action.close-window = [ ];
-      "Mod+H".action.focus-column-left = [ ];
-      "Mod+L".action.focus-column-right = [ ];
-      "Mod+J".action.focus-window-down = [ ];
-      "Mod+K".action.focus-window-up = [ ];
+      "Mod+H".action.focus-column-or-monitor-left = [ ];
+      "Mod+L".action.focus-column-or-monitor-right = [ ];
+      "Mod+J".action.focus-window-or-monitor-down = [ ];
+      "Mod+K".action.focus-window-or-monitor-up = [ ];
       "Mod+Shift+H".action.move-column-left = [ ];
       "Mod+Shift+L".action.move-column-right = [ ];
       "Mod+Shift+J".action.move-window-down = [ ];
@@ -36,18 +38,21 @@
       "Mod+Shift+5".action.move-window-to-workspace = 5;
 
       # Workspace cycling
-      "Mod+Tab".action.focus-workspace-down = [ ];
-      "Mod+Shift+Tab".action.focus-workspace-up = [ ];
+      "Mod+U".action.focus-workspace-up = [ ];
+      "Mod+I".action.focus-workspace-down = [ ];
+      "Mod+Shift+U".action.move-column-to-workspace-up = [ ];
+      "Mod+Shift+I".action.move-column-to-workspace-down = [ ];
+
+      "Mod+Comma".action.consume-window-into-column = [ ];
+      "Mod+Period".action.expel-window-from-column = [ ];
 
       # Sizing
       "Mod+R".action.switch-preset-column-width = [ ];
       "Mod+F".action.maximize-column = [ ];
       "Mod+Shift+F".action.fullscreen-window = [ ];
 
-      # Launcher
-      "Mod+Space".action.spawn = [ "anyrun" ];
-
-      # Applications
+      # Software
+      "Mod+Return".action.spawn = "alacritty";
       "Mod+B".action.spawn = [ "firefox" ];
       "Mod+E".action.spawn = [ "nautilus" ];
       "Mod+A".action.spawn = [ "pavucontrol" ];
@@ -88,7 +93,9 @@
       "XF86MonBrightnessDown".action.spawn = sh "brightnessctl set 5%-";
 
       # System
-      "Mod+Shift+E".action.quit = [ ];
-      "Mod+Shift+Escape".action.spawn = sh "swaylock -f -c 000000";
+      "Mod+Alt+L".action.spawn = sh "swaylock -f -c 000000";
+      "Mod+Alt+E".action.quit = [ ];
+      "Mod+Alt+R".action.spawn = sh "systemctl reboot";
+      "Mod+Alt+S".action.spawn = sh "systemctl poweroff";
     };
 }
