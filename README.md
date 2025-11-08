@@ -23,8 +23,8 @@ A minimal dark theme with pure black background and vibrant neon accents:
 
 ### Window Manager & Desktop
 - **Compositor**: niri (Wayland)
-- **Terminal**: Ghostty
-- **Launcher**: tofi
+- **Terminal**: Alacritty
+- **Launcher**: anyrun
 - **Status Bar**: waybar
 - **Notifications**: mako
 
@@ -116,12 +116,13 @@ colorScheme = {
 
 Convenient commands for system management:
 
-- `nos` - nixos-rebuild switch
-- `nob` - nixos-rebuild boot
-- `not` - nixos-rebuild test
-- `nou` - update flake and rebuild
-- `noc` - check flake
-- `nog` - garbage collect
+- `nd` - nixos-rebuild dry-build (preview changes)
+- `nt` - nixos-rebuild test (apply without boot persistence)
+- `ns` - nixos-rebuild switch (apply and set as boot default)
+- `nb` - nixos-rebuild boot (set as boot default, apply on next boot)
+- `nus` - update flake and rebuild switch
+- `nfc` - check flake validity
+- `ngc` - garbage collect (remove old generations)
 
 ### Storage Layout
 
@@ -222,9 +223,10 @@ sudo nixos-rebuild switch --rollback
 ### Clean up
 
 ```bash
-# Manual garbage collection
-nog
-# Or:
+# Use rebuild helper
+ngc
+
+# Or manually:
 sudo nix-collect-garbage -d
 nix-store --optimise
 ```
