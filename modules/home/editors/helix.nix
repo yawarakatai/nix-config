@@ -41,7 +41,7 @@
         true-color = true;
 
         # Clipboard configuration for Wayland
-        clipboard-provider = "wl-clipboard";
+        clipboard-provider = "wayland";
 
         cursor-shape = {
           insert = "bar";
