@@ -50,6 +50,8 @@ in
 
     # System info
     neofetch
+    htop
+    tree
 
     # File manager (GUI)
     nautilus

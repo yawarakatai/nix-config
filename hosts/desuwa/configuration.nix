@@ -18,17 +18,15 @@
   # Hostname
   networking.hostName = vars.hostname;
 
-  # System packages (minimal, most packages in Home Manager)
+  # System packages (essential tools only, user packages in Home Manager)
   environment.systemPackages = with pkgs; [
-    vim
-    git
-    wget
-    curl
-    htop
-    tree
-    file
-    pciutils
-    usbutils
+    vim       # Emergency editor
+    git       # Required for nixos-rebuild
+    wget      # Download utility
+    curl      # HTTP client
+    file      # File type identification
+    pciutils  # PCI device utilities (lspci)
+    usbutils  # USB device utilities (lsusb)
   ];
 
   # User configuration
