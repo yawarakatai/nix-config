@@ -1,7 +1,7 @@
 { config, pkgs, vars, inputs, ... }:
 
 let
-  theme = import ../../modules/home/theme.nix { inherit vars; };
+  theme = import ../../modules/home/themes/night-neon.nix { inherit vars; };
 in
 {
   home.username = vars.username;
