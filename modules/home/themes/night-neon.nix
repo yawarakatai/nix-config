@@ -3,6 +3,8 @@
 {
   name = "Neon Night";
 
+  wallpaper = "~/.config/nix-config/modules/home/wallpapers/bg.png";
+
   # Base16 color scheme
   colorScheme = {
     # Base colors - Pure black with subtle grays

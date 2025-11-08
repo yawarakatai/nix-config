@@ -3,10 +3,10 @@
 {
   programs.niri = {
     settings = {
-      # TODO: this settings should be moved to other location
       spawn-at-startup = [
         { command = [ "waybar" ]; }
         { command = [ "mako" ]; }
+        { command = [ "swaybg -i /home/yawarakatai/.config/nix-config/home/wallpapers/bg.png -m fit" ]; }
       ];
 
       # Input configuration
@@ -84,7 +84,7 @@
         in
         {
           # Basic window management
-          "Mod+Return".action.spawn = "ghostty";
+          "Mod+Return".action.spawn = "alacritty";
           "Mod+Q".action.close-window = [ ];
           "Mod+H".action.focus-column-left = [ ];
           "Mod+L".action.focus-column-right = [ ];
