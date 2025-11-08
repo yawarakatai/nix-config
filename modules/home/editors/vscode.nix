@@ -69,6 +69,13 @@
         "telemetry.telemetryLevel" = "off";
         "update.mode" = "none"; # Updates managed by Nix
         "extensions.autoUpdate" = false; # Extensions managed by Nix
+
+        keybindings = [
+          {
+            key = "ctrl+shift+e";
+            command = "workbench.view.explorer";
+          }
+        ];
       };
 
       extensions = with pkgs.vscode-extensions; [
@@ -96,14 +103,6 @@
         # dbaeumer.vscode-eslint
       ];
     };
-
-    # Keybindings (can be customized further)
-    keybindings = [
-      {
-        key = "ctrl+shift+e";
-        command = "workbench.view.explorer";
-      }
-    ];
   };
 }
 
