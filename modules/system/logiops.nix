@@ -10,13 +10,6 @@
   environment.etc."logid.cfg".text = ''
     devices: ({
       name: "MX Master 3S";
-
-      // Enable smartshift for the scroll wheel
-      smartshift: {
-        on: true;
-        threshold: 15;
-      };
-
       // Enable high-resolution scrolling
       hiresscroll: {
         hires: true;
@@ -25,7 +18,7 @@
       };
 
       // DPI settings
-      dpi: 1000;
+      dpi: 8000;
 
       // Button configuration
       buttons: (
