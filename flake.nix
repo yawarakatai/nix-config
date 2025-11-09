@@ -1,5 +1,5 @@
 {
-  description = "NixOS configuration with flakes - yawarakatai";
+  description = "NixOS configuration with flakes";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -63,8 +63,10 @@
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
-                users.${vars.username} = import ./home/${vars.username}/home.nix;
+
+                users.${vars.username} = import ./home/${hostname}/home.nix;
                 extraSpecialArgs = { inherit vars inputs; };
+                backupFileExtension = "backup";
               };
             }
           ] ++ nixpkgs.lib.optionals vars.hasNvidia [
