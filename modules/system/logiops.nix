@@ -16,8 +16,8 @@
 
       // Enable smartshift for the scroll wheel
       smartshift: {
-        on: true;
-        threshold: 15;
+        on: false;
+        // threshold: 15;
       };
 
       // Enable high-resolution scrolling
@@ -27,36 +27,15 @@
         target: false;
       };
 
+      thumbwheel: {
+        invert: true;
+      };
+
       // DPI settings
       dpi: 8000;
 
       // Button configuration
       buttons: (
-        // Thumb wheel (side scroll)
-        {
-          cid: 0xc3;
-          action: {
-            type: "Gestures";
-            gestures: (
-              {
-                direction: "Up";
-                mode: "OnRelease";
-                action: {
-                  type: "Keypress";
-                  keys: ["KEY_VOLUMEUP"];
-                };
-              },
-              {
-                direction: "Down";
-                mode: "OnRelease";
-                action: {
-                  type: "Keypress";
-                  keys: ["KEY_VOLUMEDOWN"];
-                };
-              }
-            );
-          };
-        },
 
         // Forward button (thumb)
         {
@@ -76,7 +55,7 @@
           };
         },
 
-        // Gesture button (side button)
+        // Gesture button (top)
         {
           cid: 0xc4;
           action: {
@@ -87,7 +66,7 @@
                 mode: "OnRelease";
                 action: {
                   type: "Keypress";
-                  keys: ["KEY_LEFTMETA"];
+                  keys: ["KEY_PLAYPAUSE"];
                 };
               },
               {
@@ -95,7 +74,7 @@
                 mode: "OnRelease";
                 action: {
                   type: "Keypress";
-                  keys: ["KEY_LEFTMETA", "KEY_D"];
+                  keys: ["KEY_VOLUMEUP"];
                 };
               },
               {
@@ -103,7 +82,7 @@
                 mode: "OnRelease";
                 action: {
                   type: "Keypress";
-                  keys: ["KEY_LEFTMETA", "KEY_H"];
+                  keys: ["KEY_VOLUMEDOWN"];
                 };
               },
               {
@@ -111,7 +90,7 @@
                 mode: "OnRelease";
                 action: {
                   type: "Keypress";
-                  keys: ["KEY_LEFTCTRL", "KEY_LEFTALT", "KEY_LEFT"];
+                  keys: ["KEY_PREVIOUSSONG"];
                 };
               },
               {
@@ -119,12 +98,38 @@
                 mode: "OnRelease";
                 action: {
                   type: "Keypress";
-                  keys: ["KEY_LEFTCTRL", "KEY_LEFTALT", "KEY_RIGHT"];
+                  keys: ["KEY_NEXTSONG"];
                 };
               }
             );
           };
         }
+
+        // Gesture button (bottom)
+        {
+          cid: 0xc3;
+          action: {
+            type: "Gestures";
+            gestures: (
+              {
+                direction: "Up";
+                mode: "OnRelease";
+                action: {
+                  type: "Keypress";
+                  keys: [];
+                };
+              },
+              {
+                direction: "Down";
+                mode: "OnRelease";
+                action: {
+                  type: "Keypress";
+                  keys: [];
+                };
+              }
+            );
+          };
+        },
       );
     }
     );
