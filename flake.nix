@@ -51,6 +51,8 @@
             ./modules/system/wayland.nix
             ./modules/system/niri-override.nix
 
+            # niri compositor
+            inputs.niri.nixosModules.niri
 
             # sops-nix for secrets management
             sops-nix.nixosModules.sops
