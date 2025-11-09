@@ -1,14 +1,12 @@
-{
-  config,
-  pkgs,
-  theme,
-  ...
+{ config
+, pkgs
+, theme
+, ...
 }:
 
 {
   programs.nushell = {
     enable = true;
-    package = pkgs.nushell;
 
     # Add skim plugin for fuzzy finding
     plugins = [
