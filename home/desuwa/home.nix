@@ -12,6 +12,9 @@ in
 
   # Import all home modules
   imports = [
+    # Niri compositor
+    inputs.niri.homeModules.niri
+
     # Vicinae Home Manager module
     inputs.vicinae.homeManagerModules.default
 
@@ -47,6 +50,8 @@ in
     ../../modules/home/tools/cli-tools.nix
   ];
 
+  programs.niri.enable = true;
+
   # User packages
   home.packages = with pkgs; [
     # System info
@@ -56,6 +61,11 @@ in
 
     # File manager (GUI)
     nautilus
+
+    # Media and system controls
+    pavucontrol # PulseAudio volume control GUI
+    playerctl # Media player controls
+    brightnessctl # Brightness controls
   ];
 
 
