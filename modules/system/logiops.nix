@@ -97,7 +97,7 @@
                 mode: "OnRelease";
                 action: {
                   type: "Keypress";
-                  keys: ["KEY_LEFTCTRL", "KEY_C"];
+                  keys: ["KEY_LEFTCTRL", "KEY_S"];
                 };
               },
               {
@@ -105,7 +105,7 @@
                 mode: "OnRelease";
                 action: {
                   type: "Keypress";
-                  keys: ["KEY_LEFTCTRL", "KEY_S"];
+                  keys: ["KEY_LEFTCTRL", "KEY_C"];
                 };
               },
               {
