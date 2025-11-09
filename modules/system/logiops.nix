@@ -14,13 +14,13 @@
     {
       name: "Wireless Mouse MX Master 3S";
 
-      // Enable smartshift for the scroll wheel
+      # Enable smartshift for the scroll wheel
       smartshift: {
         on: false;
-        // threshold: 15;
+        # threshold: 15;
       };
 
-      // Enable high-resolution scrolling
+      # Enable high-resolution scrolling
       hiresscroll: {
         hires: true;
         invert: false;
@@ -31,13 +31,13 @@
         invert: true;
       };
 
-      // DPI settings
+      # DPI settings
       dpi: 8000;
 
-      // Button configuration
+      # Button configuration
       buttons: (
 
-        // Forward button (thumb)
+        # Forward button (thumb)
         {
           cid: 0x56;
           action: {
@@ -46,7 +46,7 @@
           };
         },
 
-        // Back button (thumb)
+        # Back button (thumb)
         {
           cid: 0x53;
           action: {
@@ -55,7 +55,7 @@
           };
         },
 
-        // Gesture button (top)
+        # Gesture button (top)
         {
           cid: 0xc4;
           action: {
@@ -103,9 +103,9 @@
               }
             );
           };
-        }
+        },
 
-        // Gesture button (bottom)
+        # Gesture button (bottom)
         {
           cid: 0xc3;
           action: {
