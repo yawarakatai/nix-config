@@ -1,13 +1,17 @@
-{
-  config,
-  pkgs,
-  theme,
-  ...
+{ config
+, pkgs
+, theme
+, ...
 }:
 
 {
   programs.nushell = {
     enable = true;
+
+    # Add skim plugin for fuzzy finding
+    plugins = [
+      pkgs.nushellPlugins.skim
+    ];
 
     configFile.text = ''
       # Nushell configuration
@@ -53,6 +57,26 @@
             event: {
               send: ExecuteHostCommand
               cmd: "commandline edit --insert (history | each { |it| $it.command } | uniq | reverse | str join (char nl) | fzf --layout=reverse --height=40% | decode utf-8 | str trim)"
+            }
+          }
+          {
+            name: skim_file_picker
+            modifier: control
+            keycode: char_t
+            mode: [emacs vi_normal vi_insert]
+            event: {
+              send: ExecuteHostCommand
+              cmd: "commandline edit --insert (fd --type f | sk)"
+            }
+          }
+          {
+            name: skim_directory_picker
+            modifier: alt
+            keycode: char_c
+            mode: [emacs vi_normal vi_insert]
+            event: {
+              send: ExecuteHostCommand
+              cmd: "cd (fd --type d | sk)"
             }
           }
         ]
