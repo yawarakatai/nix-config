@@ -44,7 +44,7 @@ in
       # Cursor
       cursor = {
         style = {
-          shape = "Block";
+          shape = "Beam";
           blinking = "On";
         };
       };

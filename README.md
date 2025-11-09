@@ -14,7 +14,7 @@ My personal NixOS configuration using flakes and home-manager.
 ## Setup
 
 - **Compositor**: niri (Wayland)
-- **Terminal**: Alacritty (currently enabled), Kitty/Ghostty (available)
+- **Terminal**: Alacritty
 - **Launcher**: Vicinae
 - **Bar**: waybar
 - **Shell**: nushell + starship + zoxide + atuin
@@ -70,9 +70,9 @@ nix flake update && sudo nixos-rebuild switch --flake .#desuwa
 │       ├── themes/night-neon.nix  # Color scheme
 │       ├── shell/            # nushell, starship, zoxide, atuin
 │       ├── editors/          # helix, vscode
-│       ├── terminal/         # alacritty, kitty, ghostty
+│       ├── terminal/         # alacritty
 │       ├── wayland/          # niri, waybar, mako, vicinae
-│       └── tools/            # yazi, lazygit, cli-tools
+│       └── tools/            # yazi, lazygit, cli-tools, glow
 ├── hosts/desuwa/
 │   ├── vars.nix              # Host-specific variables
 │   ├── configuration.nix     # System config
@@ -133,15 +133,6 @@ This host has:
 - YubiKey support
 - Logitech mouse custom config
 - Custom keyboard (Lofree Flow)
-
-## Secrets (TODO)
-
-Need to set up sops-nix for:
-- User password (currently plaintext hash)
-- SSH keys
-- Other sensitive data
-
-See comment in `hosts/desuwa/configuration.nix` for setup steps.
 
 ## Notes to Self
 

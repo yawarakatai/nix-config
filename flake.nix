@@ -9,11 +9,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     niri = {
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -24,7 +19,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, sops-nix, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
       # Helper function to create system configurations
       mkSystem = hostname:
@@ -38,9 +33,6 @@
             # Host-specific configuration (imports its own modules)
             ./hosts/${hostname}/configuration.nix
             ./hosts/${hostname}/hardware-configuration.nix
-
-            # sops-nix for secrets management
-            sops-nix.nixosModules.sops
 
             # Home Manager integration
             home-manager.nixosModules.home-manager
@@ -70,13 +62,11 @@
           nil # Nix LSP
           nixpkgs-fmt # Nix formatter
           statix # Nix linter
-          age # Encryption tool for sops
-          sops # Secret management
         ];
 
         shellHook = ''
           echo "NixOS configuration development environment"
-          echo "Available tools: nil, nixpkgs-fmt, statix, age, sops"
+          echo "Available tools: nil, nixpkgs-fmt, statix"
         '';
       };
     };

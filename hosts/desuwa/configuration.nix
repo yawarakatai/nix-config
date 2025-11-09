@@ -27,16 +27,8 @@
   networking.hostName = vars.hostname;
 
   # Host-specific user password
-  users.users.${vars.username} = {
-    # Initial password hash - generate with: mkpasswd -m sha-512
-    hashedPassword = "$6$KtMQPtEMmQ9AW7qK$tvtWeUA5GzWyILnexkH51.OMTnM6cuzA2aEymac264HctHr5jRBH7NBOOn4twZqaF963f8KkgDdNzfpSfd54D0";
-
-    # TODO: Set up sops-nix for secrets management
-    # 1. Initialize sops with age or GPG key
-    # 2. Create secrets file in secrets/ directory
-    # 3. Uncomment and configure: hashedPasswordFile = config.sops.secrets.yawarakatai-password.path;
-    # 4. Set up sops configuration in flake.nix if not already done
-  };
+  # Password hash generated with: mkpasswd -m sha-512
+  users.users.${vars.username}.hashedPassword = "$6$KtMQPtEMmQ9AW7qK$tvtWeUA5GzWyILnexkH51.OMTnM6cuzA2aEymac264HctHr5jRBH7NBOOn4twZqaF963f8KkgDdNzfpSfd54D0";
 
   # Host-specific Nix settings (extends base.nix)
   nix.settings = {
