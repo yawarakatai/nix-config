@@ -21,10 +21,5 @@
 
     # Screen locking
     swaylock # Screen locker
-
-    # Media and system controls
-    pavucontrol # PulseAudio volume control GUI
-    playerctl # Media player controls
-    brightnessctl # Brightness controls
   ];
 }

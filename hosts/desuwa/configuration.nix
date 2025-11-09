@@ -1,15 +1,11 @@
 { config, pkgs, vars, ... }:
 
 {
-  # Bootloader
-  # boot.loader.systemd-boot.enable = true;
-  # boot.loader.efi.canTouchEfiVariables = true;
-
   services.greetd = {
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet -r --remember-session --sessions ${pkgs.niri}/share/wayland-sessions";
+        command = "${pkgs.tuigreet}/bin/tuigreet -r --remember-session --sessions";
         user = "greeter";
       };
     };
@@ -111,9 +107,6 @@
     enable = true;
     nix-direnv.enable = true;
   };
-
-  # Enable niri compositor
-  programs.niri.enable = true;
 
   # XWayland support for X11 applications
   programs.xwayland.enable = true;

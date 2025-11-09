@@ -24,7 +24,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, niri, sops-nix, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, sops-nix, ... }@inputs:
     let
       # Helper function to create system configurations
       mkSystem = hostname:
@@ -51,8 +51,6 @@
             ./modules/system/wayland.nix
             ./modules/system/niri-override.nix
 
-            # niri Wayland compositor
-            niri.nixosModules.niri
 
             # sops-nix for secrets management
             sops-nix.nixosModules.sops
