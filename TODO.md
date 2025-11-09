@@ -1,4 +1,5 @@
 # Todo
 - change color theme entirely
-- vscode configs
+- waybar theme
+- vicinae setting
 - add laptop
