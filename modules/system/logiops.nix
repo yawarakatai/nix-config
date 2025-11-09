@@ -7,9 +7,19 @@
   ];
 
   # Logiops configuration file
+  # To find your device name, run: sudo logid --verbose
+  # Common names: "Wireless Mouse MX Master 3S", "MX Master 3S"
   environment.etc."logid.cfg".text = ''
-    devices: ({
-      name: "MX Master 3S";
+    devices: (
+    {
+      name: "Wireless Mouse MX Master 3S";
+
+      // Enable smartshift for the scroll wheel
+      smartshift: {
+        on: true;
+        threshold: 15;
+      };
+
       // Enable high-resolution scrolling
       hiresscroll: {
         hires: true;
@@ -116,7 +126,8 @@
           };
         }
       );
-    });
+    }
+    );
   '';
 
   # Systemd service for logiops
