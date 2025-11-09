@@ -39,20 +39,16 @@
             ./hosts/${hostname}/configuration.nix
             ./hosts/${hostname}/hardware-configuration.nix
 
-            # System modules
+            # Core system modules (always included)
             ./modules/system/boot.nix
             ./modules/system/networking.nix
             ./modules/system/locale.nix
             ./modules/system/audio.nix
             ./modules/system/zram.nix
             ./modules/system/storage.nix
-            ./modules/system/yubikey.nix
             ./modules/system/rebuild-helper.nix
             ./modules/system/wayland.nix
             ./modules/system/niri-override.nix
-            ./modules/system/logiops.nix
-            ./modules/system/keyboard.nix
-
 
             # sops-nix for secrets management
             sops-nix.nixosModules.sops
@@ -69,8 +65,19 @@
                 backupFileExtension = "backup";
               };
             }
-          ] ++ nixpkgs.lib.optionals vars.hasNvidia [
+          ]
+          # Optional hardware modules (conditionally included)
+          ++ nixpkgs.lib.optionals vars.hasNvidia [
             ./modules/system/nvidia.nix
+          ]
+          ++ nixpkgs.lib.optionals (vars.hasYubikey or false) [
+            ./modules/system/yubikey.nix
+          ]
+          ++ nixpkgs.lib.optionals (vars.hasLogitechMouse or false) [
+            ./modules/system/logiops.nix
+          ]
+          ++ nixpkgs.lib.optionals (vars.hasCustomKeyboard or false) [
+            ./modules/system/keyboard.nix
           ];
         };
     in

@@ -13,6 +13,11 @@
   hasNvidia = true;
   hasBluetooth = false;
 
+  # Optional hardware/peripherals
+  hasLogitechMouse = true;  # Enable logiops configuration
+  hasCustomKeyboard = true; # Enable custom keyboard fixes (e.g., Lofree Flow)
+  hasYubikey = true;        # Enable Yubikey support
+
   # Display configuration
   hasHiDPI = true;
   monitors = [ "HDMI-A-2" ]; # 4K 144Hz monitor

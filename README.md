@@ -145,13 +145,13 @@ Btrfs subvolumes for flexibility:
 
 ## 🎯 Key Features
 
-1. **Flake-based**: Reproducible and pinned dependencies
-2. **Home Manager**: Declarative user environment
-3. **Modular**: Easy to add/remove components
-4. **Theme-first**: Unified color scheme across all applications
-5. **YubiKey Ready**: GPG and SSH support configured
-6. **Developer-friendly**: direnv + nix develop workflow
-7. **Performance**: Optimized for Ryzen + NVIDIA + NVMe
+1. **Multi-device Support**: Conditional module loading based on hardware flags
+2. **Flake-based**: Reproducible and pinned dependencies
+3. **Home Manager**: Declarative user environment
+4. **Modular**: Easy to add/remove components - only load what you need
+5. **Theme-first**: Unified color scheme across all applications
+6. **YubiKey Ready**: GPG and SSH support configured
+7. **Developer-friendly**: direnv + nix develop workflow
 
 ## 🔐 Security
 
@@ -164,24 +164,40 @@ Btrfs subvolumes for flexibility:
 
 ### Adding a New Host
 
+This configuration is designed for multi-device setups. Each device can have different hardware and only loads the modules it needs.
+
 ```bash
-# 1. Create host directory
-mkdir -p hosts/nanodesu
+# 1. Copy the template
+cp -r hosts/_template hosts/nanodesu
 
-# 2. Create vars.nix
-cp hosts/desuwa/vars.nix hosts/nanodesu/vars.nix
-# Edit vars.nix
-
-# 3. Create configuration.nix
-cp hosts/desuwa/configuration.nix hosts/nanodesu/
-# Edit as needed
-
-# 4. Generate hardware config
+# 2. Generate hardware config
 sudo nixos-generate-config --show-hardware-config > hosts/nanodesu/hardware-configuration.nix
 
+# 3. Edit vars.nix for your device
+# Set feature flags based on your hardware:
+# - hasNvidia: true/false
+# - hasLogitechMouse: true/false
+# - hasCustomKeyboard: true/false
+# - hasYubikey: true/false
+
+# 4. Create home configuration
+mkdir -p home/nanodesu
+cp home/desuwa/home.nix home/nanodesu/home.nix
+# Customize as needed
+
 # 5. Add to flake.nix
+# Edit flake.nix and add:
 # nixosConfigurations.nanodesu = mkSystem "nanodesu";
+
+# 6. Build and switch
+sudo nixos-rebuild switch --flake .#nanodesu
 ```
+
+**Feature Flags**: The system automatically includes/excludes modules based on hardware flags in `vars.nix`:
+- Modules for NVIDIA, Logitech mice, custom keyboards, and YubiKeys are only loaded when needed
+- This keeps your configuration lean and prevents unnecessary modules on devices that don't need them
+
+See `hosts/_template/README.md` for detailed instructions.
 
 ### Changing Theme Colors
 
