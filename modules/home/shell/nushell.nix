@@ -8,10 +8,45 @@
   programs.nushell = {
     enable = true;
 
-    # Add skim plugin for fuzzy finding
-    plugins = [
-      pkgs.nushellPlugins.skim
-    ];
+    # Shell init commands - register plugin here
+    shellAliases = {
+      cc = "cd ~/.config/nix-config";
+
+      # Better defaults
+      ll = "ls -la";
+      la = "ls -a";
+      cat = "bat";
+      find = "fd";
+      grep = "rg";
+      du = "dust";
+      df = "duf";
+      ps = "procs";
+      top = "btm";
+
+      # Git aliases
+      g = "git";
+      gs = "git status";
+      ga = "git add";
+      gc = "git commit";
+      gcm = "git commit -am";
+      gp = "git push";
+      gl = "git pull";
+      gd = "git diff";
+      gm = "git merge";
+      gb = "git branch";
+      gco = "git checkout";
+    };
+
+    # Environment - this runs before config
+    envFile.text = ''
+      # Register the skim plugin
+      plugin add ${pkgs.nushellPlugins.skim}/bin/nu_plugin_skim
+
+      # Set up environment variables
+      $env.EDITOR = "hx"
+      $env.VISUAL = "hx"
+      $env.PAGER = "bat"
+    '';
 
     configFile.text = ''
       # Nushell configuration
@@ -50,13 +85,13 @@
 
         keybindings: [
           {
-            name: fuzzy_history
+            name: fuzzy_history_sk
             modifier: control
             keycode: char_r
             mode: [emacs vi_normal vi_insert]
             event: {
               send: ExecuteHostCommand
-              cmd: "commandline edit --insert (history | each { |it| $it.command } | uniq | reverse | str join (char nl) | fzf --layout=reverse --height=40% | decode utf-8 | str trim)"
+              cmd: "commandline edit --insert (history | get command | sk --format {$in} --preview {} | str trim)"
             }
           }
           {
@@ -76,45 +111,26 @@
             mode: [emacs vi_normal vi_insert]
             event: {
               send: ExecuteHostCommand
-              cmd: "cd (fd --type d | sk)"
+              cmd: "cd (fd --type d | sk | str trim)"
+            }
+          }
+          {
+            name: process_manager
+            modifier: control
+            keycode: char_p
+            mode: [emacs vi_normal vi_insert]
+            event: {
+              send: ExecuteHostCommand  
+              cmd: "ps | sk --format {get name} --preview {} | kill $in.pid"
             }
           }
         ]
       }
     '';
-
-    environmentVariables = {
-      EDITOR = "hx";
-      VISUAL = "hx";
-      PAGER = "bat";
-    };
-
-    shellAliases = {
-      cc = "cd ~/.config/nix-config";
-
-      # Better defaults
-      ll = "ls -la";
-      la = "ls -a";
-      cat = "bat";
-      find = "fd";
-      grep = "rg";
-      du = "dust";
-      df = "duf";
-      ps = "procs";
-      top = "btm";
-
-      # Git aliases
-      g = "git";
-      gs = "git status";
-      ga = "git add";
-      gc = "git commit";
-      gcm = "git commit -am";
-      gp = "git push";
-      gl = "git pull";
-      gd = "git diff";
-      gm = "git merge";
-      gb = "git branch";
-      gco = "git checkout";
-    };
   };
+
+  # Install nu_plugin_skim
+  home.packages = with pkgs; [
+    nushellPlugins.skim
+  ];
 }
