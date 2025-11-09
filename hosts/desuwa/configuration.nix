@@ -108,6 +108,10 @@
     nix-direnv.enable = true;
   };
 
+  # dconf for GTK application settings
+  # Required for home-manager GTK configuration and GNOME apps like Nautilus
+  programs.dconf.enable = true;
+
   # XWayland support for X11 applications
   programs.xwayland.enable = true;
 
