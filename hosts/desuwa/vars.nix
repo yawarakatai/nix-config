@@ -10,7 +10,20 @@
   timezone = "Asia/Tokyo";
 
   # Display configuration
-  monitors = [ "HDMI-A-1" ]; # 4K 144Hz monitor
+  monitors = {
+    # Primary monitor
+    primary = {
+      name = "HDMI-A-1";
+      width = 3840;
+      height = 2160;
+      refresh = 143.999;
+      scale = 1.0;
+      position = { x = 0; y = 0; };
+      vrr = true; # Variable refresh rate
+    };
+    # Add additional monitors here as needed
+    # secondary = { ... };
+  };
 
   # Wallpaper (absolute path, not relative to config location)
   wallpaperPath = "/home/yawarakatai/.config/nix-config/home/wallpapers/bg.png";

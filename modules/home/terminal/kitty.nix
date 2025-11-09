@@ -1,5 +1,9 @@
 { config, pkgs, theme, ... }:
 
+let
+  # Import shared terminal color scheme
+  termColors = import ../../../lib/terminal-colors.nix { inherit theme; };
+in
 {
   programs.kitty = {
     enable = false;
@@ -17,14 +21,14 @@
       background_blur = 1;
 
       # Cursor
-      cursor = theme.semantic.variable;
+      cursor = termColors.primary.cursor;
       cursor_shape = "block";
       cursor_blink_interval = 1;
       cursor_stop_blinking_after = 0; # Never stop blinking
 
       # Selection
-      selection_background = theme.colorScheme.base02;
-      selection_foreground = theme.colorScheme.base05;
+      selection_background = termColors.primary.selection;
+      selection_foreground = termColors.primary.selectionText;
 
       # Mouse
       mouse_hide_wait = 3.0;
@@ -34,29 +38,29 @@
       clipboard_control = "write-clipboard write-primary read-clipboard read-primary";
 
       # Theme - Base colors
-      background = theme.colorScheme.base00;
-      foreground = theme.colorScheme.base05;
+      background = termColors.primary.background;
+      foreground = termColors.primary.foreground;
 
-      # Terminal colors (0-15)
+      # Terminal colors (0-15) - Using shared color scheme
       # Normal colors
-      color0 = theme.colorScheme.base00; # Black
-      color1 = theme.colorScheme.base08; # Red
-      color2 = theme.colorScheme.base0B; # Green
-      color3 = theme.colorScheme.base0A; # Yellow
-      color4 = theme.colorScheme.base0D; # Blue
-      color5 = theme.colorScheme.base0E; # Magenta
-      color6 = theme.colorScheme.base0C; # Cyan
-      color7 = theme.colorScheme.base05; # White
+      color0 = termColors.ansi.black;
+      color1 = termColors.ansi.red;
+      color2 = termColors.ansi.green;
+      color3 = termColors.ansi.yellow;
+      color4 = termColors.ansi.blue;
+      color5 = termColors.ansi.magenta;
+      color6 = termColors.ansi.cyan;
+      color7 = termColors.ansi.white;
 
       # Bright colors
-      color8 = theme.colorScheme.base03; # Bright Black
-      color9 = theme.colorScheme.base08; # Bright Red
-      color10 = theme.colorScheme.base0B; # Bright Green
-      color11 = theme.colorScheme.base0A; # Bright Yellow
-      color12 = theme.colorScheme.base0D; # Bright Blue
-      color13 = theme.colorScheme.base0E; # Bright Magenta
-      color14 = theme.colorScheme.base0C; # Bright Cyan
-      color15 = theme.colorScheme.base07; # Bright White
+      color8 = termColors.ansi.brightBlack;
+      color9 = termColors.ansi.brightRed;
+      color10 = termColors.ansi.brightGreen;
+      color11 = termColors.ansi.brightYellow;
+      color12 = termColors.ansi.brightBlue;
+      color13 = termColors.ansi.brightMagenta;
+      color14 = termColors.ansi.brightCyan;
+      color15 = termColors.ansi.brightWhite;
 
       # Performance
       repaint_delay = 10;

@@ -1,5 +1,9 @@
 { config, pkgs, theme, ... }:
 
+let
+  # Import shared terminal color scheme
+  termColors = import ../../../lib/terminal-colors.nix { inherit theme; };
+in
 {
   programs.ghostty = {
     enable = false;
@@ -13,40 +17,39 @@
       font-feature = [ "-calt" ]; # Disable ligatures if needed
 
       # Theme - Base colors
-      background = theme.colorScheme.base00;
-      foreground = theme.colorScheme.base05;
-
+      background = termColors.primary.background;
+      foreground = termColors.primary.foreground;
 
       # Cursor
-      cursor-color = theme.semantic.variable;
+      cursor-color = termColors.primary.cursor;
       cursor-style = "block";
       cursor-style-blink = true;
 
       # Selection
-      selection-background = theme.colorScheme.base02;
-      selection-foreground = theme.colorScheme.base05;
+      selection-background = termColors.primary.selection;
+      selection-foreground = termColors.primary.selectionText;
 
-      # Terminal colors (0-15)
+      # Terminal colors (0-15) - Using shared color scheme
       palette = [
         # Normal colors (0-7)
-        "0=${theme.colorScheme.base00}" # Black
-        "1=${theme.colorScheme.base08}" # Red (Cherry)
-        "2=${theme.colorScheme.base0B}" # Green (Lime)
-        "3=${theme.colorScheme.base0A}" # Yellow
-        "4=${theme.colorScheme.base0D}" # Blue
-        "5=${theme.colorScheme.base0E}" # Magenta (Purple)
-        "6=${theme.colorScheme.base0C}" # Cyan
-        "7=${theme.colorScheme.base05}" # White
+        "0=${termColors.ansi.black}"
+        "1=${termColors.ansi.red}"
+        "2=${termColors.ansi.green}"
+        "3=${termColors.ansi.yellow}"
+        "4=${termColors.ansi.blue}"
+        "5=${termColors.ansi.magenta}"
+        "6=${termColors.ansi.cyan}"
+        "7=${termColors.ansi.white}"
 
         # Bright colors (8-15)
-        "8=${theme.colorScheme.base03}" # Bright Black
-        "9=${theme.colorScheme.base08}" # Bright Red
-        "10=${theme.colorScheme.base0B}" # Bright Green
-        "11=${theme.colorScheme.base0A}" # Bright Yellow
-        "12=${theme.colorScheme.base0D}" # Bright Blue
-        "13=${theme.colorScheme.base0E}" # Bright Magenta
-        "14=${theme.colorScheme.base0C}" # Bright Cyan
-        "15=${theme.colorScheme.base07}" # Bright White
+        "8=${termColors.ansi.brightBlack}"
+        "9=${termColors.ansi.brightRed}"
+        "10=${termColors.ansi.brightGreen}"
+        "11=${termColors.ansi.brightYellow}"
+        "12=${termColors.ansi.brightBlue}"
+        "13=${termColors.ansi.brightMagenta}"
+        "14=${termColors.ansi.brightCyan}"
+        "15=${termColors.ansi.brightWhite}"
       ];
 
       # Window
