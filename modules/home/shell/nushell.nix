@@ -8,9 +8,8 @@
   programs.nushell = {
     enable = true;
 
-    # Shell init commands - register plugin here
+    # Git aliases (simple string replacements work fine for git commands)
     shellAliases = {
-      # Git aliases
       g = "git";
       gs = "git status";
       ga = "git add";
@@ -24,43 +23,70 @@
       gco = "git checkout";
     };
 
-    # Environment - this runs before config
-    envFile.text = ''
+    # Environment variables
+    environmentVariables = {
+      EDITOR = "hx";
+      VISUAL = "hx";
+      PAGER = "bat";
+    };
+
+    # Extra environment setup (runs before config)
+    extraEnv = ''
       # Register the skim plugin
       plugin add ${pkgs.nushellPlugins.skim}/bin/nu_plugin_skim
-
-      # Set up environment variables
-      $env.EDITOR = "hx"
-      $env.VISUAL = "hx"
-      $env.PAGER = "bat"
     '';
 
-    configFile.text = ''
+    # Main configuration
+    extraConfig = let
+      # Color scheme from theme
+      colors = {
+        separator = theme.colorScheme.base03;
+        leading_trailing_space_bg = theme.colorScheme.base00;
+        header = theme.semantic.function;
+        empty = theme.colorScheme.base05;
+        bool = theme.semantic.constant;
+        int = theme.semantic.number;
+        filesize = theme.semantic.info;
+        duration = theme.semantic.warning;
+        date = theme.semantic.keyword;
+        range = theme.semantic.variable;
+        float = theme.semantic.number;
+        string = theme.semantic.string;
+        nothing = theme.semantic.comment;
+        binary = theme.semantic.keyword;
+        cell_path = theme.colorScheme.base05;
+        row_index = theme.semantic.info;
+        record = theme.colorScheme.base05;
+        list = theme.colorScheme.base05;
+        block = theme.colorScheme.base05;
+        hints = theme.semantic.comment;
+      };
+    in ''
       # Nushell configuration
       $env.config = {
         show_banner: false
 
         color_config: {
-          separator: "${theme.colorScheme.base03}"
-          leading_trailing_space_bg: "${theme.colorScheme.base00}"
-          header: { fg: "${theme.semantic.function}" attr: "b" }
-          empty: "${theme.colorScheme.base05}"
-          bool: "${theme.semantic.constant}"
-          int: "${theme.semantic.number}"
-          filesize: "${theme.semantic.info}"
-          duration: "${theme.semantic.warning}"
-          date: "${theme.semantic.keyword}"
-          range: "${theme.semantic.variable}"
-          float: "${theme.semantic.number}"
-          string: "${theme.semantic.string}"
-          nothing: "${theme.semantic.comment}"
-          binary: "${theme.semantic.keyword}"
-          cell-path: "${theme.colorScheme.base05}"
-          row_index: { fg: "${theme.semantic.info}" attr: "b" }
-          record: "${theme.colorScheme.base05}"
-          list: "${theme.colorScheme.base05}"
-          block: "${theme.colorScheme.base05}"
-          hints: "${theme.semantic.comment}"
+          separator: "${colors.separator}"
+          leading_trailing_space_bg: "${colors.leading_trailing_space_bg}"
+          header: { fg: "${colors.header}" attr: "b" }
+          empty: "${colors.empty}"
+          bool: "${colors.bool}"
+          int: "${colors.int}"
+          filesize: "${colors.filesize}"
+          duration: "${colors.duration}"
+          date: "${colors.date}"
+          range: "${colors.range}"
+          float: "${colors.float}"
+          string: "${colors.string}"
+          nothing: "${colors.nothing}"
+          binary: "${colors.binary}"
+          cell-path: "${colors.cell_path}"
+          row_index: { fg: "${colors.row_index}" attr: "b" }
+          record: "${colors.record}"
+          list: "${colors.list}"
+          block: "${colors.block}"
+          hints: "${colors.hints}"
         }
 
         completions: {
