@@ -14,24 +14,11 @@
     ../../modules/system/niri-override.nix
 
     # Hardware-specific modules for this host
-    ../../modules/system/nvidia.nix          # NVIDIA RTX 3080
-    ../../modules/system/yubikey.nix         # YubiKey support
-    ../../modules/system/logiops.nix         # Logitech mouse
-    ../../modules/system/keyboard.nix        # Lofree Flow keyboard
+    ../../modules/system/nvidia.nix # NVIDIA RTX 3080
+    ../../modules/system/yubikey.nix # YubiKey support
+    ../../modules/system/logiops.nix # Logitech mouse
+    ../../modules/system/keyboard.nix # Lofree Flow keyboard
   ];
-
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-session";
-        user = "greeter";
-      };
-    };
-  };
-
-  # Enable niri at system level to create session file for greetd
-  programs.niri.enable = true;
 
   # Hostname
   networking.hostName = vars.hostname;
@@ -112,8 +99,15 @@
     '';
   };
 
-  # Limit boot generations
-  boot.loader.systemd-boot.configurationLimit = 5;
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-session";
+        user = "greeter";
+      };
+    };
+  };
 
   # SSH (disabled by default, enable when needed)
   services.openssh = {
@@ -123,6 +117,9 @@
       PasswordAuthentication = false;
     };
   };
+
+  # Enable niri at system level to create session file for greetd
+  programs.niri.enable = true;
 
   # direnv for per-project development environments
   programs.direnv = {

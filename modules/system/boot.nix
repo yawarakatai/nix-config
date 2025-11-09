@@ -3,7 +3,6 @@
 {
   # Bootloader configuration
   boot = {
-    # Use latest kernel
     kernelPackages = pkgs.linuxPackages_zen;
 
     # Kernel parameters
