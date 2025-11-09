@@ -145,13 +145,13 @@ Btrfs subvolumes for flexibility:
 
 ## 🎯 Key Features
 
-1. **Flake-based**: Reproducible and pinned dependencies
-2. **Home Manager**: Declarative user environment
-3. **Modular**: Easy to add/remove components
-4. **Theme-first**: Unified color scheme across all applications
-5. **YubiKey Ready**: GPG and SSH support configured
-6. **Developer-friendly**: direnv + nix develop workflow
-7. **Performance**: Optimized for Ryzen + NVIDIA + NVMe
+1. **Multi-device Support**: Conditional module loading based on hardware flags
+2. **Flake-based**: Reproducible and pinned dependencies
+3. **Home Manager**: Declarative user environment
+4. **Modular**: Easy to add/remove components - only load what you need
+5. **Theme-first**: Unified color scheme across all applications
+6. **YubiKey Ready**: GPG and SSH support configured
+7. **Developer-friendly**: direnv + nix develop workflow
 
 ## 🔐 Security
 
@@ -164,24 +164,39 @@ Btrfs subvolumes for flexibility:
 
 ### Adding a New Host
 
+This configuration is designed for multi-device setups. Each host imports only the modules it needs.
+
 ```bash
-# 1. Create host directory
-mkdir -p hosts/nanodesu
+# 1. Copy the template
+cp -r hosts/_template hosts/laptop
 
-# 2. Create vars.nix
-cp hosts/desuwa/vars.nix hosts/nanodesu/vars.nix
-# Edit vars.nix
+# 2. Generate hardware config
+sudo nixos-generate-config --show-hardware-config > hosts/laptop/hardware-configuration.nix
 
-# 3. Create configuration.nix
-cp hosts/desuwa/configuration.nix hosts/nanodesu/
-# Edit as needed
+# 3. Edit configuration.nix
+# Uncomment the hardware modules you need in the imports section
+# Example for a laptop:
+#   - bluetooth.nix
+#   - touchpad.nix
+#   - fingerprint.nix
 
-# 4. Generate hardware config
-sudo nixos-generate-config --show-hardware-config > hosts/nanodesu/hardware-configuration.nix
+# 4. Edit vars.nix
+# Set your username, hostname, timezone, etc.
 
-# 5. Add to flake.nix
-# nixosConfigurations.nanodesu = mkSystem "nanodesu";
+# 5. Create home configuration
+mkdir -p home/laptop
+cp home/desuwa/home.nix home/laptop/home.nix
+
+# 6. Add to flake.nix
+# nixosConfigurations.laptop = mkSystem "laptop";
+
+# 7. Build and switch
+sudo nixos-rebuild switch --flake .#laptop
 ```
+
+**Key Principle**: Each host's `configuration.nix` explicitly imports the modules it needs. No conditional logic needed - just look at the imports to see what's enabled!
+
+See `hosts/_template/README.md` for the complete list of available modules.
 
 ### Changing Theme Colors
 

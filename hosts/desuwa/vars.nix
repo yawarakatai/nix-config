@@ -9,10 +9,6 @@
   keyboardLayout = "us";
   timezone = "Asia/Tokyo";
 
-  # Hardware characteristics
-  hasNvidia = true;
-  hasBluetooth = false;
-
   # Display configuration
   hasHiDPI = true;
   monitors = [ "HDMI-A-2" ]; # 4K 144Hz monitor
