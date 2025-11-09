@@ -45,7 +45,6 @@ in
       cursor = {
         style = {
           shape = "Beam";
-          blinking = "On";
         };
       };
 

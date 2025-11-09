@@ -30,15 +30,6 @@
     }
 
     {
-      matches = [
-        { app-id = "^firefox$"; }
-        { title = "^(Opening|Saving)"; }
-      ];
-      open-floating = true;
-      default-column-width = { proportion = 0.3; };
-    }
-
-    {
       matches = [{ title = "^(Open|Save|Choose).*"; }];
       open-floating = true;
     }
