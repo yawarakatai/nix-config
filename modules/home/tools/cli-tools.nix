@@ -22,7 +22,7 @@
 
     # Other utilities
     tealdeer # tldr (simplified man pages)
-    fzf # fuzzy finder
+    skim # fuzzy finder
     jq # JSON processor
     yq # YAML processor
 
@@ -91,31 +91,8 @@
   };
 
   # fzf configuration
-  programs.fzf = {
+  programs.skim = {
     enable = true;
-    # enableNushellIntegration = true;
-
-    colors = {
-      bg = theme.colorScheme.base00;
-      "bg+" = theme.colorScheme.base01;
-      fg = theme.colorScheme.base05;
-      "fg+" = theme.colorScheme.base07;
-      header = theme.semantic.keyword;
-      hl = theme.semantic.success;
-      "hl+" = theme.semantic.success;
-      info = theme.semantic.info;
-      marker = theme.semantic.warning;
-      pointer = theme.semantic.variable;
-      prompt = theme.semantic.function;
-      spinner = theme.semantic.warning;
-    };
-
-    defaultOptions = [
-      "--height 40%"
-      "--layout=reverse"
-      "--border"
-      "--inline-info"
-    ];
   };
 
   # bottom configuration
