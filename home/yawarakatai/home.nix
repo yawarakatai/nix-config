@@ -12,6 +12,9 @@ in
 
   # Import all home modules
   imports = [
+    # Vicinae Home Manager module
+    inputs.vicinae.homeManagerModules.default
+
     # Shell
     ../../modules/home/shell/nushell.nix
     ../../modules/home/shell/starship.nix
