@@ -59,10 +59,10 @@
       "Mod+A".action.spawn = [ "pavucontrol" ];
 
       # Screenshot
-      "Print".action.spawn = sh "grim -g \"$(slurp)\" - | wl-copy";
-      "Shift+Print".action.spawn = sh "grim -g \"$(slurp)\" ~/screenshot-$(date +%Y%m%d-%H%M%S).png";
-      "Ctrl+Print".action.spawn = sh "grim - | wl-copy";
-      "Ctrl+Shift+Print".action.spawn = sh "grim ~/screenshot-$(date +%Y%m%d-%H%M%S).png";
+      "Print".action.spawn = sh "grim -g \"$(slurp)\" - | wl-copy && notify-send -u low 'Screenshot' 'Copied to clipboard'";
+      "Shift+Print".action.spawn = sh "f=~/screenshot-$(date +%Y%m%d-%H%M%S).png && grim -g \"$(slurp)\" \"$f\" && notify-send -u low 'Screenshot' \"Saved to $f\"";
+      "Ctrl+Print".action.spawn = sh "grim - | wl-copy && notify-send -u low 'Screenshot' 'Fullscreen copied to clipboard'";
+      "Ctrl+Shift+Print".action.spawn = sh "f=~/screenshot-$(date +%Y%m%d-%H%M%S).png && grim \"$f\" && notify-send -u low 'Screenshot' \"Saved to $f\"";
 
       # Media controls
       "XF86AudioPlay".action.spawn = sh "playerctl play-pause";

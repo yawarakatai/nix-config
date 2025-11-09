@@ -17,6 +17,7 @@
     wayland-utils # Wayland debugging tools
     grim # Screenshot tool
     slurp # Area selector for screenshots
+    libnotify # Notification utilities (notify-send)
 
     # Screen locking
     swaylock # Screen locker
