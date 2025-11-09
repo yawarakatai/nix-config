@@ -77,7 +77,7 @@
                  :space-evenly false
                  :spacing 8
               (label :class "info-label" :text "CPU")
-              (label :class "info-value" :text "''${cpu_usage}%"))
+              (label :class "info-value" :text "''$${cpu_usage}%"))
 
             ;; Memory
             (box :class "info-row"
@@ -85,7 +85,7 @@
                  :space-evenly false
                  :spacing 8
               (label :class "info-label" :text "RAM")
-              (label :class "info-value" :text "''${memory_usage}%"))
+              (label :class "info-value" :text "''$${memory_usage}%"))
 
             ;; Temperature
             (box :class "info-row"
@@ -93,7 +93,7 @@
                  :space-evenly false
                  :spacing 8
               (label :class "info-label" :text "TEMP")
-              (label :class "info-value" :text "''${temperature}°C")))
+              (label :class "info-value" :text "''$${temperature}°C")))
 
           ;; Network section
           (box :class "section"
@@ -123,7 +123,7 @@
                  :space-evenly false
                  :spacing 8
               (label :class "info-label" :text "Volume")
-              (label :class "info-value" :text "''${volume}% ''${volume_muted == 'true' ? '(Muted)' : ''''}")))))
+              (label :class "info-value" :text "''$${volume}% ''$${volume_muted == 'true' ? '(Muted)' : ''''}")))))
     '';
 
     # SCSS styling
