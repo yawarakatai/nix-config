@@ -21,7 +21,7 @@
 
       # Enable high-resolution scrolling
       hiresscroll: {
-        hires: true;
+        hires: false;
         invert: false;
         target: false;
       };

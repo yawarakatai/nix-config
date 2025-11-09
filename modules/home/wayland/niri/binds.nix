@@ -13,17 +13,23 @@
       # Show help
       "Mod+Shift+Slash".action.show-hotkey-overlay = [ ];
 
+      # Overview
+      "Mod+O".action.toggle-overview = [ ];
+
       # Basic window management
       "Mod+Q".action.close-window = [ ];
-      "Mod+H".action.focus-column-or-monitor-left = [ ];
-      "Mod+L".action.focus-column-or-monitor-right = [ ];
+      "Mod+H".action.focus-column-left-or-last = [ ];
+      "Mod+L".action.focus-column-right-or-first = [ ];
       "Mod+J".action.focus-window-or-monitor-down = [ ];
       "Mod+K".action.focus-window-or-monitor-up = [ ];
+
       "Mod+Shift+H".action.move-column-left = [ ];
       "Mod+Shift+L".action.move-column-right = [ ];
       "Mod+Shift+J".action.move-window-down = [ ];
       "Mod+Shift+K".action.move-window-up = [ ];
-      "Mod+O".action.toggle-overview = [ ];
+
+      "Mod+Comma".action.move-column-to-first = [ ];
+      "Mod+Period".action.move-column-to-last = [ ];
 
       # Workspaces
       "Mod+1".action.focus-workspace = 1;
@@ -31,6 +37,7 @@
       "Mod+3".action.focus-workspace = 3;
       "Mod+4".action.focus-workspace = 4;
       "Mod+5".action.focus-workspace = 5;
+
       "Mod+Shift+1".action.move-window-to-workspace = 1;
       "Mod+Shift+2".action.move-window-to-workspace = 2;
       "Mod+Shift+3".action.move-window-to-workspace = 3;
@@ -43,13 +50,10 @@
       "Mod+Shift+U".action.move-column-to-workspace-up = [ ];
       "Mod+Shift+I".action.move-column-to-workspace-down = [ ];
 
-      "Mod+Comma".action.consume-window-into-column = [ ];
-      "Mod+Period".action.expel-window-from-column = [ ];
-
       # Sizing
       "Mod+R".action.switch-preset-column-width = [ ];
-      "Mod+F".action.maximize-column = [ ];
-      "Mod+Shift+F".action.fullscreen-window = [ ];
+      "Mod+M".action.maximize-column = [ ];
+      "Mod+F".action.fullscreen-window = [ ];
 
       # Software
       "Mod+Space".action.spawn = [ "vicinae" "toggle" ];
@@ -83,7 +87,8 @@
       # System
       "Mod+Alt+L".action.spawn = sh "swaylock -f -c 000000";
       "Mod+Alt+E".action.quit = [ ];
+      "Mod+Alt+S".action.spawn = sh "systemctl suspend";
       "Mod+Alt+R".action.spawn = sh "systemctl reboot";
-      "Mod+Alt+S".action.spawn = sh "systemctl poweroff";
+      "Mod+Alt+P".action.spawn = sh "systemctl poweroff";
     };
 }
