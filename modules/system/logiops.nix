@@ -36,25 +36,157 @@
       # Button configuration
       buttons: (
 
-        # Forward button (thumb)
+        # 0x52 - Middle button - Browser controls
+        {
+          cid: 0x52;
+          action: {
+            type: "Gestures";
+            gestures: (
+              {
+                direction: "None";
+                mode: "OnRelease";
+                action: {
+                  type: "Keypress";
+                  keys: ["BTN_MIDDLE"];
+                };
+              },
+              {
+                direction: "Up";
+                mode: "OnRelease";
+                action: {
+                  type: "Keypress";
+                  keys: ["KEY_LEFTCTRL", "KEY_T"];
+                };
+              },
+              {
+                direction: "Down";
+                mode: "OnRelease";
+                action: {
+                  type: "Keypress";
+                  keys: ["KEY_LEFTCTRL", "KEY_W"];
+                };
+              },
+              {
+                direction: "Left";
+                mode: "OnRelease";
+                action: {
+                  type: "Keypress";
+                  keys: ["KEY_LEFTALT", "KEY_LEFT"];
+                };
+              },
+              {
+                direction: "Right";
+                mode: "OnRelease";
+                action: {
+                  type: "Keypress";
+                  keys: ["KEY_LEFTALT", "KEY_RIGHT"];
+                };
+              }
+            );
+          };
+        },
+
+        # 0x56 - Forward button - Work shortcuts
         {
           cid: 0x56;
           action: {
-            type: "Keypress";
-            keys: ["KEY_FORWARD"];
+            type: "Gestures";
+            gestures: (
+              {
+                direction: "None";
+                mode: "OnRelease";
+                action: {
+                  type: "Keypress";
+                  keys: ["KEY_LEFTCTRL", "KEY_C"];
+                };
+              },
+              {
+                direction: "Up";
+                mode: "OnRelease";
+                action: {
+                  type: "Keypress";
+                  keys: ["KEY_LEFTCTRL", "KEY_S"];
+                };
+              },
+              {
+                direction: "Down";
+                mode: "OnRelease";
+                action: {
+                  type: "Keypress";
+                  keys: ["KEY_LEFTCTRL", "KEY_V"];
+                };
+              },
+              {
+                direction: "Left";
+                mode: "OnRelease";
+                action: {
+                  type: "Keypress";
+                  keys: ["KEY_LEFTCTRL", "KEY_Z"];
+                };
+              },
+              {
+                direction: "Right";
+                mode: "OnRelease";
+                action: {
+                  type: "Keypress";
+                  keys: ["KEY_LEFTCTRL", "KEY_LEFTSHIFT", "KEY_Z"];
+                };
+              }
+            );
           };
         },
 
-        # Back button (thumb)
+        # 0x53 - Back button - Niri window manager controls
         {
           cid: 0x53;
           action: {
-            type: "Keypress";
-            keys: ["KEY_BACK"];
+            type: "Gestures";
+            gestures: (
+              {
+                direction: "None";
+                mode: "OnRelease";
+                action: {
+                  type: "Keypress";
+                  keys: ["KEY_LEFTMETA", "KEY_O"];
+                };
+              },
+              {
+                direction: "Up";
+                mode: "OnRelease";
+                action: {
+                  type: "Keypress";
+                  keys: ["KEY_LEFTMETA", "KEY_U"];
+                };
+              },
+              {
+                direction: "Down";
+                mode: "OnRelease";
+                action: {
+                  type: "Keypress";
+                  keys: ["KEY_LEFTMETA", "KEY_I"];
+                };
+              },
+              {
+                direction: "Left";
+                mode: "OnRelease";
+                action: {
+                  type: "Keypress";
+                  keys: ["KEY_LEFTMETA", "KEY_H"];
+                };
+              },
+              {
+                direction: "Right";
+                mode: "OnRelease";
+                action: {
+                  type: "Keypress";
+                  keys: ["KEY_LEFTMETA", "KEY_L"];
+                };
+              }
+            );
           };
         },
 
-        # Gesture button (top)
+        # 0xc4 - Gesture button (top) - Media controls
         {
           cid: 0xc4;
           action: {
@@ -70,7 +202,8 @@
               },
               {
                 direction: "Up";
-                mode: "OnRelease";
+                mode: "OnInterval";
+                interval: 50;
                 action: {
                   type: "Keypress";
                   keys: ["KEY_VOLUMEUP"];
@@ -78,7 +211,8 @@
               },
               {
                 direction: "Down";
-                mode: "OnRelease";
+                mode: "OnInterval";
+                interval: 50;
                 action: {
                   type: "Keypress";
                   keys: ["KEY_VOLUMEDOWN"];
@@ -104,29 +238,11 @@
           };
         },
 
-        # Gesture button (bottom)
+        # 0xc3 - Thumb wheel - Toggle hi-res scroll
         {
           cid: 0xc3;
           action: {
-            type: "Gestures";
-            gestures: (
-              {
-                direction: "Up";
-                mode: "OnRelease";
-                action: {
-                  type: "Keypress";
-                  keys: [];
-                };
-              },
-              {
-                direction: "Down";
-                mode: "OnRelease";
-                action: {
-                  type: "Keypress";
-                  keys: [];
-                };
-              }
-            );
+            type: "ToggleHiresScroll";
           };
         },
       );
