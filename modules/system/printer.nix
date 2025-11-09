@@ -14,12 +14,13 @@
     ];
   };
 
-  # Scanner support (SANE) - conditionally enabled if hasScanner is true
-  services.saned.enable = vars.hasScanner or false;
+  # Scanner support (SANE)
+  # Most printers have built-in scanners, so enable by default
+  # Comment these out if you don't have a scanner
+  services.saned.enable = true;
 
-  # Add scanner drivers
   hardware.sane = {
-    enable = vars.hasScanner or false;
+    enable = true;
     extraBackends = with pkgs; [
       # sane-airscan    # Network scanners
       # hplipWithPlugin # HP all-in-one devices

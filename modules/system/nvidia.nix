@@ -1,6 +1,6 @@
 { config, pkgs, lib, vars, ... }:
 
-lib.mkIf vars.hasNvidia {
+{
   # NVIDIA driver configuration
   services.xserver.videoDrivers = [ "nvidia" ];
 
