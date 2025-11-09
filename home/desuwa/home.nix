@@ -53,6 +53,15 @@ in
     ../../modules/home/themes/gtk-theme.nix
   ];
 
+  home.sessionVariables = {
+    XMODIFIERS = "@im=fcitx";
+    QT_IM_MODULE = "wayland;fcitx";
+
+    EDITOR = "hx";
+    VISUAL = "hx";
+    PAGER = "bat";
+  };
+
   programs.niri.enable = true;
 
   # User packages
@@ -62,8 +71,11 @@ in
     htop
     tree
 
-    # File manager (GUI)
+    # File manager
     nautilus
+
+    # Image viewer
+    imv
 
     # Media and system controls
     pavucontrol # PulseAudio volume control GUI
