@@ -1,16 +1,6 @@
 { config, pkgs, vars, ... }:
 
 {
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet -r --remember-session --sessions";
-        user = "greeter";
-      };
-    };
-  };
-
   # Hostname
   networking.hostName = vars.hostname;
 

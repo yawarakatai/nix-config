@@ -50,7 +50,7 @@
             ./modules/system/rebuild-helper.nix
             ./modules/system/wayland.nix
             ./modules/system/niri-override.nix
-
+            ./modules/system/greetd.nix
 
             # sops-nix for secrets management
             sops-nix.nixosModules.sops
