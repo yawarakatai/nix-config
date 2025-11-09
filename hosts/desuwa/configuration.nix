@@ -118,6 +118,9 @@
     };
   };
 
+  # This is used by trash
+  services.gvfs.enable = true;
+
   # Enable niri at system level to create session file for greetd
   programs.niri.enable = true;
 
