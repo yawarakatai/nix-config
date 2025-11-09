@@ -67,17 +67,34 @@
             }
           ]
           # Optional hardware modules (conditionally included)
-          ++ nixpkgs.lib.optionals vars.hasNvidia [
+          # Graphics
+          ++ nixpkgs.lib.optionals (vars.hasNvidia or false) [
             ./modules/system/nvidia.nix
           ]
-          ++ nixpkgs.lib.optionals (vars.hasYubikey or false) [
-            ./modules/system/yubikey.nix
+          # Connectivity
+          ++ nixpkgs.lib.optionals (vars.hasBluetooth or false) [
+            ./modules/system/bluetooth.nix
           ]
+          # Input devices
           ++ nixpkgs.lib.optionals (vars.hasLogitechMouse or false) [
             ./modules/system/logiops.nix
           ]
           ++ nixpkgs.lib.optionals (vars.hasCustomKeyboard or false) [
             ./modules/system/keyboard.nix
+          ]
+          ++ nixpkgs.lib.optionals (vars.hasTouchpad or false) [
+            ./modules/system/touchpad.nix
+          ]
+          # Biometric & Security
+          ++ nixpkgs.lib.optionals (vars.hasYubikey or false) [
+            ./modules/system/yubikey.nix
+          ]
+          ++ nixpkgs.lib.optionals (vars.hasFingerprintSensor or false) [
+            ./modules/system/fingerprint.nix
+          ]
+          # Peripherals
+          ++ nixpkgs.lib.optionals (vars.hasPrinter or false) [
+            ./modules/system/printer.nix
           ];
         };
     in

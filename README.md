@@ -194,10 +194,15 @@ sudo nixos-rebuild switch --flake .#nanodesu
 ```
 
 **Feature Flags**: The system automatically includes/excludes modules based on hardware flags in `vars.nix`:
-- Modules for NVIDIA, Logitech mice, custom keyboards, and YubiKeys are only loaded when needed
-- This keeps your configuration lean and prevents unnecessary modules on devices that don't need them
+- **Graphics**: NVIDIA, AMD, Intel GPU support
+- **Connectivity**: WiFi, Bluetooth, Ethernet
+- **Input**: Logitech mice, custom keyboards, touchpads, touchscreens
+- **Biometric/Security**: YubiKey, fingerprint sensors, TPM
+- **Peripherals**: Printers, scanners, webcams
 
-See `hosts/_template/README.md` for detailed instructions.
+Only the modules your device needs are loaded - keeps configurations lean and portable!
+
+See `hosts/_template/README.md` for the complete list of available flags.
 
 ### Changing Theme Colors
 

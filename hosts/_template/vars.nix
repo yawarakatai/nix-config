@@ -9,14 +9,31 @@
   keyboardLayout = "us";
   timezone = "America/New_York"; # Change to your timezone
 
-  # Hardware characteristics
-  hasNvidia = false;        # Set to true if you have an NVIDIA GPU
-  hasBluetooth = false;     # Set to true to enable Bluetooth support
+  # Graphics hardware
+  hasNvidia = false;        # NVIDIA GPU (proprietary drivers)
+  hasAMD = false;           # AMD GPU (open source drivers, usually auto-detected)
+  hasIntel = false;         # Intel integrated graphics (usually auto-detected)
 
-  # Optional hardware/peripherals (set to false if not needed)
-  hasLogitechMouse = false;  # Enable logiops configuration for Logitech mice
-  hasCustomKeyboard = false; # Enable custom keyboard fixes (e.g., Lofree Flow)
-  hasYubikey = false;        # Enable Yubikey support
+  # Connectivity hardware
+  hasWifi = false;          # WiFi adapter (enables NetworkManager WiFi support)
+  hasBluetooth = false;     # Bluetooth adapter
+  hasEthernet = true;       # Wired ethernet (usually always true for desktops)
+
+  # Input devices
+  hasLogitechMouse = false; # Logitech mouse (enables logiops for button mapping)
+  hasCustomKeyboard = false; # Custom keyboard fixes (e.g., Lofree Flow Fn keys)
+  hasTouchpad = false;      # Laptop touchpad (enables touchpad gestures)
+  hasTouchscreen = false;   # Touchscreen display
+
+  # Biometric & Security
+  hasYubikey = false;       # YubiKey hardware security key
+  hasFingerprintSensor = false; # Fingerprint reader (enables fprintd)
+  hasTPM = false;           # TPM chip (Trusted Platform Module)
+
+  # Other peripherals
+  hasPrinter = false;       # Printer support (enables CUPS)
+  hasScanner = false;       # Scanner support (enables SANE)
+  hasWebcam = false;        # Webcam (may need specific drivers)
 
   # Display configuration
   hasHiDPI = false;

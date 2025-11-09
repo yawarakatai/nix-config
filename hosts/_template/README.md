@@ -48,12 +48,32 @@ This template helps you add a new device to your NixOS configuration.
 
 ## Feature Flags in vars.nix
 
-The configuration automatically includes/excludes modules based on these flags:
+The configuration automatically includes/excludes modules based on hardware flags. Only enable the features your device actually has!
 
-- `hasNvidia`: Includes NVIDIA driver configuration
-- `hasLogitechMouse`: Includes logiops (Logitech mouse button mapping)
-- `hasCustomKeyboard`: Includes custom keyboard fixes
-- `hasYubikey`: Includes Yubikey support
-- `hasBluetooth`: Enables Bluetooth support
+### Graphics Hardware
+- `hasNvidia`: NVIDIA GPU with proprietary drivers
+- `hasAMD`: AMD GPU (usually auto-detected, set for documentation)
+- `hasIntel`: Intel integrated graphics (usually auto-detected)
 
-Set these to `false` if you don't have the hardware - the modules won't be loaded!
+### Connectivity
+- `hasWifi`: WiFi adapter (enables NetworkManager WiFi support)
+- `hasBluetooth`: Bluetooth adapter (enables blueman and bluetooth stack)
+- `hasEthernet`: Wired ethernet (usually true for desktops)
+
+### Input Devices
+- `hasLogitechMouse`: Logitech mouse (enables logiops for button remapping)
+- `hasCustomKeyboard`: Custom keyboard needing fixes (e.g., Lofree Flow Fn keys)
+- `hasTouchpad`: Laptop touchpad (enables libinput with tap-to-click, gestures)
+- `hasTouchscreen`: Touchscreen display
+
+### Biometric & Security
+- `hasYubikey`: YubiKey hardware key (enables GPG/SSH support)
+- `hasFingerprintSensor`: Fingerprint reader (enables fprintd + PAM authentication)
+- `hasTPM`: TPM chip (set for documentation/future use)
+
+### Peripherals
+- `hasPrinter`: Printer support (enables CUPS and network discovery)
+- `hasScanner`: Scanner support (enables SANE, automatically included with printer module)
+- `hasWebcam`: Webcam (set for documentation/future driver support)
+
+**Important**: Set these to `false` if you don't have the hardware - unnecessary modules won't be loaded, keeping your system lean!
