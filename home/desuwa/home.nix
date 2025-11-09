@@ -48,6 +48,9 @@ in
     ../../modules/home/tools/yazi.nix
     ../../modules/home/tools/lazygit.nix
     ../../modules/home/tools/cli-tools.nix
+
+    # Themes
+    ../../modules/home/themes/gtk-theme.nix
   ];
 
   programs.niri.enable = true;
@@ -137,31 +140,6 @@ in
         "video/*" = "mpv.desktop";
       };
     };
-  };
-
-  # GTK theme (optional)
-  gtk = {
-    enable = true;
-
-    gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
-    gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
-
-    theme = {
-      name = "Colloid-Dark";
-      package = pkgs.colloid-gtk-theme;
-    };
-    iconTheme = {
-      name = "Colloid-Dark";
-      package = pkgs.colloid-icon-theme;
-    };
-    # cursorTheme = {
-    #   name = "Adwaita";
-    #   package = pkgs.adwaita-icon-theme;
-    # };
   };
 
   # State version - DO NOT CHANGE after initial install

@@ -32,9 +32,15 @@
           height = 2160;
           refresh = 143.999;
         };
-        scale = if vars.hasHiDPI then 1.0 else 1.0;
+        variable-refresh-rate = "on-demand";
+        scale = 1.0;
         position = { x = 0; y = 0; };
       };
+    };
+
+    # Mouse Cursor configuration
+    cursor = {
+      theme = "graphite-dark";
     };
 
     # Layout configuration
