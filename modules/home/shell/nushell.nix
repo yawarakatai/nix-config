@@ -1,7 +1,6 @@
 { config
 , pkgs
 , theme
-, lib
 , ...
 }:
 
@@ -137,11 +136,6 @@
       def df [...args] { duf ...$args }
       def ps [...args] { procs ...$args }
       def top [...args] { btm ...$args }
-
-      # Initialize starship prompt
-      ${lib.optionalString config.programs.starship.enable ''
-        source ${pkgs.starship}/share/starship/init.nu
-      ''}
     '';
   };
 
