@@ -51,6 +51,7 @@
             ./modules/system/wayland.nix
             ./modules/system/niri-override.nix
             ./modules/system/logiops.nix
+            ./modules/system/keyboard.nix
 
 
             # sops-nix for secrets management
