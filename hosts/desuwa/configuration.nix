@@ -17,7 +17,7 @@
     ../../modules/system/nvidia.nix # NVIDIA RTX 3080
     ../../modules/system/yubikey.nix # YubiKey support
     ../../modules/system/logiops.nix # Logitech mouse
-    ../../modules/system/keyboard.nix # Lofree Flow keyboard
+    ../../modules/system/lofreeflowlite.nix # Lofree Flow keyboard
   ];
 
   # Hostname
