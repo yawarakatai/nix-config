@@ -123,7 +123,7 @@
                  :space-evenly false
                  :spacing 8
               (label :class "info-label" :text "Volume")
-              (label :class "info-value" :text "''$${volume}% ''$${volume_muted == 'true' ? '(Muted)' : ''''}")))))
+              (label :class "info-value" :text "''$${volume}% ''$${volume_muted == \"true\" ? \"(Muted)\" : \"\"}")))))
     '';
 
     # SCSS styling
