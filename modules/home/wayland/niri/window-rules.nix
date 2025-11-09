@@ -30,7 +30,7 @@
     }
 
     {
-      matches = [{ title = "^(Open|Save|Choose).*"; }];
+      matches = [{ title = "^(Open|Save|Choose|Library).*"; }];
       open-floating = true;
     }
   ];
