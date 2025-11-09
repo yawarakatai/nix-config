@@ -15,9 +15,8 @@
     wl-clipboard # Wayland clipboard utilities
     wl-mirror # Screen mirroring
     wayland-utils # Wayland debugging tools
-    grim # Screenshot tool (required by grimblast)
-    slurp # Area selector (required by grimblast)
-    grimblast # Screenshot utility wrapper
+    grim # Screenshot tool
+    slurp # Area selector for screenshots
 
     # Screen locking
     swaylock # Screen locker
