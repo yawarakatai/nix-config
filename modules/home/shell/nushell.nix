@@ -12,16 +12,16 @@
     shellAliases = {
       cc = "cd ~/.config/nix-config";
 
-      # Better defaults
-      ll = "ls -la";
-      la = "ls -a";
-      cat = "bat";
-      find = "fd";
-      grep = "rg";
-      du = "dust";
-      df = "duf";
-      ps = "procs";
-      top = "btm";
+      # # Better defaults
+      # ll = "ls -la";
+      # la = "ls -a";
+      # cat = "bat";
+      # find = "fd";
+      # grep = "rg";
+      # du = "dust";
+      # df = "duf";
+      # ps = "procs";
+      # top = "btm";
 
       # Git aliases
       g = "git";
