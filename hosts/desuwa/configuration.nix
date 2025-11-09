@@ -20,13 +20,13 @@
 
   # System packages (essential tools only, user packages in Home Manager)
   environment.systemPackages = with pkgs; [
-    vim       # Emergency editor
-    git       # Required for nixos-rebuild
-    wget      # Download utility
-    curl      # HTTP client
-    file      # File type identification
-    pciutils  # PCI device utilities (lspci)
-    usbutils  # USB device utilities (lsusb)
+    vim # Emergency editor
+    git # Required for nixos-rebuild
+    wget # Download utility
+    curl # HTTP client
+    file # File type identification
+    pciutils # PCI device utilities (lspci)
+    usbutils # USB device utilities (lsusb)
   ];
 
   # User configuration
@@ -65,10 +65,12 @@
       substituters = [
         "https://cache.nixos.org"
         "https://nix-community.cachix.org"
+        "https://vicinae.cachix.org" # Vicinae cache
       ];
       trusted-public-keys = [
         "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc=" # Vicinae cache key
       ];
     };
 

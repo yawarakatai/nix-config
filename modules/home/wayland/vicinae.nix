@@ -1,25 +1,33 @@
-{ config, pkgs, ... }:
+{ config, pkgs, theme, inputs, ... }:
 
 {
-  home.packages = with pkgs; [
-    vicinae
-  ];
+  services.vicinae = {
+    enable = true;
+    autoStart = true;
 
-  systemd.user.services.vicinae = {
-    Unit = {
-      Description = "Vicinae launcher daemon";
-      After = [ "graphical-session.target" ];
-      PartOf = [ "graphical-session.target" ];
+    settings = {
+      # Favicon service
+      faviconService = "twenty"; # twenty | google | none
+
+      # Font
+      font.size = theme.font.size;
+
+      # Behavior
+      popToRootOnClose = false;
+      rootSearch.searchFiles = true;
+
+      # Theme
+      theme.name = "vicinae-dark"; # or "vicinae-light"
+
+      # Window settings
+      window = {
+        csd = true;
+        opacity = theme.opacity.launcher;
+        rounding = theme.rounding;
+      };
     };
 
-    Service = {
-      ExecStart = "${pkgs.vicinae}/bin/vicinae server";
-      Restart = "on-failure";
-      RestartSec = 3;
-    };
-
-    Install = {
-      WantedBy = [ "graphical-session.target" ];
-    };
+    # Extensions (optional)
+    # extensions = [];
   };
 }
