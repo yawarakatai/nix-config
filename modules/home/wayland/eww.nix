@@ -4,7 +4,6 @@
   programs.eww = {
     enable = true;
     package = pkgs.eww;
-    configDir = config.xdg.configHome + "/eww";
   };
 
   # Create the eww configuration directory structure
