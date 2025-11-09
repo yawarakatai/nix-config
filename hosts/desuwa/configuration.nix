@@ -5,11 +5,14 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet -r --remember-session --sessions";
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-session --sessions /run/current-system/sw/share/wayland-sessions";
         user = "greeter";
       };
     };
   };
+
+  # Enable niri at system level to create session file for greetd
+  programs.niri.enable = true;
 
   # Hostname
   networking.hostName = vars.hostname;
