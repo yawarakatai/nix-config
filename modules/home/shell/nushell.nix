@@ -10,19 +10,6 @@
 
     # Shell init commands - register plugin here
     shellAliases = {
-      cc = "cd ~/.config/nix-config";
-
-      # # Better defaults
-      # ll = "ls -la";
-      # la = "ls -a";
-      # cat = "bat";
-      # find = "fd";
-      # grep = "rg";
-      # du = "dust";
-      # df = "duf";
-      # ps = "procs";
-      # top = "btm";
-
       # Git aliases
       g = "git";
       gs = "git status";
@@ -91,7 +78,7 @@
             mode: [emacs vi_normal vi_insert]
             event: {
               send: ExecuteHostCommand
-              cmd: "commandline edit --insert (history | get command | sk --format {$in} --preview {} | str trim)"
+              cmd: "commandline edit --insert (history | get command | str join (char newline) | sk | str trim)"
             }
           }
           {
@@ -101,7 +88,7 @@
             mode: [emacs vi_normal vi_insert]
             event: {
               send: ExecuteHostCommand
-              cmd: "commandline edit --insert (fd --type f | sk)"
+              cmd: "commandline edit --insert (fd --type f | str join (char newline) | sk | str trim)"
             }
           }
           {
@@ -111,7 +98,7 @@
             mode: [emacs vi_normal vi_insert]
             event: {
               send: ExecuteHostCommand
-              cmd: "cd (fd --type d | sk | str trim)"
+              cmd: "cd (fd --type d | str join (char newline) | sk | str trim)"
             }
           }
           {
@@ -120,12 +107,24 @@
             keycode: char_p
             mode: [emacs vi_normal vi_insert]
             event: {
-              send: ExecuteHostCommand  
-              cmd: "ps | sk --format {get name} --preview {} | kill $in.pid"
+              send: ExecuteHostCommand
+              cmd: "let proc = (ps | select pid name | to text | sk | str trim | split row ' ' | first); if ($proc | is-not-empty) { kill $proc }"
             }
           }
         ]
       }
+
+      # Custom commands to replace built-in commands with better alternatives
+      def cc [] { cd ~/.config/nix-config }
+      def ll [...args] { ls -la ...$args }
+      def la [...args] { ls -a ...$args }
+      def cat [...args] { bat ...$args }
+      def find [...args] { fd ...$args }
+      def grep [...args] { rg ...$args }
+      def du [...args] { dust ...$args }
+      def df [...args] { duf ...$args }
+      def ps [...args] { procs ...$args }
+      def top [...args] { btm ...$args }
     '';
   };
 
