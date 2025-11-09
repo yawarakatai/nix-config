@@ -8,6 +8,7 @@
 {
   programs.nushell = {
     enable = true;
+    package = pkgs.nushell;
 
     # Add skim plugin for fuzzy finding
     plugins = [
