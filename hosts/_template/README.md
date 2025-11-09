@@ -16,13 +16,11 @@ This template helps you add a new device to your NixOS configuration.
 
 3. **Edit vars.nix:**
    - Update all the values in `hosts/YOUR-HOSTNAME/vars.nix` according to your device
-   - Set hardware flags (`hasNvidia`, `hasLogitechMouse`, etc.) based on what's available
-   - Configure display settings, timezone, and other preferences
+   - Configure display settings, timezone, storage, and other preferences
 
-4. **Copy and customize configuration.nix:**
-   ```bash
-   cp hosts/desuwa/configuration.nix hosts/YOUR-HOSTNAME/configuration.nix
-   ```
+4. **Edit configuration.nix:**
+   - **Uncomment the hardware modules you need** in the `imports` section
+   - Generate password hash: `mkpasswd -m sha-512`
    - Review and adjust any host-specific settings
 
 5. **Create home configuration:**
@@ -46,34 +44,29 @@ This template helps you add a new device to your NixOS configuration.
    sudo nixos-rebuild switch --flake .#YOUR-HOSTNAME
    ```
 
-## Feature Flags in vars.nix
+## Available Hardware Modules
 
-The configuration automatically includes/excludes modules based on hardware flags. Only enable the features your device actually has!
+In `configuration.nix`, uncomment the modules you need in the `imports` section:
 
-### Graphics Hardware
-- `hasNvidia`: NVIDIA GPU with proprietary drivers
-- `hasAMD`: AMD GPU (usually auto-detected, set for documentation)
-- `hasIntel`: Intel integrated graphics (usually auto-detected)
+### Core Modules (usually always needed)
+- `boot.nix` - Boot loader configuration
+- `networking.nix` - NetworkManager, firewall, DNS
+- `locale.nix` - Timezone, locale, keyboard layout
+- `audio.nix` - PipeWire audio
+- `zram.nix` - Compressed swap
+- `storage.nix` - Disk/filesystem management
+- `rebuild-helper.nix` - Convenient rebuild commands (nd, ns, nus, etc.)
+- `wayland.nix` - Wayland compositor support
+- `niri-override.nix` - Niri window manager tweaks
 
-### Connectivity
-- `hasWifi`: WiFi adapter (enables NetworkManager WiFi support)
-- `hasBluetooth`: Bluetooth adapter (enables blueman and bluetooth stack)
-- `hasEthernet`: Wired ethernet (usually true for desktops)
+### Hardware-Specific Modules (import only what you need)
+- `nvidia.nix` - NVIDIA GPU with proprietary drivers
+- `bluetooth.nix` - Bluetooth stack with blueman
+- `touchpad.nix` - Laptop touchpad with gestures
+- `fingerprint.nix` - Fingerprint reader (fprintd + PAM)
+- `yubikey.nix` - YubiKey support for GPG/SSH
+- `logiops.nix` - Logitech mouse button remapping
+- `keyboard.nix` - Custom keyboard fixes (e.g., Lofree Flow)
+- `printer.nix` - Printer and scanner support (CUPS + SANE)
 
-### Input Devices
-- `hasLogitechMouse`: Logitech mouse (enables logiops for button remapping)
-- `hasCustomKeyboard`: Custom keyboard needing fixes (e.g., Lofree Flow Fn keys)
-- `hasTouchpad`: Laptop touchpad (enables libinput with tap-to-click, gestures)
-- `hasTouchscreen`: Touchscreen display
-
-### Biometric & Security
-- `hasYubikey`: YubiKey hardware key (enables GPG/SSH support)
-- `hasFingerprintSensor`: Fingerprint reader (enables fprintd + PAM authentication)
-- `hasTPM`: TPM chip (set for documentation/future use)
-
-### Peripherals
-- `hasPrinter`: Printer support (enables CUPS and network discovery)
-- `hasScanner`: Scanner support (enables SANE, automatically included with printer module)
-- `hasWebcam`: Webcam (set for documentation/future driver support)
-
-**Important**: Set these to `false` if you don't have the hardware - unnecessary modules won't be loaded, keeping your system lean!
+**Key Principle**: Only import the modules your device actually needs. This keeps your configuration clean and explicit!

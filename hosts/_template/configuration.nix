@@ -2,7 +2,7 @@
 
 {
   imports = [
-    # Core system modules
+    # Core system modules (usually needed on all systems)
     ../../modules/system/boot.nix
     ../../modules/system/networking.nix
     ../../modules/system/locale.nix
@@ -13,13 +13,18 @@
     ../../modules/system/wayland.nix
     ../../modules/system/niri-override.nix
 
-    # Hardware-specific modules for this host
-    ../../modules/system/nvidia.nix          # NVIDIA RTX 3080
-    ../../modules/system/yubikey.nix         # YubiKey support
-    ../../modules/system/logiops.nix         # Logitech mouse
-    ../../modules/system/keyboard.nix        # Lofree Flow keyboard
+    # Hardware-specific modules (uncomment what you need)
+    # ../../modules/system/nvidia.nix          # NVIDIA GPU
+    # ../../modules/system/bluetooth.nix       # Bluetooth
+    # ../../modules/system/touchpad.nix        # Laptop touchpad
+    # ../../modules/system/fingerprint.nix     # Fingerprint sensor
+    # ../../modules/system/yubikey.nix         # YubiKey
+    # ../../modules/system/logiops.nix         # Logitech mouse
+    # ../../modules/system/keyboard.nix        # Custom keyboard fixes
+    # ../../modules/system/printer.nix         # Printer/scanner
   ];
 
+  # Display manager
   services.greetd = {
     enable = true;
     settings = {
@@ -57,20 +62,13 @@
       extraGroups = [ "networkmanager" "wheel" "video" "audio" "plugdev" ];
       shell = pkgs.nushell;
 
-      # Initial password hash - generate with: mkpasswd -m sha-512
-      hashedPassword = "$6$KtMQPtEMmQ9AW7qK$tvtWeUA5GzWyILnexkH51.OMTnM6cuzA2aEymac264HctHr5jRBH7NBOOn4twZqaF963f8KkgDdNzfpSfd54D0";
-
-      # TODO: Set up sops-nix for secrets management
-      # 1. Initialize sops with age or GPG key
-      # 2. Create secrets file in secrets/ directory
-      # 3. Uncomment and configure: hashedPasswordFile = config.sops.secrets.yawarakatai-password.path;
-      # 4. Set up sops configuration in flake.nix if not already done
+      # Generate password hash with: mkpasswd -m sha-512
+      hashedPassword = "YOUR_PASSWORD_HASH_HERE";
     };
 
     # Disable root login
     users.root.hashedPassword = "!";
   };
-
 
   # Nix configuration
   nix = {
@@ -83,12 +81,10 @@
       substituters = [
         "https://cache.nixos.org"
         "https://nix-community.cachix.org"
-        "https://vicinae.cachix.org" # Vicinae cache
       ];
       trusted-public-keys = [
         "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc=" # Vicinae cache key
       ];
     };
 
@@ -131,7 +127,6 @@
   };
 
   # dconf for GTK application settings
-  # Required for home-manager GTK configuration and GNOME apps like Nautilus
   programs.dconf.enable = true;
 
   # XWayland support for X11 applications

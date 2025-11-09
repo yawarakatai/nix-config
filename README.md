@@ -164,45 +164,39 @@ Btrfs subvolumes for flexibility:
 
 ### Adding a New Host
 
-This configuration is designed for multi-device setups. Each device can have different hardware and only loads the modules it needs.
+This configuration is designed for multi-device setups. Each host imports only the modules it needs.
 
 ```bash
 # 1. Copy the template
-cp -r hosts/_template hosts/nanodesu
+cp -r hosts/_template hosts/laptop
 
 # 2. Generate hardware config
-sudo nixos-generate-config --show-hardware-config > hosts/nanodesu/hardware-configuration.nix
+sudo nixos-generate-config --show-hardware-config > hosts/laptop/hardware-configuration.nix
 
-# 3. Edit vars.nix for your device
-# Set feature flags based on your hardware:
-# - hasNvidia: true/false
-# - hasLogitechMouse: true/false
-# - hasCustomKeyboard: true/false
-# - hasYubikey: true/false
+# 3. Edit configuration.nix
+# Uncomment the hardware modules you need in the imports section
+# Example for a laptop:
+#   - bluetooth.nix
+#   - touchpad.nix
+#   - fingerprint.nix
 
-# 4. Create home configuration
-mkdir -p home/nanodesu
-cp home/desuwa/home.nix home/nanodesu/home.nix
-# Customize as needed
+# 4. Edit vars.nix
+# Set your username, hostname, timezone, etc.
 
-# 5. Add to flake.nix
-# Edit flake.nix and add:
-# nixosConfigurations.nanodesu = mkSystem "nanodesu";
+# 5. Create home configuration
+mkdir -p home/laptop
+cp home/desuwa/home.nix home/laptop/home.nix
 
-# 6. Build and switch
-sudo nixos-rebuild switch --flake .#nanodesu
+# 6. Add to flake.nix
+# nixosConfigurations.laptop = mkSystem "laptop";
+
+# 7. Build and switch
+sudo nixos-rebuild switch --flake .#laptop
 ```
 
-**Feature Flags**: The system automatically includes/excludes modules based on hardware flags in `vars.nix`:
-- **Graphics**: NVIDIA, AMD, Intel GPU support
-- **Connectivity**: WiFi, Bluetooth, Ethernet
-- **Input**: Logitech mice, custom keyboards, touchpads, touchscreens
-- **Biometric/Security**: YubiKey, fingerprint sensors, TPM
-- **Peripherals**: Printers, scanners, webcams
+**Key Principle**: Each host's `configuration.nix` explicitly imports the modules it needs. No conditional logic needed - just look at the imports to see what's enabled!
 
-Only the modules your device needs are loaded - keeps configurations lean and portable!
-
-See `hosts/_template/README.md` for the complete list of available flags.
+See `hosts/_template/README.md` for the complete list of available modules.
 
 ### Changing Theme Colors
 

@@ -35,20 +35,9 @@
           system = vars.system;
           specialArgs = { inherit vars inputs; };
           modules = [
-            # Host-specific configuration
+            # Host-specific configuration (imports its own modules)
             ./hosts/${hostname}/configuration.nix
             ./hosts/${hostname}/hardware-configuration.nix
-
-            # Core system modules (always included)
-            ./modules/system/boot.nix
-            ./modules/system/networking.nix
-            ./modules/system/locale.nix
-            ./modules/system/audio.nix
-            ./modules/system/zram.nix
-            ./modules/system/storage.nix
-            ./modules/system/rebuild-helper.nix
-            ./modules/system/wayland.nix
-            ./modules/system/niri-override.nix
 
             # sops-nix for secrets management
             sops-nix.nixosModules.sops
@@ -65,36 +54,6 @@
                 backupFileExtension = "backup";
               };
             }
-          ]
-          # Optional hardware modules (conditionally included)
-          # Graphics
-          ++ nixpkgs.lib.optionals (vars.hasNvidia or false) [
-            ./modules/system/nvidia.nix
-          ]
-          # Connectivity
-          ++ nixpkgs.lib.optionals (vars.hasBluetooth or false) [
-            ./modules/system/bluetooth.nix
-          ]
-          # Input devices
-          ++ nixpkgs.lib.optionals (vars.hasLogitechMouse or false) [
-            ./modules/system/logiops.nix
-          ]
-          ++ nixpkgs.lib.optionals (vars.hasCustomKeyboard or false) [
-            ./modules/system/keyboard.nix
-          ]
-          ++ nixpkgs.lib.optionals (vars.hasTouchpad or false) [
-            ./modules/system/touchpad.nix
-          ]
-          # Biometric & Security
-          ++ nixpkgs.lib.optionals (vars.hasYubikey or false) [
-            ./modules/system/yubikey.nix
-          ]
-          ++ nixpkgs.lib.optionals (vars.hasFingerprintSensor or false) [
-            ./modules/system/fingerprint.nix
-          ]
-          # Peripherals
-          ++ nixpkgs.lib.optionals (vars.hasPrinter or false) [
-            ./modules/system/printer.nix
           ];
         };
     in

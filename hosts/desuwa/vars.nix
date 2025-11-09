@@ -9,32 +9,6 @@
   keyboardLayout = "us";
   timezone = "Asia/Tokyo";
 
-  # Graphics hardware
-  hasNvidia = true;         # NVIDIA RTX 3080
-  hasAMD = false;           # No AMD GPU
-  hasIntel = false;         # No Intel integrated graphics
-
-  # Connectivity hardware
-  hasWifi = false;          # Desktop - no WiFi adapter
-  hasBluetooth = false;     # No Bluetooth adapter
-  hasEthernet = true;       # Wired ethernet connection
-
-  # Input devices
-  hasLogitechMouse = true;  # Logitech mouse with custom button mapping
-  hasCustomKeyboard = true; # Lofree Flow keyboard with Fn key fixes
-  hasTouchpad = false;      # Desktop - no touchpad
-  hasTouchscreen = false;   # No touchscreen
-
-  # Biometric & Security
-  hasYubikey = true;        # YubiKey for GPG/SSH
-  hasFingerprintSensor = false; # No fingerprint reader
-  hasTPM = false;           # No TPM chip
-
-  # Other peripherals
-  hasPrinter = false;       # No printer configured
-  hasScanner = false;       # No scanner
-  hasWebcam = false;        # No webcam
-
   # Display configuration
   hasHiDPI = true;
   monitors = [ "HDMI-A-2" ]; # 4K 144Hz monitor
