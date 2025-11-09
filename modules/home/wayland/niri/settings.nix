@@ -25,18 +25,19 @@
     };
 
     # Output configuration
-    # Monitor names from vars.monitors
+    # Monitor configuration from vars.monitors
     outputs = {
-      "${builtins.head vars.monitors}" = {
+      "${vars.monitors.primary.name}" = {
         mode = {
-          width = 3840;
-          height = 2160;
-          refresh = 143.999;
+          width = vars.monitors.primary.width;
+          height = vars.monitors.primary.height;
+          refresh = vars.monitors.primary.refresh;
         };
-        variable-refresh-rate = "on-demand";
-        scale = 1.0;
-        position = { x = 0; y = 0; };
+        variable-refresh-rate = if vars.monitors.primary.vrr then "on-demand" else "off";
+        scale = vars.monitors.primary.scale;
+        position = vars.monitors.primary.position;
       };
+      # Additional monitors can be added here by extending vars.monitors
     };
 
     # Mouse Cursor configuration

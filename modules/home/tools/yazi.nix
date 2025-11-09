@@ -6,7 +6,7 @@
     enableNushellIntegration = true;
     
     settings = {
-      manager = {
+      mgr = {
         show_hidden = true;
         show_symlink = true;
         sort_by = "natural";
@@ -23,8 +23,8 @@
     };
     
     theme = {
-      # Manager
-      manager = {
+      # Manager (migrated to 'mgr' from 'manager')
+      mgr = {
         cwd = { fg = theme.semantic.keyword; };
         hovered = { fg = theme.colorScheme.base00; bg = theme.semantic.variable; };
         preview_hovered = { underline = true; };
@@ -76,10 +76,10 @@
     };
     
     keymap = {
-      manager.prepend_keymap = [
-        { on = [ "<Esc>" ]; exec = "escape"; desc = "Exit visual mode, clear selected, or cancel search"; }
-        { on = [ "q" ]; exec = "quit"; desc = "Exit the process"; }
-        { on = [ "<C-q>" ]; exec = "quit --no-cwd-file"; desc = "Exit without writing cwd-file"; }
+      mgr.prepend_keymap = [
+        { on = [ "<Esc>" ]; run = "escape"; desc = "Exit visual mode, clear selected, or cancel search"; }
+        { on = [ "q" ]; run = "quit"; desc = "Exit the process"; }
+        { on = [ "<C-q>" ]; run = "quit --no-cwd-file"; desc = "Exit without writing cwd-file"; }
       ];
     };
   };

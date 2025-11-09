@@ -32,9 +32,7 @@ in
     ../../modules/home/browser/firefox.nix
 
     # Terminal
-    ../../modules/home/terminal/ghostty.nix
     ../../modules/home/terminal/alacritty.nix
-    ../../modules/home/terminal/kitty.nix
 
     # Wayland
     ../../modules/home/wayland/wayland-packages.nix
@@ -76,6 +74,9 @@ in
 
     # Image viewer
     imv
+
+    # Markdown reader
+    glow
 
     # Media and system controls
     pavucontrol # PulseAudio volume control GUI

@@ -1,5 +1,9 @@
 { config, pkgs, theme, ... }:
 
+let
+  # Import shared terminal color scheme
+  termColors = import ../../../lib/terminal-colors.nix { inherit theme; };
+in
 {
   programs.alacritty = {
     enable = true;
@@ -40,7 +44,7 @@
       # Cursor
       cursor = {
         style = {
-          shape = "Block";
+          shape = "Beam";
           blinking = "On";
         };
       };
@@ -55,45 +59,45 @@
         hide_when_typing = true;
       };
 
-      # Colors - Base16 color scheme
+      # Colors - Using shared terminal color scheme
       colors = {
         primary = {
-          background = theme.colorScheme.base00;
-          foreground = theme.colorScheme.base05;
+          background = termColors.primary.background;
+          foreground = termColors.primary.foreground;
         };
 
         cursor = {
-          text = theme.colorScheme.base00;
-          cursor = theme.semantic.variable;
+          text = termColors.primary.cursorText;
+          cursor = termColors.primary.cursor;
         };
 
         selection = {
-          text = theme.colorScheme.base05;
-          background = theme.colorScheme.base02;
+          text = termColors.primary.selectionText;
+          background = termColors.primary.selection;
         };
 
         # Normal colors
         normal = {
-          black = theme.colorScheme.base00;
-          red = theme.colorScheme.base08;
-          green = theme.colorScheme.base0B;
-          yellow = theme.colorScheme.base0A;
-          blue = theme.colorScheme.base0D;
-          magenta = theme.colorScheme.base0E;
-          cyan = theme.colorScheme.base0C;
-          white = theme.colorScheme.base05;
+          black = termColors.ansi.black;
+          red = termColors.ansi.red;
+          green = termColors.ansi.green;
+          yellow = termColors.ansi.yellow;
+          blue = termColors.ansi.blue;
+          magenta = termColors.ansi.magenta;
+          cyan = termColors.ansi.cyan;
+          white = termColors.ansi.white;
         };
 
         # Bright colors
         bright = {
-          black = theme.colorScheme.base03;
-          red = theme.colorScheme.base08;
-          green = theme.colorScheme.base0B;
-          yellow = theme.colorScheme.base0A;
-          blue = theme.colorScheme.base0D;
-          magenta = theme.colorScheme.base0E;
-          cyan = theme.colorScheme.base0C;
-          white = theme.colorScheme.base07;
+          black = termColors.ansi.brightBlack;
+          red = termColors.ansi.brightRed;
+          green = termColors.ansi.brightGreen;
+          yellow = termColors.ansi.brightYellow;
+          blue = termColors.ansi.brightBlue;
+          magenta = termColors.ansi.brightMagenta;
+          cyan = termColors.ansi.brightCyan;
+          white = termColors.ansi.brightWhite;
         };
       };
 
