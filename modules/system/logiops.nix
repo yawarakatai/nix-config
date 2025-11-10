@@ -155,7 +155,7 @@
                 mode: "OnRelease";
                 action: {
                   type: "Keypress";
-                  keys: ["KEY_LEFTMETA", "KEY_U"];
+                  keys: ["KEY_LEFTMETA", "KEY_I"];
                 };
               },
               {
@@ -163,7 +163,7 @@
                 mode: "OnRelease";
                 action: {
                   type: "Keypress";
-                  keys: ["KEY_LEFTMETA", "KEY_I"];
+                  keys: ["KEY_LEFTMETA", "KEY_U"];
                 };
               },
               {

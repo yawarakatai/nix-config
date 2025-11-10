@@ -45,8 +45,8 @@
       "Mod+Shift+5".action.move-window-to-workspace = 5;
 
       # Workspace cycling
-      "Mod+U".action.focus-workspace-up = [ ];
-      "Mod+I".action.focus-workspace-down = [ ];
+      "Mod+U".action.focus-workspace-down = [ ];
+      "Mod+I".action.focus-workspace-up = [ ];
       "Mod+Shift+U".action.move-column-to-workspace-up = [ ];
       "Mod+Shift+I".action.move-column-to-workspace-down = [ ];
 
