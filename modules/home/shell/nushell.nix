@@ -18,6 +18,7 @@
       ga = "git add";
       gc = "git commit";
       gcm = "git commit -am";
+      gf = "git fetch";
       gp = "git push";
       gl = "git pull";
       gd = "git diff";
@@ -30,14 +31,14 @@
     environmentVariables = {
       EDITOR = "hx";
       VISUAL = "hx";
-      PAGER = "bat";
+      PAGER = "cat";
     };
 
     # Extra environment setup (runs before config.nu)
-    extraEnv = ''
-      # Register the skim plugin for fuzzy finding
-      plugin add ${pkgs.nushellPlugins.skim}/bin/nu_plugin_skim
-    '';
+    # extraEnv = ''
+    #   # Register the skim plugin for fuzzy finding
+    #   plugin add ${pkgs.nushellPlugins.skim}/bin/nu_plugin_skim
+    # '';
 
     # Main nushell configuration
     extraConfig = ''
@@ -87,7 +88,7 @@
             mode: [emacs vi_normal vi_insert]
             event: {
               send: ExecuteHostCommand
-              cmd: "commandline edit --insert (history | get command | str join (char newline) | sk | str trim)"
+              cmd: "commandline edit --insert (history | get command | sk | str trim)"
             }
           }
           # Ctrl+T: Fuzzy file picker
@@ -98,7 +99,7 @@
             mode: [emacs vi_normal vi_insert]
             event: {
               send: ExecuteHostCommand
-              cmd: "commandline edit --insert (fd --type f | str join (char newline) | sk | str trim)"
+              cmd: "commandline edit --insert (find --type f | sk | str trim)"
             }
           }
           # Alt+C: Fuzzy directory picker and cd
@@ -109,7 +110,7 @@
             mode: [emacs vi_normal vi_insert]
             event: {
               send: ExecuteHostCommand
-              cmd: "cd (fd --type d | str join (char newline) | sk | str trim)"
+              cmd: "cd (fd --type d | sk | str trim)"
             }
           }
           # Ctrl+P: Process manager with fuzzy search
@@ -120,22 +121,11 @@
             mode: [emacs vi_normal vi_insert]
             event: {
               send: ExecuteHostCommand
-              cmd: "let proc = (ps | select pid name | to text | sk | str trim | split row ' ' | first); if ($proc | is-not-empty) { kill $proc }"
+              cmd: "let proc = (ps | select pid name | sk | str trim | split row ' ' | first); if ($proc | is-not-empty) { kill $proc }"
             }
           }
         ]
       }
-
-      # Custom commands using modern alternatives to classic Unix tools
-      def ll [...args] { ls -la ...$args }
-      def la [...args] { ls -a ...$args }
-      def cat [...args] { bat ...$args }
-      def find [...args] { fd ...$args }
-      def grep [...args] { rg ...$args }
-      def du [...args] { dust ...$args }
-      def df [...args] { duf ...$args }
-      def ps [...args] { procs ...$args }
-      def top [...args] { btm ...$args }
     '';
   };
 
