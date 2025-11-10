@@ -33,8 +33,8 @@ in
       # Window configuration
       window = {
         padding = {
-          x = 8;
-          y = 8;
+          x = theme.font.size;
+          y = theme.font.size;
         };
         decorations = "none";
         opacity = theme.opacity.terminal;

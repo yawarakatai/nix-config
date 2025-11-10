@@ -50,7 +50,12 @@
       background-color = theme.colorScheme.base00;
 
       gaps = theme.gaps.inner;
-      border.enable = false;
+      border = {
+        enable = theme.border.enable;
+        width = theme.border.width;
+        active.color = theme.border.activeColor;
+        inactive.color = theme.border.inactiveColor;
+      };
       focus-ring.enable = false;
 
       preset-column-widths = [

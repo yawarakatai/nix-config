@@ -82,15 +82,16 @@
 
   # Border configuration
   border = {
+    enable = false;
     width = 2;
-    color = "#333333";
-    activeColor = "#00ffff"; # Cyan for active borders
+    inactiveColor = "#333333";
+    activeColor = "#7f7f7f";
   };
 
   # Gap configuration
   gaps = {
-    inner = 8;
-    outer = 8;
+    inner = 0;
+    outer = 0;
   };
 
   # Corner rounding

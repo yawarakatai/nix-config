@@ -3,36 +3,36 @@
 {
   programs.waybar = {
     enable = true;
-    
+
     settings = {
       mainBar = {
         layer = "top";
         position = "top";
         height = 32;
         spacing = 8;
-        
+
         modules-left = [ "niri/workspaces" "niri/window" ];
         modules-center = [ "clock" ];
-        modules-right = [ 
-          "pulseaudio" 
-          "network" 
-          "cpu" 
-          "memory" 
-          "temperature" 
-          "tray" 
+        modules-right = [
+          "pulseaudio"
+          "network"
+          "cpu"
+          "memory"
+          "temperature"
+          "tray"
         ];
-        
+
         "niri/workspaces" = {
           format = "{name}";
           on-click = "activate";
         };
-        
+
         "niri/window" = {
           format = "{}";
           max-length = 50;
           separate-outputs = true;
         };
-        
+
         clock = {
           format = "{:%Y-%m-%d %H:%M}";
           format-alt = "{:%A, %B %d, %Y}";
@@ -51,26 +51,26 @@
             };
           };
         };
-        
+
         cpu = {
           format = "CPU {usage}%";
           tooltip = true;
           interval = 2;
         };
-        
+
         memory = {
           format = "RAM {percentage}%";
           tooltip-format = "RAM: {used:0.1f}G / {total:0.1f}G\nSwap: {swapUsed:0.1f}G / {swapTotal:0.1f}G";
           interval = 2;
         };
-        
+
         temperature = {
           critical-threshold = 80;
           format = "{temperatureC}°C";
           format-critical = "{temperatureC}°C ";
           interval = 2;
         };
-        
+
         network = {
           format-wifi = " {essid}";
           format-ethernet = " {ifname}";
@@ -78,7 +78,7 @@
           tooltip-format = "{ifname}: {ipaddr}/{cidr}\n {bandwidthDownBits}  {bandwidthUpBits}";
           interval = 2;
         };
-        
+
         pulseaudio = {
           format = "{icon} {volume}%";
           format-muted = " Muted";
@@ -87,14 +87,14 @@
           };
           on-click = "pavucontrol";
         };
-        
+
         tray = {
           icon-size = 16;
           spacing = 8;
         };
       };
     };
-    
+
     style = ''
       * {
         border: none;
@@ -119,7 +119,7 @@
         padding: 0 8px;
         background-color: ${theme.colorScheme.base01};
         color: ${theme.colorScheme.base05};
-        border: ${toString theme.border.width}px solid ${theme.border.color};
+        border: ${toString theme.border.width}px solid ${theme.border.inactiveColor};
         margin: 0 2px;
       }
       
