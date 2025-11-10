@@ -126,16 +126,9 @@
         ]
       }
 
-      # Custom commands using modern alternatives to classic Unix tools
+      # Custom commands
       def ll [...args] { ls -la ...$args }
       def la [...args] { ls -a ...$args }
-      def cat [...args] { bat ...$args }
-      def find [...args] { fd ...$args }
-      def grep [...args] { rg ...$args }
-      def du [...args] { dust ...$args }
-      def df [...args] { duf ...$args }
-      def ps [...args] { procs ...$args }
-      def top [...args] { btm ...$args }
     '';
   };
 
