@@ -47,6 +47,8 @@
 
     # Layout configuration
     layout = {
+      always-center-single-column = true;
+
       background-color = theme.colorScheme.base00;
 
       gaps = theme.gaps.inner;
@@ -65,6 +67,11 @@
       ];
 
       default-column-width = { proportion = 0.5; };
+
+
+      preset-window-heights = [
+        { proportion = 0.5; }
+      ];
     };
 
     # Workspaces
@@ -74,6 +81,11 @@
       "3" = { };
       "4" = { };
       "5" = { };
+    };
+
+    overview = {
+      backdrop-color = theme.colorScheme.base00;
+      workspace-shadow.enable = false;
     };
 
     # Animations

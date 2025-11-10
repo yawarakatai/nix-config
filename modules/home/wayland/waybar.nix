@@ -16,9 +16,9 @@
         modules-right = [
           "pulseaudio"
           "network"
-          "cpu"
-          "memory"
-          "temperature"
+          # "cpu"
+          # "memory"
+          # "temperature"
           "tray"
         ];
 
@@ -34,7 +34,7 @@
         };
 
         clock = {
-          format = "{:%Y-%m-%d %H:%M}";
+          format = "{:%H:%M}";
           format-alt = "{:%A, %B %d, %Y}";
           tooltip-format = "<tt><small>{calendar}</small></tt>";
           calendar = {
@@ -52,24 +52,24 @@
           };
         };
 
-        cpu = {
-          format = "CPU {usage}%";
-          tooltip = true;
-          interval = 2;
-        };
+        # cpu = {
+        #   format = "CPU {usage}%";
+        #   tooltip = true;
+        #   interval = 2;
+        # };
 
-        memory = {
-          format = "RAM {percentage}%";
-          tooltip-format = "RAM: {used:0.1f}G / {total:0.1f}G\nSwap: {swapUsed:0.1f}G / {swapTotal:0.1f}G";
-          interval = 2;
-        };
+        # memory = {
+        #   format = "RAM {percentage}%";
+        #   tooltip-format = "RAM: {used:0.1f}G / {total:0.1f}G\nSwap: {swapUsed:0.1f}G / {swapTotal:0.1f}G";
+        #   interval = 2;
+        # };
 
-        temperature = {
-          critical-threshold = 80;
-          format = "{temperatureC}°C";
-          format-critical = "{temperatureC}°C ";
-          interval = 2;
-        };
+        # temperature = {
+        #   critical-threshold = 80;
+        #   format = "{temperatureC}°C";
+        #   format-critical = "{temperatureC}°C ";
+        #   interval = 2;
+        # };
 
         network = {
           format-wifi = " {essid}";
