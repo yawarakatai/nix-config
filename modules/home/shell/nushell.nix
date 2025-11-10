@@ -34,12 +34,6 @@
       PAGER = "cat";
     };
 
-    # Extra environment setup (runs before config.nu)
-    # extraEnv = ''
-    #   # Register the skim plugin for fuzzy finding
-    #   plugin add ${pkgs.nushellPlugins.skim}/bin/nu_plugin_skim
-    # '';
-
     # Main nushell configuration
     extraConfig = ''
       # Nushell configuration
@@ -48,26 +42,26 @@
 
         # Color scheme configuration using theme colors
         color_config: {
-          separator: "${theme.colorScheme.base03}"
-          leading_trailing_space_bg: "${theme.colorScheme.base00}"
-          header: { fg: "${theme.semantic.function}" attr: "b" }
-          empty: "${theme.colorScheme.base05}"
-          bool: "${theme.semantic.constant}"
-          int: "${theme.semantic.number}"
-          filesize: "${theme.semantic.info}"
-          duration: "${theme.semantic.warning}"
-          date: "${theme.semantic.keyword}"
-          range: "${theme.semantic.variable}"
-          float: "${theme.semantic.number}"
-          string: "${theme.semantic.string}"
-          nothing: "${theme.semantic.comment}"
-          binary: "${theme.semantic.keyword}"
-          cell-path: "${theme.colorScheme.base05}"
-          row_index: { fg: "${theme.semantic.info}" attr: "b" }
-          record: "${theme.colorScheme.base05}"
-          list: "${theme.colorScheme.base05}"
-          block: "${theme.colorScheme.base05}"
-          hints: "${theme.semantic.comment}"
+          separator: "#333333"
+          leading_trailing_space_bg: "#000000"
+          header: { fg: "#0099ff" attr: "b" }
+          empty: "#cccccc"
+          bool: "#ffff00"
+          int: "#ff9500"
+          filesize: "#00ffff"
+          duration: "#ffff00"
+          date: "#cc00ff"
+          range: "#00ffff"
+          float: "#ff9500"
+          string: "#00ff00"
+          nothing: "#666666"
+          binary: "#cc00ff"
+          cell-path: "#cccccc"
+          row_index: { fg: "#00ffff" attr: "b" }
+          record: "#cccccc"
+          list: "#cccccc"
+          block: "#cccccc"
+          hints: "#666666"
         }
 
         # Completion configuration
@@ -80,17 +74,19 @@
 
         # Custom keybindings
         keybindings: [
+        
           # Ctrl+R: Fuzzy history search with skim
           {
-            name: fuzzy_history_sk
+            name: process_manager
             modifier: control
-            keycode: char_r
+            keycode: char_p
             mode: [emacs vi_normal vi_insert]
             event: {
               send: ExecuteHostCommand
-              cmd: "commandline edit --insert (history | get command | sk | str trim)"
+              cmd: "let selection = (ps | select pid name | each { |row| $'($row.pid) ($row.name)' } | sk | str trim); if ($selection | is-not-empty) { let pid = ($selection | split row ' ' | first | into int); kill $pid }"
             }
           }
+          
           # Ctrl+T: Fuzzy file picker
           {
             name: skim_file_picker
@@ -99,9 +95,10 @@
             mode: [emacs vi_normal vi_insert]
             event: {
               send: ExecuteHostCommand
-              cmd: "commandline edit --insert (find --type f | sk | str trim)"
+              cmd: "commandline edit --insert (fd --type f | lines | sk | str trim)"
             }
           }
+
           # Alt+C: Fuzzy directory picker and cd
           {
             name: skim_directory_picker
@@ -110,9 +107,10 @@
             mode: [emacs vi_normal vi_insert]
             event: {
               send: ExecuteHostCommand
-              cmd: "cd (fd --type d | sk | str trim)"
+              cmd: "cd (fd --type d | lines | sk | str trim)"
             }
           }
+
           # Ctrl+P: Process manager with fuzzy search
           {
             name: process_manager
@@ -128,8 +126,21 @@
       }
 
       # Custom commands
-      def ll [...args] { ls -la ...$args }
-      def la [...args] { ls -a ...$args }
+      def ll [...args] { 
+        if ($args | is-empty) {
+          ls -la .
+        } else {
+          ls -la ...$args
+        }
+      }
+
+      def la [...args] { 
+        if ($args | is-empty) {
+          ls -a .
+        } else {
+          ls -a ...$args
+        }
+      }
     '';
   };
 
