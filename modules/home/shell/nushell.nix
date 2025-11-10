@@ -126,6 +126,10 @@
           }
         ]
       }
+
+      # Custom commands
+      def ll [...args] { ls -la ...$args }
+      def la [...args] { ls -a ...$args }
     '';
   };
 
