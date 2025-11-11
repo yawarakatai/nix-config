@@ -15,6 +15,7 @@
 
       # Overview
       "Mod+O".action.toggle-overview = [ ];
+      "Mod+Tab".action.toggle-overview = [ ];
 
       # Basic window management
       "Mod+Q".action.close-window = [ ];
