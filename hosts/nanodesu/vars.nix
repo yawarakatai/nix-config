@@ -35,8 +35,8 @@
     # };
   };
 
-  # Wallpaper (absolute path, not relative to config location)
-  wallpaperPath = "/home/yawarakatai/.config/nix-config/home/nanodesu/wallpapers/bg.png";
+  # Wallpaper (relative path - Nix will copy to store)
+  wallpaperPath = ../../assets/wallpapers/nanodesu/bg.png;
 
   # Storage
   mainDisk = "/dev/nvme0n1"; # 512GB NVMe SSD

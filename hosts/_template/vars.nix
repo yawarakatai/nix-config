@@ -33,8 +33,9 @@
     # };
   };
 
-  # Wallpaper (absolute path, not relative to config location)
-  wallpaperPath = "/home/your-username/.config/nix-config/home/HOSTNAME/wallpapers/bg.png";
+  # Wallpaper (relative path - Nix will copy to store)
+  # Replace HOSTNAME with your actual hostname directory name
+  wallpaperPath = ../../assets/wallpapers/HOSTNAME/bg.png;
 
   # Storage
   mainDisk = "/dev/sda"; # Your main disk (find with: lsblk)

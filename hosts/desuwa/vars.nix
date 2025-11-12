@@ -25,8 +25,8 @@
     # secondary = { ... };
   };
 
-  # Wallpaper (absolute path, not relative to config location)
-  wallpaperPath = "/home/yawarakatai/.config/nix-config/home/desuwa/wallpapers/bg.png";
+  # Wallpaper (relative path - Nix will copy to store)
+  wallpaperPath = ../../assets/wallpapers/desuwa/bg.png;
 
   # Storage
   mainDisk = "/dev/nvme0n1";
