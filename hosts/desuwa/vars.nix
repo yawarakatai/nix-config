@@ -26,13 +26,12 @@
   };
 
   # Wallpaper (relative path - Nix will copy to store)
-  wallpaperPath = ../../assets/wallpapers/desuwa/bg.png;
+  wallpaperPath = ../../wallpapers/bg.png;
 
   # Storage
   mainDisk = "/dev/nvme0n1";
 
   # Performance specs
-  cpuCores = 16; # Ryzen 7 3700X (8 cores, 16 threads)
   ramGB = 16;
 
   # Git configuration

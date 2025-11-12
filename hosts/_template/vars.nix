@@ -35,13 +35,12 @@
 
   # Wallpaper (relative path - Nix will copy to store)
   # Replace HOSTNAME with your actual hostname directory name
-  wallpaperPath = ../../assets/wallpapers/HOSTNAME/bg.png;
+  wallpaperPath = ../../wallpapers/bg.png;
 
   # Storage
   mainDisk = "/dev/sda"; # Your main disk (find with: lsblk)
 
   # Performance specs
-  cpuCores = 8; # Number of CPU threads
   ramGB = 16; # RAM in GB
 
   # Git configuration

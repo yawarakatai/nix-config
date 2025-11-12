@@ -6,8 +6,8 @@ result-*
 # Uncomment if you want to regenerate on each machine:
 # hosts/*/hardware-configuration.nix
 
-# Background images moved to assets/wallpapers/ and are now tracked in git
-# Old location (no longer used): home/*/wallpapers
+# Background images moved 
+wallpapers/
 
 # Secrets - NEVER commit unencrypted secrets
 secrets/*.key

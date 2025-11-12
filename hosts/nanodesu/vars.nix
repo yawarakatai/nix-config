@@ -36,15 +36,12 @@
   };
 
   # Wallpaper (relative path - Nix will copy to store)
-  wallpaperPath = ../../assets/wallpapers/nanodesu/bg.png;
+  wallpaperPath = ../../wallpapers/bg.png;
 
   # Storage
   mainDisk = "/dev/nvme0n1"; # 512GB NVMe SSD
 
   # Performance specs
-  # ThinkPad X1 Nano Gen 2: Intel 12th Gen (typically 4-10 cores depending on model)
-  # Using 8 threads as typical for Core i5/i7 variants
-  cpuCores = 8; # Intel 12th Gen (4 P-cores + efficiency cores = ~8 threads)
   ramGB = 16; # 16GB LPDDR5
 
   # Git configuration
