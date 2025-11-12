@@ -14,16 +14,15 @@
         modules-left = [ "niri/workspaces" "niri/window" ];
         modules-center = [ "clock" ];
         modules-right = [
+          "backlight"
           "pulseaudio"
+          "battery"
           "network"
-          # "cpu"
-          # "memory"
-          # "temperature"
           "tray"
         ];
 
         "niri/workspaces" = {
-          format = "{name}";
+          format = "●";
           on-click = "activate";
         };
 
@@ -79,13 +78,36 @@
           interval = 2;
         };
 
+        backlight = {
+          format = "{icon}";
+          format-icons = [ "▁" "▂" "▃" "▄" "▅" "▆" "▇" "█" ];
+          tooltip-format = "Brightness: {percent}%";
+          on-scroll-up = "brightnessctl set +5%";
+          on-scroll-down = "brightnessctl set 5%-";
+        };
+
         pulseaudio = {
-          format = "{icon} {volume}%";
-          format-muted = " Muted";
+          format = "{icon}";
+          format-muted = "▁";
           format-icons = {
-            default = [ "" "" "" ];
+            default = [ "▁" "▃" "▅" "▇" "█" ];
           };
+          tooltip-format = "Volume: {volume}%";
           on-click = "pavucontrol";
+          on-scroll-up = "pactl set-sink-volume @DEFAULT_SINK@ +5%";
+          on-scroll-down = "pactl set-sink-volume @DEFAULT_SINK@ -5%";
+        };
+
+        battery = {
+          format = "{icon}";
+          format-charging = "⚡";
+          format-plugged = "⚡";
+          format-icons = [ "▁" "▂" "▃" "▄" "▅" "▆" "▇" "█" ];
+          tooltip-format = "Battery: {capacity}%\n{timeTo}";
+          states = {
+            warning = 30;
+            critical = 15;
+          };
         };
 
         tray = {
@@ -110,28 +132,29 @@
         color: ${theme.colorScheme.base05};
       }
       
-      /* Workspaces */
+      /* Workspaces - Circular minimalist design */
       #workspaces {
         margin: 0 4px;
       }
-      
+
       #workspaces button {
-        padding: 0 8px;
-        background-color: ${theme.colorScheme.base01};
-        color: ${theme.colorScheme.base05};
-        border: ${toString theme.border.width}px solid ${theme.border.inactiveColor};
+        padding: 0 4px;
+        background-color: transparent;
+        color: ${theme.colorScheme.base03};
+        border: none;
         margin: 0 2px;
+        font-size: 18px;
+        transition: all 0.2s ease;
       }
-      
+
       #workspaces button.active {
-        background-color: ${theme.colorScheme.base02};
         color: ${theme.semantic.variable};
-        border-color: ${theme.border.activeColor};
+        text-shadow: 0 0 8px ${theme.semantic.variable};
       }
-      
+
       #workspaces button.urgent {
-        background-color: ${theme.semantic.error};
-        color: ${theme.colorScheme.base00};
+        color: ${theme.semantic.error};
+        text-shadow: 0 0 8px ${theme.semantic.error};
       }
       
       /* Window title */
@@ -147,48 +170,53 @@
         font-weight: bold;
       }
       
-      /* System modules */
-      #cpu,
-      #memory,
-      #temperature,
-      #network,
-      #pulseaudio {
-        padding: 0 12px;
-        background-color: ${theme.colorScheme.base01};
-        margin: 0 2px;
+      /* System modules - Minimalist progress bar style */
+      #backlight,
+      #pulseaudio,
+      #battery,
+      #network {
+        padding: 0 8px;
+        background-color: transparent;
+        margin: 0 4px;
+        font-size: 16px;
       }
-      
-      #cpu {
-        color: ${theme.semantic.success};
-      }
-      
-      #memory {
+
+      #backlight {
         color: ${theme.semantic.warning};
       }
-      
-      #temperature {
-        color: ${theme.semantic.info};
-      }
-      
-      #temperature.critical {
-        color: ${theme.semantic.error};
-        animation: blink 1s linear infinite;
-      }
-      
-      #network {
-        color: ${theme.semantic.variable};
-      }
-      
-      #network.disconnected {
-        color: ${theme.semantic.error};
-      }
-      
+
       #pulseaudio {
         color: ${theme.semantic.function};
       }
-      
+
       #pulseaudio.muted {
-        color: ${theme.semantic.comment};
+        color: ${theme.colorScheme.base03};
+      }
+
+      #battery {
+        color: ${theme.semantic.success};
+      }
+
+      #battery.warning:not(.charging) {
+        color: ${theme.semantic.warning};
+      }
+
+      #battery.critical:not(.charging) {
+        color: ${theme.semantic.error};
+        animation: blink 1s linear infinite;
+      }
+
+      #battery.charging,
+      #battery.plugged {
+        color: ${theme.semantic.info};
+      }
+
+      #network {
+        color: ${theme.semantic.variable};
+      }
+
+      #network.disconnected {
+        color: ${theme.semantic.error};
       }
       
       #tray {
