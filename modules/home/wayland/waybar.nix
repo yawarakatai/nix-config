@@ -42,11 +42,11 @@
             weeks-pos = "right";
             on-scroll = 1;
             format = {
-              months = "<span color='${theme.semantic.keyword}'><b>{}</b></span>";
-              days = "<span color='${theme.colorScheme.base05}'>{}</span>";
-              weeks = "<span color='${theme.semantic.info}'><b>W{}</b></span>";
-              weekdays = "<span color='${theme.semantic.warning}'><b>{}</b></span>";
-              today = "<span color='${theme.semantic.error}'><b><u>{}</u></b></span>";
+              months = "<span color='#ffffff'><b>{}</b></span>";
+              days = "<span color='#cccccc'>{}</span>";
+              weeks = "<span color='#999999'><b>W{}</b></span>";
+              weekdays = "<span color='#cccccc'><b>{}</b></span>";
+              today = "<span color='#ffffff'><b><u>{}</u></b></span>";
             };
           };
         };
@@ -80,7 +80,7 @@
 
         backlight = {
           format = "{icon}";
-          format-icons = [ "▁" "▂" "▃" "▄" "▅" "▆" "▇" "█" ];
+          format-icons = [ "▏" "▎" "▍" "▌" "▋" "▊" "▉" "█" ];
           tooltip-format = "Brightness: {percent}%";
           on-scroll-up = "brightnessctl set +5%";
           on-scroll-down = "brightnessctl set 5%-";
@@ -88,9 +88,9 @@
 
         pulseaudio = {
           format = "{icon}";
-          format-muted = "▁";
+          format-muted = "▏";
           format-icons = {
-            default = [ "▁" "▃" "▅" "▇" "█" ];
+            default = [ "▏" "▍" "▋" "▉" "█" ];
           };
           tooltip-format = "Volume: {volume}%";
           on-click = "pavucontrol";
@@ -100,9 +100,9 @@
 
         battery = {
           format = "{icon}";
-          format-charging = "⚡";
-          format-plugged = "⚡";
-          format-icons = [ "▁" "▂" "▃" "▄" "▅" "▆" "▇" "█" ];
+          format-charging = "▬";
+          format-plugged = "▬";
+          format-icons = [ "▏" "▎" "▍" "▌" "▋" "▊" "▉" "█" ];
           tooltip-format = "Battery: {capacity}%\n{timeTo}";
           states = {
             warning = 30;
@@ -120,109 +120,115 @@
     style = ''
       * {
         border: none;
-        border-radius: ${toString theme.rounding}px;
+        border-radius: 0;
         font-family: ${theme.font.family};
         font-size: ${toString theme.font.size}px;
         min-height: 0;
       }
-      
+
       window#waybar {
-        background-color: ${theme.colorScheme.base00};
-        opacity: ${toString theme.opacity.bar};
-        color: ${theme.colorScheme.base05};
+        background-color: #000000;
+        opacity: 0.95;
+        color: #ffffff;
       }
-      
-      /* Workspaces - Circular minimalist design */
+
+      /* Workspaces - Horizontal indicators */
       #workspaces {
         margin: 0 4px;
       }
 
       #workspaces button {
-        padding: 0 4px;
+        padding: 0 8px;
         background-color: transparent;
-        color: ${theme.colorScheme.base03};
+        color: #666666;
         border: none;
+        border-bottom: 2px solid transparent;
         margin: 0 2px;
         font-size: 18px;
         transition: all 0.2s ease;
       }
 
       #workspaces button.active {
-        color: ${theme.semantic.variable};
-        text-shadow: 0 0 8px ${theme.semantic.variable};
+        color: #ffffff;
+        border-bottom: 2px solid #ffffff;
+        background-color: #333333;
       }
 
       #workspaces button.urgent {
-        color: ${theme.semantic.error};
-        text-shadow: 0 0 8px ${theme.semantic.error};
+        color: #cccccc;
+        border-bottom: 2px solid #cccccc;
+        animation: blink 1s linear infinite;
       }
-      
+
       /* Window title */
       #window {
         padding: 0 12px;
-        color: ${theme.semantic.function};
+        color: #cccccc;
       }
-      
+
       /* Clock */
       #clock {
         padding: 0 12px;
-        color: ${theme.semantic.keyword};
+        color: #ffffff;
         font-weight: bold;
       }
-      
-      /* System modules - Minimalist progress bar style */
+
+      /* System modules - Horizontal bar indicators */
       #backlight,
       #pulseaudio,
       #battery,
       #network {
-        padding: 0 8px;
+        padding: 0 12px;
         background-color: transparent;
         margin: 0 4px;
         font-size: 16px;
+        color: #ffffff;
+        border-left: 1px solid #333333;
       }
 
       #backlight {
-        color: ${theme.semantic.warning};
+        color: #ffffff;
       }
 
       #pulseaudio {
-        color: ${theme.semantic.function};
+        color: #ffffff;
       }
 
       #pulseaudio.muted {
-        color: ${theme.colorScheme.base03};
+        color: #666666;
       }
 
       #battery {
-        color: ${theme.semantic.success};
+        color: #ffffff;
       }
 
       #battery.warning:not(.charging) {
-        color: ${theme.semantic.warning};
+        color: #cccccc;
       }
 
       #battery.critical:not(.charging) {
-        color: ${theme.semantic.error};
+        color: #999999;
         animation: blink 1s linear infinite;
       }
 
       #battery.charging,
       #battery.plugged {
-        color: ${theme.semantic.info};
+        color: #ffffff;
       }
 
       #network {
-        color: ${theme.semantic.variable};
+        color: #ffffff;
       }
 
       #network.disconnected {
-        color: ${theme.semantic.error};
+        color: #666666;
       }
-      
+
       #tray {
         padding: 0 8px;
+        border-left: 1px solid #333333;
       }
-      
+
       /* Animations */
       @keyframes blink {
         50% {
