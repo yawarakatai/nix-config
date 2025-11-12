@@ -7,7 +7,7 @@ result-*
 # hosts/*/hardware-configuration.nix
 
 # Background images (not opensource)
-home/wallpapers/
+home/*/wallpapers
 
 # Secrets - NEVER commit unencrypted secrets
 secrets/*.key
@@ -18,9 +18,6 @@ secrets/*.pem
 # Age/sops private keys - NEVER commit these!
 *.txt
 !.gitignore
-
-# But allow .sops.yaml (contains only public keys)
-!.sops.yaml
 
 # Editor files
 .vscode/
