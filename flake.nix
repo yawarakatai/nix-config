@@ -53,7 +53,7 @@
       # System configurations
       nixosConfigurations = {
         desuwa = mkSystem "desuwa";
-        # Future: nanodesu = mkSystem "nanodesu";
+        nanodesu = mkSystem "nanodesu";
       };
 
       # Development shell for editing configurations
