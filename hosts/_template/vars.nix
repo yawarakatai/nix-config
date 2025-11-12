@@ -33,9 +33,8 @@
     # };
   };
 
-  # Wallpaper (relative path - Nix will copy to store)
-  # Replace HOSTNAME with your actual hostname directory name
-  wallpaperPath = ../../wallpapers/bg.png;
+  # Wallpaper (do not use relative path - Nix will copy to store)
+  wallpaperPath = "/home/yawarakatai/.config/nix-config/wallpapers/bg.png";
 
   # Storage
   mainDisk = "/dev/sda"; # Your main disk (find with: lsblk)

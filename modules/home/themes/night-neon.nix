@@ -3,9 +3,6 @@
 {
   name = "Neon Night";
 
-  # Wallpaper path from vars (host-specific absolute path)
-  wallpaper = vars.wallpaperPath;
-
   # Base16 color scheme
   colorScheme = {
     # Base colors - Pure black with subtle grays
