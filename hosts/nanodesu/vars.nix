@@ -15,13 +15,13 @@
   # Typical laptop internal displays are named: eDP-1, eDP-2, or similar
   monitors = {
     primary = {
-      name = "eDP-1";           # Internal laptop display (verify with niri msg outputs)
-      width = 2160;             # Native resolution width
-      height = 1350;            # Native resolution height (16:10 aspect ratio)
-      refresh = 60.0;           # Standard 60Hz for this model
-      scale = 1.0;              # No scaling as requested
+      name = "eDP-1"; # Internal laptop display (verify with niri msg outputs)
+      width = 2160; # Native resolution width
+      height = 1350; # Native resolution height (16:10 aspect ratio)
+      refresh = 60.0; # Standard 60Hz for this model
+      scale = 1.0; # No scaling as requested
       position = { x = 0; y = 0; };
-      vrr = true;               # Variable refresh rate enabled
+      vrr = true; # Variable refresh rate enabled
     };
     # Add external monitors here when needed:
     # external = {
@@ -36,7 +36,7 @@
   };
 
   # Wallpaper (absolute path, not relative to config location)
-  wallpaperPath = "/home/yawarakatai/.config/nix-config/home/wallpapers/bg.png";
+  wallpaperPath = "/home/yawarakatai/.config/nix-config/home/nanodesu/wallpapers/bg.png";
 
   # Storage
   mainDisk = "/dev/nvme0n1"; # 512GB NVMe SSD
@@ -44,8 +44,8 @@
   # Performance specs
   # ThinkPad X1 Nano Gen 2: Intel 12th Gen (typically 4-10 cores depending on model)
   # Using 8 threads as typical for Core i5/i7 variants
-  cpuCores = 8;  # Intel 12th Gen (4 P-cores + efficiency cores = ~8 threads)
-  ramGB = 16;    # 16GB LPDDR5
+  cpuCores = 8; # Intel 12th Gen (4 P-cores + efficiency cores = ~8 threads)
+  ramGB = 16; # 16GB LPDDR5
 
   # Git configuration
   gitName = "yawarakatai";

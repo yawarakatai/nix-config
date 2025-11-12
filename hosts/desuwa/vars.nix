@@ -26,7 +26,7 @@
   };
 
   # Wallpaper (absolute path, not relative to config location)
-  wallpaperPath = "/home/yawarakatai/.config/nix-config/home/wallpapers/bg.png";
+  wallpaperPath = "/home/yawarakatai/.config/nix-config/home/desuwa/wallpapers/bg.png";
 
   # Storage
   mainDisk = "/dev/nvme0n1";
