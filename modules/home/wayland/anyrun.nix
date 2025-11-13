@@ -2,21 +2,16 @@
   config,
   pkgs,
   theme,
-  inputs,
   ...
 }:
 
-let
-  system = pkgs.stdenv.hostPlatform.system;
-  anyrunPkgs = inputs.anyrun.packages.${system};
-in
 {
   programs.anyrun = {
     enable = true;
 
     config = {
       # Plugin configuration
-      plugins = with anyrunPkgs; [
+      plugins = with pkgs.anyrun; [
         applications
         rink
         shell

@@ -18,9 +18,6 @@ in
     # Vicinae Home Manager module
     inputs.vicinae.homeManagerModules.default
 
-    # Anyrun Home Manager module
-    inputs.anyrun.homeManagerModules.default
-
     # Shell
     ../../modules/home/shell/nushell.nix
     ../../modules/home/shell/starship.nix

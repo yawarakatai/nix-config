@@ -40,14 +40,12 @@
 
   # Host-specific Nix settings (extends base.nix)
   nix.settings = {
-    # Add binary caches
+    # Add Vicinae cache for this host
     substituters = [
       "https://vicinae.cachix.org"
-      "https://anyrun.cachix.org"
     ];
     trusted-public-keys = [
       "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc="
-      "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
     ];
   };
 
