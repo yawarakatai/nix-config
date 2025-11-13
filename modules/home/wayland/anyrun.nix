@@ -1,8 +1,7 @@
-{
-  config,
-  pkgs,
-  theme,
-  ...
+{ config
+, pkgs
+, theme
+, ...
 }:
 
 {
@@ -27,9 +26,6 @@
       };
       width = {
         fraction = 0.3;
-      };
-      height = {
-        absolute = 0;
       };
 
       # Hide icons and plugin info
@@ -115,7 +111,7 @@
         Config(
           desktop_actions: false,
           max_entries: 10,
-          terminal: Some("ghostty"),
+          terminal: Some("alacritty"),
         )
       '';
 
