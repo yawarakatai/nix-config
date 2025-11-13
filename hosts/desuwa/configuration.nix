@@ -36,6 +36,9 @@
     remotePlay.openFirewall = true; # Steam Remote Play
     dedicatedServer.openFirewall = true; # Source Dedicated Server
     gamescopeSession.enable = true; # Gamescope compositor for better Wayland support
+
+    # Additional compatibility packages
+    extraCompatPackages = with pkgs; [ proton-ge-bin ];
   };
 
   # Steam needs XWayland support on Wayland systems
