@@ -15,7 +15,7 @@
   # Typical laptop internal displays are named: eDP-1, eDP-2, or similar
   monitors = {
     external = {
-      name = "DP-3";
+      name = "DP-1";
       width = 3840;
       height = 2160;
       refresh = 59.940;
