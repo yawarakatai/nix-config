@@ -18,7 +18,7 @@
         "${pkgs.anyrun}/lib/libsymbols.so"
       ];
 
-      # Window positioning - centered with reasonable size
+      # Window positioning - centered and compact
       x = {
         fraction = 0.5;
       };
@@ -26,10 +26,10 @@
         fraction = 0.3;
       };
       width = {
-        fraction = 0.4;
+        fraction = 0.3;
       };
       height = {
-        fraction = 0.5;
+        absolute = 0;
       };
 
       # Hide icons and plugin info

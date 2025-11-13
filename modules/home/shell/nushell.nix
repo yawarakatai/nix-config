@@ -36,6 +36,9 @@
 
     # Main nushell configuration
     extraConfig = ''
+      # Register skim plugin
+      plugin add ${pkgs.nushellPlugins.skim}/bin/nu_plugin_skim
+
       # Nushell configuration
       $env.config = {
         show_banner: false
