@@ -11,10 +11,9 @@
 
   # PAM configuration for fingerprint authentication
   security.pam.services = {
-    login.fprintAuth = true;
+    # login.fprintAuth = true;
+    greetd.fprintAuth = true;
     sudo.fprintAuth = true;
-    # Optionally enable for other services
-    # polkit.fprintAuth = true;
-    # gdm.fprintAuth = true;
+    polkit-1.fprintAuth = true;
   };
 }
