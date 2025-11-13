@@ -26,12 +26,32 @@
     {
       matches = [{ app-id = "org.pulseaudio.pavucontrol"; }];
       open-floating = true;
-      default-column-width = { proportion = 0.4; };
+      default-column-width = { proportion = 0.6; };
     }
 
     {
       matches = [{ title = "^(Open|Save|Choose|Library).*"; }];
       open-floating = true;
+    }
+
+    # Steam main window
+    {
+      matches = [{ app-id = "^steam$"; }];
+      open-floating = true;
+      default-column-width = { proportion = 0.6; };
+    }
+
+    # Steam notifications positioning
+    {
+      matches = [
+        { app-id = "^steam$"; }
+        { title = "^notificationtoasts_\\d+_desktop$"; }
+      ];
+      default-floating-position = {
+        x = 10;
+        y = 10;
+        relative-to = "top";
+      };
     }
   ];
 }

@@ -13,8 +13,8 @@
     QT_QPA_PLATFORM = "wayland";
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     
-    # SDL (games, emulators)
-    SDL_VIDEODRIVER = "wayland";
+    # SDL (games, emulators) - allow X11 fallback for compatibility (e.g., Steam)
+    SDL_VIDEODRIVER = "wayland,x11";
     
     # Java applications
     _JAVA_AWT_WM_NONREPARENTING = "1";

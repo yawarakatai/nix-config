@@ -21,5 +21,8 @@
 
     # Screen locking
     swaylock # Screen locker
+
+    # XWayland support for niri (niri uses xwayland-satellite for X11 apps)
+    xwayland-satellite
   ];
 }

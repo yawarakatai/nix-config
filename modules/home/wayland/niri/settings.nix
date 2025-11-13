@@ -99,7 +99,8 @@
 
     # Environment
     environment = {
-      # Set default applications
+      # Set DISPLAY for X11 applications (via xwayland-satellite)
+      DISPLAY = ":0";
     };
   };
 }
