@@ -9,4 +9,9 @@
   # User-specific settings
   home.username = vars.username;
   home.homeDirectory = "/home/${vars.username}";
+
+  # Host-specific packages for nanodesu
+  home.packages = with pkgs; [
+    thunderbird
+  ];
 }
