@@ -1,4 +1,4 @@
-{ theme, vars, ... }:
+{ lib, theme, vars, ... }:
 
 {
   programs.niri.settings = {
@@ -37,6 +37,7 @@
         scale = vars.monitors.primary.scale;
         position = vars.monitors.primary.position;
       };
+    } // lib.optionalAttrs (vars.monitors ? external) {
       "${vars.monitors.external.name}" = {
         mode = {
           width = vars.monitors.external.width;
