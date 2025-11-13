@@ -39,6 +39,23 @@
 
     # Additional compatibility packages
     extraCompatPackages = with pkgs; [ proton-ge-bin ];
+
+    # Package overrides for additional library compatibility
+    package = pkgs.steam.override {
+      extraLibraries = pkgs: with pkgs; [
+        # Additional libraries for X11 compatibility
+        xorg.libXcursor
+        xorg.libXi
+        xorg.libXinerama
+        xorg.libXScrnSaver
+        libpng
+        libpulseaudio
+        libvorbis
+        stdenv.cc.cc.lib
+        libkrb5
+        keyutils
+      ];
+    };
   };
 
   # Steam needs XWayland support on Wayland systems
