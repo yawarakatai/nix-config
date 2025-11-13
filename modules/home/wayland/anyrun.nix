@@ -11,11 +11,11 @@
 
     config = {
       # Plugin configuration
-      plugins = with pkgs.anyrun; [
-        applications
-        rink
-        shell
-        symbols
+      plugins = [
+        "${pkgs.anyrun}/lib/libapplications.so"
+        "${pkgs.anyrun}/lib/librink.so"
+        "${pkgs.anyrun}/lib/libshell.so"
+        "${pkgs.anyrun}/lib/libsymbols.so"
       ];
 
       # Window positioning - centered and compact
