@@ -12,6 +12,7 @@ in
 {
   programs.anyrun = {
     enable = true;
+    package = anyrun;
 
     config = {
       # Plugin configuration
