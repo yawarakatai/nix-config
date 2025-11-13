@@ -80,7 +80,7 @@
 
         backlight = {
           format = "{icon}";
-          format-icons = [ "▏" "▎" "▍" "▌" "▋" "▊" "▉" "█" ];
+          format-icons = [ "󰃞" "󰃟" "󰃠" ];
           tooltip-format = "Brightness: {percent}%";
           on-scroll-up = "brightnessctl set +5%";
           on-scroll-down = "brightnessctl set 5%-";
@@ -88,9 +88,9 @@
 
         pulseaudio = {
           format = "{icon}";
-          format-muted = "▏";
+          format-muted = "󰖁";
           format-icons = {
-            default = [ "▏" "▍" "▋" "▉" "█" ];
+            default = [ "󰕿" "󰖀" "󰕾" ];
           };
           tooltip-format = "Volume: {volume}%";
           on-click = "pavucontrol";
@@ -100,9 +100,9 @@
 
         battery = {
           format = "{icon}";
-          format-charging = "▬";
-          format-plugged = "▬";
-          format-icons = [ "▏" "▎" "▍" "▌" "▋" "▊" "▉" "█" ];
+          format-charging = "󰂄";
+          format-plugged = "󰚥";
+          format-icons = [ "󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
           tooltip-format = "Battery: {capacity}%\n{timeTo}";
           states = {
             warning = 30;
