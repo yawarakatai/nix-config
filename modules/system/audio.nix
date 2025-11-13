@@ -11,8 +11,7 @@
   ];
 
   # Enable sound support
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
 
   # PipeWire audio configuration
   security.rtkit.enable = true;
