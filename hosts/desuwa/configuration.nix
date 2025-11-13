@@ -62,9 +62,6 @@
     };
   };
 
-  # Steam needs XWayland support on Wayland systems
-  programs.xwayland.enable = true;
-
   # Host-specific Nix settings (extends base.nix)
   nix.settings = { };
 
