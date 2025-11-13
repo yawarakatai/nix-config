@@ -1,9 +1,6 @@
 { config, pkgs, vars, ... }:
 
 {
-  # Enable sound support
-  sound.enable = true;
-
   # Enable all firmware (needed for modern Intel audio - SOF firmware)
   hardware.enableAllFirmware = true;
 
@@ -31,7 +28,7 @@
 
   # Additional packages for audio troubleshooting
   environment.systemPackages = with pkgs; [
-    pavucontrol  # PulseAudio/PipeWire volume control
-    alsa-utils   # ALSA utilities (aplay, arecord, etc.)
+    pavucontrol # PulseAudio/PipeWire volume control
+    alsa-utils # ALSA utilities (aplay, arecord, etc.)
   ];
 }
