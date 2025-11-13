@@ -2,9 +2,13 @@
   config,
   pkgs,
   theme,
+  inputs,
   ...
 }:
 
+let
+  anyrun = inputs.anyrun.packages.${pkgs.system}.anyrun;
+in
 {
   programs.anyrun = {
     enable = true;
@@ -12,10 +16,10 @@
     config = {
       # Plugin configuration
       plugins = [
-        "${pkgs.anyrun}/lib/libapplications.so"
-        "${pkgs.anyrun}/lib/librink.so"
-        "${pkgs.anyrun}/lib/libshell.so"
-        "${pkgs.anyrun}/lib/libsymbols.so"
+        "${anyrun}/lib/libapplications.so"
+        "${anyrun}/lib/librink.so"
+        "${anyrun}/lib/libshell.so"
+        "${anyrun}/lib/libsymbols.so"
       ];
 
       # Window positioning - centered with reasonable size

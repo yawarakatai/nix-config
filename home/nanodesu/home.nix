@@ -18,6 +18,9 @@ in
     # Vicinae Home Manager module
     inputs.vicinae.homeManagerModules.default
 
+    # Anyrun Home Manager module
+    inputs.anyrun.homeManagerModules.default
+
     # Shell
     ../../modules/home/shell/nushell.nix
     ../../modules/home/shell/starship.nix
@@ -39,6 +42,7 @@ in
     ../../modules/home/wayland/niri
     ../../modules/home/wayland/waybar.nix
     ../../modules/home/wayland/vicinae.nix
+    ../../modules/home/wayland/anyrun.nix
     ../../modules/home/wayland/mako.nix
 
     # Tools
