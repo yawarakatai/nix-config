@@ -2,20 +2,13 @@
 
 {
   # Enable all firmware (needed for modern Intel audio - SOF firmware)
-  hardware.enableAllFirmware = true;
+  # hardware.enableAllFirmware = true;
 
   # Explicitly include SOF firmware for modern Intel audio
-  hardware.firmware = with pkgs; [
-    linux-firmware
-    sof-firmware
-  ];
-
-  # Workaround for Alder Lake audio firmware signature verification failure
-  # Use legacy HDA driver instead of SOF until firmware is properly signed
-  # dsp_driver: 1=legacy HDA, 3=SOF (Smart Sound)
-  boot.kernelParams = [
-    "snd_intel_dspcfg.dsp_driver=1"
-  ];
+  # hardware.firmware = with pkgs; [
+  #   linux-firmware
+  #   sof-firmware
+  # ];
 
   # Enable sound support
   services.pulseaudio.enable = false;
