@@ -12,9 +12,6 @@ in
     # Niri compositor
     inputs.niri.homeModules.niri
 
-    # Vicinae Home Manager module
-    inputs.vicinae.homeManagerModules.default
-
     # Common packages
     ../modules/home/common-packages.nix
 
@@ -56,7 +53,7 @@ in
 
     EDITOR = "hx";
     VISUAL = "hx";
-    PAGER = "bat";
+    PAGER = "cat";
   };
 
   # Git configuration
