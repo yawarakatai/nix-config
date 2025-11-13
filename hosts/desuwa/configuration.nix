@@ -30,6 +30,13 @@
   # Password hash generated with: mkpasswd -m sha-512
   users.users.${vars.username}.hashedPassword = "$6$KtMQPtEMmQ9AW7qK$tvtWeUA5GzWyILnexkH51.OMTnM6cuzA2aEymac264HctHr5jRBH7NBOOn4twZqaF963f8KkgDdNzfpSfd54D0";
 
+  # Enable Steam with proper FHS environment
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Steam Remote Play
+    dedicatedServer.openFirewall = true; # Source Dedicated Server
+  };
+
   # Host-specific Nix settings (extends base.nix)
   nix.settings = { };
 
