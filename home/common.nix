@@ -1,7 +1,7 @@
 { config, pkgs, vars, inputs, ... }:
 
 let
-  theme = import ../modules/home/themes/night-neon.nix { inherit vars; };
+  theme = import ../modules/home/themes/under-construction.nix { inherit vars; };
 in
 {
   # Make theme available to all modules

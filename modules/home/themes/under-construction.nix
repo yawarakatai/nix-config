@@ -1,7 +1,7 @@
 { vars, ... }:
 
 {
-  name = "Neon Night";
+  name = "under-construction";
 
   # Base16 color scheme
   colorScheme = {
@@ -17,9 +17,9 @@
 
     # Accent colors - Vibrant neon colors
     base08 = "#ff0066"; # Cherry red (errors, deletion)
-    base09 = "#ff9500"; # Bright orange (warnings, constants)
+    base09 = "#bd7454"; # Bright orange (warnings, constants)
     base0A = "#ffff00"; # Bright yellow (classes, search)
-    base0B = "#00ff00"; # Lime green (strings, success, additions)
+    base0B = "#13ac74"; # Lime green (strings, success, additions)
     base0C = "#00ffff"; # Cyan (support, regex, escape chars)
     base0D = "#0099ff"; # Bright blue (functions, methods)
     base0E = "#cc00ff"; # Purple (keywords, tags)
@@ -71,7 +71,7 @@
 
   # Opacity settings (0.0 - 1.0)
   opacity = {
-    terminal = 0.85;
+    terminal = 1.0;
     bar = 0.90;
     launcher = 0.95;
     notification = 0.95;
@@ -79,15 +79,16 @@
 
   # Border configuration
   border = {
+    enable = false;
     width = 2;
-    color = "#333333";
-    activeColor = "#00ffff"; # Cyan for active borders
+    inactiveColor = "#333333";
+    activeColor = "#7f7f7f";
   };
 
   # Gap configuration
   gaps = {
-    inner = 8;
-    outer = 8;
+    inner = 0;
+    outer = 0;
   };
 
   # Corner rounding
