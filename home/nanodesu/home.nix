@@ -13,5 +13,7 @@
   # Host-specific packages for nanodesu
   home.packages = with pkgs; [
     thunderbird
+
+    slack
   ];
 }
