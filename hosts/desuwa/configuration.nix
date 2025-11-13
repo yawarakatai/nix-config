@@ -35,7 +35,11 @@
     enable = true;
     remotePlay.openFirewall = true; # Steam Remote Play
     dedicatedServer.openFirewall = true; # Source Dedicated Server
+    gamescopeSession.enable = true; # Gamescope compositor for better Wayland support
   };
+
+  # Steam needs XWayland support on Wayland systems
+  programs.xwayland.enable = true;
 
   # Host-specific Nix settings (extends base.nix)
   nix.settings = { };
