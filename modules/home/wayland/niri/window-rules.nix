@@ -26,7 +26,7 @@
     {
       matches = [{ app-id = "org.pulseaudio.pavucontrol"; }];
       open-floating = true;
-      default-column-width = { proportion = 0.4; };
+      default-column-width = { proportion = 0.6; };
     }
 
     {
@@ -38,7 +38,7 @@
     {
       matches = [{ app-id = "^steam$"; }];
       open-floating = true;
-      default-column-width = { proportion = 0.7; };
+      default-column-width = { proportion = 0.6; };
     }
 
     # Steam notifications positioning
@@ -50,7 +50,7 @@
       default-floating-position = {
         x = 10;
         y = 10;
-        relative-to = "bottom-right";
+        relative-to = "top";
       };
     }
   ];
