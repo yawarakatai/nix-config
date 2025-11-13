@@ -29,7 +29,6 @@
     bandwhich # network monitor
 
     # Misc
-    neofetch # system info
     tokei # code statistics
     hyperfine # benchmarking tool
   ];
