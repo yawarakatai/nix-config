@@ -48,8 +48,8 @@
       # Workspace cycling
       "Mod+U".action.focus-workspace-down = [ ];
       "Mod+I".action.focus-workspace-up = [ ];
-      "Mod+Shift+U".action.move-column-to-workspace-up = [ ];
-      "Mod+Shift+I".action.move-column-to-workspace-down = [ ];
+      "Mod+Shift+U".action.move-column-to-workspace-down = [ ];
+      "Mod+Shift+I".action.move-column-to-workspace-up = [ ];
 
       # Sizing
       "Mod+R".action.switch-preset-column-width = [ ];
