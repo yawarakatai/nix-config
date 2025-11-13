@@ -36,7 +36,7 @@
 
     # Steam main window
     {
-      matches = [{ app-id = "^steam$"; }];
+      matches = [{ app-id = "steam"; }];
       open-floating = true;
       default-column-width = { proportion = 0.6; };
     }

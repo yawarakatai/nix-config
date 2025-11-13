@@ -17,6 +17,10 @@
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    vicinae = {
+      url = "github:vicinaehq/vicinae";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, nixos-hardware, ... }@inputs:

@@ -1,58 +1,58 @@
 { vars, ... }:
 
-{
-  name = "Neon Night";
+rec {
+  name = "under-construction";
 
   # Base16 color scheme
   colorScheme = {
     # Base colors - Pure black with subtle grays
     base00 = "#000000"; # Pure black background
-    base01 = "#0a0a0a"; # Slightly lighter black
+    base01 = "#0d0d0d"; # Slightly lighter black
     base02 = "#1a1a1a"; # Selection background
-    base03 = "#333333"; # Comments, invisibles
-    base04 = "#666666"; # Dark foreground
-    base05 = "#cccccc"; # Default foreground
-    base06 = "#e0e0e0"; # Light foreground
+    base03 = "#2d2d2d"; # Comments, invisibles
+    base04 = "#808080"; # Dark foreground
+    base05 = "#d0d0d0"; # Default foreground
+    base06 = "#e8e8e8"; # Light foreground
     base07 = "#ffffff"; # Bright white
 
-    # Accent colors - Vibrant neon colors
-    base08 = "#ff0066"; # Cherry red (errors, deletion)
-    base09 = "#ff9500"; # Bright orange (warnings, constants)
-    base0A = "#ffff00"; # Bright yellow (classes, search)
-    base0B = "#00ff00"; # Lime green (strings, success, additions)
-    base0C = "#00ffff"; # Cyan (support, regex, escape chars)
-    base0D = "#0099ff"; # Bright blue (functions, methods)
-    base0E = "#cc00ff"; # Purple (keywords, tags)
-    base0F = "#ff00ff"; # Magenta (deprecated, special)
+    # Accent colors - Coordinated with orange and green
+    base08 = "#ff3366"; # Bright red-pink (errors, deletion)
+    base09 = "#bd7454"; # Bright orange (warnings, constants)
+    base0A = "#ffaa33"; # Warm yellow (classes, search)
+    base0B = "#13ac74"; # Lime green (strings, success, additions)
+    base0C = "#33ccaa"; # Teal cyan (support, regex)
+    base0D = "#4d9fff"; # Sky blue (functions, methods)
+    base0E = "#9966ff"; # Soft purple (keywords, tags)
+    base0F = "#ff6699"; # Rose pink (deprecated, special)  };
   };
 
   # Semantic color mappings for easy reference
   semantic = {
     # UI elements
-    background = "#000000";
-    foreground = "#cccccc";
-    selection = "#1a1a1a";
-    comment = "#666666";
+    background = colorScheme.base00;
+    foreground = colorScheme.base05;
+    selection = colorScheme.base02;
+    comment = colorScheme.base03;
 
     # Syntax highlighting
-    keyword = "#cc00ff"; # Purple
-    function = "#0099ff"; # Blue
-    string = "#00ff00"; # Lime green
-    number = "#ff9500"; # Orange
-    constant = "#ffff00"; # Yellow
-    variable = "#00ffff"; # Cyan
-    operator = "#cccccc"; # White
+    keyword = colorScheme.base0E; # Purple
+    function = colorScheme.base0D; # Blue
+    string = colorScheme.base0B; # Lime green
+    number = colorScheme.base09; # Orange
+    constant = colorScheme.base0A; # Yellow
+    variable = colorScheme.base0C; # Cyan
+    operator = colorScheme.base0F; # White
 
     # Git colors
-    gitAdded = "#00ff00"; # Lime green
-    gitModified = "#ff9500"; # Orange
-    gitDeleted = "#ff0066"; # Cherry red
+    gitAdded = colorScheme.base0B; # Lime green
+    gitModified = colorScheme.base09; # Orange
+    gitDeleted = colorScheme.base08; # Cherry red
 
     # Status indicators
-    success = "#00ff00"; # Lime green
-    warning = "#ffff00"; # Yellow
-    error = "#ff0066"; # Cherry red
-    info = "#00ffff"; # Cyan
+    success = colorScheme.base0B; # Lime green
+    warning = colorScheme.base0A; # Yellow
+    error = colorScheme.base08; # Cherry red
+    info = colorScheme.base0D; # Cyan
   };
 
   # Font configuration
@@ -71,7 +71,7 @@
 
   # Opacity settings (0.0 - 1.0)
   opacity = {
-    terminal = 0.85;
+    terminal = 1.0;
     bar = 0.90;
     launcher = 0.95;
     notification = 0.95;
@@ -79,15 +79,16 @@
 
   # Border configuration
   border = {
+    enable = false;
     width = 2;
-    color = "#333333";
-    activeColor = "#00ffff"; # Cyan for active borders
+    inactiveColor = "#333333";
+    activeColor = "#7f7f7f";
   };
 
   # Gap configuration
   gaps = {
-    inner = 8;
-    outer = 8;
+    inner = 0;
+    outer = 0;
   };
 
   # Corner rounding
