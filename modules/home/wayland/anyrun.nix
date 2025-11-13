@@ -7,20 +7,20 @@
 }:
 
 let
-  anyrun = inputs.anyrun.packages.${pkgs.system}.anyrun;
+  system = pkgs.stdenv.hostPlatform.system;
+  anyrunPkgs = inputs.anyrun.packages.${system};
 in
 {
   programs.anyrun = {
     enable = true;
-    package = anyrun;
 
     config = {
       # Plugin configuration
-      plugins = [
-        "${anyrun}/lib/libapplications.so"
-        "${anyrun}/lib/librink.so"
-        "${anyrun}/lib/libshell.so"
-        "${anyrun}/lib/libsymbols.so"
+      plugins = with anyrunPkgs; [
+        applications
+        rink
+        shell
+        symbols
       ];
 
       # Window positioning - centered with reasonable size
