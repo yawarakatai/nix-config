@@ -37,7 +37,16 @@
         scale = vars.monitors.primary.scale;
         position = vars.monitors.primary.position;
       };
-      # Additional monitors can be added here by extending vars.monitors
+      "${vars.monitors.external.name}" = {
+        mode = {
+          width = vars.monitors.external.width;
+          height = vars.monitors.external.height;
+          refresh = vars.monitors.external.refresh;
+        };
+        variable-refresh-rate = if vars.monitors.external.vrr then "on-demand" else false;
+        scale = vars.monitors.external.scale;
+        position = vars.monitors.external.position;
+      };
     };
 
     # Mouse Cursor configuration
