@@ -33,5 +33,18 @@
       matches = [{ title = "^(Open|Save|Choose|Library).*"; }];
       open-floating = true;
     }
+
+    # Steam notifications positioning
+    {
+      matches = [
+        { app-id = "^steam$"; }
+        { title = "^notificationtoasts_\\d+_desktop$"; }
+      ];
+      default-floating-position = {
+        x = 10;
+        y = 10;
+        relative-to = "bottom-right";
+      };
+    }
   ];
 }
