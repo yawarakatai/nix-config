@@ -14,25 +14,27 @@
   # Note: Run 'niri msg outputs' on the actual hardware to verify the correct output name
   # Typical laptop internal displays are named: eDP-1, eDP-2, or similar
   monitors = {
+    external = {
+      name = "DP-3";
+      width = 3840;
+      height = 2160;
+      refresh = 59.940;
+      scale = 1.0;
+      position = { x = 0; y = 1350; };
+      vrr = true;
+      focus-at-startup = true;
+    };
+
     primary = {
       name = "eDP-1"; # Internal laptop display (verify with niri msg outputs)
       width = 2160; # Native resolution width
       height = 1350; # Native resolution height (16:10 aspect ratio)
-      refresh = 60.0; # Standard 60Hz for this model
+      refresh = 59.744; # Standard 60Hz for this model
       scale = 1.0; # No scaling as requested
       position = { x = 0; y = 0; };
-      vrr = true; # Variable refresh rate enabled
+      vrr = false;
+      focus-at-startup = true;
     };
-    # Add external monitors here when needed:
-    # external = {
-    #   name = "HDMI-A-1";
-    #   width = 1920;
-    #   height = 1080;
-    #   refresh = 60.0;
-    #   scale = 1.0;
-    #   position = { x = 2160; y = 0; };  # To the right of laptop display
-    #   vrr = false;
-    # };
   };
 
   # Wallpaper (do not use relative path - Nix will copy to store)
