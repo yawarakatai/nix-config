@@ -59,8 +59,6 @@ in
     PAGER = "bat";
   };
 
-  programs.niri.enable = true;
-
   # Git configuration
   programs.git = {
     enable = true;
