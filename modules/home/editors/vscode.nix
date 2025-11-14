@@ -1,8 +1,7 @@
-{
-  config,
-  pkgs,
-  theme,
-  ...
+{ config
+, pkgs
+, theme
+, ...
 }:
 
 {
@@ -93,6 +92,7 @@
         # Python
         ms-python.python
         ms-python.vscode-pylance
+        charliermarsh.ruff
 
         # C/C++
         ms-vscode.cpptools
@@ -106,9 +106,8 @@
         # Icon
         pkief.material-icon-theme
 
-        # Formatting (uncomment as needed)
-        # esbenp.prettier-vscode
-        # dbaeumer.vscode-eslint
+        # Markdown
+        marp-team.marp-vscode
       ];
     };
   };
