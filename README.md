@@ -2,6 +2,14 @@
 
 My personal NixOS configuration using flakes and home-manager.
 
+## Attention!!
+If niri-flake build is fail. This might be helpfull.
+[](https://github.com/sodiboo/niri-flake/issues/1300)
+
+```shell
+ulimit -n 4096
+````
+
 ## System: desuwa
 
 - **CPU**: AMD Ryzen 7 3700X (16 threads)

@@ -74,13 +74,15 @@
         "update.mode" = "none"; # Updates managed by Nix
         "extensions.autoUpdate" = false; # Extensions managed by Nix
 
-        keybindings = [
-          {
-            key = "ctrl+shift+e";
-            command = "workbench.view.explorer";
-          }
-        ];
+
       };
+
+      keybindings = [
+        {
+          key = "ctrl+shift+e";
+          command = "workbench.view.explorer";
+        }
+      ];
 
       extensions = with pkgs.vscode-extensions; [
         # Nix
@@ -98,7 +100,7 @@
         ms-vscode.cpptools
 
         # Git
-        eamodio.gitlens
+        # eamodio.gitlens
 
         # UI
         github.github-vscode-theme
