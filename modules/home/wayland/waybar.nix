@@ -42,11 +42,11 @@
             weeks-pos = "right";
             on-scroll = 1;
             format = {
-              months = "<span color='#ffffff'><b>{}</b></span>";
-              days = "<span color='#cccccc'>{}</span>";
-              # weeks = "<span color='#999999'><b>W{}</b></span>";
-              weekdays = "<span color='#cccccc'><b>{}</b></span>";
-              today = "<span color='#ffffff'><b><u>{}</u></b></span>";
+              months = "<span color='${theme.colorScheme.base07}'><b>{}</b></span>";
+              days = "<span color='${theme.colorScheme.base05}'>{}</span>";
+              # weeks = "<span color='${theme.colorScheme.base04}'><b>W{}</b></span>";
+              weekdays = "<span color='${theme.colorScheme.base05}'><b>{}</b></span>";
+              today = "<span color='${theme.colorScheme.base07}'><b><u>{}</u></b></span>";
             };
           };
         };
@@ -130,9 +130,9 @@
       }
 
       window#waybar {
-        background-color: #000000;
-        opacity: 0.95;
-        color: #ffffff;
+        background-color: ${theme.colorScheme.base00};
+        opacity: ${toString theme.opacity.bar};
+        color: ${theme.colorScheme.base07};
       }
 
       /* Workspaces - Horizontal indicators */
@@ -143,7 +143,7 @@
       #workspaces button {
         padding: 0 8px;
         background-color: transparent;
-        color: #666666;
+        color: ${theme.colorScheme.base03};
         border: none;
         border-bottom: 2px solid transparent;
         margin: 0 2px;
@@ -152,27 +152,27 @@
       }
 
       #workspaces button.active {
-        color: #ffffff;
-        border-bottom: 2px solid #ffffff;
-        background-color: #333333;
+        color: ${theme.colorScheme.base07};
+        border-bottom: 2px solid ${theme.colorScheme.base07};
+        background-color: ${theme.colorScheme.base02};
       }
 
       #workspaces button.urgent {
-        color: #cccccc;
-        border-bottom: 2px solid #cccccc;
+        color: ${theme.colorScheme.base05};
+        border-bottom: 2px solid ${theme.colorScheme.base05};
         animation: blink 1s linear infinite;
       }
 
       /* Window title */
       #window {
         padding: 0 12px;
-        color: #cccccc;
+        color: ${theme.colorScheme.base05};
       }
 
       /* Clock */
       #clock {
         padding: 0 12px;
-        color: #ffffff;
+        color: ${theme.colorScheme.base07};
         font-weight: bold;
       }
 
@@ -185,51 +185,51 @@
         background-color: transparent;
         margin: 0 4px;
         font-size: 16px;
-        color: #ffffff;
-        border-left: 1px solid #333333;
+        color: ${theme.colorScheme.base07};
+        border-left: 1px solid ${theme.colorScheme.base02};
       }
 
       #backlight {
-        color: #ffffff;
+        color: ${theme.colorScheme.base07};
       }
 
       #pulseaudio {
-        color: #ffffff;
+        color: ${theme.colorScheme.base07};
       }
 
       #pulseaudio.muted {
-        color: #666666;
+        color: ${theme.colorScheme.base03};
       }
 
       #battery {
-        color: #ffffff;
+        color: ${theme.colorScheme.base07};
       }
 
       #battery.warning:not(.charging) {
-        color: #cccccc;
+        color: ${theme.semantic.warning};
       }
 
       #battery.critical:not(.charging) {
-        color: #999999;
+        color: ${theme.semantic.error};
         animation: blink 1s linear infinite;
       }
 
       #battery.charging,
       #battery.plugged {
-        color: #ffffff;
+        color: ${theme.semantic.success};
       }
 
       #network {
-        color: #ffffff;
+        color: ${theme.colorScheme.base07};
       }
 
       #network.disconnected {
-        color: #666666;
+        color: ${theme.colorScheme.base03};
       }
 
       #tray {
         padding: 0 8px;
-        border-left: 1px solid #333333;
+        border-left: 1px solid ${theme.colorScheme.base02};
       }
 
       /* Animations */
