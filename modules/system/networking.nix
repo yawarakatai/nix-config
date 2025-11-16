@@ -24,6 +24,9 @@
   services.resolved = {
     enable = true;
     dnssec = "allow-downgrade";
-    fallbackDns = [ "1.1.1.1" "8.8.8.8" ];
+    # Primary DNS: Cloudflare
+    dns = [ "1.1.1.1" "1.0.0.1" ];
+    # Fallback DNS: Quad9
+    fallbackDns = [ "9.9.9.9" "149.112.112.112" ];
   };
 }
