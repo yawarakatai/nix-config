@@ -54,12 +54,13 @@
       # Sizing
       "Mod+R".action.switch-preset-column-width = [ ];
       "Mod+M".action.maximize-column = [ ];
-      "Mod+F".action.fullscreen-window = [ ];
+      # "Mod+F".action.fullscreen-window = [ ];
 
       # Software
       "Mod+Space".action.spawn = [ "vicinae" "toggle" ];
       "Mod+Return".action.spawn = [ "alacritty" ];
-      "Mod+B".action.spawn = [ "firefox" ];
+      "Mod+F".action.spawn = [ "firefox" ];
+      "Mod+B".action.spawn = [ "brave" ];
       "Mod+E".action.spawn = [ "nautilus" ];
       "Mod+A".action.spawn = [ "pavucontrol" ];
 

@@ -9,4 +9,8 @@
   # User-specific settings
   home.username = vars.username;
   home.homeDirectory = "/home/${vars.username}";
+
+  home.packages = with pkgs; [
+    brave
+  ];
 }
