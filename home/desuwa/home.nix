@@ -11,6 +11,13 @@
   home.homeDirectory = "/home/${vars.username}";
 
   home.packages = with pkgs; [
-    brave
   ];
+
+  programs.brave = {
+    enable = true;
+    commandLineArgs = [
+      "--enable-features=UseOzonePlatform"
+      "--ozone-platform=wayland"
+    ];
+  };
 }
