@@ -7,9 +7,9 @@ rec {
   colorScheme = {
     # Base colors - Pure black with subtle grays
     base00 = "#000000"; # Pure black background
-    base01 = "#0d0d0d"; # Slightly lighter black
-    base02 = "#1a1a1a"; # Selection background
-    base03 = "#2d2d2d"; # Comments, invisibles
+    base01 = "#101010"; # Slightly lighter black
+    base02 = "#202020"; # Selection background
+    base03 = "#404040"; # Comments, invisibles
     base04 = "#808080"; # Dark foreground
     base05 = "#d0d0d0"; # Default foreground
     base06 = "#e8e8e8"; # Light foreground

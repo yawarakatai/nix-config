@@ -44,7 +44,7 @@
             format = {
               months = "<span color='#ffffff'><b>{}</b></span>";
               days = "<span color='#cccccc'>{}</span>";
-              weeks = "<span color='#999999'><b>W{}</b></span>";
+              # weeks = "<span color='#999999'><b>W{}</b></span>";
               weekdays = "<span color='#cccccc'><b>{}</b></span>";
               today = "<span color='#ffffff'><b><u>{}</u></b></span>";
             };

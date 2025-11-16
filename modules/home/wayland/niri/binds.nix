@@ -65,10 +65,10 @@
       "Mod+A".action.spawn = [ "pavucontrol" ];
 
       # Screenshot
-      "Print".action.spawn = sh "grim -g \"$(slurp)\" - | wl-copy && notify-send -u low 'Screenshot' 'Copied to clipboard'";
-      "Shift+Print".action.spawn = sh "f=~/screenshot-$(date +%Y%m%d-%H%M%S).png && grim -g \"$(slurp)\" \"$f\" && notify-send -u low 'Screenshot' \"Saved to $f\"";
-      "Ctrl+Print".action.spawn = sh "grim - | wl-copy && notify-send -u low 'Screenshot' 'Fullscreen copied to clipboard'";
-      "Ctrl+Shift+Print".action.spawn = sh "f=~/screenshot-$(date +%Y%m%d-%H%M%S).png && grim \"$f\" && notify-send -u low 'Screenshot' \"Saved to $f\"";
+      # "Mod+Ctrl+P".action.spawn = sh "grim - | wl-copy && notify-send -u low 'Screenshot' 'Fullscreen copied to clipboard'";
+      "Mod+P".action.spawn = sh "f=~/screenshot-$(date +%Y%m%d-%H%M%S).png && grim \"$f\" && notify-send -u low 'Screenshot' \"Saved to $f\"";
+      # "Mod+P".acton.spawn = sh "grim -g \"$(slurp)\" - | wl-copy && notify-send -u low 'Screenshot' 'Copied to clipboard'";
+      "Mod+Shift+P".action.spawn = sh "f=~/screenshot-$(date +%Y%m%d-%H%M%S).png && grim -g \"$(slurp)\" \"$f\" && notify-send -u low 'Screenshot' \"Saved to $f\"";
 
       # Media controls
       "XF86AudioPlay".action.spawn = sh "playerctl play-pause";
