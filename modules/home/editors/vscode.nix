@@ -74,7 +74,8 @@
         "update.mode" = "none"; # Updates managed by Nix
         "extensions.autoUpdate" = false; # Extensions managed by Nix
 
-
+        # Marp
+        "markdown.marp.html" = "all";
       };
 
       keybindings = [

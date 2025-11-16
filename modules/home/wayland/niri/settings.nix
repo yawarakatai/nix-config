@@ -21,6 +21,7 @@
       touchpad = {
         tap = true;
         natural-scroll = true;
+        accel-speed = 1.0;
       };
     };
 

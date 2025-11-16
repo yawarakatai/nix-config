@@ -33,7 +33,7 @@
   # Webcam utilities and debugging tools
   environment.systemPackages = with pkgs; [
     v4l-utils # Video4Linux utilities (v4l2-ctl, v4l2-compliance)
-    guvcview # GTK webcam application for testing
+    # guvcview # GTK webcam application for testing
     libcamera # Modern camera stack (better for complex cameras)
     ffmpeg # For camera testing and recording
     # gstreamer      # Media framework with camera support
