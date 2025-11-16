@@ -19,8 +19,8 @@
 
       # Basic window management
       "Mod+Q".action.close-window = [ ];
-      "Mod+H".action.focus-column-left-or-last = [ ];
-      "Mod+L".action.focus-column-right-or-first = [ ];
+      "Mod+H".action.focus-column-left = [ ];
+      "Mod+L".action.focus-column-right = [ ];
       "Mod+J".action.focus-window-or-monitor-down = [ ];
       "Mod+K".action.focus-window-or-monitor-up = [ ];
 
