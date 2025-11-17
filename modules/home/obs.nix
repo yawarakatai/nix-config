@@ -1,21 +1,22 @@
 { config, pkgs, lib, ... }:
 
+let
+  # Build FFmpeg with full NVENC support for NVIDIA hardware encoding
+  ffmpeg-nvenc = pkgs.ffmpeg-full.override {
+    nonfreeLicensing = true;
+    nvenc = true; # Enable NVIDIA hardware encoding
+    nv-codec-headers = pkgs.nv-codec-headers;
+  };
+
+  # Override OBS Studio to use our NVENC-enabled FFmpeg
+  obs-with-nvenc = pkgs.obs-studio.override {
+    ffmpeg = ffmpeg-nvenc;
+  };
+in
 {
   programs.obs-studio = {
     enable = true;
-
-    # Override OBS to enable NVENC hardware encoding support
-    package = pkgs.obs-studio.overrideAttrs (old: {
-      # Enable NVENC support via CUDA
-      cmakeFlags = (old.cmakeFlags or []) ++ [
-        "-DENABLE_NVENC=ON"
-      ];
-
-      buildInputs = old.buildInputs ++ [
-        pkgs.cudatoolkit
-        pkgs.nv-codec-headers
-      ];
-    });
+    package = obs-with-nvenc;
 
     plugins = with pkgs.obs-studio-plugins; [
       # Wayland screen capture support
@@ -29,15 +30,17 @@
     ];
   };
 
-  # Ensure NVENC libraries are available
+  # Ensure NVENC libraries are available at runtime
   home.packages = with pkgs; [
-    cudatoolkit
-    libva-utils  # For verifying hardware acceleration
+    libva-utils  # For verifying hardware acceleration with vainfo
+    nvidia-vaapi-driver  # NVIDIA VA-API driver
   ];
 
   # Set environment variables for hardware acceleration
   home.sessionVariables = {
-    # Ensure OBS uses NVIDIA for encoding
+    # Ensure OBS and other apps use NVIDIA for encoding/decoding
     LIBVA_DRIVER_NAME = "nvidia";
+    # Point to NVIDIA VDPAU driver
+    VDPAU_DRIVER = "nvidia";
   };
 }
