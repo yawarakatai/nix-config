@@ -1,175 +1,200 @@
-# yawarakatai's NixOS Config
+# My NixOS Setup
 
-My personal NixOS configuration using flakes and home-manager.
+Personal notes for managing my NixOS machines. No fluff, just what I actually need to remember.
 
-## Attention!!
-If niri-flake build is fail. This might be helpfull.
-[](https://github.com/sodiboo/niri-flake/issues/1300)
+## My Machines
 
-```shell
-ulimit -n 4096
-````
+**desuwa** - Main desktop
+- Ryzen 7 3700X, RTX 3080, 16GB RAM
+- 4K 144Hz monitor, niri compositor
+- The beast for gaming and heavy work
 
-## System: desuwa
+**nanodesu** - Laptop
+- Portable machine
 
-- **CPU**: AMD Ryzen 7 3700X (16 threads)
-- **RAM**: 16GB + zram
-- **GPU**: NVIDIA RTX 3080
-- **Storage**: 2TB NVMe (Btrfs)
-- **Display**: 4K 144Hz @ HDMI-A-1
-- **OS**: NixOS 25.05
+**dayo** - Other machine
+- TODO: document this when I remember what it is
 
-## Setup
-
-- **Compositor**: niri (Wayland)
-- **Terminal**: Alacritty
-- **Launcher**: Vicinae
-- **Bar**: waybar
-- **Shell**: nushell + starship + zoxide + atuin
-- **Editor**: Helix (primary), VSCode
-- **File Manager**: yazi (TUI), Nautilus (GUI)
-- **Browser**: Firefox
-- **Input**: fcitx5 + mozc (Japanese)
-- **Theme**: Neon Night (pure black + vibrant neon accents)
-
-## Quick Commands
-
-### System Management
+## Daily Commands (muscle memory)
 
 ```bash
-# Rebuild (using helper commands from modules/system/rebuild-helper.nix)
-nd   # dry-build (preview)
-nt   # test (temporary)
-ns   # switch (apply now + bootloader)
-nb   # boot (apply on next boot)
-nus  # update flake + switch
-nfc  # check flake
-ngc  # garbage collect
+nd      # Preview changes (dry build) - USE THIS FIRST
+nt      # Test temporarily (no bootloader)
+ns      # Switch now + update bootloader
+nb      # Apply on next boot only
+nus     # Update everything then switch
+nfc     # Check if config is valid
+ngc     # Clean up old generations
 ```
 
-### Manual Rebuild
+The `n` prefix = nixos stuff. These are defined in `modules/system/rebuild-helper.nix`.
+
+## When Shit Breaks
 
 ```bash
-# System
-sudo nixos-rebuild switch --flake .#desuwa
+# Syntax error? Check first
+nix flake check
 
-# Home Manager
-home-manager switch --flake .#desuwa
+# Need more details?
+sudo nixos-rebuild switch --flake .#desuwa --show-trace
 
-# Both with update
+# Fucked something up? Rollback
+sudo nixos-rebuild switch --rollback
+
+# Or just reboot and pick old generation from boot menu
+```
+
+**niri-flake build failing?** Run `ulimit -n 4096` first.
+See: https://github.com/sodiboo/niri-flake/issues/1300
+
+## How Do I...
+
+### Add a program
+
+**Just for me (home-manager):**
+Edit `home/desuwa/home.nix`, add to `home.packages`:
+```nix
+home.packages = with pkgs; [
+  your-new-package
+];
+```
+
+**System-wide:**
+Edit `hosts/desuwa/configuration.nix` or add to `modules/system/base.nix`:
+```nix
+environment.systemPackages = with pkgs; [
+  your-new-package
+];
+```
+
+### Change colors/theme
+
+Everything is in one place: `modules/home/themes/night-neon.nix`
+
+Edit colors there, rebuild, done. All programs (terminal, waybar, helix, etc.) will update.
+
+### Change monitor settings
+
+Edit `hosts/desuwa/vars.nix` - change monitor name, resolution, refresh rate, etc.
+
+DON'T edit the niri config directly.
+
+### Add a new module
+
+Copy `docs/MODULE_TEMPLATE.nix`, follow the pattern. Read `docs/CODING_GUIDE.md` if you care about consistency.
+
+### Update everything
+
+```bash
+nus
+```
+
+Or manually:
+```bash
 nix flake update && sudo nixos-rebuild switch --flake .#desuwa
 ```
 
-## Structure
+## Config Structure (where is what)
 
 ```
-.
-├── lib/                      # Shared libraries
-│   ├── terminal-colors.nix   # Shared terminal color scheme
-│   └── module-options.nix    # Module option helpers
-├── modules/
-│   ├── system/
-│   │   ├── base.nix          # Base config (shared across hosts)
-│   │   ├── nvidia.nix        # RTX 3080
-│   │   ├── yubikey.nix       # YubiKey GPG/SSH
-│   │   ├── logiops.nix       # Logitech MX Master 3S
-│   │   └── lofreeflowlite.nix # Lofree Flow keyboard
-│   └── home/
-│       ├── themes/night-neon.nix  # Color scheme
-│       ├── shell/            # nushell, starship, zoxide, atuin
-│       ├── editors/          # helix, vscode
-│       ├── terminal/         # alacritty
-│       ├── wayland/          # niri, waybar, mako, vicinae
-│       └── tools/            # yazi, lazygit, cli-tools, glow
-├── hosts/desuwa/
-│   ├── vars.nix              # Host-specific variables
-│   ├── configuration.nix     # System config
-│   └── hardware-configuration.nix
-├── home/desuwa/home.nix      # Home Manager config
-└── docs/
-    ├── REFACTORING.md        # Recent refactoring guide
-    ├── CODING_GUIDE.md       # Coding conventions (see this!)
-    └── MODULE_TEMPLATE.nix   # Template for new modules
+hosts/desuwa/
+  vars.nix              ← Machine-specific stuff (monitor, timezone, etc.)
+  configuration.nix     ← System config for this machine
+  hardware-configuration.nix
+
+home/desuwa/
+  home.nix              ← My personal packages and config
+
+modules/system/
+  base.nix              ← Common system stuff for all machines
+  nvidia.nix            ← RTX 3080 drivers
+  yubikey.nix           ← YubiKey for GPG/SSH
+  logiops.nix           ← MX Master 3S mouse config
+  rebuild-helper.nix    ← Where nd, ns, etc. are defined
+  ...
+
+modules/home/
+  themes/night-neon.nix ← ALL the colors
+  wayland/              ← niri, waybar, mako, vicinae
+  shell/                ← nushell, starship, atuin, zoxide
+  editors/              ← helix, vscode
+  terminal/             ← alacritty
+  tools/                ← yazi, lazygit, cli stuff
+  ...
+
+lib/
+  terminal-colors.nix   ← Shared color scheme functions
+  module-options.nix    ← Helper functions for modules
+
+docs/
+  CODING_GUIDE.md       ← How I organize code
+  REFACTORING.md        ← What I changed recently
+  MODULE_TEMPLATE.nix   ← Template for new modules
 ```
 
-## Theme Customization
+## Current Setup (desuwa)
 
-All colors defined in `modules/home/themes/night-neon.nix`:
-- Edit once, applies to all programs
-- Uses Base16 color scheme
-- Semantic mappings for consistency
+- **OS**: NixOS unstable
+- **Compositor**: niri (Wayland, i3-like but scrollable)
+- **Terminal**: Alacritty
+- **Shell**: nushell (with starship prompt, zoxide, atuin history)
+- **Editor**: Helix (main), VSCode (when I need it)
+- **Bar**: waybar
+- **Launcher**: Vicinae
+- **File manager**: yazi (terminal), Nautilus (GUI)
+- **Browser**: Firefox
+- **Japanese input**: fcitx5 + mozc
+- **Theme**: Pure black background + neon colors (cyan, magenta, purple)
 
-## Storage Layout (Btrfs)
+## Storage (Btrfs subvolumes)
 
 ```
-@ -> /                  # Root
-@home -> /home          # User files
-@nix -> /nix            # Nix store
-@log -> /var/log        # Logs (can restore without affecting system)
-@cache -> /var/cache    # Cache (can delete without issues)
-@tmp -> /tmp            # Temporary files
+@       → /               Root (can snapshot/restore)
+@home   → /home           User files
+@nix    → /nix            Nix store (separate for efficiency)
+@log    → /var/log        Logs
+@cache  → /var/cache      Cache (can nuke anytime)
+@tmp    → /tmp            Temporary files
 ```
 
-## Important Files
+## Things to Remember
 
-- **vars.nix**: Monitor config, timezone, locale, git info
-- **base.nix**: Common system settings (packages, nix config, services)
-- **night-neon.nix**: All colors and theme settings
-- **home.nix**: User packages and personal config
-- **CODING_GUIDE.md**: Conventions and best practices (READ THIS!)
+- **ALWAYS** run `nd` before `ns` - preview changes first
+- **DON'T** edit individual program color configs, use `night-neon.nix`
+- **DON'T** commit without running `nfc` first
+- **Monitor settings** go in `vars.nix`, not in niri config
+- **New modules** should follow the template in `docs/`
+- The rebuild commands (nd, ns, etc.) make life easier, use them
 
-## Adding Software
+## Hardware-Specific Stuff
 
-### User Packages (home.nix)
-```nix
-home.packages = with pkgs; [
-  your-package
-];
-```
+desuwa has:
+- NVIDIA proprietary drivers (for RTX 3080)
+- YubiKey support (GPG + SSH)
+- Logitech MX Master 3S custom button mappings
+- Lofree Flow keyboard config
 
-### System Packages (configuration.nix or modules)
-```nix
-environment.systemPackages = with pkgs; [
-  your-package
-];
-```
+Check `modules/system/` for the specific configs.
 
-## Hardware-Specific
+## Git Workflow
 
-This host has:
-- NVIDIA drivers (proprietary)
-- YubiKey support
-- Logitech mouse custom config
-- Custom keyboard (Lofree Flow)
+Working on branch: `claude/rewrite-readme-01LHJEsjHeR9gx7Vstb2Ys1L`
 
-## Notes to Self
+Normal workflow:
+1. Make changes
+2. `nfc` to check syntax
+3. `nd` to preview
+4. `nt` or `ns` to apply
+5. Test stuff
+6. Commit if it works
 
-- Always check `nfc` before committing
-- Use `nd` to preview changes before `ns`
-- Terminal colors: Edit `night-neon.nix`, not individual terminal configs
-- Monitor settings: Edit `vars.nix`, not `niri/settings.nix`
-- New modules: Follow template in `docs/MODULE_TEMPLATE.nix`
-- Coding style: See `docs/CODING_GUIDE.md`
-- Recent refactoring details: See `REFACTORING.md` and `CHANGELOG.md`
-
-## Troubleshooting
-
-```bash
-# Check syntax
-nix flake check
-
-# Detailed error trace
-sudo nixos-rebuild switch --flake .#desuwa --show-trace
-
-# Rollback
-sudo nixos-rebuild switch --rollback
-
-# Clean old generations
-ngc  # or: sudo nix-collect-garbage -d
-```
-
-## Useful Resources
+## Useful Links
 
 - [NixOS Manual](https://nixos.org/manual/nixos/stable/)
 - [Home Manager Manual](https://nix-community.github.io/home-manager/)
 - [Niri Wiki](https://github.com/YaLTeR/niri/wiki)
+- [niri-flake repo](https://github.com/sodiboo/niri-flake)
+
+---
+
+**Last major refactor**: Check `docs/REFACTORING.md` for details on what changed.
