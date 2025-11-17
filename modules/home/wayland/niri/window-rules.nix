@@ -5,7 +5,6 @@
     {
       matches = [{ app-id = "^org\\.gnome\\.Nautilus$"; }];
       open-floating = true;
-      default-column-width = { proportion = 0.6; };
     }
 
     {
@@ -14,19 +13,16 @@
         { title = "Properties"; }
       ];
       open-floating = true;
-      default-column-width = { proportion = 0.3; };
     }
 
     {
       matches = [{ app-id = "^imv$"; }];
       open-floating = true;
-      default-column-width = { proportion = 0.5; };
     }
 
     {
       matches = [{ app-id = "org.pulseaudio.pavucontrol"; }];
       open-floating = true;
-      default-column-width = { proportion = 0.6; };
     }
 
     {
@@ -34,11 +30,12 @@
       open-floating = true;
     }
 
-    # Steam main window
     {
-      matches = [{ app-id = "steam"; }];
+      matches = [
+        { app-id = "Godot"; }
+        { title = "Godot Engine - Project Manager"; }
+      ];
       open-floating = true;
-      default-column-width = { proportion = 0.6; };
     }
 
     # Steam notifications positioning
