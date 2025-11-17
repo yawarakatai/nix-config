@@ -77,6 +77,7 @@
   };
 
   # Display manager - greetd with regreet (GTK4 graphical greeter)
+  # Regreet requires a Wayland compositor to run - using cage (kiosk compositor)
   programs.regreet = {
     enable = true;
 
@@ -111,12 +112,13 @@
     };
   };
 
-  # Configure greetd to use regreet
+  # Configure greetd to use regreet with cage compositor
+  # GTK4 applications need a Wayland compositor to initialize
   services.greetd = {
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.regreet}/bin/regreet";
+        command = "${pkgs.cage}/bin/cage -s -- ${pkgs.regreet}/bin/regreet";
         user = "greeter";
       };
     };
