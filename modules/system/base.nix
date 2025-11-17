@@ -79,73 +79,73 @@
   # Display manager - greetd with regreet (GTK4 graphical greeter)
   # Regreet requires a Wayland compositor to run - using minimal niri config
   # Running on niri instead of cage for better compatibility (especially VMs)
-  programs.regreet = {
-    enable = true;
+  # programs.regreet = {
+  #   enable = true;
 
-    # Theme configuration for regreet
-    # Using Colloid theme to match GNOME configuration
-    theme = {
-      name = "Colloid-Grey-Dark";
-      package = pkgs.colloid-gtk-theme.override {
-        themeVariants = [ "grey" ];
-        colorVariants = [ "dark" ];
-        sizeVariants = [ "standard" ];
-        tweaks = [ "black" "rimless" "normal" ];
-      };
-    };
+  # Theme configuration for regreet
+  # Using Colloid theme to match GNOME configuration
+  # theme = {
+  #   name = "Colloid-Grey-Dark";
+  #   package = pkgs.colloid-gtk-theme.override {
+  #     themeVariants = [ "grey" ];
+  #     colorVariants = [ "dark" ];
+  #     sizeVariants = [ "standard" ];
+  #     tweaks = [ "black" "rimless" "normal" ];
+  #   };
+  # };
 
-    iconTheme = {
-      name = "Colloid-Grey";
-      package = pkgs.colloid-icon-theme.override {
-        colorVariants = [ "grey" ];
-      };
-    };
+  # iconTheme = {
+  #   name = "Colloid-Grey";
+  #   package = pkgs.colloid-icon-theme.override {
+  #     colorVariants = [ "grey" ];
+  #   };
+  # };
 
-    cursorTheme = {
-      name = "graphite-dark";
-      package = pkgs.graphite-cursors;
-    };
+  # cursorTheme = {
+  #   name = "graphite-dark";
+  #   package = pkgs.graphite-cursors;
+  # };
 
-    font = {
-      name = "Sans";
-      size = 11;
-      package = pkgs.dejavu_fonts;
-    };
-  };
+  # font = {
+  #   name = "Sans";
+  #   size = 11;
+  #   package = pkgs.dejavu_fonts;
+  # };
+  # };
 
   # Configure greetd to use regreet with minimal niri compositor
   # Minimal niri config that spawns regreet and quits after login
-  services.greetd =
-    let
-      # Minimal niri configuration for greeter
-      # Spawns regreet at startup and quits niri after login completes
-      minimumConfig = pkgs.writeText "minimum-config.kdl" ''
-        hotkey-overlay {
-          skip-at-startup
-        }
-        spawn-at-startup "sh" "-c" "${pkgs.lib.getExe pkgs.greetd.regreet}; niri msg action quit --skip-confirmation"
-      '';
-    in
-    {
-      enable = true;
-      settings = {
-        default_session = {
-          command = "${pkgs.lib.getExe config.programs.niri.package} --config ${minimumConfig}";
-          user = "greeter";
-        };
-      };
-    };
-
-  # Commented out tuigreet configuration (TUI greeter alternative)
-  # services.greetd = {
-  #   enable = true;
-  #   settings = {
-  #     default_session = {
-  #       command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-session";
-  #       user = "greeter";
+  # services.greetd =
+  #   let
+  #     # Minimal niri configuration for greeter
+  #     # Spawns regreet at startup and quits niri after login completes
+  #     minimumConfig = pkgs.writeText "minimum-config.kdl" ''
+  #       hotkey-overlay {
+  #         skip-at-startup
+  #       }
+  #       spawn-at-startup "sh" "-c" "${pkgs.lib.getExe pkgs.regreet}; niri msg action quit --skip-confirmation"
+  #     '';
+  #   in
+  #   {
+  #     enable = true;
+  #     settings = {
+  #       default_session = {
+  #         command = "${pkgs.lib.getExe config.programs.niri.package} --config ${minimumConfig}";
+  #         user = "greeter";
+  #       };
   #     };
   #   };
-  # };
+
+  # Commented out tuigreet configuration (TUI greeter alternative)
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-session";
+        user = "greeter";
+      };
+    };
+  };
 
   # Enable niri at system level (creates session file for greetd)
   programs.niri.enable = true;
