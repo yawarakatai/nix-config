@@ -4,7 +4,8 @@
   # Import common home configuration
   imports = [
     ../common.nix
-    ../../modules/home/obs.nix
+    ../../modules/home/tools/obs.nix
+    ../../modules/home/tools/creative.nix
   ];
 
   # User-specific settings
