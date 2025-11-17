@@ -9,6 +9,11 @@
     # gnome-tweaks # Additional GNOME settings
   ];
 
+  # Disable speech-dispatcher to prevent auto-launch in non-GNOME sessions
+  systemd.user.services.speech-dispatcher = {
+    Unit.ConditionEnvironment = "XDG_CURRENT_DESKTOP=GNOME";
+  };
+
   # Declarative dconf configuration
   dconf.settings = {
     # Desktop Interface Settings
@@ -63,6 +68,16 @@
       remove-old-trash-files = true;
       remove-old-temp-files = true;
       old-files-age = lib.hm.gvariant.mkUint32 30;
+    };
+
+    # Accessibility Settings - Disable to prevent auto-starting services
+    "org/gnome/desktop/a11y" = {
+      always-show-universal-access-status = false;
+    };
+
+    "org/gnome/desktop/a11y/applications" = {
+      screen-keyboard-enabled = false;
+      screen-reader-enabled = false;
     };
 
     # File Chooser Settings
