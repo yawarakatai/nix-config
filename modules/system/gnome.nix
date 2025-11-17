@@ -1,5 +1,3 @@
-# Minimal GNOME desktop environment configuration
-# Based on NixOS Wiki: https://wiki.nixos.org/wiki/GNOME
 { config, pkgs, ... }:
 
 {
@@ -15,12 +13,12 @@
 
   # Install only essential GNOME apps
   environment.systemPackages = with pkgs; [
-    gnome-console # GNOME terminal
-    nautilus # File manager
-    gnome-text-editor # Text editor
+    # gnome-console # GNOME terminal
+    # nautilus # File manager
+    # gnome-text-editor # Text editor
     gnome-system-monitor # System monitor
-    gnome-disk-utility # Disk utility
-    gnome-calculator # Calculator
+    # gnome-disk-utility # Disk utility
+    # gnome-calculator # Calculator
     gnome-settings-daemon # Required for settings
     gnome-control-center # Settings app
   ];

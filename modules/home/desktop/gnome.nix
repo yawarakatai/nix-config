@@ -5,8 +5,8 @@
 {
   # GNOME-specific packages
   home.packages = with pkgs; [
-    dconf-editor # GUI for dconf settings
-    gnome-tweaks # Additional GNOME settings
+    # dconf-editor # GUI for dconf settings
+    # gnome-tweaks # Additional GNOME settings
   ];
 
   # Declarative dconf configuration
@@ -40,7 +40,7 @@
       favorite-apps = [
         "firefox.desktop"
         "org.gnome.Nautilus.desktop"
-        "org.gnome.Console.desktop"
+        "ghostty"
         "code.desktop"
       ];
     };

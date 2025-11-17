@@ -7,12 +7,11 @@
 
     settings = {
       # Theme
-      theme = "dark";
-      background-opacity = 0.95;
+      background-opacity = theme.opacity.terminal;
 
       # Font configuration
-      font-family = "JetBrainsMono Nerd Font";
-      font-size = 12;
+      font-family = theme.font.name;
+      font-size = theme.font.size;
       font-feature = [
         "-calt" # Disable ligatures
         "-liga"
@@ -27,17 +26,17 @@
       cursor-style = "block";
       cursor-style-blink = false;
 
-      # Shell integration
-      shell-integration = true;
-      shell-integration-features = "cursor,sudo,title";
+      # # Shell integration
+      # shell-integration = true;
+      # shell-integration-features = "cursor,sudo,title";
 
       # Misc
       confirm-close-surface = false;
       copy-on-select = false;
 
       # Colors (matching dark theme)
-      foreground = "d8dee9";
-      background = "2e3440";
+      foreground = theme.colorScheme.base05;
+      background = theme.colorScheme.base00;
 
       # Normal colors
       palette = [
