@@ -79,6 +79,36 @@
   # Display manager - greetd with regreet (GTK4 graphical greeter)
   programs.regreet = {
     enable = true;
+
+    # Theme configuration for regreet
+    # Using Colloid theme to match GNOME configuration
+    theme = {
+      name = "Colloid-Grey-Dark";
+      package = pkgs.colloid-gtk-theme.override {
+        themeVariants = [ "grey" ];
+        colorVariants = [ "dark" ];
+        sizeVariants = [ "standard" ];
+        tweaks = [ "black" "rimless" "normal" ];
+      };
+    };
+
+    iconTheme = {
+      name = "Colloid-Grey";
+      package = pkgs.colloid-icon-theme.override {
+        colorVariants = [ "grey" ];
+      };
+    };
+
+    cursorTheme = {
+      name = "graphite-dark";
+      package = pkgs.graphite-cursors;
+    };
+
+    font = {
+      name = "Sans";
+      size = 11;
+      package = pkgs.dejavu_fonts;
+    };
   };
 
   # Configure greetd to use regreet
