@@ -9,9 +9,9 @@
     # gnome-tweaks # Additional GNOME settings
   ];
 
-  # Disable speech-dispatcher to prevent auto-launch in non-GNOME sessions
+  # Disable speech-dispatcher entirely
   systemd.user.services.speech-dispatcher = {
-    Unit.ConditionEnvironment = "XDG_CURRENT_DESKTOP=GNOME";
+    Install.WantedBy = lib.mkForce [ ];
   };
 
   # Declarative dconf configuration
