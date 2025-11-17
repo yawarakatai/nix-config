@@ -4,6 +4,7 @@
   # Import common home configuration
   imports = [
     ../common.nix
+    ../../modules/home/obs.nix
   ];
 
   # User-specific settings
@@ -18,14 +19,6 @@
     commandLineArgs = [
       "--enable-features=UseOzonePlatform"
       "--ozone-platform=wayland"
-    ];
-  };
-
-  programs.obs-studio = {
-    enable = true;
-    plugins = with pkgs.obs-studio-plugins; [
-      wlrobs
-      obs-pipewire-audio-capture
     ];
   };
 }
