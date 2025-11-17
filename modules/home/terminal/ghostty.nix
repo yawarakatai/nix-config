@@ -1,4 +1,5 @@
 # Ghostty terminal emulator configuration
+# Using under-construction theme colors
 { config, pkgs, theme, ... }:
 
 {
@@ -6,10 +7,10 @@
     enable = true;
 
     settings = {
-      # Theme
+      # Theme - using under-construction color scheme
       background-opacity = theme.opacity.terminal;
 
-      # Font configuration
+      # Font configuration - matching under-construction theme
       font-family = theme.font.name;
       font-size = theme.font.size;
       font-feature = [
@@ -34,28 +35,30 @@
       confirm-close-surface = false;
       copy-on-select = false;
 
-      # Colors (matching dark theme)
-      foreground = theme.colorScheme.base05;
-      background = theme.colorScheme.base00;
+      # Colors - under-construction theme (base16)
+      foreground = theme.colorScheme.base05; # d0d0d0
+      background = theme.colorScheme.base00; # 000000
 
-      # Normal colors
+      # Terminal palette using base16 colors
       palette = [
-        "0=#3b4252"
-        "1=#bf616a"
-        "2=#a3be8c"
-        "3=#ebcb8b"
-        "4=#81a1c1"
-        "5=#b48ead"
-        "6=#88c0d0"
-        "7=#e5e9f0"
-        "8=#4c566a"
-        "9=#bf616a"
-        "10=#a3be8c"
-        "11=#ebcb8b"
-        "12=#81a1c1"
-        "13=#b48ead"
-        "14=#8fbcbb"
-        "15=#eceff4"
+        # Normal colors (0-7)
+        "0=${theme.colorScheme.base00}" # Black
+        "1=${theme.colorScheme.base08}" # Red
+        "2=${theme.colorScheme.base0B}" # Green
+        "3=${theme.colorScheme.base0A}" # Yellow
+        "4=${theme.colorScheme.base0D}" # Blue
+        "5=${theme.colorScheme.base0E}" # Magenta
+        "6=${theme.colorScheme.base0C}" # Cyan
+        "7=${theme.colorScheme.base05}" # White
+        # Bright colors (8-15)
+        "8=${theme.colorScheme.base03}" # Bright Black
+        "9=${theme.colorScheme.base08}" # Bright Red
+        "10=${theme.colorScheme.base0B}" # Bright Green
+        "11=${theme.colorScheme.base0A}" # Bright Yellow
+        "12=${theme.colorScheme.base0D}" # Bright Blue
+        "13=${theme.colorScheme.base0E}" # Bright Magenta
+        "14=${theme.colorScheme.base0C}" # Bright Cyan
+        "15=${theme.colorScheme.base07}" # Bright White
       ];
     };
   };

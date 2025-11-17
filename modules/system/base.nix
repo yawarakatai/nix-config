@@ -76,16 +76,32 @@
     '';
   };
 
-  # Display manager - greetd with tuigreet
+  # Display manager - greetd with regreet (GTK4 graphical greeter)
+  programs.regreet = {
+    enable = true;
+  };
+
+  # Configure greetd to use regreet
   services.greetd = {
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-session";
+        command = "${pkgs.greetd.regreet}/bin/regreet";
         user = "greeter";
       };
     };
   };
+
+  # Commented out tuigreet configuration (TUI greeter alternative)
+  # services.greetd = {
+  #   enable = true;
+  #   settings = {
+  #     default_session = {
+  #       command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-session";
+  #       user = "greeter";
+  #     };
+  #   };
+  # };
 
   # Enable niri at system level (creates session file for greetd)
   programs.niri.enable = true;
