@@ -2,11 +2,12 @@
 
 let
   # Build FFmpeg with full NVENC support for NVIDIA hardware encoding
-  ffmpeg-nvenc = pkgs.ffmpeg-full.override {
-    nonfreeLicensing = true;
-    nvenc = true; # Enable NVIDIA hardware encoding
-    nv-codec-headers = pkgs.nv-codec-headers;
-  };
+  ffmpeg-nvenc = (pkgs.ffmpeg-full.override {
+    withNvenc = true; # Enable NVIDIA hardware encoding
+  }).overrideAttrs (old: {
+    # Ensure nv-codec-headers is available for NVENC
+    buildInputs = (old.buildInputs or []) ++ [ pkgs.nv-codec-headers-12 ];
+  });
 
   # Override OBS Studio to use our NVENC-enabled FFmpeg
   obs-with-nvenc = pkgs.obs-studio.override {
