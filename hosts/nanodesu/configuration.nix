@@ -22,6 +22,7 @@
     ../../modules/system/rebuild-helper.nix
     ../../modules/system/wayland.nix
     ../../modules/system/niri-override.nix
+    ../../modules/system/gnome.nix
 
     # Laptop-specific hardware modules
     ../../modules/system/touchpad.nix # Touchpad with natural scrolling, tap-to-click
