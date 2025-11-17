@@ -6,6 +6,8 @@
     ../common.nix
     ../../modules/home/tools/obs.nix
     ../../modules/home/tools/creative.nix
+    ../../modules/home/desktop/gnome.nix
+    ../../modules/home/terminal/ghostty.nix
   ];
 
   # User-specific settings
