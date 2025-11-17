@@ -77,7 +77,8 @@
   };
 
   # Display manager - greetd with regreet (GTK4 graphical greeter)
-  # Regreet requires a Wayland compositor to run - using cage (kiosk compositor)
+  # Regreet requires a Wayland compositor to run - using minimal niri config
+  # Running on niri instead of cage for better compatibility (especially VMs)
   programs.regreet = {
     enable = true;
 
@@ -112,17 +113,28 @@
     };
   };
 
-  # Configure greetd to use regreet with cage compositor
-  # GTK4 applications need a Wayland compositor to initialize
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.cage}/bin/cage -s -- ${pkgs.regreet}/bin/regreet";
-        user = "greeter";
+  # Configure greetd to use regreet with minimal niri compositor
+  # Minimal niri config that spawns regreet and quits after login
+  services.greetd =
+    let
+      # Minimal niri configuration for greeter
+      # Spawns regreet at startup and quits niri after login completes
+      minimumConfig = pkgs.writeText "minimum-config.kdl" ''
+        hotkey-overlay {
+          skip-at-startup
+        }
+        spawn-at-startup "sh" "-c" "${pkgs.lib.getExe pkgs.greetd.regreet}; niri msg action quit --skip-confirmation"
+      '';
+    in
+    {
+      enable = true;
+      settings = {
+        default_session = {
+          command = "${pkgs.lib.getExe config.programs.niri.package} --config ${minimumConfig}";
+          user = "greeter";
+        };
       };
     };
-  };
 
   # Commented out tuigreet configuration (TUI greeter alternative)
   # services.greetd = {
