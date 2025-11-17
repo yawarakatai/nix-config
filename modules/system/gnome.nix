@@ -2,45 +2,15 @@
 { config, pkgs, ... }:
 
 {
-  # Enable X11 (required for GNOME)
-  services.xserver.enable = true;
+  # As of 25.11
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
 
-  # Enable GNOME Desktop Environment
-  services.xserver.desktopManager.gnome.enable = true;
+  # To disable installing GNOME's suite of applications
+  # and only be left with GNOME shell.
+  services.gnome.core-apps.enable = false;
+  services.gnome.core-developer-tools.enable = false;
+  services.gnome.games.enable = false;
+  environment.gnome.excludePackages = with pkgs; [ gnome-tour gnome-user-docs ];
 
-  # Enable GDM (GNOME Display Manager)
-  services.xserver.displayManager.gdm.enable = true;
-
-  # Exclude unnecessary GNOME applications to keep installation minimal
-  environment.gnome.excludePackages = with pkgs; [
-    # GNOME Apps
-    epiphany # GNOME Web browser
-    geary # Email client
-    gnome-tour # Welcome tour
-    gnome-music # Music player
-    gnome-photos # Photo viewer/manager
-    gnome-contacts # Contacts manager
-    gnome-maps # Maps application
-    gnome-weather # Weather app
-    gnome-calendar # Calendar
-    gnome-characters # Character map
-    gnome-clocks # Clocks
-    gnome-logs # System logs viewer
-    gnome-connections # Remote desktop client
-    simple-scan # Document scanner
-    totem # Video player
-    yelp # Help viewer
-
-    # Games
-    gnome-chess
-    gnome-mahjongg
-    gnome-mines
-    gnome-sudoku
-    gnome-tetravex
-    hitori
-    iagno
-    tali
-    quadrapassel
-    atomix
-  ];
 }
