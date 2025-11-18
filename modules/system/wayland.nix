@@ -29,6 +29,11 @@
         pkgs.xdg-desktop-portal-gtk
         pkgs.xdg-desktop-portal-wlr
       ];
-    config.common.default = "*";
+    # Explicitly route screencast and screenshot to wlr backend for screen capture
+    config.common = {
+      default = "gtk";
+      "org.freedesktop.impl.portal.ScreenCast" = "wlr";
+      "org.freedesktop.impl.portal.Screenshot" = "wlr";
+    };
   };
 }
