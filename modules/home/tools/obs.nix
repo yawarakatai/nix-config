@@ -20,9 +20,6 @@ in
     package = obs-with-nvenc;
 
     plugins = with pkgs.obs-studio-plugins; [
-      # Wayland screen capture support
-      wlrobs
-
       # PipeWire audio capture (for desktop audio)
       obs-pipewire-audio-capture
 
@@ -44,4 +41,11 @@ in
     # Point to NVIDIA VDPAU driver
     VDPAU_DRIVER = "nvidia";
   };
+
+  # NOTE: Screen capture on niri + Wayland works through xdg-desktop-portal-gnome
+  # configured in modules/system/wayland.nix
+  #
+  # KNOWN ISSUE: Wayland output with dmabuf may crash with NVIDIA drivers
+  # due to known compatibility issues between OBS, NVIDIA, and Wayland dmabuf.
+  # Workaround: Use "Automatic" or "OpenGL" output method in OBS settings instead of dmabuf.
 }
