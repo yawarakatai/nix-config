@@ -7,12 +7,25 @@ let
   }).overrideAttrs (old: {
     # Ensure nv-codec-headers is available for NVENC
     buildInputs = (old.buildInputs or []) ++ [ pkgs.nv-codec-headers-12 ];
+
+    # Add NVIDIA libraries to runtime path for NVENC
+    nativeBuildInputs = (old.nativeBuildInputs or []) ++ [ pkgs.addOpenGLRunpath ];
+    postFixup = (old.postFixup or "") + ''
+      addOpenGLRunpath $out/bin/ffmpeg
+    '';
   });
 
   # Override OBS Studio to use our NVENC-enabled FFmpeg
-  obs-with-nvenc = pkgs.obs-studio.override {
+  obs-with-nvenc = (pkgs.obs-studio.override {
     ffmpeg = ffmpeg-nvenc;
-  };
+  }).overrideAttrs (old: {
+    # Add NVIDIA libraries to runtime path for NVENC in OBS
+    nativeBuildInputs = (old.nativeBuildInputs or []) ++ [ pkgs.addOpenGLRunpath ];
+    postFixup = (old.postFixup or "") + ''
+      addOpenGLRunpath $out/bin/obs
+      addOpenGLRunpath $out/bin/.obs-wrapped
+    '';
+  });
 in
 {
   programs.obs-studio = {
