@@ -21,14 +21,18 @@
   };
 
   # XDG Desktop Portal for Wayland
+  # Note: niri uses xdg-desktop-portal-gnome for screen capture (not wlr)
   xdg.portal = {
     enable = true;
-    wlr.enable = true;
-    extraPortals =
-      [
-        pkgs.xdg-desktop-portal-gtk
-        pkgs.xdg-desktop-portal-wlr
-      ];
-    config.common.default = "*";
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-gnome
+    ];
+    # Explicitly route screencast and screenshot to gnome backend for niri
+    config.common = {
+      default = "gtk";
+      "org.freedesktop.impl.portal.ScreenCast" = "gnome";
+      "org.freedesktop.impl.portal.Screenshot" = "gnome";
+    };
   };
 }

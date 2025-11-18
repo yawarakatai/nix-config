@@ -9,6 +9,12 @@
     graphics = {
       enable = true;
       enable32Bit = true;
+
+      # Include NVIDIA CUDA libraries for hardware encoding (NVENC)
+      extraPackages = with pkgs; [
+        nvidia-vaapi-driver
+        cudaPackages.cuda_cudart
+      ];
     };
 
     # NVIDIA settings

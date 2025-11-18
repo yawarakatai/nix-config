@@ -112,6 +112,9 @@
     environment = {
       # Set DISPLAY for X11 applications (via xwayland-satellite)
       DISPLAY = ":0";
+
+      # Required for xdg-desktop-portal to work correctly with niri
+      XDG_CURRENT_DESKTOP = "niri";
     };
   };
 }
