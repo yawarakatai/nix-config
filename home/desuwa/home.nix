@@ -6,6 +6,7 @@
     ../common.nix
     ../../modules/home/tools/obs.nix
     ../../modules/home/tools/creative.nix
+    ../../modules/home/tools/davinci-resolve.nix
     ../../modules/home/desktop/gnome.nix
     ../../modules/home/terminal/ghostty.nix
   ];
@@ -17,8 +18,6 @@
   home.packages = with pkgs; [
     # Video Edition
     # kdePackages.kdenlive
-
-    davinci-resolve
   ];
 
   programs.brave = {
