@@ -4,7 +4,6 @@
   # Import common home configuration
   imports = [
     ../common.nix
-    ../../modules/home/tools/obs.nix
   ];
 
   # User-specific settings
@@ -16,7 +15,6 @@
     thunderbird
     slack
     zoom-us
-    evince
 
     libreoffice-qt
   ];
