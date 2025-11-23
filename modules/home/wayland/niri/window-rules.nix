@@ -32,7 +32,7 @@
 
     {
       matches = [
-        { app-id = "Godot"; }
+        # { app-id = "Godot"; }
         { title = "Godot Engine - Project Manager"; }
       ];
       open-floating = true;

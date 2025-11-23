@@ -17,8 +17,6 @@
   home.packages = with pkgs; [
     # Video Edition
     # kdePackages.kdenlive
-
-    davinci-resolve
   ];
 
   programs.brave = {
