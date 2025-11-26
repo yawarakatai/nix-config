@@ -24,8 +24,8 @@
     commandLineArgs = [
       "--enable-features=UseOzonePlatform"
       "--ozone-platform=wayland"
-      # "--enable-features=Vulkan"
-      # "--use-vulkan"
+      "--disable-frame-rate-limit"
+      "--enable-features=VaapiVideoDecoder,VaapiVideoEncoder"
     ];
   };
 }
