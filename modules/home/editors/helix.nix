@@ -116,8 +116,8 @@
       "ui.virtual.indent-guide" = theme.colorScheme.base03;
 
       # Syntax highlighting
-      "comment" = { fg = theme.semantic.comment; italic = true; };
-      "keyword" = { fg = theme.semantic.keyword; bold = true; };
+      "comment" = { fg = theme.semantic.comment; modifiers = [ "italic" ]; };
+      "keyword" = { fg = theme.semantic.keyword; modifiers = [ "bold" ]; };
       "keyword.control" = { fg = theme.semantic.keyword; };
       "keyword.directive" = { fg = theme.semantic.keyword; };
       "function" = { fg = theme.semantic.function; };
@@ -125,7 +125,7 @@
       "function.macro" = { fg = theme.semantic.keyword; };
       "string" = theme.semantic.string;
       "number" = theme.semantic.number;
-      "constant" = { fg = theme.semantic.constant; bold = true; };
+      "constant" = { fg = theme.semantic.constant; modifiers = [ "bold" ]; };
       "constant.builtin" = { fg = theme.semantic.constant; };
       "variable" = theme.semantic.variable;
       "variable.parameter" = theme.semantic.variable;
@@ -140,10 +140,10 @@
       "punctuation.bracket" = theme.colorScheme.base05;
 
       # Markup
-      "markup.heading" = { fg = theme.semantic.function; bold = true; };
+      "markup.heading" = { fg = theme.semantic.function; modifiers = [ "bold" ]; };
       "markup.list" = theme.semantic.keyword;
-      "markup.bold" = { bold = true; };
-      "markup.italic" = { italic = true; };
+      "markup.bold" = { modifiers = [ "bold" ]; };
+      "markup.italic" = { modifiers = [ "italic" ]; };
       "markup.link.url" = { fg = theme.semantic.info; underline = { style = "line"; }; };
       "markup.link.text" = theme.semantic.string;
       "markup.quote" = theme.semantic.comment;
@@ -283,7 +283,7 @@
         };
 
         haskell-language-server = {
-          command = "${pkgs.haskell-language-server}/bin/haskell-language-server-wrapper";
+          command = "haskell-language-server-wrapper";
           args = [ "--lsp" ];
         };
 
