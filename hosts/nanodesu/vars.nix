@@ -22,7 +22,6 @@
       scale = 1.0;
       position = { x = 0; y = 0; };
       vrr = true;
-      focus-at-startup = true;
     };
 
     primary = {
