@@ -36,6 +36,8 @@
     enable = true;
     remotePlay.openFirewall = true; # Steam Remote Play
     dedicatedServer.openFirewall = true; # Source Dedicated Server
+    localNetworkGameTransfers.openFirewall = true;
+
     gamescopeSession.enable = true; # Gamescope compositor for better Wayland support
 
     # Additional compatibility packages
@@ -53,6 +55,7 @@
         xorg.libXi
         xorg.libXinerama
         xorg.libXScrnSaver
+
         libpng
         libpulseaudio
         libvorbis
@@ -63,6 +66,10 @@
     };
   };
 
+  environment.sessionVariables = {
+    __GL_SHADER_DISK_CACHE = "1";
+    __GL_THREADED_OPTIMIZATION = "1";
+  };
   # Host-specific Nix settings (extends base.nix)
   nix.settings = { };
 

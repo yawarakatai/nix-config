@@ -24,6 +24,8 @@
     commandLineArgs = [
       "--enable-features=UseOzonePlatform"
       "--ozone-platform=wayland"
+      # "--enable-features=Vulkan"
+      # "--use-vulkan"
     ];
   };
 }
