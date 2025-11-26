@@ -50,5 +50,15 @@
         relative-to = "top";
       };
     }
+
+    # Enable VRR for games and video players (fixes Chromium 60fps bug)
+    {
+      matches = [
+        { app-id = "^steam_app_.*"; }  # Steam games
+        { app-id = "^mpv$"; }          # MPV video player
+        { app-id = "^vlc$"; }          # VLC video player
+      ];
+      variable-refresh-rate = true;
+    }
   ];
 }

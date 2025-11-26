@@ -34,7 +34,7 @@
           height = vars.monitors.primary.height;
           refresh = vars.monitors.primary.refresh;
         };
-        variable-refresh-rate = vars.monitors.primary.vrr;
+        variable-refresh-rate.on-demand = true;
         scale = vars.monitors.primary.scale;
         position = vars.monitors.primary.position;
       };
