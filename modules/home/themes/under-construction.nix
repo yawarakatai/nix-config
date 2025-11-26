@@ -23,7 +23,7 @@ rec {
     base0C = "#33ccaa"; # Teal cyan (support, regex)
     base0D = "#4d9fff"; # Sky blue (functions, methods)
     base0E = "#9966ff"; # Soft purple (keywords, tags)
-    base0F = "#ff6699"; # Rose pink (deprecated, special)  };
+    base0F = "#ff6699"; # Rose pink (deprecated, special)
   };
 
   # Semantic color mappings for easy reference
