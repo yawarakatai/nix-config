@@ -24,7 +24,6 @@
     commandLineArgs = [
       "--enable-features=UseOzonePlatform,VaapiVideoDecoder,VaapiVideoEncoder"
       "--ozone-platform=wayland"
-      "--disable-frame-rate-limit"
       "--use-gl=egl"
       "--enable-zero-copy"
     ];
