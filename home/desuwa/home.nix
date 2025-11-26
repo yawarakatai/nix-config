@@ -22,10 +22,11 @@
   programs.brave = {
     enable = true;
     commandLineArgs = [
-      "--enable-features=UseOzonePlatform"
+      "--enable-features=UseOzonePlatform,VaapiVideoDecoder,VaapiVideoEncoder"
       "--ozone-platform=wayland"
       "--disable-frame-rate-limit"
-      "--enable-features=VaapiVideoDecoder,VaapiVideoEncoder"
+      "--use-gl=egl"
+      "--enable-zero-copy"
     ];
   };
 }
