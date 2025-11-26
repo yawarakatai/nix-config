@@ -19,7 +19,7 @@
       refresh = 119.880;
       scale = 1.0;
       position = { x = 0; y = 0; };
-      vrr = true; # Variable refresh rate
+      vrr = false; # Variable refresh rate - disabled due to Chromium VRR bug
     };
     # Add additional monitors here as needed
     # secondary = { ... };
