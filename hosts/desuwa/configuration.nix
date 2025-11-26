@@ -15,7 +15,6 @@
     ../../modules/system/rebuild-helper.nix
     ../../modules/system/wayland.nix
     ../../modules/system/niri-override.nix
-    ../../modules/system/gnome.nix
 
     # Hardware-specific modules for this host
     ../../modules/system/nvidia.nix # NVIDIA RTX 3080
