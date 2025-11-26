@@ -1,5 +1,8 @@
 { config, pkgs, vars, inputs, ... }:
 
+let
+  theme = import ../../modules/home/themes/under-construction.nix { inherit vars; };
+in
 {
   # Minimal server configuration - no desktop/wayland modules
   imports = [
