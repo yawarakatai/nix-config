@@ -34,7 +34,7 @@
           height = vars.monitors.primary.height;
           refresh = vars.monitors.primary.refresh;
         };
-        variable-refresh-rate = vars.monitors.primary.vrr;
+        variable-refresh-rate = if vars.monitors.primary.vrr then "on-demand" else false;
         scale = vars.monitors.primary.scale;
         position = vars.monitors.primary.position;
       };
@@ -45,7 +45,7 @@
           height = vars.monitors.external.height;
           refresh = vars.monitors.external.refresh;
         };
-        variable-refresh-rate = vars.monitors.external.vrr;
+        variable-refresh-rate = if vars.monitors.external.vrr then "on-demand" else false;
         scale = vars.monitors.external.scale;
         position = vars.monitors.external.position;
       };

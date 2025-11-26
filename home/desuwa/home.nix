@@ -22,10 +22,10 @@
   programs.brave = {
     enable = true;
     commandLineArgs = [
-      "--enable-features=UseOzonePlatform"
+      "--enable-features=UseOzonePlatform,VaapiVideoDecoder,VaapiVideoEncoder,Vulkan,VulkanFromANGLE,DefaultANGLEVulkan"
       "--ozone-platform=wayland"
-      # "--enable-features=Vulkan"
-      # "--use-vulkan"
+      "--use-angle=vulkan"
+      "--enable-zero-copy"
     ];
   };
 }

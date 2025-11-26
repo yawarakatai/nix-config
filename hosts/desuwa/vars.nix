@@ -19,7 +19,7 @@
       refresh = 119.880;
       scale = 1.0;
       position = { x = 0; y = 0; };
-      vrr = true; # Variable refresh rate
+      vrr = true; # Variable refresh rate (on-demand via window rules)
     };
     # Add additional monitors here as needed
     # secondary = { ... };
