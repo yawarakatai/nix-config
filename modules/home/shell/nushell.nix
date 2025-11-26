@@ -76,25 +76,12 @@
         }
 
         # Custom keybindings
-        keybindings: [
-        
-          # Ctrl+R: Fuzzy history search with skim
-          {
-            name: process_manager
-            modifier: control
-            keycode: char_p
-            mode: [emacs vi_normal vi_insert]
-            event: {
-              send: ExecuteHostCommand
-              cmd: "let selection = (ps | select pid name | each { |row| $'($row.pid) ($row.name)' } | sk | str trim); if ($selection | is-not-empty) { let pid = ($selection | split row ' ' | first | into int); kill $pid }"
-            }
-          }
-          
-          # Ctrl+T: Fuzzy file picker
+        keybindings: [         
+          # Ctrl+F: Fuzzy file picker
           {
             name: skim_file_picker
             modifier: control
-            keycode: char_t
+            keycode: char_f
             mode: [emacs vi_normal vi_insert]
             event: {
               send: ExecuteHostCommand
@@ -102,11 +89,11 @@
             }
           }
 
-          # Alt+C: Fuzzy directory picker and cd
+          # Ctrl+T: Fuzzy directory picker and cd
           {
             name: skim_directory_picker
-            modifier: alt
-            keycode: char_c
+            modifier: control
+            keycode: char_t
             mode: [emacs vi_normal vi_insert]
             event: {
               send: ExecuteHostCommand
