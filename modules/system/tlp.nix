@@ -10,8 +10,8 @@
     settings = {
       # Battery charge thresholds (helps extend battery lifespan)
       # Stop charging at 80% when on AC, start charging below 75%
-      START_CHARGE_THRESH_BAT0 = 75;
-      STOP_CHARGE_THRESH_BAT0 = 80;
+      START_CHARGE_THRESH_BAT0 = 80;
+      STOP_CHARGE_THRESH_BAT0 = 95;
 
       # CPU scaling governor
       # On AC: performance, On battery: powersave
@@ -25,7 +25,10 @@
       # CPU boost
       # Allow turbo boost on AC, disable on battery to save power
       CPU_BOOST_ON_AC = 1;
-      CPU_BOOST_ON_BAT = 0;
+      CPU_BOOST_ON_BAT = 1;
+
+      CPU_MAX_PERF_ON_AC = 100;
+      CPU_MAX_PERF_ON_BAT = 80;
 
       # Platform profile (for modern Intel/AMD laptops)
       PLATFORM_PROFILE_ON_AC = "performance";
