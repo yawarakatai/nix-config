@@ -38,25 +38,20 @@
       open-floating = true;
     }
 
-    # Steam notifications positioning
+    # Bevy game window
     {
       matches = [
-        { app-id = "^steam$"; }
-        { title = "^notificationtoasts_\\d+_desktop$"; }
+        { app-id = "bevy-game"; }
       ];
-      default-floating-position = {
-        x = 10;
-        y = 10;
-        relative-to = "top";
-      };
+      open-floating = true;
     }
 
     # Enable VRR for games and video players (fixes Chromium 60fps bug)
     {
       matches = [
-        { app-id = "^steam_app_.*"; }  # Steam games
-        { app-id = "^mpv$"; }          # MPV video player
-        { app-id = "^vlc$"; }          # VLC video player
+        { app-id = "^steam_app_.*"; } # Steam games
+        { app-id = "^mpv$"; } # MPV video player
+        { app-id = "^vlc$"; } # VLC video player
       ];
       variable-refresh-rate = true;
     }
