@@ -114,6 +114,8 @@
       "ui.virtual.whitespace" = theme.colorScheme.base03;
       "ui.virtual.ruler" = { bg = theme.colorScheme.base01; };
       "ui.virtual.indent-guide" = theme.colorScheme.base03;
+      "ui.virtual.inlay-hint.type" = { fg = theme.semantic.comment; modifiers = [ "italic" ]; };
+      "ui.virtual.inlay-hint.parameter" = { fg = theme.semantic.comment; modifiers = [ "italic" ]; };
 
       # Syntax highlighting
       "comment" = { fg = theme.semantic.comment; modifiers = [ "italic" ]; };
@@ -150,10 +152,10 @@
       "markup.raw" = theme.semantic.string;
 
       # Diagnostics
-      "error" = theme.semantic.error;
-      "warning" = theme.semantic.warning;
-      "info" = theme.semantic.info;
-      "hint" = theme.semantic.comment;
+      "diagnostic.error" = { underline = { color = theme.semantic.error; style = "curl"; }; };
+      "diagnostic.warning" = { underline = { color = theme.semantic.warning; style = "curl"; }; };
+      "diagnostic.info" = { underline = { color = theme.semantic.info; style = "dashed"; }; };
+      "diagnostic.hint" = { underline = { color = theme.semantic.comment; style = "dotted"; }; };
 
       # Diff
       "diff.plus" = theme.semantic.gitAdded;
