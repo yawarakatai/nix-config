@@ -176,18 +176,6 @@ desuwa has:
 
 Check `modules/system/` for the specific configs.
 
-## Git Workflow
-
-Working on branch: `claude/rewrite-readme-01LHJEsjHeR9gx7Vstb2Ys1L`
-
-Normal workflow:
-1. Make changes
-2. `nfc` to check syntax
-3. `nd` to preview
-4. `nt` or `ns` to apply
-5. Test stuff
-6. Commit if it works
-
 ## Useful Links
 
 - [NixOS Manual](https://nixos.org/manual/nixos/stable/)
