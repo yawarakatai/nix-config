@@ -1,5 +1,5 @@
 # TLP - Power management for laptops
-{ config, pkgs, vars, ... }:
+{ ... }:
 
 {
   services.tlp = {
