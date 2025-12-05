@@ -43,11 +43,16 @@
 
   # Host-specific user password
   # Password hash generated with: mkpasswd -m sha-512
-  # Using same password hash as desuwa
   users.users.${vars.username}.hashedPassword = "$6$KtMQPtEMmQ9AW7qK$tvtWeUA5GzWyILnexkH51.OMTnM6cuzA2aEymac264HctHr5jRBH7NBOOn4twZqaF963f8KkgDdNzfpSfd54D0";
 
   # Host-specific Nix settings (extends base.nix)
   nix.settings = { };
+
+  services.logind.settings.Login = {
+    HandleLidSwitch = "suspend";
+    HandleLidSwitchDocked = "suspend";
+    HandleLidSwitchExternalPower = "suspend";
+  };
 
   # State version - DO NOT CHANGE after initial install
   system.stateVersion = "25.05";
