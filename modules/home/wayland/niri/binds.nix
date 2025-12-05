@@ -44,7 +44,8 @@
       "Mod+M".action.maximize-column = [ ];
 
       # Applications
-      "Mod+Space".action.spawn = [ "vicinae" "toggle" ];
+      # "Mod+Space".action.spawn = [ "vicinae" "toggle" ];
+      "Mod+Space".action.spawn = [ "alacritty" "--class" "floating-term" ];
       "Mod+Return".action.spawn = [ "alacritty" ];
       "Mod+F".action.spawn = [ "firefox" ];
       "Mod+B".action.spawn = [ "brave" ];
