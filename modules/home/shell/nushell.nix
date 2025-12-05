@@ -131,6 +131,17 @@
           ls -a ...$args
         }
       }
+
+      def fg [...args: string] {
+        let cmd = $args | str join " "
+        ^setsid sh -c $'"($cmd)" </dev/null &>/dev/null &'
+        exit
+      }
+
+      def bg [...args: string] {
+        let cmd = $args | str join " "
+        ^setsid sh -c $'"($cmd)" </dev/null &>/dev/null &'
+      }
     '';
   };
 
