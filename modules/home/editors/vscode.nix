@@ -54,7 +54,7 @@
 
         # Nix
         "nix.enableLanguageServer" = true;
-        "nix.serverPath" = "nil";
+        "nix.serverPath" = "${pkgs.nil}/bin/nil";
 
         # Git
         "git.autofetch" = true;
@@ -75,6 +75,8 @@
 
         # Claude Code
         "claudeCode.disableLoginPrompt" = true;
+        "claudeCode.preferredLocation" = "panel";
+        "claudeCode.useTerminal" = true;
       };
 
       keybindings = [
