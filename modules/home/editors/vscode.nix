@@ -1,8 +1,4 @@
-{ config
-, pkgs
-, theme
-, ...
-}:
+{ pkgs, theme, ... }:
 
 {
   programs.vscode = {
