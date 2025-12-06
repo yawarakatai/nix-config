@@ -4,6 +4,9 @@ let
   theme = import ../../modules/home/themes/under-construction.nix { inherit vars; };
 in
 {
+  # Make theme available to all modules
+  _module.args.theme = theme;
+
   # Minimal server configuration - no desktop/wayland modules
   imports = [
     # Essential tools only
