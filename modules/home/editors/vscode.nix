@@ -72,6 +72,9 @@
 
         # Marp
         "markdown.marp.html" = "all";
+
+        # Claude Code
+        "claudeCode.disableLoginPrompt" = true;
       };
 
       keybindings = [
