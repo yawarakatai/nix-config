@@ -5,7 +5,17 @@
     claude-code
   ];
 
-  xdg.configFile."claude-code/settings.json".text = builtins.toJSON {
-    shell = "/run/current-system/sw/bin/bash";
-  };
+  home.file.".claude/settings.json".text = ''
+    {
+      "permissions": {
+        "allow": [ ],
+        "deny": [
+          "Bash(curl:*)",
+          "Read(./.env)",
+          "Read(./.env.*)",
+          "Read(./secrets/**)"
+        ]
+      }
+    }
+  '';
 }
