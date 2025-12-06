@@ -48,12 +48,14 @@ in
   # Git configuration
   programs.git = {
     enable = true;
-    userName = vars.gitName;
-    userEmail = vars.gitEmail;
-    extraConfig = {
-      init.defaultBranch = "main";
-      pull.rebase = false;
-      core.editor = "hx";
+    settings = {
+      userName = vars.gitName;
+      userEmail = vars.gitEmail;
+      extraConfig = {
+        init.defaultBranch = "main";
+        pull.rebase = false;
+        core.editor = "hx";
+      };
     };
   };
 
