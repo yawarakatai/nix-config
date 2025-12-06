@@ -1,4 +1,4 @@
-{ config, pkgs, vars, inputs, ... }:
+{ pkgs, vars, ... }:
 
 {
   # Import common home configuration
@@ -17,6 +17,7 @@
   home.packages = with pkgs; [
     # Video Edition
     # kdePackages.kdenlive
+    claude-code
   ];
 
   programs.brave = {
