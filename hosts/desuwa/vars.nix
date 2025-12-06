@@ -32,7 +32,7 @@
   mainDisk = "/dev/nvme0n1";
 
   # Performance specs
-  ramGB = 16;
+  ramGB = 32;
 
   # Git configuration
   gitName = "yawarakatai";
