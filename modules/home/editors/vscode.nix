@@ -111,6 +111,12 @@
 
         # Markdown
         marp-team.marp-vscode
+
+        # Godot
+        geequlim.godot-tools
+
+        # AI
+        anthropic.claude-code
       ];
     };
   };
