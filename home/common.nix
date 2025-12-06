@@ -1,4 +1,4 @@
-{ config, pkgs, vars, inputs, ... }:
+{ config, vars, inputs, ... }:
 
 let
   theme = import ../modules/home/themes/under-construction.nix { inherit vars; };
@@ -47,7 +47,7 @@ in
     ../modules/home/themes/gtk-theme.nix
   ];
 
-  home.sessionVariables = {
+  systemd.user.sessionVariables = {
     XMODIFIERS = "@im=fcitx";
     QT_IM_MODULE = "wayland;fcitx";
 

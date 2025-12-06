@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, ... }:
 
 {
   programs.obs-studio = {
@@ -20,7 +20,7 @@
   ];
 
   # Set environment variables for hardware acceleration
-  home.sessionVariables = {
+  systemd.user.sessionVariables = {
     # Ensure OBS and other apps use NVIDIA for encoding/decoding
     LIBVA_DRIVER_NAME = "nvidia";
     # Point to NVIDIA VDPAU driver

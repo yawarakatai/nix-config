@@ -1,4 +1,4 @@
-{ config, pkgs, vars, inputs, ... }:
+{ pkgs, vars, ... }:
 
 let
   theme = import ../../modules/home/themes/under-construction.nix { inherit vars; };
@@ -39,7 +39,7 @@ in
   ];
 
   # Environment variables
-  home.sessionVariables = {
+  systemd.user.sessionVariables = {
     EDITOR = "hx";
     VISUAL = "hx";
     PAGER = "less";
