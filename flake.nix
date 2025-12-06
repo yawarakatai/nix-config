@@ -34,6 +34,7 @@
           system = vars.system;
           specialArgs = { inherit vars inputs; };
           modules = [
+            { nixpkgs.overlays = import ./overlays; }
             # Host-specific configuration (imports its own modules)
             ./hosts/${hostname}/configuration.nix
             ./hosts/${hostname}/hardware-configuration.nix
