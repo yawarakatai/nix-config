@@ -72,6 +72,12 @@
   # Host-specific Nix settings (extends base.nix)
   nix.settings = { };
 
+  # Tmp on tmpfs for better performance
+  boot.tmp = {
+    useTmpfs = true;
+    tmpfsSize = "50%";
+  };
+
   # State version - DO NOT CHANGE after initial install
   system.stateVersion = "25.05";
 }

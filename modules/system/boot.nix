@@ -1,4 +1,4 @@
-{ config, lib, pkgs, vars, ... }:
+{ pkgs, ... }:
 
 {
   # Bootloader configuration
@@ -31,12 +31,6 @@
     # Plymouth for boot splash (optional)
     plymouth = {
       enable = false; # Set to true if you want boot splash
-    };
-
-    # Tmp on tmpfs for better performance
-    tmp = {
-      useTmpfs = true;
-      tmpfsSize = "50%";
     };
   };
 }
