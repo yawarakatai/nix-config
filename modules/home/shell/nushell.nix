@@ -132,6 +132,14 @@
         }
       }
 
+      def lr [...args] { 
+        if ($args | is-empty) {
+          ls -a **/* .
+        } else {
+          ls -a ...(glob **/*.{$args})
+        }
+      }
+
       def fg [...args: string] {
         let cmd = $args | str join " "
         ^setsid sh -c $'"($cmd)" </dev/null &>/dev/null &'
