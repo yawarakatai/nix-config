@@ -29,6 +29,7 @@
     ../../modules/system/fingerprint.nix # Fingerprint reader for login/sudo
     ../../modules/system/tlp.nix # TLP power management for battery optimization
     ../../modules/system/webcam.nix # Webcam support
+    ../../modules/system/kanata.nix # Specified key layout remap
   ];
 
   # Workaround for Alder Lake audio firmware signature verification failure
