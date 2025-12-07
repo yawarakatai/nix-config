@@ -91,9 +91,9 @@
           ;; Left hand focuses on brackets and comparison operators.
           (deflayer symbols
             _    _    _    _    _    _    _    _    _    _    _    _    _    _
-            _    `    <    >    S-2  %    _    _    _    _    _    _    _    _
-            _    ~    (    )    [    ]    _    _    _    _    _    _    _
-            _    _    {    }    \    |    _    _    _    _    _    _
+            _    `    S-,  S-.  S-2  S-5  _    _    _    _    _    _    _    _
+            _    S-`    S-9  S-0  [    ]    _    _    _    _    _    _    _
+            _    _    S-[  S-]    \    S-\    _    _    _    _    _    _
             _    _    _              _              _    _    _
           )
         '';
