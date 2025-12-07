@@ -43,6 +43,9 @@ in
     ../modules/home/tools/lazygit.nix
     ../modules/home/tools/cli-tools.nix
 
+    # File sharing
+    ../modules/home/tools/syncthing.nix
+
     # Themes
     ../modules/home/themes/gtk-theme.nix
   ];
