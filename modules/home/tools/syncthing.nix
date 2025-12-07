@@ -1,4 +1,4 @@
-{ config, lib, vars, ... }:
+{ lib, vars, ... }:
 let
   deviceList =
     {
@@ -21,7 +21,7 @@ in
 
       folders = {
         "docs" = {
-          path = "${config.home.homeDirectory}/docs";
+          path = "/home/yawarakatai/docs";
           devices = peerNames;
           # ignorePerms = false;
         };
