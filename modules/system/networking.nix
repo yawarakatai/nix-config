@@ -1,4 +1,4 @@
-{ config, pkgs, vars, ... }:
+{ ... }:
 
 {
   # Networking configuration
@@ -12,8 +12,8 @@
     # Firewall
     firewall = {
       enable = true;
-      allowedTCPPorts = [ ];
-      allowedUDPPorts = [ ];
+      allowedTCPPorts = [ 22000 ];
+      allowedUDPPorts = [ 22000 21027 ];
 
       # Allow DHCP
       allowPing = true;
