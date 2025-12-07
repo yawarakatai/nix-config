@@ -21,9 +21,7 @@ in
 
       folders = {
         "docs" = {
-          id = "docs";
           path = "${config.home.homeDirectory}/docs";
-
           devices = peerNames;
           # ignorePerms = false;
         };
