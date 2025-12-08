@@ -16,7 +16,6 @@ in
   services.syncthing = {
     enable = true;
 
-    configDir = "/home/yawarakatai/.config/syncthing";
 
     overrideDevices = true;
     overrideFolders = true;
