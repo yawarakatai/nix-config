@@ -1,4 +1,4 @@
-{ config, pkgs, vars, inputs, ... }:
+{ pkgs, vars, ... }:
 
 {
   # Import common home configuration
