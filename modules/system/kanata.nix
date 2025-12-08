@@ -80,8 +80,8 @@
           ;; U/I used for PageUp/PageDown
           (deflayer navigation
             _    f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  del
-            _    _    _    _    _    _    pgup home up   end  _    _    _    _
-            _    _    _    _    _    _    pgdn left down right _    _    _
+            _    _    _    _    _    _    home pgdn pgup end  _    _    _    _
+            _    _    _    _    _    _    left down up   right _    _    _
             _    _    _    _    _    _    _    _    _    _    _    _
             _    _    _              _              _    _    _
           )
