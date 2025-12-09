@@ -13,15 +13,20 @@
         repeat-rate = 50;
       };
 
+      touchpad = {
+        tap = true;
+        natural-scroll = true;
+        accel-speed = 1.0;
+      };
+
       mouse = {
         accel-speed = 0.0;
         accel-profile = "flat";
       };
 
-      touchpad = {
-        tap = true;
-        natural-scroll = true;
+      trackpoint = {
         accel-speed = 1.0;
+        accel-profile = "flat";
       };
     };
 
