@@ -24,20 +24,17 @@
           nativeBuildInputs = with pkgs; [
             pkg-config
             rustToolchain
-            cargo-watch  # ホットリロード用
+            cargo-watch
           ];
 
           buildInputs = with pkgs; [
-            # Bevy dependencies
             udev
             alsa-lib
             vulkan-loader
 
-            # Wayland (Niri用)
             libxkbcommon
             wayland
 
-            # X11 (念のため)
             xorg.libX11
             xorg.libXcursor
             xorg.libXi
