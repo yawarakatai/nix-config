@@ -1,5 +1,15 @@
 { pkgs, theme, ... }:
 
+let
+  ocp-cad-viewer = pkgs.vscode-utils.buildVscodeMarketplaceExtension {
+    mktplcRef = {
+      name = "ocp-cad-viewer";
+      publisher = "bernhard-42";
+      version = "3.0.1";
+      sha256 = "sha256-yO0SDdiRpzf1FDXds78wTaW+RBNpDxanX/EoTMS9ASQ=";
+    };
+  };
+in
 {
   programs.vscode = {
     enable = true;
@@ -118,7 +128,9 @@
 
         # AI
         anthropic.claude-code
-      ];
+
+        # 3d cad preview
+      ] ++ [ ocp-cad-viewer ];
     };
   };
 }
