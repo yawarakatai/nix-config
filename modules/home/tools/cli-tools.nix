@@ -31,6 +31,7 @@
     # Misc
     tokei # code statistics
     hyperfine # benchmarking tool
+    croc # file transfer
   ];
 
   # eza configuration
