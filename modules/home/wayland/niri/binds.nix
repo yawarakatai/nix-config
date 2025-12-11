@@ -42,13 +42,14 @@
       # Layout
       "Mod+R".action.switch-preset-column-width = [ ];
       "Mod+M".action.maximize-column = [ ];
+      "Mod+F".action.fullscreen-window = [ ];
 
       # Applications
       # "Mod+Space".action.spawn = [ "vicinae" "toggle" ];
       "Mod+Space".action.spawn = [ "alacritty" "--class" "floating-term" ];
       "Mod+Return".action.spawn = [ "alacritty" ];
-      "Mod+F".action.spawn = [ "firefox" ];
-      "Mod+B".action.spawn = [ "brave" ];
+      "Mod+B".action.spawn = [ "firefox" ];
+      "Mod+Shift+B".action.spawn = [ "brave" ];
       "Mod+E".action.spawn = [ "nautilus" ];
       "Mod+A".action.spawn = [ "pavucontrol" ];
 
