@@ -31,10 +31,11 @@
           vars = import ./hosts/${hostname}/vars.nix;
         in
         nixpkgs.lib.nixosSystem {
-          system = vars.system;
           specialArgs = { inherit vars inputs; };
           modules = [
             { nixpkgs.overlays = import ./overlays; }
+            { nixpkgs.hostPlatform = vars.system; }
+
             # Host-specific configuration (imports its own modules)
             ./hosts/${hostname}/configuration.nix
             ./hosts/${hostname}/hardware-configuration.nix
@@ -53,6 +54,10 @@
             }
           ];
         };
+
+      # Helper for supporting multiple systems
+      supportedSystems = [ "x86_64-linux" "aarch64-linux" ];
+      forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
     in
     {
       # System configurations
@@ -63,17 +68,25 @@
       };
 
       # Development shell for editing configurations
-      devShells.x86_64-linux.default = nixpkgs.legacyPackages.x86_64-linux.mkShell {
-        buildInputs = with nixpkgs.legacyPackages.x86_64-linux; [
-          nil # Nix LSP
-          nixpkgs-fmt # Nix formatter
-          statix # Nix linter
-        ];
+      devShells = forAllSystems
+        (system:
+          let
+            pkgs = nixpkgs.legacyPackages.${system};
+          in
+          {
+            default = pkgs.mkShell {
+              buildInputs = with pkgs; [
+                nil # Nix LSP
+                nixpkgs-fmt # Nix formatter
+                statix # Nix linter
+              ];
 
-        shellHook = ''
-          echo "NixOS configuration development environment"
-          echo "Available tools: nil, nixpkgs-fmt, statix"
-        '';
-      };
+              shellHook = ''
+                echo "NixOS configuration development environment"
+                echo "Available tools: nil, nixpkgs-fmt, statix"
+              '';
+            };
+          }
+        );
     };
 }
