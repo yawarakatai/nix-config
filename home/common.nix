@@ -95,42 +95,43 @@ in
   };
 
   home.packages = [
-    inputs.juice.packages.${pkgs.system}.default
+    inputs.juice.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   # XDG configuration
-  xdg = {
-    enable = true;
-
-    userDirs = {
+  xdg =
+    {
       enable = true;
-      createDirectories = false;
 
-      # Point all directories to home to prevent creation of unwanted directories
-      desktop = "${config.home.homeDirectory}";
-      documents = "${config.home.homeDirectory}";
-      download = "${config.home.homeDirectory}"; # Downloads go directly to home
-      music = "${config.home.homeDirectory}";
-      pictures = "${config.home.homeDirectory}";
-      videos = "${config.home.homeDirectory}";
-      templates = "${config.home.homeDirectory}";
-      publicShare = "${config.home.homeDirectory}";
-    };
+      userDirs = {
+        enable = true;
+        createDirectories = false;
 
-    mimeApps = {
-      enable = true;
-      defaultApplications = {
-        "text/html" = "firefox.desktop";
-        "x-scheme-handler/http" = "firefox.desktop";
-        "x-scheme-handler/https" = "firefox.desktop";
-        "x-scheme-handler/about" = "firefox.desktop";
-        "x-scheme-handler/unknown" = "firefox.desktop";
-        "application/pdf" = "firefox.desktop";
-        "image/*" = "imv.desktop";
-        "video/*" = "mpv.desktop";
+        # Point all directories to home to prevent creation of unwanted directories
+        desktop = "${config.home.homeDirectory}";
+        documents = "${config.home.homeDirectory}";
+        download = "${config.home.homeDirectory}"; # Downloads go directly to home
+        music = "${config.home.homeDirectory}";
+        pictures = "${config.home.homeDirectory}";
+        videos = "${config.home.homeDirectory}";
+        templates = "${config.home.homeDirectory}";
+        publicShare = "${config.home.homeDirectory}";
+      };
+
+      mimeApps = {
+        enable = true;
+        defaultApplications = {
+          "text/html" = "firefox.desktop";
+          "x-scheme-handler/http" = "firefox.desktop";
+          "x-scheme-handler/https" = "firefox.desktop";
+          "x-scheme-handler/about" = "firefox.desktop";
+          "x-scheme-handler/unknown" = "firefox.desktop";
+          "application/pdf" = "firefox.desktop";
+          "image/*" = "imv.desktop";
+          "video/*" = "mpv.desktop";
+        };
       };
     };
-  };
 
   # State version - DO NOT CHANGE after initial install
   home.stateVersion = "25.05";
