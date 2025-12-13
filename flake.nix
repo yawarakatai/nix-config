@@ -18,9 +18,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    vicinae = {
-      url = "github:vicinaehq/vicinae";
-    };
+    vicinae.url = "github:vicinaehq/vicinae";
+
+    juice.url = "github:yawarakatai/juice";
   };
 
   outputs = { self, nixpkgs, home-manager, nixos-hardware, ... }@inputs:

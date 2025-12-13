@@ -1,4 +1,4 @@
-{ config, vars, inputs, ... }:
+{ config, vars, inputs, pkgs, ... }:
 
 let
   theme = import ../modules/home/themes/under-construction.nix { inherit vars; };
@@ -93,6 +93,10 @@ in
     nix-direnv.enable = true;
     enableNushellIntegration = true;
   };
+
+  home.packages = [
+    inputs.juice.packages.${pkgs.system}.default
+  ];
 
   # XDG configuration
   xdg = {
