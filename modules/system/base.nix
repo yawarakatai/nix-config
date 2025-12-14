@@ -68,13 +68,13 @@
 
   programs.niri.enable = true;
 
-  programs.ssh = {
-    extraConfig = "
-        Host github
-          User git
-          IdentityFile ~/.ssh/yubikey_5
-          IdentityFile ~/.ssh/yubikey_5c
-      ";
+  programs.nh = {
+    enable = true;
+    clean = {
+      enable = true;
+      extraArgs = "--keep-since 4d --keep 3";
+    };
+    flake = "/home/${vars.username}/.config/nix-config";
   };
 
   services.openssh = {
