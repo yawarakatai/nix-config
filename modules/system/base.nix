@@ -1,9 +1,15 @@
 # Shared base system configuration
-{ config, pkgs, vars, ... }:
+{ pkgs, vars, ... }:
 
 {
   environment.systemPackages = with pkgs; [
-    vim git wget curl file pciutils usbutils
+    vim
+    git
+    wget
+    curl
+    file
+    pciutils
+    usbutils
   ];
 
   users = {
@@ -14,7 +20,7 @@
       extraGroups = [ "networkmanager" "wheel" "video" "audio" "plugdev" ];
       shell = pkgs.nushell;
     };
-    users.root.hashedPassword = "!";  # Disable root login
+    users.root.hashedPassword = "!"; # Disable root login
   };
 
   nix = {
@@ -61,6 +67,15 @@
   };
 
   programs.niri.enable = true;
+
+  programs.ssh = {
+    extraConfig = "
+        Host github
+          User git
+          IdentityFile ~/.ssh/yubikey_5
+          IdentityFile ~/.ssh/yubikey_5c
+      ";
+  };
 
   services.openssh = {
     enable = false;
