@@ -42,6 +42,7 @@ in
     ../modules/home/tools/yazi.nix
     ../modules/home/tools/lazygit.nix
     ../modules/home/tools/cli-tools.nix
+    ../modules/home/tools/ssh.nix
 
     # File sharing
     ../modules/home/tools/syncthing.nix
