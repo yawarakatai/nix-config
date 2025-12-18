@@ -1,4 +1,4 @@
-{ config, pkgs, vars, ... }:
+{ pkgs, vars, ... }:
 
 {
   # Helper scripts for nixos-rebuild

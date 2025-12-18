@@ -1,4 +1,4 @@
-{ config, pkgs, vars, ... }:
+{ vars, ... }:
 
 {
   imports = [
@@ -11,7 +11,6 @@
     ../../modules/system/locale.nix
     ../../modules/system/zram.nix
     ../../modules/system/storage.nix
-    ../../modules/system/rebuild-helper.nix
   ];
 
   # Hostname

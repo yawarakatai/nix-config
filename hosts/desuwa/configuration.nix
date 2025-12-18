@@ -1,4 +1,4 @@
-{ config, pkgs, vars, ... }:
+{ pkgs, vars, ... }:
 
 {
   imports = [
@@ -12,7 +12,6 @@
     ../../modules/system/audio.nix
     ../../modules/system/zram.nix
     ../../modules/system/storage.nix
-    ../../modules/system/rebuild-helper.nix
     ../../modules/system/wayland.nix
     ../../modules/system/niri-override.nix
 
