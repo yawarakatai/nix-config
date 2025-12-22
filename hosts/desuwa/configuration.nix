@@ -20,6 +20,8 @@
     ../../modules/system/yubikey.nix # YubiKey support
     ../../modules/system/logiops.nix # Logitech mouse
     ../../modules/system/lofreeflowlite.nix # Lofree Flow keyboard
+
+    ../../modules/system/cross-compilation.nix
   ];
 
   # Hostname
