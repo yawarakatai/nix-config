@@ -1,8 +1,4 @@
-{ config
-, pkgs
-, theme
-, ...
-}:
+{ pkgs, ... }:
 
 {
   programs.nushell = {
@@ -132,21 +128,24 @@
         }
       }
 
-      def lr [...args] { 
+      def lr [...args] {
         if ($args | is-empty) {
-          ls -a **/* .
+          ls -a **/*
         } else {
-          ls -a ...(glob **/*.{$args})
+          let pattern = $args | str join ","
+          glob $"**/*.{($pattern)}" | each { |f| ls -a $f } | flatten
         }
       }
 
-      def fg [...args: string] {
+      # Execute program in foreground then close the terminal
+      def run [...args: string] {
         let cmd = $args | str join " "
         ^setsid sh -c $'"($cmd)" </dev/null &>/dev/null &'
         exit
       }
 
-      def bg [...args: string] {
+      # Execute program in background then close the terminal
+      def spawn [...args: string] {
         let cmd = $args | str join " "
         ^setsid sh -c $'"($cmd)" </dev/null &>/dev/null &'
       }
