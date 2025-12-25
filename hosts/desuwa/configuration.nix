@@ -70,6 +70,13 @@
     __GL_SHADER_DISK_CACHE = "1";
     __GL_THREADED_OPTIMIZATION = "1";
   };
+
+  environment.systemPackages = with pkgs; [
+    davinci-resolve
+  ];
+
+  hardware.graphics.enable = true;
+
   # Host-specific Nix settings (extends base.nix)
   nix.settings = { };
 
