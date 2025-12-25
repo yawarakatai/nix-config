@@ -45,11 +45,11 @@
       "Mod+F".action.fullscreen-window = [ ];
 
       # Applications
-      # "Mod+Space".action.spawn = [ "vicinae" "toggle" ];
-      "Mod+Space".action.spawn = [ "alacritty" "--class" "floating-term" ];
+      "Mod+Space".action.spawn = [ "vicinae" "toggle" ];
+      # "Mod+Space".action.spawn = [ "alacritty" "--class" "floating-term" ];
       "Mod+Return".action.spawn = [ "alacritty" ];
       "Mod+B".action.spawn = [ "firefox" ];
-      "Mod+Shift+B".action.spawn = [ "brave" ];
+      "Mod+Shift+B".action.spawn = [ "zen-browser" ];
       "Mod+E".action.spawn = [ "nautilus" ];
       "Mod+A".action.spawn = [ "pavucontrol" ];
 
