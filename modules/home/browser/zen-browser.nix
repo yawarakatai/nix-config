@@ -1,15 +1,11 @@
-{ pkgs, inputs, }:
+{ inputs, ... }:
 
 {
-  home.packages = [
-    inputs.zen-browser.packages.${pkgs.system}.default
+  imports = [
+    inputs.zen-browser.homeModules.beta
   ];
 
   programs.zen-browser = {
     enable = true;
   };
-
-  # home.packages = [
-  #   inputs.zen-browser.packages.${pkgs.system}.default
-  # ];
 }
