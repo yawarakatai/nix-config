@@ -1,4 +1,4 @@
-{ config, pkgs, theme, inputs, ... }:
+{ theme, inputs, ... }:
 let
   vicinaeTheme = theme: ''
     [meta]
@@ -32,7 +32,14 @@ in
 
   services.vicinae = {
     enable = true;
-    autoStart = true;
+
+    systemd = {
+      enable = true; # default: false
+      autoStart = true; # default: false
+      environment = {
+        USE_LAYER_SHELL = 1;
+      };
+    };
 
     settings = {
       # Favicon service
