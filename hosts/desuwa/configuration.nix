@@ -71,11 +71,19 @@
     __GL_THREADED_OPTIMIZATION = "1";
   };
 
-  environment.systemPackages = with pkgs; [
-    davinci-resolve
-  ];
+  # Those are for when Davinci Resolve won't work well
+  # environment.systemPackages = with pkgs; [
+  #   ocl-icd
+  # ];
 
-  hardware.graphics.enable = true;
+  # hardware.graphics = {
+  #   enable = true;
+  #   extraPackages = with pkgs; [
+  #     nvidia-vaapi-driver
+  #     ocl-icd
+  #     opencl-headers
+  #   ];
+  # };
 
   # Host-specific Nix settings (extends base.nix)
   nix.settings = { };
