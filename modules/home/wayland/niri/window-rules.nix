@@ -45,6 +45,15 @@
       open-floating = true;
     }
 
+    # Davinci Resolve
+    {
+      matches = [
+        { title = "Project Manager"; }
+        { app-id = "resolve"; }
+      ];
+      open-floating = true;
+    }
+
     # Bevy game window
     {
       matches = [
