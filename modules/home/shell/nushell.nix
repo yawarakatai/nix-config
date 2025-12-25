@@ -105,7 +105,7 @@
             mode: [emacs vi_normal vi_insert]
             event: {
               send: ExecuteHostCommand
-              cmd: "let proc = (ps | select pid name | sk | str trim | split row ' ' | first); if ($proc | is-not-empty) { kill $proc }"
+              cmd: "let proc = (ps | each { |p| $\"($p.pid) ($p.name)\" } | sk | str trim | split row ' ' | first); if ($proc | is-not-empty) { kill ($proc | into int) }"
             }
           }
         ]
