@@ -49,7 +49,7 @@
       # "Mod+Space".action.spawn = [ "alacritty" "--class" "floating-term" ];
       "Mod+Return".action.spawn = [ "alacritty" ];
       "Mod+B".action.spawn = [ "firefox" ];
-      "Mod+Shift+B".action.spawn = [ "zen-browser" ];
+      "Mod+Shift+B".action.spawn = [ "zen" ];
       "Mod+E".action.spawn = [ "nautilus" ];
       "Mod+A".action.spawn = [ "pavucontrol" ];
 
