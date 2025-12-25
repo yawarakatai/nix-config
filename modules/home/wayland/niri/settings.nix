@@ -104,6 +104,14 @@
       workspace-shadow.enable = false;
     };
 
+    xwayland-satellite = {
+      path = "xwayland-satellite";
+    };
+
+    hotkey-overlay = {
+      skip-at-startup = true;
+      hide-not-bound = true;
+    };
     # Animations
     animations = {
       enable = true;
