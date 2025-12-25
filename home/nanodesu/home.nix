@@ -1,6 +1,6 @@
 { vars, pkgs, inputs, ... }:
 let
-  juice_path =
+  juice-path =
     inputs.juice.packages.${pkgs.stdenv.hostPlatform.system}.default;
 in
 {
@@ -21,7 +21,7 @@ in
 
     libreoffice-qt
 
-    juice_path
+    juice-path
   ];
 
   systemd.user.services.juice-daemon = {
@@ -31,7 +31,7 @@ in
     };
     Service = {
       Type = "simple";
-      ExecStart = "${juice_path}/bin/juice daemon";
+      ExecStart = "${juice-path}/bin/juice daemon";
       # ExecStart = "%h/.cargo/bin/juice daemon";
       Restart = "on-failure";
       RestartSec = 30;
