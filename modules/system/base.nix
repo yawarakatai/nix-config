@@ -12,12 +12,14 @@
     usbutils
   ];
 
+  virtualisation.docker.enable = true;
+
   users = {
     mutableUsers = false;
     users.${vars.username} = {
       isNormalUser = true;
       description = vars.username;
-      extraGroups = [ "networkmanager" "wheel" "video" "audio" "plugdev" ];
+      extraGroups = [ "networkmanager" "wheel" "video" "audio" "plugdev" "docker" ];
       shell = pkgs.nushell;
     };
     users.root.hashedPassword = "!"; # Disable root login
