@@ -53,6 +53,44 @@
       "Mod+E".action.spawn = [ "nautilus" ];
       "Mod+A".action.spawn = [ "pavucontrol" ];
 
+      # Substitution of waybar
+      # 
+      # binds.nix の sh = spawn: の定義の後に追加
+      "Mod+T".action.spawn = sh ''
+        notify-send -t 3000 "$(date '+%H:%M')" "$(date '+%A, %B %d, %Y')\nWeek $(date '+%V')"
+      '';
+
+      "Mod+N".action.spawn = sh ''
+        wifi_info=$(nmcli -t -f active,ssid,signal dev wifi | grep '^yes' | cut -d: -f2,3)
+        if [ -n "$wifi_info" ]; then
+          ssid=$(echo "$wifi_info" | cut -d: -f1)
+          signal=$(echo "$wifi_info" | cut -d: -f2)
+          ip=$(ip -4 addr show wlan0 2>/dev/null | grep -oP '(?<=inet\s)\d+(\.\d+){3}' | head -1)
+          notify-send -t 3000 "󰤨 $ssid" "Signal: $signal%\nIP: ''${ip:-N/A}"
+        else
+          eth_ip=$(ip -4 addr show enp* 2>/dev/null | grep -oP '(?<=inet\s)\d+(\.\d+){3}' | head -1)
+          if [ -n "$eth_ip" ]; then
+            notify-send -t 3000 "󰈀 Ethernet" "IP: $eth_ip"
+          else
+            notify-send -t 3000 "󰤭 Disconnected" "No network connection"
+          fi
+        fi
+      '';
+
+      "Mod+S".action.spawn = sh ''
+        bat_cap=$(cat /sys/class/power_supply/BAT*/capacity 2>/dev/null | head -1)
+        bat_status=$(cat /sys/class/power_supply/BAT*/status 2>/dev/null | head -1)
+        vol=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ 2>/dev/null | awk '{print int($2*100)}')
+        muted=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ 2>/dev/null | grep -q MUTED && echo " (muted)" || echo "")
+        bright=$(brightnessctl -m 2>/dev/null | cut -d, -f4 | tr -d '%')
+  
+        if [ -n "$bat_cap" ]; then
+          bat_icon=$([ "$bat_status" = "Charging" ] && echo "󰂄" || echo "󰁹")
+          notify-send -t 3000 "$bat_icon Battery: $bat_cap%" "Volume: $vol%$muted\nBrightness: ''${bright:-N/A}%"
+        else
+          notify-send -t 3000 "󰕾 Volume: $vol%$muted" "Brightness: ''${bright:-N/A}%"
+        fi
+      '';
       # Screenshot
       "Mod+P".action.spawn = sh "f=~/screenshot-$(date +%Y%m%d-%H%M%S).png && grim \"$f\" && notify-send -u low 'Screenshot' \"Saved to $f\"";
       "Mod+Shift+P".action.spawn = sh "f=~/screenshot-$(date +%Y%m%d-%H%M%S).png && grim -g \"$(slurp)\" \"$f\" && notify-send -u low 'Screenshot' \"Saved to $f\"";
