@@ -4,6 +4,11 @@
   # NVIDIA driver configuration
   services.xserver.videoDrivers = [ "nvidia" ];
 
+  # Blacklist nouveau completely
+  boot.blacklistedKernelModules = [ "nouveau" "nova" ];
+
+  boot.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
+
   hardware = {
     # Enable OpenGL
     graphics = {
@@ -58,5 +63,7 @@
   boot.kernelParams = [
     "nvidia-drm.modeset=1"
     "nvidia-drm.fbdev=1"
+    "modprobe.blacklist=nouveau,nova"
   ];
+
 }
