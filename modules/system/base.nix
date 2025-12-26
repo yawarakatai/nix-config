@@ -1,5 +1,4 @@
-# Shared base system configuration
-{ pkgs, vars, ... }:
+{ lib, config, pkgs, vars, ... }:
 
 {
   environment.systemPackages = with pkgs; [
@@ -12,14 +11,14 @@
     usbutils
   ];
 
-  virtualisation.docker.enable = true;
+  virtualisation.docker.enable = false;
 
   users = {
     mutableUsers = false;
     users.${vars.username} = {
       isNormalUser = true;
       description = vars.username;
-      extraGroups = [ "networkmanager" "wheel" "video" "audio" "plugdev" "docker" ];
+      extraGroups = [ "networkmanager" "wheel" "video" "audio" "plugdev" ] ++ lib.optional config.virtualisation.docker.enable "docker";
       shell = pkgs.nushell;
     };
     users.root.hashedPassword = "!"; # Disable root login
