@@ -104,9 +104,9 @@
       workspace-shadow.enable = false;
     };
 
-    xwayland-satellite = {
-      path = "xwayland-satellite";
-    };
+    # xwayland-satellite = {
+    #   path = "xwayland-satellite";
+    # };
 
     hotkey-overlay = {
       skip-at-startup = true;
