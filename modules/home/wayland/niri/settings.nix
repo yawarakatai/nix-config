@@ -1,4 +1,4 @@
-{ lib, theme, vars, ... }:
+{ pkgs, lib, theme, vars, ... }:
 
 {
   programs.niri.settings = {
@@ -104,9 +104,9 @@
       workspace-shadow.enable = false;
     };
 
-    # xwayland-satellite = {
-    #   path = "xwayland-satellite";
-    # };
+    xwayland-satellite = {
+      path = "${pkgs.xwayland-satellite}/bin/xwayland-satellite";
+    };
 
     hotkey-overlay = {
       skip-at-startup = true;
