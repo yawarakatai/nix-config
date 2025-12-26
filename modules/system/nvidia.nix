@@ -1,4 +1,4 @@
-{ config, pkgs, lib, vars, ... }:
+{ config, pkgs, ... }:
 
 {
   # NVIDIA driver configuration
@@ -60,10 +60,6 @@
   };
 
   # Kernel parameters for NVIDIA
-  boot.kernelParams = [
-    "nvidia-drm.modeset=1"
-    "nvidia-drm.fbdev=1"
-    "modprobe.blacklist=nouveau,nova"
-  ];
+  boot.kernelParams = [ ];
 
 }
