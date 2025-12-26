@@ -9,6 +9,7 @@
     kernelParams = [
       "quiet"
       "splash"
+      "nowatchdog"
     ];
 
     # Boot loader
