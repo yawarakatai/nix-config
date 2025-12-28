@@ -36,9 +36,6 @@
     };
   };
 
-  # Wallpaper (do not use relative path - Nix will copy to store)
-  wallpaperPath = "/home/yawarakatai/.config/nix-config/wallpapers/bg.png";
-
   # Storage
   mainDisk = "/dev/nvme0n1"; # 512GB NVMe SSD
 
