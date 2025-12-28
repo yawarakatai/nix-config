@@ -46,8 +46,6 @@
         mem_as_value = true;
         tree = true;
       };
-
-      # Colors - will be configured by stylix
     };
   };
 }

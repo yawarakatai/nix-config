@@ -22,8 +22,6 @@
       };
     };
 
-    # Theme - will be configured by stylix
-
     keymap = {
       mgr.prepend_keymap = [
         { on = [ "<Esc>" ]; run = "escape"; desc = "Exit visual mode, clear selected, or cancel search"; }

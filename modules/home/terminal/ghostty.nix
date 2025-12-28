@@ -6,10 +6,8 @@
     enable = true;
 
     settings = {
-      # Theme - will be configured by stylix
       background-opacity = uiSettings.opacity.terminal;
 
-      # Font configuration - will be configured by stylix
       font-feature = [
         "-calt" # Disable ligatures
         "-liga"

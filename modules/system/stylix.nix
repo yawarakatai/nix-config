@@ -17,7 +17,6 @@ in
     # To generate theme FROM wallpaper instead, remove base16Scheme line
     base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
 
-    # Wallpaper (generated solid color)
     image = wallpaper;
 
     # Polarity for the theme

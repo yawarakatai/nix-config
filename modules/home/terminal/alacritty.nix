@@ -5,8 +5,6 @@
     enable = true;
 
     settings = {
-      # Font configuration - will be configured by stylix
-
       # Window configuration
       window = {
         padding = {
@@ -34,8 +32,6 @@
       mouse = {
         hide_when_typing = true;
       };
-
-      # Colors - will be configured by stylix
 
       # Key bindings
       keyboard.bindings = [

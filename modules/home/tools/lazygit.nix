@@ -6,9 +6,6 @@
 
     settings = {
       gui = {
-        # Theme - will be configured by stylix
-
-        # UI settings
         showFileTree = true;
         showListFooter = true;
         showRandomTip = false;

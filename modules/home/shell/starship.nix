@@ -10,10 +10,7 @@
       format = "$username$hostname$directory$git_branch$git_status$nix_shell$character";
       right_format = "$cmd_duration$time";
 
-      # Timeout
       command_timeout = 1000;
-
-      # Palette - will be configured by stylix
 
       # Character
       character = {
