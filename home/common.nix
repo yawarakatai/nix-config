@@ -1,11 +1,11 @@
 { config, vars, inputs, ... }:
 
 let
-  theme = import ../modules/home/themes/under-construction.nix { inherit vars; };
+  uiSettings = import ../modules/home/themes/ui-settings.nix;
 in
 {
-  # Make theme available to all modules
-  _module.args.theme = theme;
+  # Make UI settings available to all modules
+  _module.args.uiSettings = uiSettings;
 
   # Import all home modules
   imports = [

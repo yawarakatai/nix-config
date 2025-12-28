@@ -1,25 +1,13 @@
-{ config, pkgs, theme, ... }:
+{ config, pkgs, ... }:
 
 {
   programs.lazygit = {
     enable = true;
-    
+
     settings = {
       gui = {
-        # Theme
-        theme = {
-          lightTheme = false;
-          activeBorderColor = [ theme.semantic.variable "bold" ];
-          inactiveBorderColor = [ theme.colorScheme.base03 ];
-          optionsTextColor = [ theme.semantic.function ];
-          selectedLineBgColor = [ theme.colorScheme.base02 ];
-          selectedRangeBgColor = [ theme.colorScheme.base02 ];
-          cherryPickedCommitBgColor = [ theme.semantic.info ];
-          cherryPickedCommitFgColor = [ theme.semantic.function ];
-          unstagedChangesColor = [ theme.semantic.error ];
-          defaultFgColor = [ theme.colorScheme.base05 ];
-        };
-        
+        # Theme - will be configured by stylix
+
         # UI settings
         showFileTree = true;
         showListFooter = true;
@@ -27,7 +15,7 @@
         showCommandLog = false;
         nerdFontsVersion = "3";
       };
-      
+
       git = {
         pagers = [
           {
@@ -45,7 +33,7 @@
           args = "";
         };
       };
-      
+
       # Keybindings
       keybinding = {
         universal = {
@@ -115,7 +103,7 @@
       };
     };
   };
-  
+
   # Install delta for better diffs
   home.packages = with pkgs; [
     delta

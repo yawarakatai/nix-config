@@ -1,4 +1,4 @@
-{ config, pkgs, theme, vars, ... }:
+{ config, pkgs, uiSettings, vars, ... }:
 
 {
   programs.waybar = {
@@ -41,34 +41,9 @@
             mode-mon-col = 3;
             weeks-pos = "right";
             on-scroll = 1;
-            format = {
-              months = "<span color='${theme.colorScheme.base07}'><b>{}</b></span>";
-              days = "<span color='${theme.colorScheme.base05}'>{}</span>";
-              # weeks = "<span color='${theme.colorScheme.base04}'><b>W{}</b></span>";
-              weekdays = "<span color='${theme.colorScheme.base05}'><b>{}</b></span>";
-              today = "<span color='${theme.colorScheme.base07}'><b><u>{}</u></b></span>";
-            };
+            # Colors will be configured by stylix
           };
         };
-
-        # cpu = {
-        #   format = "CPU {usage}%";
-        #   tooltip = true;
-        #   interval = 2;
-        # };
-
-        # memory = {
-        #   format = "RAM {percentage}%";
-        #   tooltip-format = "RAM: {used:0.1f}G / {total:0.1f}G\nSwap: {swapUsed:0.1f}G / {swapTotal:0.1f}G";
-        #   interval = 2;
-        # };
-
-        # temperature = {
-        #   critical-threshold = 80;
-        #   format = "{temperatureC}°C";
-        #   format-critical = "{temperatureC}°C ";
-        #   interval = 2;
-        # };
 
         network = {
           format-wifi = "{icon}";
@@ -120,19 +95,16 @@
       };
     };
 
+    # Style - colors/fonts will be configured by stylix
     style = ''
       * {
         border: none;
         border-radius: 0;
-        font-family: ${theme.font.family};
-        font-size: ${toString theme.font.size}px;
         min-height: 0;
       }
 
       window#waybar {
-        background-color: ${theme.colorScheme.base00};
-        opacity: ${toString theme.opacity.bar};
-        color: ${theme.colorScheme.base07};
+        opacity: ${toString uiSettings.opacity.bar};
       }
 
       /* Workspaces - Horizontal indicators */
@@ -143,7 +115,6 @@
       #workspaces button {
         padding: 0 8px;
         background-color: transparent;
-        color: ${theme.colorScheme.base03};
         border: none;
         border-bottom: 2px solid transparent;
         margin: 0 2px;
@@ -151,28 +122,14 @@
         transition: all 0.2s ease;
       }
 
-      #workspaces button.active {
-        color: ${theme.colorScheme.base07};
-        border-bottom: 2px solid ${theme.colorScheme.base07};
-        background-color: ${theme.colorScheme.base02};
-      }
-
-      #workspaces button.urgent {
-        color: ${theme.colorScheme.base05};
-        border-bottom: 2px solid ${theme.colorScheme.base05};
-        animation: blink 1s linear infinite;
-      }
-
       /* Window title */
       #window {
         padding: 0 12px;
-        color: ${theme.colorScheme.base05};
       }
 
       /* Clock */
       #clock {
         padding: 0 12px;
-        color: ${theme.colorScheme.base07};
         font-weight: bold;
       }
 
@@ -185,51 +142,10 @@
         background-color: transparent;
         margin: 0 4px;
         font-size: 16px;
-        color: ${theme.colorScheme.base07};
-        border-left: 1px solid ${theme.colorScheme.base02};
-      }
-
-      #backlight {
-        color: ${theme.colorScheme.base07};
-      }
-
-      #pulseaudio {
-        color: ${theme.colorScheme.base07};
-      }
-
-      #pulseaudio.muted {
-        color: ${theme.colorScheme.base03};
-      }
-
-      #battery {
-        color: ${theme.colorScheme.base07};
-      }
-
-      #battery.warning:not(.charging) {
-        color: ${theme.semantic.warning};
-      }
-
-      #battery.critical:not(.charging) {
-        color: ${theme.semantic.error};
-        animation: blink 1s linear infinite;
-      }
-
-      #battery.charging,
-      #battery.plugged {
-        color: ${theme.semantic.success};
-      }
-
-      #network {
-        color: ${theme.colorScheme.base07};
-      }
-
-      #network.disconnected {
-        color: ${theme.colorScheme.base03};
       }
 
       #tray {
         padding: 0 8px;
-        border-left: 1px solid ${theme.colorScheme.base02};
       }
 
       /* Animations */

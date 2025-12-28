@@ -1,26 +1,21 @@
-{ config, pkgs, theme, ... }:
+{ config, pkgs, uiSettings, ... }:
 
 {
   services.mako = {
     enable = true;
 
     settings = {
-      # Font
-      font = "${theme.font.family} ${toString theme.font.size}";
+      # Font - will be configured by stylix
 
-      # Colors
-      background-color = theme.colorScheme.base00;
-      text-color = theme.colorScheme.base05;
-      border-color = theme.border.activeColor;
-      progress-color = "over ${theme.semantic.variable}";
+      # Colors - will be configured by stylix
 
       # Layout
       width = 400;
       height = 150;
       margin = "16";
       padding = "16";
-      border-size = theme.border.width;
-      border-radius = theme.rounding;
+      border-size = uiSettings.border.width;
+      border-radius = uiSettings.rounding;
 
       # Behavior
       default-timeout = 10000;
@@ -39,21 +34,5 @@
       # Actions
       actions = true;
     };
-
-    # Extra configuration for urgency levels
-    extraConfig = ''
-      [urgency=low]
-      border-color=${theme.semantic.info}
-      default-timeout=3000
-
-      [urgency=normal]
-      border-color=${theme.semantic.warning}
-      default-timeout=5000
-
-      [urgency=critical]
-      border-color=${theme.semantic.error}
-      default-timeout=0
-      ignore-timeout=1
-    '';
   };
 }

@@ -1,4 +1,4 @@
-{ pkgs, lib, theme, vars, ... }:
+{ pkgs, lib, uiSettings, vars, ... }:
 
 {
   programs.niri.settings = {
@@ -65,14 +65,13 @@
     layout = {
       always-center-single-column = true;
 
-      background-color = theme.colorScheme.base00;
+      # background-color - will be configured by stylix
 
-      gaps = theme.gaps.inner;
+      gaps = uiSettings.gaps.inner;
       border = {
-        enable = theme.border.enable;
-        width = theme.border.width;
-        active.color = theme.border.activeColor;
-        inactive.color = theme.border.inactiveColor;
+        enable = uiSettings.border.enable;
+        width = uiSettings.border.width;
+        # Border colors - will be configured by stylix
       };
       focus-ring.enable = false;
 
@@ -100,7 +99,7 @@
     };
 
     overview = {
-      backdrop-color = theme.colorScheme.base00;
+      # backdrop-color - will be configured by stylix
       workspace-shadow.enable = false;
     };
 

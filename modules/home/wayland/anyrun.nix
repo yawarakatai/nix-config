@@ -1,6 +1,6 @@
 { config
 , pkgs
-, theme
+, uiSettings
 , ...
 }:
 
@@ -38,70 +38,33 @@
       maxEntries = 10;
     };
 
-    # Custom CSS styling following theme
+    # Custom CSS styling - colors/fonts will be configured by stylix
     extraCss = ''
-      * {
-        font-family: ${theme.font.family};
-        font-size: ${toString theme.font.size}px;
-      }
-
       #window {
-        background-color: ${theme.colorScheme.base00};
-        border: ${toString theme.border.width}px solid ${theme.border.activeColor};
-        border-radius: ${toString theme.rounding}px;
+        border: ${toString uiSettings.border.width}px solid;
+        border-radius: ${toString uiSettings.rounding}px;
       }
 
       #entry {
-        background-color: ${theme.colorScheme.base00};
-        color: ${theme.colorScheme.base05};
         border: none;
-        border-radius: ${toString theme.rounding}px;
+        border-radius: ${toString uiSettings.rounding}px;
         padding: 8px;
         margin: 8px;
       }
 
       #match {
-        background-color: transparent;
-        color: ${theme.colorScheme.base05};
         padding: 8px;
         margin: 4px 8px;
-        border-radius: ${toString theme.rounding}px;
+        border-radius: ${toString uiSettings.rounding}px;
       }
 
       #match:selected {
-        background-color: ${theme.colorScheme.base02};
-        color: ${theme.semantic.variable};
-        border: ${toString theme.border.width}px solid ${theme.border.activeColor};
-      }
-
-      #match:hover {
-        background-color: ${theme.colorScheme.base01};
+        border: ${toString uiSettings.border.width}px solid;
       }
 
       #plugin {
-        background-color: transparent;
-        color: ${theme.semantic.keyword};
         padding: 4px 8px;
         margin: 4px 8px;
-      }
-
-      list > #match:selected {
-        background-color: ${theme.colorScheme.base02};
-        color: ${theme.semantic.variable};
-      }
-
-      list > #match {
-        background-color: transparent;
-      }
-
-      #match-title {
-        color: ${theme.colorScheme.base05};
-        font-weight: bold;
-      }
-
-      #match-desc {
-        color: ${theme.colorScheme.base04};
-        font-size: ${toString (theme.font.size - 2)}px;
       }
     '';
 
