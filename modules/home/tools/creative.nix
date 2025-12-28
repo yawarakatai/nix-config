@@ -5,11 +5,11 @@
     # Game Development
     godot
 
+    # 3D modering
+    blender
+
     # PCB design
     kicad
-
-    # 3D printing
-    bambu-studio
 
     # Video editing
     davinci-resolve
