@@ -1,4 +1,4 @@
-{ config, pkgs, vars, ... }:
+{ pkgs, ... }:
 
 {
   # Logiops for Logitech device configuration (MX Master 3s)
@@ -36,55 +36,55 @@
       # Button configuration
       buttons: (
 
-        # 0x52 - Middle button - Browser controls
-        {
-          cid: 0x52;
-          action: {
-            type: "Gestures";
-            gestures: (
-              {
-                direction: "None";
-                mode: "OnRelease";
-                action: {
-                  type: "Keypress";
-                  keys: ["BTN_MIDDLE"];
-                };
-              },
-              {
-                direction: "Up";
-                mode: "OnRelease";
-                action: {
-                  type: "Keypress";
-                  keys: ["KEY_LEFTCTRL", "KEY_T"];
-                };
-              },
-              {
-                direction: "Down";
-                mode: "OnRelease";
-                action: {
-                  type: "Keypress";
-                  keys: ["KEY_LEFTCTRL", "KEY_W"];
-                };
-              },
-              {
-                direction: "Left";
-                mode: "OnRelease";
-                action: {
-                  type: "Keypress";
-                  keys: ["KEY_LEFTALT", "KEY_LEFT"];
-                };
-              },
-              {
-                direction: "Right";
-                mode: "OnRelease";
-                action: {
-                  type: "Keypress";
-                  keys: ["KEY_LEFTALT", "KEY_RIGHT"];
-                };
-              }
-            );
-          };
-        },
+      # 0x52 - Middle button - Browser controls
+        # {
+        #   cid: 0x52;
+        #   action: {
+        #     type: "Gestures";
+        #     gestures: (
+        #       {
+        #         direction: "None";
+        #         mode: "OnRelease";
+        #         action: {
+        #           type: "Keypress";
+        #           keys: ["BTN_MIDDLE"];
+        #         };
+        #       },
+        #       {
+        #         direction: "Up";
+        #         mode: "OnRelease";
+        #         action: {
+        #           type: "Keypress";
+        #           keys: ["KEY_LEFTCTRL", "KEY_T"];
+        #         };
+        #       },
+        #       {
+        #         direction: "Down";
+        #         mode: "OnRelease";
+        #         action: {
+        #           type: "Keypress";
+        #           keys: ["KEY_LEFTCTRL", "KEY_W"];
+        #         };
+        #       },
+        #       {
+        #         direction: "Left";
+        #         mode: "OnRelease";
+        #         action: {
+        #           type: "Keypress";
+        #           keys: ["KEY_LEFTALT", "KEY_LEFT"];
+        #         };
+        #       },
+        #       {
+        #         direction: "Right";
+        #         mode: "OnRelease";
+        #         action: {
+        #           type: "Keypress";
+        #           keys: ["KEY_LEFTALT", "KEY_RIGHT"];
+        #         };
+        #       }
+        #     );
+        #   };
+        # },
 
         # 0x56 - Forward button - Work shortcuts
         {
