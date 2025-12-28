@@ -1,4 +1,4 @@
-{ pkgs, theme, ... }:
+{ pkgs, ... }:
 
 let
   ocp-cad-viewer = pkgs.vscode-utils.buildVscodeMarketplaceExtension {
@@ -16,9 +16,7 @@ in
     package = pkgs.vscode; # Use vscode (proprietary) for full extension support
     profiles.default = {
       userSettings = {
-        # Editor settings
-        "editor.fontFamily" = "'${theme.font.name}', '${theme.font.nameCJK}'";
-        "editor.fontSize" = theme.font.size;
+        # Editor settings - fonts will be configured by stylix
         "editor.fontLigatures" = true;
         "editor.cursorBlinking" = "smooth";
         "editor.cursorSmoothCaretAnimation" = "on";
@@ -31,16 +29,13 @@ in
         "editor.suggest.preview" = true;
         "editor.formatOnSave" = true;
 
-        # Workbench
-        "workbench.colorTheme" = "GitHub Dark Default";
+        # Workbench - colorTheme managed by stylix
         "workbench.iconTheme" = "material-icon-theme";
         "workbench.startupEditor" = "none";
         "workbench.tree.indent" = 16;
         "workbench.activityBar.location" = "default";
 
-        # Terminal
-        "terminal.integrated.fontFamily" = "'${theme.font.name}'";
-        "terminal.integrated.fontSize" = theme.font.size;
+        # Terminal - fonts will be configured by stylix
         "terminal.integrated.cursorBlinking" = true;
         "terminal.integrated.defaultProfile.linux" = "nushell";
         "terminal.integrated.profiles.linux" = {

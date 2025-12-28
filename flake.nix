@@ -36,7 +36,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    vicinae.url = "github:vicinaehq/vicinae";
+    vicinae = {
+      url = "github:vicinaehq/vicinae";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     juice.url = "github:yawarakatai/juice";
   };
@@ -53,6 +61,13 @@
           modules = [
             { nixpkgs.overlays = import ./overlays; }
             { nixpkgs.hostPlatform = vars.system; }
+
+            # Stylix theming
+            inputs.stylix.nixosModules.stylix
+            ./modules/system/stylix.nix
+
+            # Niri compositor
+            inputs.niri.nixosModules.niri
 
             # Host-specific configuration (imports its own modules)
             ./hosts/${hostname}/configuration.nix

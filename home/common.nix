@@ -1,17 +1,15 @@
 { config, vars, inputs, ... }:
 
 let
-  theme = import ../modules/home/themes/under-construction.nix { inherit vars; };
+  uiSettings = import ../modules/home/themes/ui-settings.nix;
 in
 {
-  # Make theme available to all modules
-  _module.args.theme = theme;
+  # Make UI settings available to all modules
+  _module.args.uiSettings = uiSettings;
 
   # Import all home modules
+  # Note: niri home module is auto-imported by the NixOS module in flake.nix
   imports = [
-    # Niri compositor
-    inputs.niri.homeModules.niri
-
     # Common packages
     ../modules/home/common-packages.nix
 
@@ -47,9 +45,16 @@ in
     # File sharing
     ../modules/home/tools/syncthing.nix
 
+    # Apps
+    ../modules/home/apps/spicetify.nix
+
     # Themes
     ../modules/home/themes/gtk-theme.nix
   ];
+
+  # Stylix browser theming
+  stylix.targets.firefox.profileNames = [ "default" ];
+  stylix.targets.zen-browser.profileNames = [ "default" ];
 
   systemd.user.sessionVariables = {
     XMODIFIERS = "@im=fcitx";

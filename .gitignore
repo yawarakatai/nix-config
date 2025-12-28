@@ -6,9 +6,6 @@ result-*
 # Uncomment if you want to regenerate on each machine:
 # hosts/*/hardware-configuration.nix
 
-# Background images moved 
-wallpapers/
-
 # Secrets - NEVER commit unencrypted secrets
 secrets/*.key
 secrets/*.pem

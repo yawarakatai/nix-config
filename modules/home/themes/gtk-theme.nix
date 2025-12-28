@@ -1,30 +1,15 @@
-{ pkgs, theme, ... }:
+# GTK configuration
+# Theme and cursor are managed by stylix
+{ pkgs, ... }:
 
 {
   gtk = {
     enable = true;
 
-    theme = {
-      name = "Colloid-Grey-Dark";
-      package = pkgs.colloid-gtk-theme.override {
-        themeVariants = [ "grey" ];
-        colorVariants = [ "dark" ];
-        sizeVariants = [ "standard" ];
-        tweaks = [ "black" "rimless" "normal" ];
-      };
-    };
-
+    # Icon theme (not managed by stylix)
     iconTheme = {
-      name = "Colloid-Grey";
-      package = pkgs.colloid-icon-theme.override {
-        colorVariants = [ "grey" ];
-      };
-    };
-
-    cursorTheme = {
-      name = "graphite-dark";
-      package = pkgs.graphite-cursors;
-      size = 24;
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
     };
 
     gtk3.extraConfig = {
