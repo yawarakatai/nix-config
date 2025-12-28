@@ -39,13 +39,22 @@
         browser = {
           search.region = "JP";
 
-          urlbar.suggest = {
-            clipboard = false;
-            engines = false;
-            history = false;
-            openpage = false;
-            recentsearches = false;
+          urlbar = {
+            placeholderName.private = "DuckDuckGo";
+            suggest = {
+              clipboard = false;
+              engines = false;
+              history = false;
+              openpage = false;
+              recentsearches = false;
+            };
           };
+        };
+
+        dom = {
+          forms.autocomplete.formautofill = false;
+          security.https_only_mode = true;
+          security.https_only_mode_ever_enable = true;
         };
 
         network.trr = {
@@ -74,11 +83,25 @@
         };
       };
 
-
       search = {
         force = true;
-        default = "google";
+        default = "brave";
         engines = {
+          brave = {
+            name = "Brave Search";
+            urls = [
+              {
+                template = "https://search.brave.com/search?q={searchTerms}";
+                params = [
+                  {
+                    name = "query";
+                    value = "searchTerms";
+                  }
+                ];
+              }
+            ];
+            definedAliases = [ "@brave" ];
+          };
           mynixos = {
             name = "My NixOS";
             urls = [
@@ -94,22 +117,6 @@
             ];
             icon = "${pkgs.nixos-icons}/share//icons/hicolor/scalable/apps/nix-snowflake.svg";
             definedAliases = [ "@nx" ]; # Keep in mind that aliases defined here only work if they start with "@"
-          };
-
-          youtube = {
-            name = "Youtube";
-            urls = [
-              {
-                template = "https://www.youtube.com/results?search_query={searchTerms}";
-                params = [
-                  {
-                    name = "query";
-                    value = "searchTerms";
-                  }
-                ];
-              }
-            ];
-            definedAliases = [ ";" ];
           };
         };
       };
