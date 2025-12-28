@@ -38,7 +38,6 @@
       maxEntries = 10;
     };
 
-    # Custom CSS styling - colors/fonts will be configured by stylix
     extraCss = ''
       #window {
         border: ${toString uiSettings.border.width}px solid;

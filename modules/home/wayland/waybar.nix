@@ -41,7 +41,6 @@
             mode-mon-col = 3;
             weeks-pos = "right";
             on-scroll = 1;
-            # Colors will be configured by stylix
           };
         };
 
@@ -95,7 +94,6 @@
       };
     };
 
-    # Style - colors/fonts will be configured by stylix
     style = ''
       * {
         border: none;

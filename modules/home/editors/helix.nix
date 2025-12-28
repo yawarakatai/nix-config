@@ -29,8 +29,6 @@
     enable = true;
 
     settings = {
-      # Theme - will be configured by stylix
-
       editor = {
         line-number = "relative";
         mouse = true;

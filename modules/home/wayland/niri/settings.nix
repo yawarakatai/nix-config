@@ -65,13 +65,10 @@
     layout = {
       always-center-single-column = true;
 
-      # background-color - will be configured by stylix
-
       gaps = uiSettings.gaps.inner;
       border = {
         enable = uiSettings.border.enable;
         width = uiSettings.border.width;
-        # Border colors - will be configured by stylix
       };
       focus-ring.enable = false;
 
@@ -99,7 +96,6 @@
     };
 
     overview = {
-      # backdrop-color - will be configured by stylix
       workspace-shadow.enable = false;
     };
 

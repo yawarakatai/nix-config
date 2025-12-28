@@ -5,10 +5,6 @@
     enable = true;
 
     settings = {
-      # Font - will be configured by stylix
-
-      # Colors - will be configured by stylix
-
       # Layout
       width = 400;
       height = 150;
