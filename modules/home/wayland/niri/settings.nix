@@ -56,6 +56,19 @@
       };
     };
 
+    window-rules = lib.mkBefore [
+      {
+        draw-border-with-background = false;
+        geometry-corner-radius = {
+          top-left = uiSettings.rounding;
+          top-right = uiSettings.rounding;
+          bottom-left = uiSettings.rounding;
+          bottom-right = uiSettings.rounding;
+        };
+        clip-to-geometry = true;
+      }
+    ];
+
     # Mouse Cursor configuration
     cursor = {
       theme = "graphite-dark";

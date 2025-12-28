@@ -22,5 +22,6 @@
   };
 
   # Corner rounding
-  rounding = 0; # Sharp corners for minimal look
+  # The data type of this value must be float
+  rounding = 20.0;
 }
