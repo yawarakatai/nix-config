@@ -1,4 +1,4 @@
-{ config, pkgs, uiSettings, ... }:
+{ pkgs, uiSettings, ... }:
 
 {
   services.mako = {
