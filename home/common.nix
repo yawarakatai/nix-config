@@ -8,10 +8,8 @@ in
   _module.args.uiSettings = uiSettings;
 
   # Import all home modules
+  # Note: niri home module is auto-imported by the NixOS module in flake.nix
   imports = [
-    # Niri compositor
-    inputs.niri.homeModules.niri
-
     # Common packages
     ../modules/home/common-packages.nix
 
