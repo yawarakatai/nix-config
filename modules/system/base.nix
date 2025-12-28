@@ -1,6 +1,19 @@
-{ lib, config, pkgs, vars, ... }:
+{ lib, inputs, config, pkgs, vars, ... }:
 
 {
+  imports = [
+    # Core system modules
+    ../../modules/system/boot.nix
+    ../../modules/system/greetd.nix
+    ../../modules/system/networking.nix
+    ../../modules/system/locale.nix
+    ../../modules/system/zram.nix
+    ../../modules/system/storage.nix
+    ../../modules/system/yubikey.nix
+    ../../modules/system/audio.nix
+    ../../modules/system/wayland.nix
+  ];
+
   environment.systemPackages = with pkgs; [
     vim
     git
@@ -11,7 +24,8 @@
     usbutils
   ];
 
-  virtualisation.docker.enable = false;
+  # Hostname
+  networking.hostName = vars.hostname;
 
   users = {
     mutableUsers = false;
@@ -49,34 +63,6 @@
     '';
   };
 
-  # TTY session for greeter fallback
-  environment.etc."greetd/sessions/tty.desktop".text = ''
-    [Desktop Entry]
-    Name=TTY
-    Comment=Drop to shell
-    Exec=${pkgs.bashInteractive}/bin/bash
-    Type=Application
-  '';
-
-  services.greetd = {
-    enable = true;
-    settings.default_session = {
-      command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-session --sessions /etc/greetd/sessions:/run/current-system/sw/share/wayland-sessions";
-      user = "greeter";
-    };
-  };
-
-  programs.niri.enable = true;
-
-  programs.nh = {
-    enable = true;
-    clean = {
-      enable = true;
-      extraArgs = "--keep-since 4d --keep 3";
-    };
-    flake = "/home/${vars.username}/.config/nix-config";
-  };
-
   services.openssh = {
     enable = false;
     settings = {
@@ -87,12 +73,28 @@
 
   services.gvfs.enable = true;
 
+  programs.niri = {
+    enable = true;
+    package = inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.niri-unstable;
+  };
+
+  programs.nh = {
+    enable = true;
+    clean = {
+      enable = true;
+      extraArgs = "--keep-since 4d --keep 3";
+    };
+    flake = "/home/${vars.username}/.config/nix-config";
+  };
+
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
   };
 
   programs.dconf.enable = true;
+
   programs.xwayland.enable = true;
+
   nixpkgs.config.allowUnfree = true;
 }
