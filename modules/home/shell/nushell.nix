@@ -30,6 +30,8 @@
       PAGER = "cat";
     };
 
+
+    # Install nu_plugin_skim
     # Main nushell configuration
     extraConfig = ''
       # Register skim plugin
@@ -111,15 +113,8 @@
         ]
       }
 
-      # Custom commands
-      def ll [...args] { 
-        if ($args | is-empty) {
-          ls -la .
-        } else {
-          ls -la ...$args
-        }
-      }
-
+      # Custom functions
+      # List all files including hidden
       def la [...args] { 
         if ($args | is-empty) {
           ls -a .
@@ -128,23 +123,43 @@
         }
       }
 
-      def lr [...args] {
+      # List all files with detailed information
+      def ll [...args] { 
         if ($args | is-empty) {
-          ls -a **/*
+          ls -la .
         } else {
-          let pattern = $args | str join ","
-          glob $"**/*.{($pattern)}" | each { |f| ls -a $f } | flatten
+          ls -la ...$args
         }
       }
 
-      # Execute program in foreground then close the terminal
+      # List files recursively, optionally filtering by extension
+      def lr [
+        --all (-a) 
+        ...args
+      ] {
+        if ($args | is-empty) {
+          if $all {
+            ls -a **/*
+          } else {
+            ls **/*
+          }
+        } else {
+          let pattern = $args | str join ","
+          glob $"**/*.{($pattern)}" 
+          | where { |f| $all or (not ($f | path basename | str starts-with ".")) }
+          | each { |f| ls $f } 
+          | flatten
+        }
+      }
+
+      # Launch program (detached) and exit terminal
       def run [...args: string] {
         let cmd = $args | str join " "
         ^setsid sh -c $'"($cmd)" </dev/null &>/dev/null &'
         exit
       }
 
-      # Execute program in background then close the terminal
+      # Launch program in background (detached), keep terminal open
       def spawn [...args: string] {
         let cmd = $args | str join " "
         ^setsid sh -c $'"($cmd)" </dev/null &>/dev/null &'
@@ -152,7 +167,6 @@
     '';
   };
 
-  # Install nu_plugin_skim
   home.packages = with pkgs; [
     nushellPlugins.skim
   ];
