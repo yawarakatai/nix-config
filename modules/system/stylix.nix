@@ -4,9 +4,8 @@
 
 let
   wallpaper = pkgs.fetchurl {
-    # Example wallpaper - replace with your preferred URL
-    url = "https://raw.githubusercontent.com/rose-pine/wallpapers/main/rose_pine_shape.png";
-    hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+    url = "https://cdnb.artstation.com/p/assets/images/images/024/049/327/large/rodion-yushmanov-dsc-0198.jpg?1581157890";
+    hash = "sha256-xJyvFH4zyHApiOjYEtgVPSeXz+ghuAIHs1fH8qCy8Z4=";
   };
 in
 {
