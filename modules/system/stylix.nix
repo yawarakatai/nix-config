@@ -1,7 +1,13 @@
 # Stylix theming configuration
 # Provides consistent colors and fonts across all applications
-{ pkgs, vars, ... }:
+{ pkgs, ... }:
 
+let
+  # Generate a simple solid color wallpaper using RosePine base color
+  wallpaper = pkgs.runCommand "wallpaper.png" { buildInputs = [ pkgs.imagemagick ]; } ''
+    magick -size 3840x2160 xc:#191724 $out
+  '';
+in
 {
   stylix = {
     enable = true;
@@ -9,8 +15,8 @@
     # Use RosePine color scheme
     base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
 
-    # Wallpaper (required by stylix)
-    image = vars.wallpaperPath;
+    # Wallpaper (generated solid color)
+    image = wallpaper;
 
     # Polarity for the theme
     polarity = "dark";
