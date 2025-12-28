@@ -77,7 +77,6 @@
       nixosConfigurations = {
         desuwa = mkSystem "desuwa";
         nanodesu = mkSystem "nanodesu";
-        dayo = mkSystem "dayo";
       };
 
       # Development shell for editing configurations
