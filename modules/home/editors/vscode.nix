@@ -29,8 +29,7 @@ in
         "editor.suggest.preview" = true;
         "editor.formatOnSave" = true;
 
-        # Workbench
-        "workbench.colorTheme" = "GitHub Dark Default";
+        # Workbench - colorTheme managed by stylix
         "workbench.iconTheme" = "material-icon-theme";
         "workbench.startupEditor" = "none";
         "workbench.tree.indent" = 16;
