@@ -66,6 +66,9 @@
             inputs.stylix.nixosModules.stylix
             ./modules/system/stylix.nix
 
+            # Niri compositor
+            inputs.niri.nixosModules.niri
+
             # Host-specific configuration (imports its own modules)
             ./hosts/${hostname}/configuration.nix
             ./hosts/${hostname}/hardware-configuration.nix

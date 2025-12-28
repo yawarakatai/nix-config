@@ -49,18 +49,19 @@
     '';
   };
 
+  # TTY session for greeter fallback
+  environment.etc."greetd/sessions/tty.desktop".text = ''
+    [Desktop Entry]
+    Name=TTY
+    Comment=Drop to shell
+    Exec=${pkgs.bashInteractive}/bin/bash
+    Type=Application
+  '';
+
   services.greetd = {
     enable = true;
     settings.default_session = {
-      command = let
-        ttySession = pkgs.writeTextDir "share/wayland-sessions/tty.desktop" ''
-          [Desktop Entry]
-          Name=TTY
-          Comment=Drop to shell
-          Exec=${pkgs.bashInteractive}/bin/bash
-          Type=Application
-        '';
-      in "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-session --sessions ${ttySession}/share/wayland-sessions:/run/current-system/sw/share/wayland-sessions:/run/current-system/sw/share/xsessions";
+      command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-session --sessions /etc/greetd/sessions:/run/current-system/sw/share/wayland-sessions";
       user = "greeter";
     };
   };
