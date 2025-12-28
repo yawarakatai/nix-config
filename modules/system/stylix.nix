@@ -59,11 +59,5 @@
       desktop = 1.0;
       popups = 0.95;
     };
-
-    # Target-specific configuration
-    targets = {
-      # Let applications handle their own theming where stylix integration is incomplete
-      vscode.enable = false;
-    };
   };
 }
