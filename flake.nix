@@ -54,6 +54,10 @@
             { nixpkgs.overlays = import ./overlays; }
             { nixpkgs.hostPlatform = vars.system; }
 
+            # Stylix theming
+            inputs.stylix.nixosModules.stylix
+            ./modules/system/stylix.nix
+
             # Host-specific configuration (imports its own modules)
             ./hosts/${hostname}/configuration.nix
             ./hosts/${hostname}/hardware-configuration.nix
