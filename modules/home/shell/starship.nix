@@ -8,7 +8,6 @@
     settings = {
       # Format
       format = "$username$hostname$directory$git_branch$git_status$nix_shell$character";
-      right_format = "$cmd_duration$time";
 
       command_timeout = 1000;
 
@@ -74,21 +73,6 @@
         format = "[$symbol$state]($style) ";
         impure_msg = "";
         pure_msg = "(pure)";
-      };
-
-      # Command duration
-      cmd_duration = {
-        min_time = 500;
-        style = "bold cyan";
-        format = "[$duration]($style) ";
-      };
-
-      # Time
-      time = {
-        disabled = false;
-        style = "bold blue";
-        format = "[$time]($style)";
-        time_format = "%H:%M";
       };
 
       # Language-specific modules
