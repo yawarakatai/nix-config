@@ -47,9 +47,16 @@ in
     # File sharing
     ../modules/home/tools/syncthing.nix
 
+    # Apps
+    ../modules/home/apps/spicetify.nix
+
     # Themes
     ../modules/home/themes/gtk-theme.nix
   ];
+
+  # Stylix browser theming
+  stylix.targets.firefox.profileNames = [ "default" ];
+  stylix.targets.zen-browser.profileNames = [ "default" ];
 
   systemd.user.sessionVariables = {
     XMODIFIERS = "@im=fcitx";

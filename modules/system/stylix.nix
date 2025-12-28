@@ -3,16 +3,18 @@
 { pkgs, ... }:
 
 let
-  # Generate a simple solid color wallpaper using RosePine base color
-  wallpaper = pkgs.runCommand "wallpaper.png" { buildInputs = [ pkgs.imagemagick ]; } ''
-    magick -size 3840x2160 xc:#191724 $out
-  '';
+  wallpaper = pkgs.fetchurl {
+    # Example wallpaper - replace with your preferred URL
+    url = "https://raw.githubusercontent.com/rose-pine/wallpapers/main/rose_pine_shape.png";
+    hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+  };
 in
 {
   stylix = {
     enable = true;
 
     # Use RosePine color scheme
+    # To generate theme FROM wallpaper instead, remove base16Scheme line
     base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
 
     # Wallpaper (generated solid color)
