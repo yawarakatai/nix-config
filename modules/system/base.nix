@@ -52,13 +52,15 @@
   services.greetd = {
     enable = true;
     settings.default_session = {
-      command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-session --sessions ${pkgs.writeTextDir "share/wayland-sessions/tty.desktop" ''
-        [Desktop Entry]
-        Name=TTY
-        Comment=Drop to shell
-        Exec=${pkgs.nushell}/bin/nu
-        Type=Application
-      ''}/share/wayland-sessions:/run/current-system/sw/share/wayland-sessions";
+      command = let
+        ttySession = pkgs.writeTextDir "share/wayland-sessions/tty.desktop" ''
+          [Desktop Entry]
+          Name=TTY
+          Comment=Drop to shell
+          Exec=${pkgs.bashInteractive}/bin/bash
+          Type=Application
+        '';
+      in "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-session --sessions ${ttySession}/share/wayland-sessions:/run/current-system/sw/share/wayland-sessions:/run/current-system/sw/share/xsessions";
       user = "greeter";
     };
   };
