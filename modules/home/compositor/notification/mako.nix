@@ -25,7 +25,6 @@
       # Icons
       icons = true;
       max-icon-size = 48;
-      icon-path = "${pkgs.papirus-icon-theme}/share/icons/Papirus-Dark";
 
       # Actions
       actions = true;
