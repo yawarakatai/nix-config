@@ -1,6 +1,6 @@
 # Common Wayland packages and utilities
 # Compositor-agnostic packages useful for any Wayland setup
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = with pkgs; [

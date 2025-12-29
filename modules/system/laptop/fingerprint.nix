@@ -1,4 +1,4 @@
-{ config, pkgs, vars, ... }:
+{ ... }:
 
 {
   # Fingerprint reader support (fprintd)

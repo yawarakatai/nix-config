@@ -20,7 +20,10 @@
       height = 2160;
       refresh = 59.940;
       scale = 1.0;
-      position = { x = 0; y = 0; };
+      position = {
+        x = 0;
+        y = 0;
+      };
       vrr = true;
     };
 
@@ -30,7 +33,10 @@
       height = 1350; # Native resolution height (16:10 aspect ratio)
       refresh = 59.744; # Standard 60Hz for this model
       scale = 1.0; # No scaling as requested
-      position = { x = 0; y = 2160; };
+      position = {
+        x = 0;
+        y = 2160;
+      };
       vrr = false;
       focus-at-startup = true;
     };
@@ -41,8 +47,4 @@
 
   # Performance specs
   ramGB = 16; # 16GB LPDDR5
-
-  # Git configuration
-  gitName = "yawarakatai";
-  gitEmail = "186454332+yawarakatai@users.noreply.github.com";
 }

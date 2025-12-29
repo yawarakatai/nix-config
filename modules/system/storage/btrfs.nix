@@ -1,5 +1,5 @@
 # Btrfs optimization and SSD maintenance
-{ config, vars, ... }:
+{ ... }:
 
 {
   services.btrfs.autoScrub = {

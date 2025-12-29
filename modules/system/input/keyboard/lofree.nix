@@ -1,4 +1,4 @@
-{ config, pkgs, vars, ... }:
+{ ... }:
 
 {
   # Kernel module configuration for keyboards

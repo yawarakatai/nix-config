@@ -1,4 +1,4 @@
-{ uiSettings, inputs, ... }:
+{ inputs, uiSettings, ... }:
 
 {
   imports = [ inputs.vicinae.homeManagerModules.default ];

@@ -1,4 +1,4 @@
-{ pkgs, lib, uiSettings, vars, ... }:
+{ lib, pkgs, uiSettings, vars, ... }:
 
 {
   programs.niri.settings = {

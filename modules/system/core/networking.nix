@@ -7,13 +7,19 @@
     networkmanager.enable = true;
 
     # Primary DNS: Cloudflare
-    nameservers = [ "1.1.1.1" "1.0.0.1" ];
+    nameservers = [
+      "1.1.1.1"
+      "1.0.0.1"
+    ];
 
     # Firewall
     firewall = {
       enable = true;
       allowedTCPPorts = [ 22000 ];
-      allowedUDPPorts = [ 22000 21027 ];
+      allowedUDPPorts = [
+        22000
+        21027
+      ];
 
       # Allow DHCP
       allowPing = true;
@@ -28,6 +34,9 @@
     enable = true;
     dnssec = "allow-downgrade";
     # Fallback DNS: Quad9
-    fallbackDns = [ "9.9.9.9" "149.112.112.112" ];
+    fallbackDns = [
+      "9.9.9.9"
+      "149.112.112.112"
+    ];
   };
 }

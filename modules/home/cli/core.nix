@@ -1,5 +1,5 @@
 # Core CLI utilities
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = with pkgs; [

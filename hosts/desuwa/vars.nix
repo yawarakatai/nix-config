@@ -18,7 +18,10 @@
       height = 2160;
       refresh = 119.880;
       scale = 1.0;
-      position = { x = 0; y = 0; };
+      position = {
+        x = 0;
+        y = 0;
+      };
       vrr = true; # Variable refresh rate (on-demand via window rules)
     };
     # Add additional monitors here as needed
@@ -30,8 +33,4 @@
 
   # Performance specs
   ramGB = 32;
-
-  # Git configuration
-  gitName = "yawarakatai";
-  gitEmail = "186454332+yawarakatai@users.noreply.github.com";
 }

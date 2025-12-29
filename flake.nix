@@ -49,10 +49,17 @@
     juice.url = "github:yawarakatai/juice";
   };
 
-  outputs = { self, nixpkgs, home-manager, nixos-hardware, ... }@inputs:
+  outputs =
+    { self
+    , nixpkgs
+    , home-manager
+    , nixos-hardware
+    , ...
+    }@inputs:
     let
       # Helper function to create system configurations
-      mkSystem = hostname:
+      mkSystem =
+        hostname:
         let
           vars = import ./hosts/${hostname}/vars.nix;
         in
@@ -89,7 +96,10 @@
         };
 
       # Helper for supporting multiple systems
-      supportedSystems = [ "x86_64-linux" "aarch64-linux" ];
+      supportedSystems = [
+        "x86_64-linux"
+        "aarch64-linux"
+      ];
       forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
     in
     {
@@ -100,25 +110,25 @@
       };
 
       # Development shell for editing configurations
-      devShells = forAllSystems
-        (system:
-          let
-            pkgs = nixpkgs.legacyPackages.${system};
-          in
-          {
-            default = pkgs.mkShell {
-              buildInputs = with pkgs; [
-                nil # Nix LSP
-                nixpkgs-fmt # Nix formatter
-                statix # Nix linter
-              ];
+      devShells = forAllSystems (
+        system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+        in
+        {
+          default = pkgs.mkShell {
+            buildInputs = with pkgs; [
+              nil # Nix LSP
+              nixpkgs-fmt # Nix formatter
+              statix # Nix linter
+            ];
 
-              shellHook = ''
-                echo "NixOS configuration development environment"
-                echo "Available tools: nil, nixpkgs-fmt, statix"
-              '';
-            };
-          }
-        );
+            shellHook = ''
+              echo "NixOS configuration development environment"
+              echo "Available tools: nil, nixpkgs-fmt, statix"
+            '';
+          };
+        }
+      );
     };
 }

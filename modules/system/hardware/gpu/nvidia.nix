@@ -5,9 +5,17 @@
   services.xserver.videoDrivers = [ "nvidia" ];
 
   # Blacklist nouveau completely
-  boot.blacklistedKernelModules = [ "nouveau" "nova" ];
+  boot.blacklistedKernelModules = [
+    "nouveau"
+    "nova"
+  ];
 
-  boot.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
+  boot.kernelModules = [
+    "nvidia"
+    "nvidia_modeset"
+    "nvidia_uvm"
+    "nvidia_drm"
+  ];
 
   hardware = {
     # Enable OpenGL

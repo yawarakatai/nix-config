@@ -1,5 +1,5 @@
 # Ghostty terminal emulator configuration
-{ config, pkgs, uiSettings, ... }:
+{ uiSettings, ... }:
 
 {
   programs.ghostty = {

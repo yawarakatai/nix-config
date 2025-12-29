@@ -1,12 +1,11 @@
 { vars, inputs, ... }:
 
 {
-
   imports = [
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-nano
 
     # Shared base configuration (common settings for all hosts)
-    ../../modules/system/base.nix
+    ../../modules/system
 
     # Laptop-specific hardware modules
     ../../modules/system/input/touchpad.nix # Touchpad with natural scrolling, tap-to-click
@@ -26,7 +25,8 @@
 
   # Host-specific user password
   # Password hash generated with: mkpasswd -m sha-512
-  users.users.${vars.username}.hashedPassword = "$6$KtMQPtEMmQ9AW7qK$tvtWeUA5GzWyILnexkH51.OMTnM6cuzA2aEymac264HctHr5jRBH7NBOOn4twZqaF963f8KkgDdNzfpSfd54D0";
+  users.users.${vars.username}.hashedPassword =
+    "$6$KtMQPtEMmQ9AW7qK$tvtWeUA5GzWyILnexkH51.OMTnM6cuzA2aEymac264HctHr5jRBH7NBOOn4twZqaF963f8KkgDdNzfpSfd54D0";
 
   services.logind.settings.Login = {
     HandleLidSwitch = "suspend";

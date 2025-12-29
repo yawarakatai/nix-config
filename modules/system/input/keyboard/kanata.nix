@@ -56,5 +56,8 @@
     };
   };
 
-  users.users.${vars.username}.extraGroups = [ "uinput" "input" ];
+  users.users.${vars.username}.extraGroups = [
+    "uinput"
+    "input"
+  ];
 }

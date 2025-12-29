@@ -26,6 +26,9 @@
     exec = "env DISPLAY=:0 QT_QPA_PLATFORM=xcb davinci-resolve %U";
     icon = "DV_Resolve";
     terminal = false;
-    categories = [ "AudioVideo" "Video" ];
+    categories = [
+      "AudioVideo"
+      "Video"
+    ];
   };
 }

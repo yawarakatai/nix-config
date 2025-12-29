@@ -3,7 +3,11 @@
 {
   programs.niri.settings.binds =
     let
-      sh = spawn: [ "sh" "-c" spawn ];
+      sh = spawn: [
+        "sh"
+        "-c"
+        spawn
+      ];
     in
     {
       "Mod+Shift+Slash".action.show-hotkey-overlay = [ ];
@@ -45,7 +49,10 @@
       "Mod+F".action.fullscreen-window = [ ];
 
       # Applications
-      "Mod+Space".action.spawn = [ "vicinae" "toggle" ];
+      "Mod+Space".action.spawn = [
+        "vicinae"
+        "toggle"
+      ];
       # "Mod+Space".action.spawn = [ "alacritty" "--class" "floating-term" ];
       "Mod+Return".action.spawn = [ "alacritty" ];
       "Mod+B".action.spawn = [ "firefox" ];
@@ -90,8 +97,10 @@
         fi
       '';
       # Screenshot
-      "Mod+P".action.spawn = sh "f=~/screenshot-$(date +%Y%m%d-%H%M%S).png && grim \"$f\" && notify-send -u low 'Screenshot' \"Saved to $f\"";
-      "Mod+Shift+P".action.spawn = sh "f=~/screenshot-$(date +%Y%m%d-%H%M%S).png && grim -g \"$(slurp)\" \"$f\" && notify-send -u low 'Screenshot' \"Saved to $f\"";
+      "Mod+P".action.spawn =
+        sh "f=~/screenshot-$(date +%Y%m%d-%H%M%S).png && grim \"$f\" && notify-send -u low 'Screenshot' \"Saved to $f\"";
+      "Mod+Shift+P".action.spawn =
+        sh "f=~/screenshot-$(date +%Y%m%d-%H%M%S).png && grim -g \"$(slurp)\" \"$f\" && notify-send -u low 'Screenshot' \"Saved to $f\"";
 
       # Media
       "XF86AudioPlay".action.spawn = sh "playerctl play-pause";

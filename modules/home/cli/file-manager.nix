@@ -1,5 +1,5 @@
 # yazi file manager configuration
-{ config, pkgs, ... }:
+{ ... }:
 
 {
   programs.yazi = {
@@ -25,9 +25,21 @@
 
     keymap = {
       mgr.prepend_keymap = [
-        { on = [ "<Esc>" ]; run = "escape"; desc = "Exit visual mode, clear selected, or cancel search"; }
-        { on = [ "q" ]; run = "quit"; desc = "Exit the process"; }
-        { on = [ "<C-q>" ]; run = "quit --no-cwd-file"; desc = "Exit without writing cwd-file"; }
+        {
+          on = [ "<Esc>" ];
+          run = "escape";
+          desc = "Exit visual mode, clear selected, or cancel search";
+        }
+        {
+          on = [ "q" ];
+          run = "quit";
+          desc = "Exit the process";
+        }
+        {
+          on = [ "<C-q>" ];
+          run = "quit --no-cwd-file";
+          desc = "Exit without writing cwd-file";
+        }
       ];
     };
   };

@@ -1,5 +1,5 @@
 # System monitoring CLI tools
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = with pkgs; [

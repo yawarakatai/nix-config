@@ -1,4 +1,4 @@
-{ config, vars, inputs, ... }:
+{ ... }:
 
 let
   uiSettings = import ../modules/home/theme/settings.nix;
@@ -11,7 +11,7 @@ in
   # Note: niri home module is auto-imported by the NixOS module in flake.nix
   imports = [
     # Common packages and XDG settings
-    ../modules/home/common.nix
+    ../modules/home
 
     # Shell
     ../modules/home/shell/nushell.nix
@@ -32,7 +32,6 @@ in
     # Compositor
     ../modules/home/compositor/common.nix
     ../modules/home/compositor/niri
-    # ../modules/home/compositor/bar/waybar.nix
     ../modules/home/compositor/launcher/vicinae.nix
     ../modules/home/compositor/notification/mako.nix
 
@@ -48,9 +47,6 @@ in
     # Services
     ../modules/home/service/ssh.nix
     ../modules/home/service/syncthing.nix
-
-    # Media
-    ../modules/home/media/spicetify.nix
 
     # Theme
     ../modules/home/theme/gtk.nix

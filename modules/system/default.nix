@@ -1,5 +1,9 @@
 # Base system configuration - minimal common settings
-{ lib, inputs, config, pkgs, vars, ... }:
+{ inputs
+, pkgs
+, vars
+, ...
+}:
 
 {
   imports = [

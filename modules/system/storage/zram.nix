@@ -1,11 +1,11 @@
-{ config, vars, ... }:
+{ ... }:
 
 {
   # zram configuration for swap
   zramSwap = {
     enable = true;
     algorithm = "zstd";
-    memoryPercent = 50;  # Use 50% of RAM for zram
+    memoryPercent = 50; # Use 50% of RAM for zram
     priority = 100;
   };
 

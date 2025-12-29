@@ -7,20 +7,6 @@
     # Shell aliases for simple command replacements
     shellAliases = {
       cc = "cd ~/.config/nix-config";
-
-      # Git aliases
-      g = "git";
-      gs = "git status";
-      ga = "git add";
-      gc = "git commit";
-      gcm = "git commit -am";
-      gf = "git fetch";
-      gp = "git push";
-      gl = "git pull";
-      gd = "git diff";
-      gm = "git merge";
-      gb = "git branch";
-      gco = "git checkout";
     };
 
     # Environment variables
@@ -29,7 +15,6 @@
       VISUAL = "hx";
       PAGER = "cat";
     };
-
 
     # Install nu_plugin_skim
     # Main nushell configuration
@@ -74,7 +59,7 @@
         }
 
         # Custom keybindings
-        keybindings: [         
+        keybindings: [
           # Ctrl+F: Fuzzy file picker
           {
             name: skim_file_picker
@@ -115,7 +100,7 @@
 
       # Custom functions
       # List all files including hidden
-      def la [...args] { 
+      def la [...args] {
         if ($args | is-empty) {
           ls -a .
         } else {
@@ -124,7 +109,7 @@
       }
 
       # List all files with detailed information
-      def ll [...args] { 
+      def ll [...args] {
         if ($args | is-empty) {
           ls -la .
         } else {
@@ -134,7 +119,7 @@
 
       # List files recursively, optionally filtering by extension
       def lr [
-        --all (-a) 
+        --all (-a)
         ...args
       ] {
         if ($args | is-empty) {
@@ -145,9 +130,9 @@
           }
         } else {
           let pattern = $args | str join ","
-          glob $"**/*.{($pattern)}" 
+          glob $"**/*.{($pattern)}"
           | where { |f| $all or (not ($f | path basename | str starts-with ".")) }
-          | each { |f| ls $f } 
+          | each { |f| ls $f }
           | flatten
         }
       }

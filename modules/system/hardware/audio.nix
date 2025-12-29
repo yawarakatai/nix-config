@@ -1,4 +1,4 @@
-{ config, pkgs, vars, ... }:
+{ pkgs, ... }:
 
 {
   # Enable all firmware (needed for modern Intel audio - SOF firmware)

@@ -1,5 +1,5 @@
 # Git configuration with lazygit and delta
-{ config, pkgs, vars, ... }:
+{ pkgs, ... }:
 
 {
   # Install delta for better diffs
@@ -12,8 +12,8 @@
     enable = true;
     settings = {
       user = {
-        name = vars.gitName;
-        email = vars.gitEmail;
+        name = "yawarakatai";
+        email = "186454332+yawarakatai@users.noreply.github.com";
       };
 
       init.defaultBranch = "main";

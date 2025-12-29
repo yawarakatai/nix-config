@@ -1,4 +1,4 @@
-{ config, pkgs, vars, ... }:
+{ ... }:
 
 {
   # Bluetooth configuration
