@@ -46,31 +46,4 @@
       waylandFrontend = true;
     };
   };
-
-  # Fonts
-  fonts = {
-    packages = with pkgs; [
-      # English fonts
-      nerd-fonts.commit-mono # Main monospace font
-
-      # Japanese fonts
-      noto-fonts-cjk-sans
-      noto-fonts-cjk-serif
-      noto-fonts-color-emoji
-
-      # Additional fonts
-      font-awesome
-      material-design-icons
-    ];
-
-    fontconfig = {
-      enable = true;
-      defaultFonts = {
-        monospace = [ "CommitMono Nerd Font" "Noto Sans CJK JP" ];
-        sansSerif = [ "Noto Sans" "Noto Sans CJK JP" ];
-        serif = [ "Noto Serif" "Noto Serif CJK JP" ];
-        emoji = [ "Noto Color Emoji" ];
-      };
-    };
-  };
 }
