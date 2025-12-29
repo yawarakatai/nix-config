@@ -1,5 +1,3 @@
-# Stylix theming configuration
-# Provides consistent colors and fonts across all applications
 { pkgs, ... }:
 
 let
@@ -9,6 +7,8 @@ let
   };
 in
 {
+  # Stylix theming configuration
+  # Provides consistent colors and fonts across all applications
   stylix = {
     enable = true;
 
@@ -24,8 +24,8 @@ in
     # Font configuration
     fonts = {
       monospace = {
-        package = pkgs.nerd-fonts.commit-mono;
-        name = "CommitMono Nerd Font";
+        package = pkgs.nerd-fonts.iosevka-term;
+        name = "Iosevka Term Nerd Font";
       };
 
       sansSerif = {
