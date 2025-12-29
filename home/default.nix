@@ -45,7 +45,7 @@ in
     ../modules/home/dev/direnv.nix
 
     # Services
-    ../modules/home/service/ssh.nix
+    ../modules/home/service/ssh-client.nix
     ../modules/home/service/syncthing.nix
   ];
 
