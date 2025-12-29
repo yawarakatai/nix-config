@@ -47,9 +47,6 @@ in
     # Services
     ../modules/home/service/ssh.nix
     ../modules/home/service/syncthing.nix
-
-    # Theme
-    ../modules/home/theme/gtk.nix
   ];
 
   # Stylix browser theming
