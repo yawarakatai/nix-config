@@ -26,30 +26,6 @@
       $env.config = {
         show_banner: false
 
-        # Color scheme configuration using theme colors
-        color_config: {
-          separator: "#333333"
-          leading_trailing_space_bg: "#000000"
-          header: { fg: "#0099ff" attr: "b" }
-          empty: "#cccccc"
-          bool: "#ffff00"
-          int: "#ff9500"
-          filesize: "#00ffff"
-          duration: "#ffff00"
-          date: "#cc00ff"
-          range: "#00ffff"
-          float: "#ff9500"
-          string: "#00ff00"
-          nothing: "#666666"
-          binary: "#cc00ff"
-          cell-path: "#cccccc"
-          row_index: { fg: "#00ffff" attr: "b" }
-          record: "#cccccc"
-          list: "#cccccc"
-          block: "#cccccc"
-          hints: "#666666"
-        }
-
         # Completion configuration
         completions: {
           case_sensitive: false
