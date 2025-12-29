@@ -16,8 +16,6 @@ in
     # To generate theme FROM wallpaper instead, remove base16Scheme line
     base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
 
-    image = wallpaper;
-
     # Polarity for the theme
     polarity = "dark";
 
@@ -57,6 +55,15 @@ in
       name = "graphite-dark";
       size = 24;
     };
+
+    icons = {
+      enable = true;
+      package = pkgs.papirus-icon-theme;
+      light = "Papirus";
+      dark = "Papirus-Dark";
+    };
+
+    image = wallpaper;
 
     # Opacity settings
     opacity = {
