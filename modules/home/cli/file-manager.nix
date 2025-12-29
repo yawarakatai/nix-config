@@ -1,3 +1,4 @@
+# yazi file manager configuration
 { config, pkgs, ... }:
 
 {

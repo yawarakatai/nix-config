@@ -53,9 +53,7 @@
       "Mod+E".action.spawn = [ "nautilus" ];
       "Mod+A".action.spawn = [ "pavucontrol" ];
 
-      # Substitution of waybar
-      # 
-      # binds.nix の sh = spawn: の定義の後に追加
+      # Status notifications (waybar substitution)
       "Mod+T".action.spawn = sh ''
         notify-send -t 3000 "$(date '+%H:%M')" "$(date '+%A, %B %d, %Y')\nWeek $(date '+%V')"
       '';
@@ -83,7 +81,7 @@
         vol=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ 2>/dev/null | awk '{print int($2*100)}')
         muted=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ 2>/dev/null | grep -q MUTED && echo " (muted)" || echo "")
         bright=$(brightnessctl -m 2>/dev/null | cut -d, -f4 | tr -d '%')
-  
+
         if [ -n "$bat_cap" ]; then
           bat_icon=$([ "$bat_status" = "Charging" ] && echo "󰂄" || echo "󰁹")
           notify-send -t 3000 "$bat_icon Battery: $bat_cap%" "Volume: $vol%$muted\nBrightness: ''${bright:-N/A}%"

@@ -1,17 +1,28 @@
+# Base system configuration - minimal common settings
 { lib, inputs, config, pkgs, vars, ... }:
 
 {
   imports = [
     # Core system modules
-    ../../modules/system/boot.nix
-    ../../modules/system/greetd.nix
-    ../../modules/system/networking.nix
-    ../../modules/system/locale.nix
-    ../../modules/system/zram.nix
-    ../../modules/system/storage.nix
-    ../../modules/system/yubikey.nix
-    ../../modules/system/audio.nix
-    ../../modules/system/wayland.nix
+    ./core/boot.nix
+    ./core/networking.nix
+    ./core/locale.nix
+    ./core/users.nix
+    ./core/nix.nix
+
+    # Display
+    ./display/greetd.nix
+    ./display/wayland.nix
+
+    # Hardware
+    ./hardware/audio.nix
+
+    # Storage
+    ./storage/btrfs.nix
+    ./storage/zram.nix
+
+    # Security
+    ./security/yubikey.nix
   ];
 
   environment.systemPackages = with pkgs; [
@@ -26,42 +37,6 @@
 
   # Hostname
   networking.hostName = vars.hostname;
-
-  users = {
-    mutableUsers = false;
-    users.${vars.username} = {
-      isNormalUser = true;
-      description = vars.username;
-      extraGroups = [ "networkmanager" "wheel" "video" "audio" "plugdev" ] ++ lib.optional config.virtualisation.docker.enable "docker";
-      shell = pkgs.nushell;
-    };
-    users.root.hashedPassword = "!"; # Disable root login
-  };
-
-  nix = {
-    settings = {
-      experimental-features = [ "nix-command" "flakes" ];
-      auto-optimise-store = true;
-      trusted-users = [ "root" vars.username ];
-    };
-
-    # gc = {
-    #   automatic = true;
-    #   dates = "weekly";
-    #   options = "--delete-older-than 30d";
-    # };
-
-    optimise = {
-      automatic = true;
-      dates = [ "weekly" ];
-    };
-
-    extraOptions = ''
-      keep-outputs = true
-      keep-derivations = true
-      max-jobs = auto
-    '';
-  };
 
   services.openssh = {
     enable = false;
@@ -95,6 +70,4 @@
   programs.dconf.enable = true;
 
   programs.xwayland.enable = true;
-
-  nixpkgs.config.allowUnfree = true;
 }

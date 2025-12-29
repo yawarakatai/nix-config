@@ -9,12 +9,12 @@
     ../../modules/system/base.nix
 
     # Laptop-specific hardware modules
-    ../../modules/system/touchpad.nix # Touchpad with natural scrolling, tap-to-click
-    ../../modules/system/bluetooth.nix # Bluetooth support
-    ../../modules/system/fingerprint.nix # Fingerprint reader for login/sudo
-    ../../modules/system/tlp.nix # TLP power management for battery optimization
-    ../../modules/system/webcam.nix # Webcam support
-    ../../modules/system/kanata.nix # Specified key layout remap
+    ../../modules/system/input/touchpad.nix # Touchpad with natural scrolling, tap-to-click
+    ../../modules/system/hardware/bluetooth.nix # Bluetooth support
+    ../../modules/system/laptop/fingerprint.nix # Fingerprint reader for login/sudo
+    ../../modules/system/laptop/power.nix # TLP power management for battery optimization
+    ../../modules/system/hardware/webcam.nix # Webcam support
+    ../../modules/system/input/keyboard/kanata.nix # Specified key layout remap
   ];
 
   # Workaround for Alder Lake audio firmware signature verification failure

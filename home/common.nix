@@ -1,7 +1,7 @@
 { config, vars, inputs, ... }:
 
 let
-  uiSettings = import ../modules/home/themes/ui-settings.nix;
+  uiSettings = import ../modules/home/theme/settings.nix;
 in
 {
   # Make UI settings available to all modules
@@ -10,8 +10,8 @@ in
   # Import all home modules
   # Note: niri home module is auto-imported by the NixOS module in flake.nix
   imports = [
-    # Common packages
-    ../modules/home/common-packages.nix
+    # Common packages and XDG settings
+    ../modules/home/common.nix
 
     # Shell
     ../modules/home/shell/nushell.nix
@@ -19,122 +19,46 @@ in
     ../modules/home/shell/zoxide.nix
     ../modules/home/shell/atuin.nix
 
-    # Editors
-    ../modules/home/editors/helix.nix
-    ../modules/home/editors/vscode.nix
+    # Editor
+    ../modules/home/editor/helix.nix
+    ../modules/home/editor/vscode.nix
 
-    # Browsers
+    # Browser
     ../modules/home/browser/firefox.nix
 
     # Terminal
     ../modules/home/terminal/alacritty.nix
 
-    # Wayland
-    ../modules/home/wayland/wayland-packages.nix
-    ../modules/home/wayland/niri
-    # ../modules/home/wayland/waybar.nix
-    ../modules/home/wayland/vicinae.nix
-    ../modules/home/wayland/mako.nix
+    # Compositor
+    ../modules/home/compositor/common.nix
+    ../modules/home/compositor/niri
+    # ../modules/home/compositor/bar/waybar.nix
+    ../modules/home/compositor/launcher/vicinae.nix
+    ../modules/home/compositor/notification/mako.nix
 
-    # Tools
-    ../modules/home/tools/yazi.nix
-    ../modules/home/tools/lazygit.nix
-    ../modules/home/tools/cli-tools.nix
-    ../modules/home/tools/ssh.nix
+    # CLI tools
+    ../modules/home/cli/core.nix
+    ../modules/home/cli/monitor.nix
+    ../modules/home/cli/file-manager.nix
 
-    # File sharing
-    ../modules/home/tools/syncthing.nix
+    # Development tools
+    ../modules/home/dev/git.nix
+    ../modules/home/dev/direnv.nix
 
-    # Apps
-    ../modules/home/apps/spicetify.nix
+    # Services
+    ../modules/home/service/ssh.nix
+    ../modules/home/service/syncthing.nix
 
-    # Themes
-    ../modules/home/themes/gtk-theme.nix
+    # Media
+    ../modules/home/media/spicetify.nix
+
+    # Theme
+    ../modules/home/theme/gtk.nix
   ];
 
   # Stylix browser theming
   stylix.targets.firefox.profileNames = [ "default" ];
   stylix.targets.zen-browser.profileNames = [ "default" ];
-
-  systemd.user.sessionVariables = {
-    XMODIFIERS = "@im=fcitx";
-    QT_IM_MODULE = "wayland;fcitx";
-
-    EDITOR = "hx";
-    VISUAL = "hx";
-    PAGER = "cat";
-  };
-
-  # Git configuration
-  programs.git = {
-    enable = true;
-    settings = {
-      user = {
-        name = vars.gitName;
-        email = vars.gitEmail;
-      };
-
-      init.defaultBranch = "main";
-      pull.rebase = false;
-      core.editor = "hx";
-
-      # Delta for better diffs
-      core.pager = "delta";
-      interactive.diffFilter = "delta --color-only";
-      delta = {
-        navigate = true;
-        light = false;
-        line-numbers = true;
-        syntax-theme = "base16";
-      };
-
-      merge.conflictstyle = "diff3";
-      diff.colorMoved = "default";
-    };
-  };
-
-  # direnv
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
-    enableNushellIntegration = true;
-  };
-
-
-  # XDG configuration
-  xdg =
-    {
-      enable = true;
-
-      userDirs = {
-        enable = true;
-        createDirectories = false;
-
-        # Point all directories to home to prevent creation of unwanted directories
-        desktop = "${config.home.homeDirectory}";
-        documents = "${config.home.homeDirectory}";
-        download = "${config.home.homeDirectory}"; # Downloads go directly to home
-        music = "${config.home.homeDirectory}";
-        pictures = "${config.home.homeDirectory}";
-        videos = "${config.home.homeDirectory}";
-        templates = "${config.home.homeDirectory}";
-        publicShare = "${config.home.homeDirectory}";
-      };
-
-      mimeApps = {
-        enable = true;
-        defaultApplications = {
-          "text/html" = "firefox.desktop";
-          "x-scheme-handler/http" = "firefox.desktop";
-          "x-scheme-handler/https" = "firefox.desktop";
-          "x-scheme-handler/about" = "firefox.desktop";
-          "x-scheme-handler/unknown" = "firefox.desktop";
-          "application/pdf" = "firefox.desktop";
-          "image/*" = "imv.desktop";
-          "video/*" = "mpv.desktop";
-        };
-      };
-    };
 
   # State version - DO NOT CHANGE after initial install
   home.stateVersion = "25.05";

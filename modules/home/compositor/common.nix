@@ -1,12 +1,8 @@
+# Common Wayland packages and utilities
+# Compositor-agnostic packages useful for any Wayland setup
 { config, pkgs, ... }:
 
 {
-  # Collection module for general Wayland utilities
-  # These packages are compositor-agnostic and useful for any Wayland setup
-  #
-  # Note: This is a collection module (like cli-tools.nix)
-  # Compositor-specific configs get their own modules (e.g., niri/, waybar.nix)
-  # System-level Wayland configuration is in modules/system/wayland.nix
   home.packages = with pkgs; [
     # Wallpaper
     swaybg

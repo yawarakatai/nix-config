@@ -64,7 +64,7 @@
 
             # Stylix theming
             inputs.stylix.nixosModules.stylix
-            ./modules/system/stylix.nix
+            ./modules/system/theme/stylix.nix
 
             # Niri compositor
             inputs.niri.nixosModules.niri

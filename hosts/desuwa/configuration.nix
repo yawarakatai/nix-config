@@ -6,10 +6,10 @@
     ../../modules/system/base.nix
 
     # Hardware-specific modules for this host
-    ../../modules/system/nvidia.nix # NVIDIA RTX 3080
-    ../../modules/system/logiops.nix # Logitech mouse
-    ../../modules/system/lofreeflowlite.nix # Lofree Flow keyboard
-    ../../modules/system/steam.nix # Steam
+    ../../modules/system/hardware/gpu/nvidia.nix # NVIDIA RTX 3080
+    ../../modules/system/input/mouse/logiops.nix # Logitech mouse
+    ../../modules/system/input/keyboard/lofree.nix # Lofree Flow keyboard
+    ../../modules/system/gaming/steam.nix # Steam
   ];
 
   # Host-specific user password

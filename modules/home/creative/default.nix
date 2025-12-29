@@ -1,3 +1,4 @@
+# Creative tools for game development, 3D modeling, PCB design, and video editing
 { pkgs, ... }:
 
 {
@@ -5,7 +6,7 @@
     # Game Development
     godot
 
-    # 3D modering
+    # 3D modeling
     blender
 
     # PCB design
