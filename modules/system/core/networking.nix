@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 
 {
   # Networking configuration
@@ -26,7 +26,7 @@
     };
 
     # Disable wireless (using NetworkManager instead)
-    wireless.enable = false;
+    wireless.enable = lib.mkForce false;
   };
 
   # DNS
