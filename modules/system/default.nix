@@ -28,26 +28,11 @@
 
     # Security
     ./security/yubikey.nix
+    ./security/agenix.nix
 
     # Services
-    ./service/ssh.nix
+    ./service/openssh.nix
   ];
-
-  # Agenix-rekey configuration
-  age.rekey = {
-    # Host public key for rekeying (from /etc/ssh/ssh_host_ed25519_key.pub)
-    hostPubkey = "/etc/ssh/ssh_host_ed25519_key.pub";
-
-    # Master identity (YubiKey FIDO2)
-    masterIdentities = [ ../../secrets/master-key.pub ];
-
-    # Use local storage mode
-    storageMode = "local";
-    localStorageDir = ../../secrets/rekeyed/${vars.hostname};
-
-    # FIDO2 plugin for YubiKey
-    agePlugins = [ pkgs.age-plugin-fido2-hmac ];
-  };
 
   environment.systemPackages = with pkgs; [
     vim
@@ -76,11 +61,6 @@
       extraArgs = "--keep-since 4d --keep 5";
     };
     flake = "/home/${vars.username}/.config/nix-config";
-  };
-
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
   };
 
   programs.dconf.enable = true;
