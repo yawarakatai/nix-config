@@ -70,12 +70,16 @@ in
     window-rules = lib.mkBefore [
       {
         draw-border-with-background = false;
-        geometry-corner-radius = {
-          top-left = uiSettings.rounding;
-          top-right = uiSettings.rounding;
-          bottom-left = uiSettings.rounding;
-          bottom-right = uiSettings.rounding;
-        };
+        geometry-corner-radius =
+          let
+            r = uiSettings.rounding * 1.0;
+          in
+          {
+            top-left = r;
+            top-right = r;
+            bottom-left = r;
+            bottom-right = r;
+          };
         clip-to-geometry = true;
       }
     ];
@@ -88,6 +92,8 @@ in
 
     # Layout configuration
     layout = {
+      background-color = "transparent";
+
       always-center-single-column = true;
 
       gaps = uiSettings.gaps.inner;
@@ -112,6 +118,15 @@ in
       ];
     };
 
+    layer-rules = [
+      {
+        matches = [
+          { namespace = "^wallpaper$"; }
+        ];
+        place-within-backdrop = true;
+      }
+    ];
+
     # Workspaces
     workspaces = {
       "1" = { };
@@ -122,7 +137,6 @@ in
     };
 
     overview = {
-      backdrop-color = "#000000";
       workspace-shadow.enable = false;
     };
 
