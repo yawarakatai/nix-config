@@ -62,7 +62,7 @@
     enable = true;
     clean = {
       enable = true;
-      extraArgs = "--keep-since 4d --keep 3";
+      extraArgs = "--keep-since 4d --keep 5";
     };
     flake = "/home/${vars.username}/.config/nix-config";
   };
