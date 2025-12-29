@@ -50,9 +50,20 @@
         };
 
         statusline = {
-          left = [ "mode" "spinner" "file-name" "file-modification-indicator" ];
+          left = [
+            "mode"
+            "spinner"
+            "file-name"
+            "file-modification-indicator"
+          ];
           center = [ "diagnostics" ];
-          right = [ "selections" "position" "file-encoding" "file-line-ending" "file-type" ];
+          right = [
+            "selections"
+            "position"
+            "file-encoding"
+            "file-line-ending"
+            "file-type"
+          ];
         };
 
         lsp = {
@@ -75,7 +86,10 @@
         space.w = ":w";
         space.q = ":q";
         space.x = ":x";
-        esc = [ "collapse_selection" "keep_primary_selection" ];
+        esc = [
+          "collapse_selection"
+          "keep_primary_selection"
+        ];
       };
 
       keys.insert = {
@@ -135,7 +149,10 @@
           auto-format = true;
           formatter = {
             command = "${pkgs.nodePackages.prettier}/bin/prettier";
-            args = [ "--parser" "typescript" ];
+            args = [
+              "--parser"
+              "typescript"
+            ];
           };
           language-servers = [ "typescript-language-server" ];
         }
@@ -144,7 +161,10 @@
           auto-format = true;
           formatter = {
             command = "${pkgs.nodePackages.prettier}/bin/prettier";
-            args = [ "--parser" "typescript" ];
+            args = [
+              "--parser"
+              "typescript"
+            ];
           };
           language-servers = [ "typescript-language-server" ];
         }
@@ -193,7 +213,10 @@
 
         clangd = {
           command = "${pkgs.clang-tools}/bin/clangd";
-          args = [ "--background-index" "--clang-tidy" ];
+          args = [
+            "--background-index"
+            "--clang-tidy"
+          ];
         };
 
         haskell-language-server = {
@@ -208,7 +231,10 @@
 
         taplo = {
           command = "${pkgs.taplo}/bin/taplo";
-          args = [ "lsp" "stdio" ];
+          args = [
+            "lsp"
+            "stdio"
+          ];
         };
 
         yaml-language-server = {
