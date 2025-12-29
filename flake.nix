@@ -11,6 +11,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    agenix-rekey = {
+      url = "github:oddlama/agenix-rekey";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     stylix = {
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -50,6 +60,8 @@
       nixpkgs,
       home-manager,
       nixos-hardware,
+      agenix,
+      agenix-rekey,
       ...
     }@inputs:
     let
@@ -64,6 +76,10 @@
           modules = [
             { nixpkgs.overlays = import ./overlays; }
             { nixpkgs.hostPlatform = vars.system; }
+
+            # Agenix for secrets
+            agenix.nixosModules.default
+            agenix-rekey.nixosModules.default
 
             # Stylix theming
             inputs.stylix.nixosModules.stylix
@@ -105,11 +121,20 @@
         nanodesu = mkSystem "nanodesu";
       };
 
+      # Expose agenix-rekey configuration
+      agenix-rekey = agenix-rekey.configure {
+        userFlake = self;
+        nixosConfigurations = self.nixosConfigurations;
+      };
+
       # Development shell for editing configurations
       devShells = forAllSystems (
         system:
         let
-          pkgs = nixpkgs.legacyPackages.${system};
+          pkgs = import nixpkgs {
+            inherit system;
+            overlays = [ agenix-rekey.overlays.default ];
+          };
         in
         {
           default = pkgs.mkShell {
@@ -117,11 +142,13 @@
               nil # Nix LSP
               nixfmt-tree # Nix formatter
               statix # Nix linter
+              pkgs.agenix-rekey # agenix CLI with rekey support
+              age-plugin-fido2-hmac # YubiKey FIDO2 plugin
             ];
 
             shellHook = ''
               echo "NixOS configuration development environment"
-              echo "Available tools: nil, treefmt (nixfmt), statix"
+              echo "Available tools: nil, treefmt (nixfmt), statix, agenix"
             '';
           };
         }
