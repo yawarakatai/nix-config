@@ -4,22 +4,20 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-hardware = {
-      url = "github:NixOS/nixos-hardware";
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     niri = {
       url = "github:sodiboo/niri-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    stylix = {
-      url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -119,13 +117,13 @@
           default = pkgs.mkShell {
             buildInputs = with pkgs; [
               nil # Nix LSP
-              nixpkgs-fmt # Nix formatter
+              nixfmt-tree # Nix formatter
               statix # Nix linter
             ];
 
             shellHook = ''
               echo "NixOS configuration development environment"
-              echo "Available tools: nil, nixpkgs-fmt, statix"
+              echo "Available tools: nil, treefmt (nixfmt), statix"
             '';
           };
         }
