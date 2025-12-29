@@ -6,8 +6,7 @@
     # === LSP Servers ===
     nil # Nix LSP
     rust-analyzer # Rust LSP
-    pyright # Python LSP (fast, recommended)
-    # python312Packages.python-lsp-server  # Alternative Python LSP
+    ruff # Python LSP, linter, formatter (all-in-one)
     clang-tools # C/C++ LSP (includes clangd)
     haskell-language-server # Haskell LSP
     nodePackages.typescript-language-server # TypeScript/JavaScript LSP
@@ -16,9 +15,8 @@
     marksman # Markdown LSP
 
     # === Formatters ===
-    nixpkgs-fmt # Nix formatter
+    nixfmt-rfc-style # Nix formatter
     rustfmt # Rust formatter
-    black # Python formatter
     nodePackages.prettier # Web formatter (JS, TS, HTML, CSS, JSON, etc.)
 
     # === Debug Adapters (optional) ===
@@ -52,20 +50,9 @@
         };
 
         statusline = {
-          left = [
-            "mode"
-            "spinner"
-            "file-name"
-            "file-modification-indicator"
-          ];
+          left = [ "mode" "spinner" "file-name" "file-modification-indicator" ];
           center = [ "diagnostics" ];
-          right = [
-            "selections"
-            "position"
-            "file-encoding"
-            "file-line-ending"
-            "file-type"
-          ];
+          right = [ "selections" "position" "file-encoding" "file-line-ending" "file-type" ];
         };
 
         lsp = {
@@ -88,10 +75,7 @@
         space.w = ":w";
         space.q = ":q";
         space.x = ":x";
-        esc = [
-          "collapse_selection"
-          "keep_primary_selection"
-        ];
+        esc = [ "collapse_selection" "keep_primary_selection" ];
       };
 
       keys.insert = {
@@ -107,7 +91,7 @@
           name = "nix";
           auto-format = true;
           formatter = {
-            command = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt";
+            command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
           };
           language-servers = [ "nil" ];
         }
@@ -116,28 +100,14 @@
         {
           name = "rust";
           auto-format = true;
-          formatter = {
-            command = "${pkgs.rustfmt}/bin/rustfmt";
-            args = [
-              "--edition"
-              "2021"
-            ];
-          };
           language-servers = [ "rust-analyzer" ];
         }
 
-        # Python
+        # Python - using ruff for everything
         {
           name = "python";
           auto-format = true;
-          formatter = {
-            command = "${pkgs.black}/bin/black";
-            args = [
-              "--quiet"
-              "-"
-            ];
-          };
-          language-servers = [ "pyright" ];
+          language-servers = [ "ruff" ];
         }
 
         # C/C++
@@ -165,10 +135,7 @@
           auto-format = true;
           formatter = {
             command = "${pkgs.nodePackages.prettier}/bin/prettier";
-            args = [
-              "--parser"
-              "typescript"
-            ];
+            args = [ "--parser" "typescript" ];
           };
           language-servers = [ "typescript-language-server" ];
         }
@@ -177,10 +144,7 @@
           auto-format = true;
           formatter = {
             command = "${pkgs.nodePackages.prettier}/bin/prettier";
-            args = [
-              "--parser"
-              "typescript"
-            ];
+            args = [ "--parser" "typescript" ];
           };
           language-servers = [ "typescript-language-server" ];
         }
@@ -222,17 +186,14 @@
           };
         };
 
-        pyright = {
-          command = "${pkgs.pyright}/bin/pyright-langserver";
-          args = [ "--stdio" ];
+        ruff = {
+          command = "${pkgs.ruff}/bin/ruff";
+          args = [ "server" ];
         };
 
         clangd = {
           command = "${pkgs.clang-tools}/bin/clangd";
-          args = [
-            "--background-index"
-            "--clang-tidy"
-          ];
+          args = [ "--background-index" "--clang-tidy" ];
         };
 
         haskell-language-server = {
@@ -247,10 +208,7 @@
 
         taplo = {
           command = "${pkgs.taplo}/bin/taplo";
-          args = [
-            "lsp"
-            "stdio"
-          ];
+          args = [ "lsp" "stdio" ];
         };
 
         yaml-language-server = {
