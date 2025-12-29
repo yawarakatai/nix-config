@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   uiSettings,
@@ -6,6 +7,9 @@
   ...
 }:
 
+let
+  stylix = config.stylix;
+in
 {
   programs.niri.settings = {
     # Input configuration
@@ -78,7 +82,8 @@
 
     # Mouse Cursor configuration
     cursor = {
-      theme = "graphite-dark";
+      size = stylix.cursor.size;
+      theme = stylix.cursor.name;
     };
 
     # Layout configuration
@@ -108,15 +113,16 @@
     };
 
     # Workspaces
-    workspaces = {
-      "1" = { };
-      "2" = { };
-      # "3" = { };
-      # "4" = { };
-      # "5" = { };
-    };
+    # workspaces = {
+    #   "1" = { };
+    #   "2" = { };
+    #   "3" = { };
+    #   "4" = { };
+    #   "5" = { };
+    # };
 
     overview = {
+      backdrop-color = "#000000";
       workspace-shadow.enable = false;
     };
 
