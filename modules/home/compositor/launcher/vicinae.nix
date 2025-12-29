@@ -1,4 +1,9 @@
-{ inputs, uiSettings, ... }:
+{
+  inputs,
+  pkgs,
+  uiSettings,
+  ...
+}:
 
 {
   imports = [ inputs.vicinae.homeManagerModules.default ];
@@ -15,6 +20,9 @@
     };
 
     settings = {
+      theme.light.name = "stylix";
+      theme.dark.name = "stylix";
+
       faviconService = "twenty";
 
       popToRootOnClose = false;
