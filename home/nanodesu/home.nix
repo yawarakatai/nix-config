@@ -1,12 +1,16 @@
-{ vars, pkgs, inputs, ... }:
+{
+  inputs,
+  pkgs,
+  vars,
+  ...
+}:
 let
-  juice-path =
-    inputs.juice.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  juice-path = inputs.juice.packages.${pkgs.stdenv.hostPlatform.system}.default;
 in
 {
   # Import common home configuration
   imports = [
-    ../common.nix
+    ../../home
   ];
 
   # User-specific settings

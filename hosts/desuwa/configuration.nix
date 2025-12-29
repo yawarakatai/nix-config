@@ -3,18 +3,19 @@
 {
   imports = [
     # Shared base configuration (common settings for all hosts)
-    ../../modules/system/base.nix
+    ../../modules/system
 
     # Hardware-specific modules for this host
-    ../../modules/system/nvidia.nix # NVIDIA RTX 3080
-    ../../modules/system/logiops.nix # Logitech mouse
-    ../../modules/system/lofreeflowlite.nix # Lofree Flow keyboard
-    ../../modules/system/steam.nix # Steam
+    ../../modules/system/hardware/gpu/nvidia.nix # NVIDIA RTX 3080
+    ../../modules/system/input/mouse/logiops.nix # Logitech mouse
+    ../../modules/system/input/keyboard/lofree.nix # Lofree Flow keyboard
+    ../../modules/system/gaming/steam.nix # Steam
   ];
 
   # Host-specific user password
   # Password hash generated with: mkpasswd -m sha-512
-  users.users.${vars.username}.hashedPassword = "$6$KtMQPtEMmQ9AW7qK$tvtWeUA5GzWyILnexkH51.OMTnM6cuzA2aEymac264HctHr5jRBH7NBOOn4twZqaF963f8KkgDdNzfpSfd54D0";
+  users.users.${vars.username}.hashedPassword =
+    "$6$KtMQPtEMmQ9AW7qK$tvtWeUA5GzWyILnexkH51.OMTnM6cuzA2aEymac264HctHr5jRBH7NBOOn4twZqaF963f8KkgDdNzfpSfd54D0";
 
   services.flatpak.enable = true;
 
@@ -24,20 +25,6 @@
     __GL_SHADER_DISK_CACHE = "1";
     __GL_THREADED_OPTIMIZATION = "1";
   };
-
-  # Those are for when Davinci Resolve won't work well
-  # environment.systemPackages = with pkgs; [
-  #   ocl-icd
-  # ];
-
-  # hardware.graphics = {
-  #   enable = true;
-  #   extraPackages = with pkgs; [
-  #     nvidia-vaapi-driver
-  #     ocl-icd
-  #     opencl-headers
-  #   ];
-  # };
 
   # Tmp on tmpfs for better performance
   boot.tmp = {
