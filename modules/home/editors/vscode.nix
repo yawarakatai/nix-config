@@ -16,9 +16,9 @@ in
     package = pkgs.vscode; # Use vscode (proprietary) for full extension support
     profiles.default = {
       userSettings = {
-        # Editor settings - fonts will be configured by stylix
+        # Editor settings
         "editor.fontLigatures" = true;
-        "editor.cursorBlinking" = "smooth";
+        "editor.cursorBlinking" = "solid";
         "editor.cursorSmoothCaretAnimation" = "on";
         "editor.lineNumbers" = "relative";
         "editor.renderWhitespace" = "boundary";
@@ -29,13 +29,13 @@ in
         "editor.suggest.preview" = true;
         "editor.formatOnSave" = true;
 
-        # Workbench - colorTheme managed by stylix
+        # Workbench
         "workbench.iconTheme" = "material-icon-theme";
         "workbench.startupEditor" = "none";
         "workbench.tree.indent" = 16;
         "workbench.activityBar.location" = "default";
 
-        # Terminal - fonts will be configured by stylix
+        # Terminal
         "terminal.integrated.cursorBlinking" = true;
         "terminal.integrated.defaultProfile.linux" = "nushell";
         "terminal.integrated.profiles.linux" = {
