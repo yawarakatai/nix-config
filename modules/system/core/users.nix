@@ -1,9 +1,10 @@
 # User configuration
-{ config
-, lib
-, pkgs
-, vars
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  vars,
+  ...
 }:
 
 {

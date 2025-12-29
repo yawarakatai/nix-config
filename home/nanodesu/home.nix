@@ -1,7 +1,8 @@
-{ vars
-, pkgs
-, inputs
-, ...
+{
+  inputs,
+  pkgs,
+  vars,
+  ...
 }:
 let
   juice-path = inputs.juice.packages.${pkgs.stdenv.hostPlatform.system}.default;

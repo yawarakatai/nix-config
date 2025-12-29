@@ -19,20 +19,21 @@
         # Skip X11 update UI that fails on Wayland-only compositors
         STEAM_UPDATE_UI = "0";
       };
-      extraLibraries = pkgs: with pkgs; [
-        # Additional libraries for X11 compatibility
-        xorg.libXcursor
-        xorg.libXi
-        xorg.libXinerama
-        xorg.libXScrnSaver
+      extraLibraries =
+        pkgs: with pkgs; [
+          # Additional libraries for X11 compatibility
+          xorg.libXcursor
+          xorg.libXi
+          xorg.libXinerama
+          xorg.libXScrnSaver
 
-        libpng
-        libpulseaudio
-        libvorbis
-        stdenv.cc.cc.lib
-        libkrb5
-        keyutils
-      ];
+          libpng
+          libpulseaudio
+          libvorbis
+          stdenv.cc.cc.lib
+          libkrb5
+          keyutils
+        ];
     };
   };
 }

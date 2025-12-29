@@ -10,7 +10,7 @@
     }
 
     {
-      matches = [{ app-id = "^org\\.gnome\\.Nautilus$"; }];
+      matches = [ { app-id = "^org\\.gnome\\.Nautilus$"; } ];
       open-floating = true;
     }
 
@@ -23,17 +23,17 @@
     }
 
     {
-      matches = [{ app-id = "^imv$"; }];
+      matches = [ { app-id = "^imv$"; } ];
       open-floating = true;
     }
 
     {
-      matches = [{ app-id = "org.pulseaudio.pavucontrol"; }];
+      matches = [ { app-id = "org.pulseaudio.pavucontrol"; } ];
       open-floating = true;
     }
 
     {
-      matches = [{ title = "^(Open|Save|Choose|Library).*"; }];
+      matches = [ { title = "^(Open|Save|Choose|Library).*"; } ];
       open-floating = true;
     }
 

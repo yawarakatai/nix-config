@@ -1,4 +1,10 @@
-{ lib, pkgs, uiSettings, vars, ... }:
+{
+  lib,
+  pkgs,
+  uiSettings,
+  vars,
+  ...
+}:
 
 {
   programs.niri.settings = {
@@ -43,7 +49,8 @@
         scale = vars.monitors.primary.scale;
         position = vars.monitors.primary.position;
       };
-    } // lib.optionalAttrs (vars.monitors ? external) {
+    }
+    // lib.optionalAttrs (vars.monitors ? external) {
       "${vars.monitors.external.name}" = {
         mode = {
           width = vars.monitors.external.width;
@@ -91,8 +98,9 @@
         { proportion = 0.66667; }
       ];
 
-      default-column-width = { proportion = 0.5; };
-
+      default-column-width = {
+        proportion = 0.5;
+      };
 
       preset-window-heights = [
         { proportion = 0.5; }

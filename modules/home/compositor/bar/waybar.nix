@@ -1,4 +1,10 @@
-{ config, pkgs, uiSettings, vars, ... }:
+{
+  config,
+  pkgs,
+  uiSettings,
+  vars,
+  ...
+}:
 
 {
   programs.waybar = {
@@ -11,7 +17,10 @@
         height = 32;
         spacing = 8;
 
-        modules-left = [ "niri/workspaces" "niri/window" ];
+        modules-left = [
+          "niri/workspaces"
+          "niri/window"
+        ];
         modules-center = [ "clock" ];
         modules-right = [
           "backlight"
@@ -48,7 +57,12 @@
           format-wifi = "{icon}";
           format-ethernet = "󰈀";
           format-disconnected = "󰤭";
-          format-icons = [ "󰤟" "󰤢" "󰤥" "󰤨" ];
+          format-icons = [
+            "󰤟"
+            "󰤢"
+            "󰤥"
+            "󰤨"
+          ];
           tooltip-format-wifi = "WiFi: {essid}\nSignal: {signalStrength}%\nIP: {ipaddr}/{cidr}\n {bandwidthDownBits}  {bandwidthUpBits}";
           tooltip-format-ethernet = "Ethernet: {ifname}\nIP: {ipaddr}/{cidr}\n {bandwidthDownBits}  {bandwidthUpBits}";
           tooltip-format-disconnected = "Network Disconnected";
@@ -57,7 +71,11 @@
 
         backlight = {
           format = "{icon}";
-          format-icons = [ "󰃞" "󰃟" "󰃠" ];
+          format-icons = [
+            "󰃞"
+            "󰃟"
+            "󰃠"
+          ];
           tooltip-format = "Brightness: {percent}%";
           on-scroll-up = "brightnessctl set +5%";
           on-scroll-down = "brightnessctl set 5%-";
@@ -67,7 +85,11 @@
           format = "{icon}";
           format-muted = "󰖁";
           format-icons = {
-            default = [ "󰕿" "󰖀" "󰕾" ];
+            default = [
+              "󰕿"
+              "󰖀"
+              "󰕾"
+            ];
           };
           tooltip-format = "Volume: {volume}%";
           on-click = "pavucontrol";
@@ -79,7 +101,19 @@
           format = "{icon}";
           format-charging = "󰂄";
           format-plugged = "󰚥";
-          format-icons = [ "󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
+          format-icons = [
+            "󰂎"
+            "󰁺"
+            "󰁻"
+            "󰁼"
+            "󰁽"
+            "󰁾"
+            "󰁿"
+            "󰂀"
+            "󰂁"
+            "󰂂"
+            "󰁹"
+          ];
           tooltip-format = "Battery: {capacity}%\n{timeTo}";
           states = {
             warning = 30;

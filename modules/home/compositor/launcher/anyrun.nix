@@ -1,6 +1,7 @@
-{ pkgs
-, uiSettings
-, ...
+{
+  pkgs,
+  uiSettings,
+  ...
 }:
 
 {

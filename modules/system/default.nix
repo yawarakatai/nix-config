@@ -1,8 +1,9 @@
 # Base system configuration - minimal common settings
-{ inputs
-, pkgs
-, vars
-, ...
+{
+  inputs,
+  pkgs,
+  vars,
+  ...
 }:
 
 {

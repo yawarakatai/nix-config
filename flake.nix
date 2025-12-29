@@ -48,11 +48,12 @@
   };
 
   outputs =
-    { self
-    , nixpkgs
-    , home-manager
-    , nixos-hardware
-    , ...
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      nixos-hardware,
+      ...
     }@inputs:
     let
       # Helper function to create system configurations
