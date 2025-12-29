@@ -22,7 +22,11 @@
       ]
       ++ lib.optional config.virtualisation.docker.enable "docker";
       shell = pkgs.nushell;
+      hashedPasswordFile = config.age.secrets.user-password.path;
     };
     users.root.hashedPassword = "!"; # Disable root login
   };
+
+  # Define the user password secret
+  age.secrets.user-password.rekeyFile = ../../../secrets/user-password.age;
 }
