@@ -104,7 +104,7 @@ in
       ];
 
       default-column-width = {
-        proportion = 0.5;
+        proportion = 0.33333;
       };
 
       preset-window-heights = [
@@ -113,13 +113,13 @@ in
     };
 
     # Workspaces
-    # workspaces = {
-    #   "1" = { };
-    #   "2" = { };
-    #   "3" = { };
-    #   "4" = { };
-    #   "5" = { };
-    # };
+    workspaces = {
+      "1" = { };
+      "2" = { };
+      # "3" = { };
+      # "4" = { };
+      # "5" = { };
+    };
 
     overview = {
       backdrop-color = "#000000";
@@ -134,6 +134,7 @@ in
       skip-at-startup = true;
       hide-not-bound = true;
     };
+
     # Animations
     animations = {
       enable = true;
