@@ -71,13 +71,13 @@
           ssid=$(echo "$wifi_info" | cut -d: -f1)
           signal=$(echo "$wifi_info" | cut -d: -f2)
           ip=$(ip -4 addr show wlan0 2>/dev/null | grep -oP '(?<=inet\s)\d+(\.\d+){3}' | head -1)
-          notify-send -t 3000 "󰤨 $ssid" "Signal: $signal%\nIP: ''${ip:-N/A}"
+          notify-send -t 3000 "󰤨  $ssid" "Signal: $signal%\nIP: ''${ip:-N/A}"
         else
           eth_ip=$(ip -4 addr show enp* 2>/dev/null | grep -oP '(?<=inet\s)\d+(\.\d+){3}' | head -1)
           if [ -n "$eth_ip" ]; then
-            notify-send -t 3000 "󰈀 Ethernet" "IP: $eth_ip"
+            notify-send -t 3000 "󰈀  Ethernet" "IP: $eth_ip"
           else
-            notify-send -t 3000 "󰤭 Disconnected" "No network connection"
+            notify-send -t 3000 "󰤭  Disconnected" "No network connection"
           fi
         fi
       '';
@@ -96,6 +96,7 @@
           notify-send -t 3000 "󰕾 Volume: $vol%$muted" "Brightness: ''${bright:-N/A}%"
         fi
       '';
+
       # Screenshot
       "Mod+P".action.spawn =
         sh "f=~/screenshot-$(date +%Y%m%d-%H%M%S).png && grim \"$f\" && notify-send -u low 'Screenshot' \"Saved to $f\"";
