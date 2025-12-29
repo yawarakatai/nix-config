@@ -1,3 +1,5 @@
+# Stylix theming configuration
+# Provides consistent colors and fonts across all applications
 { pkgs, ... }:
 
 let
@@ -5,12 +7,25 @@ let
     url = "https://cdnb.artstation.com/p/assets/images/images/024/049/327/large/rodion-yushmanov-dsc-0198.jpg?1581157890";
     hash = "sha256-xJyvFH4zyHApiOjYEtgVPSeXz+ghuAIHs1fH8qCy8Z4=";
   };
+
+  processedWallpaper =
+    pkgs.runCommand "processed-wallpaper.png"
+      {
+        buildInputs = [ pkgs.imagemagick ];
+      }
+      ''
+        magick ${wallpaper} \
+        -blur 0x10 \
+        -brightness-contrast -10x0 \
+        $out
+      '';
 in
 {
-  # Stylix theming configuration
-  # Provides consistent colors and fonts across all applications
   stylix = {
     enable = true;
+
+    # Wallpaper image
+    image = processedWallpaper;
 
     # Use RosePine color scheme
     # To generate theme FROM wallpaper instead, remove base16Scheme line
@@ -62,8 +77,6 @@ in
       light = "Papirus";
       dark = "Papirus-Dark";
     };
-
-    image = wallpaper;
 
     # Opacity settings
     opacity = {
