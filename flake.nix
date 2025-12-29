@@ -34,10 +34,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    vicinae = {
-      url = "github:vicinaehq/vicinae";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    vicinae.url = "github:vicinaehq/vicinae";
 
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
