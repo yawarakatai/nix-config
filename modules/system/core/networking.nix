@@ -26,7 +26,7 @@
     };
 
     # Disable wireless (using NetworkManager instead)
-    wireless.enable = lib.mkForce false;
+    # wireless.enable = lib.mkForce false;
   };
 
   # DNS
