@@ -7,7 +7,7 @@
     hostPubkey = "/etc/ssh/ssh_host_ed25519_key.pub";
 
     # Master identity (YubiKey FIDO2)
-    masterIdentities = [ ../../secrets/master-key.pub ];
+    masterIdentities = [ ../../../secrets/master-key.pub ];
 
     # Use local storage mode
     storageMode = "local";
