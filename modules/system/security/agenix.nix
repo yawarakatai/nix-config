@@ -1,10 +1,13 @@
 { pkgs, vars, ... }:
 
+let
+  keys = import ../../../secrets/keys.nix;
+in
 {
   # Agenix-rekey configuration
   age.rekey = {
     # Host public key for rekeying (from /etc/ssh/ssh_host_ed25519_key.pub)
-    hostPubkey = "/etc/ssh/ssh_host_ed25519_key.pub";
+    hostPubkey = keys.hosts.${vars.hostname};
 
     # Master identity (YubiKey FIDO2)
     masterIdentities = [
