@@ -36,6 +36,4 @@
       max-jobs = auto
     '';
   };
-
-  nixpkgs.config.allowUnfree = true;
 }

@@ -74,8 +74,11 @@
         nixpkgs.lib.nixosSystem {
           specialArgs = { inherit vars inputs; };
           modules = [
-            { nixpkgs.overlays = import ./overlays; }
-            { nixpkgs.hostPlatform = vars.system; }
+            {
+              nixpkgs.overlays = import ./overlays;
+              nixpkgs.hostPlatform = vars.system;
+              nixpkgs.config.allowUnfree = true;
+            }
 
             # Agenix for secrets
             agenix.nixosModules.default
