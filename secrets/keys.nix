@@ -11,4 +11,9 @@
     desuwa = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEnAhIcZqtU80UNZ7A/2zRQHUzIxQqXcEIZbe1LSiK/S root@desuwa";
     nanodesu = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIsIHhJfA3++zKExnOm3N6QZv5nwZrNTYvm8Ga0DU4Fo root@nanodesu";
   };
+
+  master = {
+    yubikey_5 = "age1xnx786rjc69fp65qqruglkqy8tlgjl3x7akvrlke4h3cpprsx9gsm88het";
+    yubikey_5c = "age1utpkhvtyhw77cq7zxhx6emtrwlwewasszrfuzncfnrax7us0eduswx8squ";
+  };
 }
