@@ -25,6 +25,30 @@
         Cryptomining = true;
         Fingerprinting = true;
       };
+
+      # Filters for uBlock Origin
+      "3rdparty".Extensions."uBlock0@raymondhill.net" = {
+        adminSettings = {
+          userFilters = ''
+            ! YouTube - Hide Shorts
+            youtube.com##ytd-rich-shelf-renderer[is-shorts]
+            youtube.com##ytd-reel-shelf-renderer
+            youtube.com##ytd-guide-entry-renderer:has(a[title="Shorts"])
+            youtube.com##ytd-mini-guide-entry-renderer:has(a[title="Shorts"])
+
+            ! YouTube - Hide Recommendations/Related videos
+            youtube.com##ytd-watch-next-secondary-results-renderer
+            youtube.com###related
+
+            ! YouTube - Hide Comments
+            youtube.com##ytd-comments
+            youtube.com###comments
+
+            ! YouTube - Hide Homepage recommendations
+            youtube.com##ytd-browse[page-subtype="home"] ytd-rich-grid-renderer
+          '';
+        };
+      };
     };
 
     profiles.default = {
