@@ -1,9 +1,7 @@
-{ vars, inputs, ... }:
+{ ... }:
 
 {
   imports = [
-    inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-nano
-
     # Shared base configuration (common settings for all hosts)
     ../../modules/system
 
