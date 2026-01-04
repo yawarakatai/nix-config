@@ -9,6 +9,6 @@
   # Obtain with: cat /etc/ssh/ssh_host_ed25519_key.pub
   hosts = {
     desuwa = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEnAhIcZqtU80UNZ7A/2zRQHUzIxQqXcEIZbe1LSiK/S root@desuwa";
-    nanodesu = "ssh-ed25519 AAAA..."; # TODO: Update with actual key
+    nanodesu = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIsIHhJfA3++zKExnOm3N6QZv5nwZrNTYvm8Ga0DU4Fo root@nanodesu";
   };
 }
