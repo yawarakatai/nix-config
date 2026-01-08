@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
   # Install language servers and tools needed by Helix
@@ -7,6 +7,7 @@
     nil # Nix LSP
     rust-analyzer # Rust LSP
     ruff # Python LSP, linter, formatter (all-in-one)
+    pyright # Python code completion etc
     clang-tools # C/C++ LSP (includes clangd)
     haskell-language-server # Haskell LSP
     nodePackages.typescript-language-server # TypeScript/JavaScript LSP
@@ -27,6 +28,8 @@
     enable = true;
 
     settings = {
+      theme = lib.mkForce "stylix_override";
+
       editor = {
         line-number = "relative";
         mouse = true;
@@ -97,6 +100,45 @@
       };
     };
 
+    # Theme override
+    themes = {
+      stylix_override = {
+        "inherits" = "stylix";
+
+        # Error base08
+        "diagnostic.error" = {
+          underline = {
+            color = "base08";
+            style = "curl";
+          };
+        };
+
+        # Warning base09
+        "diagnostic.warning" = {
+          underline = {
+            color = "base09";
+            style = "curl";
+          };
+        };
+
+        # Info  base0D
+        "diagnostic.info" = {
+          underline = {
+            color = "base0D";
+            style = "curl";
+          };
+        };
+
+        # Hint base03
+        "diagnostic.hint" = {
+          underline = {
+            color = "base03";
+            style = "curl";
+          };
+        };
+      };
+    };
+
     # Language-specific configurations
     languages = {
       language = [
@@ -117,11 +159,14 @@
           language-servers = [ "rust-analyzer" ];
         }
 
-        # Python - using ruff for everything
+        # Python
         {
           name = "python";
           auto-format = true;
-          language-servers = [ "ruff" ];
+          language-servers = [
+            "pyright"
+            "ruff"
+          ];
         }
 
         # C/C++
@@ -209,6 +254,20 @@
         ruff = {
           command = "${pkgs.ruff}/bin/ruff";
           args = [ "server" ];
+        };
+
+        pyright = {
+          command = "${pkgs.pyright}/bin/pyright-langserver";
+          args = [ "--stdio" ];
+          config = {
+            python = {
+              analysis = {
+                autoSearchPaths = true;
+                diagnoticMode = "workspace";
+                useLibraryCodeForTypes = true;
+              };
+            };
+          };
         };
 
         clangd = {
