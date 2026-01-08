@@ -12,7 +12,7 @@
   # Border configuration
   border = {
     enable = false;
-    width = 2;
+    width = 0;
   };
 
   # Gap configuration
