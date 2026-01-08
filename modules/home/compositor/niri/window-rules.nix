@@ -7,18 +7,11 @@
         { app-id = "^floating-term$"; }
       ];
       open-floating = true;
+      opacity = 0.95;
     }
 
     {
       matches = [ { app-id = "^org\\.gnome\\.Nautilus$"; } ];
-      open-floating = true;
-    }
-
-    {
-      matches = [
-        { app-id = "^org\\.gnome\\.Nautilus$"; }
-        { title = "Properties"; }
-      ];
       open-floating = true;
     }
 
@@ -37,13 +30,61 @@
       open-floating = true;
     }
 
+    # PIP window
     {
       matches = [
-        # { app-id = "Godot"; }
-        { title = "Godot Engine - Project Manager"; }
+        { title = "^Picture-in-Picture$"; }
       ];
       open-floating = true;
+      default-column-width = {
+        proportion = 0.25;
+      };
     }
+
+    # Fcitx5 Config
+    {
+      matches = [ { app-id = "org.fcitx.fcitx5-config-qt"; } ];
+      open-floating = true;
+    }
+
+    # Authentication
+    {
+      matches = [
+        { app-id = "^org\\.gnome\\.Polkit.*"; } # Polkit agent
+        { app-id = "^lxqt-policykit-agent$"; }
+      ];
+      open-floating = true;
+      default-column-width = {
+        fixed = 600;
+      };
+    }
+
+    # KiCad
+    {
+      matches = [ { app-id = "kicad"; } ];
+      open-floating = true;
+    }
+
+    {
+      matches = [
+        {
+          app-id = "kicad";
+          title = ".*(KiCad|Schematic Editor|PCB Editor).*";
+        }
+      ];
+      open-floating = false;
+    }
+
+    # Godot Engine
+    # {
+    #   matches = [
+    #     {
+    #       app-id = "^Godot$";
+    #       title = "^Godot Engine - Project Manager$";
+    #     }
+    #   ];
+    #   open-floating = true;
+    # }
 
     # Davinci Resolve
     {
