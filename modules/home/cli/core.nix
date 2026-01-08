@@ -4,8 +4,7 @@
 {
   home.packages = with pkgs; [
     # File operations
-    # eza # ls alternative
-    # bat # cat alternative
+    bat # cat alternative
     fd # find alternative
     ripgrep # grep alternative
 
@@ -18,7 +17,7 @@
     tokei # code statistics
     hyperfine # benchmarking tool
     croc # file transfer
-
-    zellij
+    unar # archive unpacker
+    zellij # terminal multiplexer
   ];
 }
