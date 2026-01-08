@@ -19,6 +19,23 @@ let
         -brightness-contrast -10x0 \
         $out
       '';
+
+  miku-cursor = pkgs.stdenv.mkDerivation {
+    pname = "miku-cursor-linux";
+    version = "1.2.6";
+
+    src = pkgs.fetchFromGitHub {
+      owner = "supermariofps";
+      repo = "hatsune-miku-windows-linux-cursors";
+      rev = "471ff88156e9a3dc8542d23e8cae4e1c9de6e732";
+      sha256 = "sha256-HCHo4GwWLvjjnKWNiHb156Z+NQqliqLX1T1qNxMEMfE=";
+    };
+
+    installPhase = ''
+      mkdir -p $out/share/icons
+      cp -r miku-cursor-linux $out/share/icons/
+    '';
+  };
 in
 {
   stylix = {
@@ -68,8 +85,14 @@ in
     cursor = {
       package = pkgs.graphite-cursors;
       name = "graphite-dark";
-      size = 24;
+      size = 32;
     };
+
+    # cursor = {
+    #   package = miku-cursor;
+    #   name = "miku-cursor-linux";
+    #   size = 32;
+    # };
 
     icons = {
       enable = true;
