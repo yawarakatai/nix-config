@@ -16,7 +16,7 @@
     marksman # Markdown LSP
 
     # === Formatters ===
-    nixfmt-rfc-style # Nix formatter
+    # nixfmt-rfc-style # Nix formatter
     rustfmt # Rust formatter
     nodePackages.prettier # Web formatter (JS, TS, HTML, CSS, JSON, etc.)
 
@@ -147,7 +147,7 @@
           name = "nix";
           auto-format = true;
           formatter = {
-            command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
+            command = "${pkgs.nixfmt}/bin/nixfmt";
           };
           language-servers = [ "nil" ];
         }
