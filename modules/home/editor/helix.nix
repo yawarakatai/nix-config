@@ -94,10 +94,6 @@
           "keep_primary_selection"
         ];
       };
-
-      keys.insert = {
-        j.k = "normal_mode";
-      };
     };
 
     # Theme override
