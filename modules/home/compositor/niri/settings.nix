@@ -85,10 +85,10 @@ in
     ];
 
     # Mouse Cursor configuration
-    cursor = {
-      size = stylix.cursor.size;
-      theme = stylix.cursor.name;
-    };
+    # cursor = {
+    #   size = stylix.cursor.size;
+    #   theme = stylix.cursor.name;
+    # };
 
     # Layout configuration
     layout = {
@@ -97,10 +97,12 @@ in
       always-center-single-column = true;
 
       gaps = uiSettings.gaps.inner;
+
       border = {
         enable = uiSettings.border.enable;
         width = uiSettings.border.width;
       };
+
       focus-ring.enable = false;
 
       preset-column-widths = [
