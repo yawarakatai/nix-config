@@ -67,11 +67,6 @@
 
         # Marp
         "markdown.marp.html" = "all";
-
-        # Claude Code
-        "claudeCode.disableLoginPrompt" = true;
-        "claudeCode.preferredLocation" = "panel";
-        "claudeCode.useTerminal" = true;
       };
 
       keybindings = [
@@ -110,9 +105,6 @@
 
         # Godot
         geequlim.godot-tools
-
-        # AI
-        anthropic.claude-code
       ];
     };
   };
