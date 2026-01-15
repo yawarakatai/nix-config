@@ -38,6 +38,7 @@
         auto-save = true;
         completion-trigger-len = 1;
         true-color = true;
+        auto-completion = true;
 
         # Clipboard configuration for Wayland
         clipboard-provider = "wayland";
@@ -58,11 +59,16 @@
             "spinner"
             "file-name"
             "file-modification-indicator"
+            "read-only-indicator"
           ];
-          center = [ "diagnostics" ];
+          center = [
+            "diagnostics"
+            "version-control"
+          ];
           right = [
             "selections"
             "position"
+            "total-line-numbers"
             "file-encoding"
             "file-line-ending"
             "file-type"
@@ -82,6 +88,10 @@
         soft-wrap = {
           enable = true;
         };
+
+        inline-diagnostics = {
+          cursor-line = "hint";
+        };
       };
 
       keys.normal = {
@@ -92,6 +102,10 @@
         esc = [
           "collapse_selection"
           "keep_primary_selection"
+        ];
+        ret = [
+          "open_below"
+          "normal_mode"
         ];
       };
     };
