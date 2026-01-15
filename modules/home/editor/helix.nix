@@ -5,23 +5,9 @@
   home.packages = with pkgs; [
     # === LSP Servers ===
     nil # Nix LSP
-    rust-analyzer # Rust LSP
-    ruff # Python LSP, linter, formatter (all-in-one)
-    pyright # Python code completion etc
-    clang-tools # C/C++ LSP (includes clangd)
-    haskell-language-server # Haskell LSP
-    nodePackages.typescript-language-server # TypeScript/JavaScript LSP
     taplo # TOML LSP and formatter
     yaml-language-server # YAML LSP
     marksman # Markdown LSP
-
-    # === Formatters ===
-    # nixfmt-rfc-style # Nix formatter
-    rustfmt # Rust formatter
-    nodePackages.prettier # Web formatter (JS, TS, HTML, CSS, JSON, etc.)
-
-    # === Debug Adapters (optional) ===
-    lldb # C/C++/Rust debugger
   ];
 
   programs.helix = {
@@ -147,8 +133,13 @@
             "keep_primary_selection"
           ];
 
-          ret = [
+          "ret" = [
             "open_below"
+            "normal_mode"
+          ];
+
+          "S-ret" = [
+            "open_above"
             "normal_mode"
           ];
 
@@ -209,168 +200,35 @@
     # Language-specific configurations
     languages = {
       language = [
-        # Nix
         {
           name = "nix";
           auto-format = true;
           formatter = {
-            command = "${pkgs.nixfmt}/bin/nixfmt";
+            command = "nixfmt";
           };
-          language-servers = [ "nil" ];
-        }
-
-        # Rust
-        {
-          name = "rust";
-          auto-format = true;
-          language-servers = [ "rust-analyzer" ];
-        }
-
-        # Python
-        {
-          name = "python";
-          auto-format = true;
-          language-servers = [
-            "pyright"
-            "ruff"
-          ];
-        }
-
-        # C/C++
-        {
-          name = "c";
-          auto-format = true;
-          language-servers = [ "clangd" ];
-        }
-        {
-          name = "cpp";
-          auto-format = true;
-          language-servers = [ "clangd" ];
-        }
-
-        # Haskell
-        {
-          name = "haskell";
-          auto-format = true;
-          language-servers = [ "haskell-language-server" ];
-        }
-
-        # JavaScript/TypeScript
-        {
-          name = "javascript";
-          auto-format = true;
-          formatter = {
-            command = "${pkgs.nodePackages.prettier}/bin/prettier";
-            args = [
-              "--parser"
-              "typescript"
-            ];
-          };
-          language-servers = [ "typescript-language-server" ];
-        }
-        {
-          name = "typescript";
-          auto-format = true;
-          formatter = {
-            command = "${pkgs.nodePackages.prettier}/bin/prettier";
-            args = [
-              "--parser"
-              "typescript"
-            ];
-          };
-          language-servers = [ "typescript-language-server" ];
-        }
-
-        # TOML
-        {
-          name = "toml";
-          auto-format = true;
-          language-servers = [ "taplo" ];
-        }
-
-        # YAML
-        {
-          name = "yaml";
-          auto-format = true;
-          language-servers = [ "yaml-language-server" ];
-        }
-
-        # Markdown
-        {
-          name = "markdown";
-          auto-format = true;
-          language-servers = [ "marksman" ];
         }
       ];
 
       # Language server configurations
       language-server = {
-        nil = {
-          command = "${pkgs.nil}/bin/nil";
-        };
-
-        rust-analyzer = {
-          command = "${pkgs.rust-analyzer}/bin/rust-analyzer";
-          config = {
-            check = {
-              command = "clippy";
-            };
-          };
-        };
-
-        ruff = {
-          command = "${pkgs.ruff}/bin/ruff";
-          args = [ "server" ];
-        };
-
-        pyright = {
-          command = "${pkgs.pyright}/bin/pyright-langserver";
-          args = [ "--stdio" ];
-          config = {
-            python = {
-              analysis = {
-                autoSearchPaths = true;
-                diagnoticMode = "workspace";
-                useLibraryCodeForTypes = true;
-              };
-            };
-          };
-        };
-
         clangd = {
-          command = "${pkgs.clang-tools}/bin/clangd";
           args = [
             "--background-index"
             "--clang-tidy"
           ];
         };
 
-        haskell-language-server = {
-          command = "haskell-language-server-wrapper";
-          args = [ "--lsp" ];
-        };
-
-        typescript-language-server = {
-          command = "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server";
+        pyright = {
           args = [ "--stdio" ];
-        };
-
-        taplo = {
-          command = "${pkgs.taplo}/bin/taplo";
-          args = [
-            "lsp"
-            "stdio"
-          ];
-        };
-
-        yaml-language-server = {
-          command = "${pkgs.yaml-language-server}/bin/yaml-language-server";
-          args = [ "--stdio" ];
-        };
-
-        marksman = {
-          command = "${pkgs.marksman}/bin/marksman";
-          args = [ "server" ];
+          config = {
+            python = {
+              analysis = {
+                autoSearchPaths = true;
+                diagnosticMode = "workspace";
+                useLibraryCodeForTypes = true;
+              };
+            };
+          };
         };
       };
     };
