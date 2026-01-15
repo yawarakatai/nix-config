@@ -31,7 +31,6 @@
       theme = lib.mkForce "stylix_override";
 
       editor = {
-        line-number = "relative";
         mouse = true;
         cursorline = true;
         color-modes = true;
@@ -39,6 +38,8 @@
         completion-trigger-len = 1;
         true-color = true;
         auto-completion = true;
+        bufferline = "multiple";
+        line-number = "absolute";
 
         # Clipboard configuration for Wayland
         clipboard-provider = "wayland";
@@ -61,18 +62,36 @@
             "file-modification-indicator"
             "read-only-indicator"
           ];
-          center = [
+
+          center = [ ];
+
+          right = [
             "diagnostics"
             "version-control"
-          ];
-          right = [
             "selections"
             "position"
-            "total-line-numbers"
-            "file-encoding"
-            "file-line-ending"
             "file-type"
           ];
+
+          separator = "|";
+
+          mode = {
+            normal = "NOR";
+            insert = "INS";
+            select = "SEL";
+          };
+        };
+
+        whitespace = {
+          render = "none";
+          characters = {
+            space = "·";
+            nbsp = "⍽";
+            nnbsp = "␣";
+            tab = "→";
+            tabpad = "·";
+            newline = "⏎";
+          };
         };
 
         lsp = {
@@ -94,19 +113,57 @@
         };
       };
 
-      keys.normal = {
-        space.space = "file_picker";
-        space.w = ":w";
-        space.q = ":q";
-        space.x = ":x";
-        esc = [
-          "collapse_selection"
-          "keep_primary_selection"
-        ];
-        ret = [
-          "open_below"
-          "normal_mode"
-        ];
+      keys = {
+        normal = {
+          D = [
+            "extend_to_line_end"
+            "delete_selection"
+          ];
+
+          C = [
+            "extend_to_line_end"
+            "change_selection"
+          ];
+
+          "G" = "goto_file_end";
+          "g" = {
+            n = ":bn";
+            p = ":bp";
+          };
+
+          "H" = ":bp";
+          "L" = ":bn";
+
+          space = {
+            space = "file_picker";
+            w = ":w";
+            q = ":q";
+            x = ":x";
+            B = ":bc";
+          };
+
+          esc = [
+            "collapse_selection"
+            "keep_primary_selection"
+          ];
+
+          ret = [
+            "open_below"
+            "normal_mode"
+          ];
+
+          "tab" = "indent";
+          "S-tab" = "unindent";
+
+          ";" = [
+            "goto_line_end"
+            "append_mode"
+          ];
+        };
+
+        insert = {
+          j.j = "normal_mode";
+        };
       };
     };
 
