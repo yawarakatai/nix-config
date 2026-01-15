@@ -140,7 +140,8 @@
           default = pkgs.mkShell {
             buildInputs = with pkgs; [
               nil # Nix LSP
-              nixfmt-tree # Nix formatter
+              nixfmt # Nix formatter for environment
+              nixfmt-tree # Nix formatter for project
               statix # Nix linter
               pkgs.agenix-rekey # agenix CLI with rekey support
               age-plugin-fido2-hmac # YubiKey FIDO2 plugin
