@@ -133,22 +133,16 @@
             "keep_primary_selection"
           ];
 
-          "ret" = [
-            "open_below"
-            "normal_mode"
-          ];
-
-          "S-ret" = [
-            "open_above"
-            "normal_mode"
-          ];
-
           "tab" = "indent";
           "S-tab" = "unindent";
 
-          ";" = [
+          "ret" = [
             "goto_line_end"
             "append_mode"
+          ];
+          "S-ret" = [
+            "open_above"
+            "normal_mode"
           ];
         };
 
