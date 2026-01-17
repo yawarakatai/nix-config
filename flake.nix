@@ -1,5 +1,5 @@
 {
-  description = "NixOS configuration";
+  description = "Nix flake configuration";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -65,101 +65,14 @@
       ...
     }:
     flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [
+        inputs.treefmt-nix.flakeModule
+        ./nix/dev.nix
+        ./nix/hosts.nix
+      ];
       systems = [
         "x86_64-linux"
         "aarch64-linux"
       ];
-
-      imports = [
-        inputs.treefmt-nix.flakeModule
-      ];
-
-      perSystem =
-        {
-          config,
-          self',
-          inputs',
-          pkgs,
-          systems,
-          ...
-        }:
-        {
-          devShells.default = pkgs.mkShell {
-            buildInputs = with pkgs; [
-              nil
-              statix
-              inputs'.agenix-rekey.packages.default
-              pkgs.age-plugin-fido2-hmac
-            ];
-          };
-
-          treefmt = {
-            projectRootFile = "flake.nix";
-            programs.nixfmt.enable = true;
-          };
-        };
-
-      flake =
-        let
-          commonModules = [
-            inputs.agenix.nixosModules.default
-            inputs.agenix-rekey.nixosModules.default
-            inputs.home-manager.nixosModules.home-manager
-            ./modules/system
-          ];
-
-          desktopModules = [
-            inputs.stylix.nixosModules.stylix
-            inputs.niri.nixosModules.niri
-            ./modules/system/desktop
-            ./modules/system/theme/stylix.nix
-            ./modules/system/display/greetd.nix
-            ./modules/system/display/wayland.nix
-            ./modules/system/hardware/audio.nix
-          ];
-
-          mkSystem =
-            hostname: extraModules:
-            let
-              vars = import ./hosts/${hostname}/vars.nix;
-            in
-            nixpkgs.lib.nixosSystem {
-              specialArgs = { inherit vars inputs; };
-              modules =
-                commonModules
-                ++ extraModules
-                ++ [
-                  {
-                    nixpkgs.overlays = import ./overlays;
-                    nixpkgs.hostPlatform = vars.system;
-                    nixpkgs.config.allowUnfree = true;
-                  }
-
-                  ./hosts/${hostname}
-
-                  {
-                    home-manager = {
-                      useGlobalPkgs = true;
-                      useUserPackages = true;
-                      users.${vars.username} = import ./home/${hostname}/home.nix;
-                      extraSpecialArgs = { inherit vars inputs; };
-                      backupFileExtension = "backup";
-                    };
-                  }
-                ];
-            };
-        in
-        {
-          nixosConfigurations = {
-            desuwa = mkSystem "desuwa" desktopModules;
-            nanodesu = mkSystem "nanodesu" desktopModules;
-            # server = mkSystem "server" [];
-          };
-
-          agenix-rekey = agenix-rekey.configure {
-            userFlake = self;
-            nixosConfigurations = self.nixosConfigurations;
-          };
-        };
     };
 }
