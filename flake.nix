@@ -1,8 +1,12 @@
 {
-  description = "NixOS configuration with flakes";
+  description = "NixOS configuration";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+    flake-parts.url = "github:hercules-ci/flake-parts";
+
+    treefmt-nix.url = "github:numtide/treefmt-nix";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -53,106 +57,109 @@
   };
 
   outputs =
-    {
+    inputs@{
       self,
       nixpkgs,
-      home-manager,
-      agenix,
+      flake-parts,
       agenix-rekey,
       ...
-    }@inputs:
-    let
-      # Helper function to create system configurations
-      mkSystem =
-        hostname:
-        let
-          vars = import ./hosts/${hostname}/vars.nix;
-        in
-        nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit vars inputs; };
-          modules = [
-            {
-              nixpkgs.overlays = import ./overlays;
-              nixpkgs.hostPlatform = vars.system;
-              nixpkgs.config.allowUnfree = true;
-            }
-
-            # Agenix for secrets
-            agenix.nixosModules.default
-            agenix-rekey.nixosModules.default
-
-            # Stylix theming
-            inputs.stylix.nixosModules.stylix
-            ./modules/system/theme/stylix.nix
-
-            # Niri compositor
-            inputs.niri.nixosModules.niri
-
-            # Host-specific configuration (imports its own modules)
-            ./hosts/${hostname}/configuration.nix
-            ./hosts/${hostname}/hardware-configuration.nix
-
-            # Home Manager integration
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-
-                users.${vars.username} = import ./home/${hostname}/home.nix;
-                extraSpecialArgs = { inherit vars inputs; };
-                backupFileExtension = "backup";
-              };
-            }
-          ];
-        };
-
-      # Helper for supporting multiple systems
-      supportedSystems = [
+    }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [
         "x86_64-linux"
         "aarch64-linux"
       ];
-      forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
-    in
-    {
-      # System configurations
-      nixosConfigurations = {
-        desuwa = mkSystem "desuwa";
-        nanodesu = mkSystem "nanodesu";
-      };
 
-      # Expose agenix-rekey configuration
-      agenix-rekey = agenix-rekey.configure {
-        userFlake = self;
-        nixosConfigurations = self.nixosConfigurations;
-      };
+      imports = [
+        inputs.treefmt-nix.flakeModule
+      ];
 
-      # Development shell for editing configurations
-      devShells = forAllSystems (
-        system:
-        let
-          pkgs = import nixpkgs {
-            inherit system;
-            overlays = [ agenix-rekey.overlays.default ];
+      perSystem =
+        {
+          config,
+          self',
+          inputs',
+          pkgs,
+          systems,
+          ...
+        }:
+        {
+          devShells.default = pkgs.mkShell {
+            buildInputs = with pkgs; [
+              nil
+              statix
+              inputs'.agenix-rekey.packages.default
+              pkgs.age-plugin-fido2-hmac
+            ];
           };
+
+          treefmt = {
+            projectRootFile = "flake.nix";
+            programs.nixfmt.enable = true;
+          };
+        };
+
+      flake =
+        let
+          commonModules = [
+            inputs.agenix.nixosModules.default
+            inputs.agenix-rekey.nixosModules.default
+            inputs.home-manager.nixosModules.home-manager
+            ./modules/system
+          ];
+
+          desktopModules = [
+            inputs.stylix.nixosModules.stylix
+            inputs.niri.nixosModules.niri
+            ./modules/system/desktop
+            ./modules/system/theme/stylix.nix
+            ./modules/system/display/greetd.nix
+            ./modules/system/display/wayland.nix
+            ./modules/system/hardware/audio.nix
+          ];
+
+          mkSystem =
+            hostname: extraModules:
+            let
+              vars = import ./hosts/${hostname}/vars.nix;
+            in
+            nixpkgs.lib.nixosSystem {
+              specialArgs = { inherit vars inputs; };
+              modules =
+                commonModules
+                ++ extraModules
+                ++ [
+                  {
+                    nixpkgs.overlays = import ./overlays;
+                    nixpkgs.hostPlatform = vars.system;
+                    nixpkgs.config.allowUnfree = true;
+                  }
+
+                  ./hosts/${hostname}
+
+                  {
+                    home-manager = {
+                      useGlobalPkgs = true;
+                      useUserPackages = true;
+                      users.${vars.username} = import ./home/${hostname}/home.nix;
+                      extraSpecialArgs = { inherit vars inputs; };
+                      backupFileExtension = "backup";
+                    };
+                  }
+                ];
+            };
         in
         {
-          default = pkgs.mkShell {
-            buildInputs = with pkgs; [
-              nil # Nix LSP
-              nixfmt # Nix formatter for environment
-              nixfmt-tree # Nix formatter for project
-              statix # Nix linter
-              pkgs.agenix-rekey # agenix CLI with rekey support
-              age-plugin-fido2-hmac # YubiKey FIDO2 plugin
-            ];
-
-            shellHook = ''
-              echo "NixOS configuration development environment"
-              echo "Available tools: nil, treefmt (nixfmt), statix, agenix"
-            '';
+          nixosConfigurations = {
+            desuwa = mkSystem "desuwa" desktopModules;
+            nanodesu = mkSystem "nanodesu" desktopModules;
+            # server = mkSystem "server" [];
           };
-        }
-      );
+
+          agenix-rekey = agenix-rekey.configure {
+            userFlake = self;
+            nixosConfigurations = self.nixosConfigurations;
+          };
+        };
     };
 }
