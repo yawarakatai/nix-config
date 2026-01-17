@@ -36,4 +36,13 @@
       max-jobs = auto
     '';
   };
+
+  programs.nh = {
+    enable = true;
+    clean = {
+      enable = true;
+      extraArgs = "--keep-since 4d --keep 5";
+    };
+    flake = "/home/${vars.username}/.config/nix-config";
+  };
 }

@@ -1,8 +1,10 @@
-{ lib, ... }:
+{ vars, ... }:
 
 {
   # Networking configuration
   networking = {
+    hostName = vars.hostname;
+
     # NetworkManager for easy network management
     networkmanager.enable = true;
 
@@ -32,11 +34,13 @@
   # DNS
   services.resolved = {
     enable = true;
-    dnssec = "allow-downgrade";
-    # Fallback DNS: Quad9
-    fallbackDns = [
-      "9.9.9.9"
-      "149.112.112.112"
-    ];
+    settings.Resolve = {
+      DNSSEC = "allow-downgrade";
+
+      FallbackDNS = [
+        "9.9.9.9"
+        "149.112.112.112"
+      ];
+    };
   };
 }
