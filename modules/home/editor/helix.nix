@@ -106,10 +106,10 @@
             "delete_selection"
           ];
 
-          C = [
-            "extend_to_line_end"
-            "change_selection"
-          ];
+          # C = [
+          #   "extend_to_line_end"
+          #   "change_selection"
+          # ];
 
           "G" = "goto_file_end";
           "g" = {
@@ -148,6 +148,7 @@
 
         insert = {
           j.j = "normal_mode";
+          x.x = ":x";
         };
       };
     };
