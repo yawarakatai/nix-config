@@ -137,18 +137,25 @@
           "S-tab" = "unindent";
 
           "ret" = [
-            "goto_line_end"
-            "append_mode"
+            "open_below"
+            "normal_mode"
           ];
           "S-ret" = [
             "open_above"
             "normal_mode"
           ];
+
+          ";" = [
+            "goto_line_end"
+            ":append-output echo ';'"
+            "collapse_selection"
+            "keep_primary_selection"
+          ];
         };
 
         insert = {
           j.j = "normal_mode";
-          x.x = ":x";
+          # x.x = ":x";
         };
       };
     };
