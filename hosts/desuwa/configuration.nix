@@ -9,7 +9,7 @@
     ../../modules/system/hardware/gpu/nvidia.nix # NVIDIA RTX 3080
     ../../modules/system/input/mouse/logiops.nix # Logitech mouse
     ../../modules/system/input/keyboard/lofree.nix # Lofree Flow keyboard
-    ../../modules/system/gaming/steam.nix # Steam
+    ../../modules/system/gaming # Steam
   ];
 
   services.flatpak.enable = true;
