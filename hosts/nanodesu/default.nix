@@ -14,9 +14,6 @@
     ../../modules/system/input/keyboard/kanata.nix # Specified key layout remap
   ];
 
-  nixpkgs.hostPlatform = "x86_64-linux";
-  networking.hostName = "nanodesu";
-
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Workaround for Alder Lake audio firmware signature verification failure
@@ -83,8 +80,7 @@
       name = "eDP-1";
       width = 2160;
       height = 1350;
-      refresh = 60.0;
-      vrr = false;
+      refresh = 59.940;
     };
   };
 

@@ -13,9 +13,6 @@
     ../../modules/system/gaming # Steam
   ];
 
-  nixpkgs.hostPlatform = "x86_64-linux";
-  networking.hostName = "desuwa";
-
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Tmp on tmpfs for better performance
