@@ -1,10 +1,8 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   # Bootloader configuration
   boot = {
-    kernelPackages = pkgs.linuxPackages_latest;
-
     # Kernel parameters
     kernelParams = [
       "quiet"
