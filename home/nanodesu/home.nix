@@ -1,7 +1,7 @@
 {
   inputs,
+  osConfig,
   pkgs,
-  vars,
   ...
 }:
 let
@@ -14,8 +14,8 @@ in
   ];
 
   # User-specific settings
-  home.username = vars.username;
-  home.homeDirectory = "/home/${vars.username}";
+  home.username = osConfig.my.user.name;
+  home.homeDirectory = "/home/${osConfig.my.user.name}";
 
   # Host-specific packages for nanodesu
   home.packages = with pkgs; [

@@ -1,4 +1,4 @@
-{ vars, ... }:
+{ osConfig, ... }:
 
 {
   imports = [
@@ -10,6 +10,6 @@
     ../../modules/home/browser/zen-browser.nix
   ];
 
-  home.username = vars.username;
-  home.homeDirectory = "/home/${vars.username}";
+  home.username = osConfig.my.user.name;
+  home.homeDirectory = "/home/${osConfig.my.user.name}";
 }

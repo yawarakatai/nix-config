@@ -1,14 +1,12 @@
 {
-  config,
+  osConfig,
   lib,
   pkgs,
-  uiSettings,
-  vars,
   ...
 }:
 
 let
-  stylix = config.stylix;
+  monitors = osConfig.my.system.monitors;
 in
 {
   programs.niri.settings = {
@@ -41,29 +39,16 @@ in
     };
 
     # Output configuration
-    # Monitor configuration from vars.monitors
     outputs = {
-      "${vars.monitors.primary.name}" = {
+      "${monitors.primary.name}" = {
         mode = {
-          width = vars.monitors.primary.width;
-          height = vars.monitors.primary.height;
-          refresh = vars.monitors.primary.refresh;
+          width = monitors.primary.width;
+          height = monitors.primary.height;
+          refresh = monitors.primary.refresh;
         };
-        variable-refresh-rate = if vars.monitors.primary.vrr then "on-demand" else false;
-        scale = vars.monitors.primary.scale;
-        position = vars.monitors.primary.position;
-      };
-    }
-    // lib.optionalAttrs (vars.monitors ? external) {
-      "${vars.monitors.external.name}" = {
-        mode = {
-          width = vars.monitors.external.width;
-          height = vars.monitors.external.height;
-          refresh = vars.monitors.external.refresh;
-        };
-        variable-refresh-rate = if vars.monitors.external.vrr then "on-demand" else false;
-        scale = vars.monitors.external.scale;
-        position = vars.monitors.external.position;
+        variable-refresh-rate = if monitors.primary.vrr then "on-demand" else false;
+        scale = monitors.primary.scale;
+        position = monitors.primary.position;
       };
     };
 
@@ -72,7 +57,7 @@ in
         draw-border-with-background = false;
         geometry-corner-radius =
           let
-            r = uiSettings.rounding * 1.0;
+            r = osConfig.my.theme.rounding * 1.0;
           in
           {
             top-left = r;
@@ -96,11 +81,11 @@ in
 
       always-center-single-column = true;
 
-      gaps = uiSettings.gaps.inner;
+      gaps = osConfig.my.theme.gaps.inner;
 
       border = {
-        enable = uiSettings.border.enable;
-        width = uiSettings.border.width;
+        enable = osConfig.my.theme.border.enable;
+        width = osConfig.my.theme.border.width;
       };
 
       focus-ring.enable = false;
@@ -112,7 +97,7 @@ in
       ];
 
       default-column-width = {
-        proportion = 0.5;
+        proportion = 0.33333;
       };
 
       preset-window-heights = [

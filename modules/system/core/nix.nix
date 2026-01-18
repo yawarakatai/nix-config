@@ -1,5 +1,4 @@
-# Nix configuration
-{ vars, ... }:
+{ config, ... }:
 
 {
   nix = {
@@ -11,7 +10,7 @@
       auto-optimise-store = true;
       trusted-users = [
         "root"
-        vars.username
+        config.my.user.name
       ];
 
       substituters = [
@@ -43,6 +42,6 @@
       enable = true;
       extraArgs = "--keep-since 4d --keep 5";
     };
-    flake = "/home/${vars.username}/.config/nix-config";
+    flake = "/home/${config.my.user.name}/.config/nix-config";
   };
 }

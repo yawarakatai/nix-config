@@ -1,4 +1,4 @@
-{ vars, ... }:
+{ config, ... }:
 
 {
   services.kanata = {
@@ -56,7 +56,7 @@
     };
   };
 
-  users.users.${vars.username}.extraGroups = [
+  users.users.${config.my.user.name}.extraGroups = [
     "uinput"
     "input"
   ];

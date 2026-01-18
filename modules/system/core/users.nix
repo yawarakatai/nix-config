@@ -3,16 +3,15 @@
   config,
   lib,
   pkgs,
-  vars,
   ...
 }:
 
 {
   users = {
     mutableUsers = false;
-    users.${vars.username} = {
+    users.${config.my.user.name} = {
       isNormalUser = true;
-      description = vars.username;
+      description = config.my.user.name;
       extraGroups = [
         "networkmanager"
         "wheel"

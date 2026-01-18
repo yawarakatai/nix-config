@@ -1,4 +1,4 @@
-{ lib, vars, ... }:
+{ lib, osConfig, ... }:
 let
   deviceList = {
     "desuwa" = {
@@ -12,7 +12,7 @@ let
     };
   };
 
-  otherDevices = lib.filterAttrs (name: _: name != vars.hostname) deviceList;
+  otherDevices = lib.filterAttrs (name: _: name != osConfig.my.user.name) deviceList;
   peerNames = lib.attrNames otherDevices;
 
 in

@@ -1,10 +1,8 @@
-{ vars, ... }:
+{ ... }:
 
 {
   # Networking configuration
   networking = {
-    hostName = vars.hostname;
-
     # NetworkManager for easy network management
     networkmanager.enable = true;
 

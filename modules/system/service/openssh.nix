@@ -1,4 +1,4 @@
-{ vars, ... }:
+{ config, ... }:
 let
   keys = import ../../../secrets/keys.nix;
 in
@@ -12,5 +12,5 @@ in
     };
   };
 
-  users.users.${vars.username}.openssh.authorizedKeys.keys = builtins.attrValues keys.yubikey;
+  users.users.${config.my.user.name}.openssh.authorizedKeys.keys = builtins.attrValues keys.yubikey;
 }
