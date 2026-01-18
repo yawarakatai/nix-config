@@ -1,4 +1,8 @@
-{ inputs, self, ... }:
+{
+  inputs,
+  self,
+  ...
+}:
 let
   commonModules = [
     inputs.agenix.nixosModules.default
@@ -10,39 +14,37 @@ let
   desktopModules = [
     inputs.stylix.nixosModules.stylix
     inputs.niri.nixosModules.niri
+    ../modules/theme
     ../modules/system/desktop
-    ../modules/system/theme/stylix.nix
     ../modules/system/display
     ../modules/system/hardware/audio.nix
   ];
 
   mkSystem =
     hostname: extraModules:
-    let
-      # パス調整
-      vars = import ../hosts/${hostname}/vars.nix;
-    in
     inputs.nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit vars inputs; };
+      specialArgs = { inherit inputs; };
       modules =
         commonModules
         ++ extraModules
         ++ [
           {
             nixpkgs.overlays = import ../overlays;
-            nixpkgs.hostPlatform = vars.system;
             nixpkgs.config.allowUnfree = true;
           }
           ../hosts/${hostname}
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.${vars.username} = import ../home/${hostname}/home.nix;
-              extraSpecialArgs = { inherit vars inputs; };
-              backupFileExtension = "backup";
-            };
-          }
+          (
+            { config, ... }:
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.${config.my.user.name} = import ../home/${hostname}/home.nix;
+                extraSpecialArgs = { inherit inputs; };
+                backupFileExtension = "backup";
+              };
+            }
+          )
         ];
     };
 in

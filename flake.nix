@@ -68,7 +68,7 @@
       imports = [
         inputs.treefmt-nix.flakeModule
         ./nix/dev.nix
-        ./nix/hosts.nix
+        ./nix/nixos.nix
       ];
       systems = [
         "x86_64-linux"
