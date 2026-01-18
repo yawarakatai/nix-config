@@ -1,10 +1,4 @@
-{
-  config,
-  pkgs,
-  uiSettings,
-  vars,
-  ...
-}:
+{ config, ... }:
 
 {
   programs.waybar = {
@@ -136,7 +130,7 @@
       }
 
       window#waybar {
-        opacity: ${toString uiSettings.opacity.bar};
+        opacity: 1.0;
       }
 
       /* Workspaces - Horizontal indicators */

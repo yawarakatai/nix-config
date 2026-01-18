@@ -1,13 +1,10 @@
-# Ghostty terminal emulator configuration
-{ uiSettings, ... }:
+{ ... }:
 
 {
   programs.ghostty = {
     enable = true;
 
     settings = {
-      background-opacity = uiSettings.opacity.terminal;
-
       font-feature = [
         "-calt" # Disable ligatures
         "-liga"

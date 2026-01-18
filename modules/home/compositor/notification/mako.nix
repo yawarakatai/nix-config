@@ -1,4 +1,4 @@
-{ uiSettings, ... }:
+{ osConfig, ... }:
 
 {
   services.mako = {
@@ -10,8 +10,8 @@
       height = 150;
       margin = "16";
       padding = "16";
-      border-size = uiSettings.border.width;
-      border-radius = uiSettings.rounding;
+      border-size = osConfig.my.theme.border.width;
+      border-radius = osConfig.my.theme.rounding;
 
       # Behavior
       default-timeout = 10000;

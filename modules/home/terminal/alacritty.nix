@@ -1,4 +1,4 @@
-{ uiSettings, ... }:
+{ ... }:
 
 {
   programs.alacritty = {
@@ -12,7 +12,6 @@
           y = 14;
         };
         decorations = "none";
-        opacity = uiSettings.opacity.terminal;
         blur = true;
       };
 

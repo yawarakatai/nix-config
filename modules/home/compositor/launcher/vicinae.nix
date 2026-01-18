@@ -1,7 +1,6 @@
 {
+  osConfig,
   inputs,
-  pkgs,
-  uiSettings,
   ...
 }:
 
@@ -30,8 +29,7 @@
 
       window = {
         csd = true;
-        opacity = uiSettings.opacity.launcher;
-        rounding = uiSettings.rounding;
+        rounding = osConfig.my.theme.rounding;
       };
     };
   };
