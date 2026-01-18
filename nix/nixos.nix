@@ -4,6 +4,8 @@
   ...
 }:
 let
+  lib = import ./lib.nix { inherit inputs; };
+
   commonModules = [
     inputs.agenix.nixosModules.default
     inputs.agenix-rekey.nixosModules.default
@@ -11,48 +13,29 @@ let
     ../modules/system
   ];
 
-  desktopModules = [
+  desktopModules = commonModules ++ [
     inputs.stylix.nixosModules.stylix
     inputs.niri.nixosModules.niri
-    ../modules/theme
     ../modules/system/desktop
     ../modules/system/display
+    ../modules/theme
     ../modules/system/hardware/audio.nix
   ];
-
-  mkSystem =
-    hostname: extraModules:
-    inputs.nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit inputs; };
-      modules =
-        commonModules
-        ++ extraModules
-        ++ [
-          {
-            nixpkgs.overlays = import ../overlays;
-            nixpkgs.config.allowUnfree = true;
-          }
-          ../hosts/${hostname}
-          (
-            { config, ... }:
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users.${config.my.user.name} = import ../home/${hostname}/home.nix;
-                extraSpecialArgs = { inherit inputs; };
-                backupFileExtension = "backup";
-              };
-            }
-          )
-        ];
-    };
 in
 {
   flake = {
     nixosConfigurations = {
-      desuwa = mkSystem "desuwa" desktopModules;
-      nanodesu = mkSystem "nanodesu" desktopModules;
+      desuwa = lib.mkSystem {
+        hostname = "desuwa";
+        system = "x86_64-linux";
+        extraModules = desktopModules;
+      };
+
+      nanodesu = lib.mkSystem {
+        hostname = "nanodesu";
+        system = "x86_64-linux";
+        extraModules = desktopModules;
+      };
     };
 
     agenix-rekey = inputs.agenix-rekey.configure {
