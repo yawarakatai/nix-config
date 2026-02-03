@@ -7,7 +7,7 @@
     networkmanager.enable = true;
 
     # Primary DNS: Cloudflare
-    nameservers = [
+    networkmanager.insertNameservers = [
       "1.1.1.1"
       "1.0.0.1"
     ];
