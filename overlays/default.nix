@@ -1,3 +1,3 @@
 [
-  (import ./nu-plugin-skim.nix)
+  # (import ./nu-plugin-skim.nix)
 ]
