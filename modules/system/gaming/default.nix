@@ -5,5 +5,8 @@
     ./steam.nix
   ];
 
-  environment.systemPackages = [ pkgs.heroic ];
+  environment.systemPackages = with pkgs; [
+    protonplus
+    heroic
+  ];
 }
