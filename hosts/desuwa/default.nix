@@ -17,6 +17,7 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Custom kernel for gaming
+  # Chaotic nyx must be installed
   # boot.kernelPackages = pkgs.linuxPackages_cachyos-lto;
 
   # services.scx = {

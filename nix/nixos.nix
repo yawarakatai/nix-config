@@ -21,10 +21,6 @@ let
     ../modules/theme
     ../modules/system/hardware/audio.nix
   ];
-
-  highPerformanceModules = desktopModules ++ [
-    inputs.chaotic.nixosModules.default
-  ];
 in
 {
   flake = {
@@ -32,7 +28,7 @@ in
       desuwa = lib.mkSystem {
         hostname = "desuwa";
         system = "x86_64-linux";
-        extraModules = highPerformanceModules;
+        extraModules = desktopModules;
       };
 
       nanodesu = lib.mkSystem {
