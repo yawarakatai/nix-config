@@ -38,6 +38,19 @@ in
       };
     };
 
+    homeConfigurations = {
+      "yawarakatai@dayo" = inputs.home-manager.lib.homeManagerConfiguration {
+        pkgs = import inputs.nixpkgs {
+          system = "aarch64-linux";
+          config.allowUnfree = true;
+        };
+        extraSpecialArgs = { inherit inputs; };
+        modules = [
+          ../home/dayo/home.nix
+        ];
+      };
+    };
+
     agenix-rekey = inputs.agenix-rekey.configure {
       userFlake = self;
       nixosConfigurations = self.nixosConfigurations;
