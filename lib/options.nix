@@ -2,7 +2,6 @@
 with lib;
 {
   options.my = {
-    # ユーザー名
     user.name = mkOption {
       type = types.str;
       default = "yawarakatai";
