@@ -39,7 +39,6 @@
       "networkmanager"
       "wheel"
     ];
-    shell = pkgs.nushell;
     hashedPassword = "$6$/JCsg6Ab3cxB4wWV$4xFaUJGPbaxFw2inJ1Z6KJ.9w5aHg3JnRTHoGUeH62Rbmjja5shQvY6mGG0K5yjMBz1ejnu9QHr5i3MtC.Qr30";
     openssh.authorizedKeys.keys = [
       "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIKoUC9mEqLf9q8geELb89t8I9P+0JBD2fvm51+jwNuu3AAAABHNzaDo= yubikey_5"
@@ -57,12 +56,47 @@
     };
   };
 
+  virtualisation.docker = {
+    enable = true;
+    autoPrune = {
+      enable = true;
+      dates = "weekly";
+    };
+  };
+
+  virtualisation.oci-containers = {
+    backend = "docker";
+
+    containers = {
+      vaultwarden = {
+        image = "vaultwarden/server:latest";
+        ports = [ "8080:80" ];
+        volumes = [ "/var/lib/vaultwarden:/data" ];
+        environment = {
+          DOMAIN = "https://vaultwarden.tail1234.ts.net";
+          SIGNUPS_ALLOWED = "true";
+        };
+      };
+
+      uptime-kuma = {
+        image = "louislam/uptime-kuma:1";
+        ports = [ "3001:3001" ];
+        volumes = [ "/var/lib/uptime-kuma:/app/data" ];
+      };
+    };
+  };
+
   environment.systemPackages = with pkgs; [
     vim
     git
     curl
     htop
+    lm_sensors
   ];
+
+  networking.firewall = {
+    trustedInterfaces = [ "tailscale0" ];
+  };
 
   system.stateVersion = "25.05";
 }
