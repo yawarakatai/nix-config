@@ -9,6 +9,7 @@
     procs # ps alternative
 
     # Network tools
+    nmap
     bandwhich # network monitor
   ];
 

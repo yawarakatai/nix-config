@@ -3,6 +3,10 @@
 
 {
   home.packages = with pkgs; [
+    # Basic tools
+    curl
+    wget
+
     # File operations
     bat # cat alternative
     fd # find alternative
