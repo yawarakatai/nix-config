@@ -53,8 +53,12 @@
         "vicinae"
         "toggle"
       ];
-      # "Mod+Space".action.spawn = [ "alacritty" "--class" "floating-term" ];
       "Mod+Return".action.spawn = [ "alacritty" ];
+      "Mod+Shift+Return".action.spawn = [
+        "alacritty"
+        "--class"
+        "floating-term"
+      ];
       "Mod+B".action.spawn = [ "firefox" ];
       "Mod+Shift+B".action.spawn = [ "zen" ];
       "Mod+E".action.spawn = [ "nautilus" ];
