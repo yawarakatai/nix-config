@@ -31,13 +31,13 @@
       tailscale serve reset || true
 
       # Homepage: expose at https:3000, proxy to container on 8082
-      tailscale serve --bg --https 3000 https://localhost:8082
+      tailscale serve --bg --https 3000 https://127.0.0.1:8082
 
       # Uptime Kuma
-      tailscale serve --bg --https 3001 https://localhost:3001
+      tailscale serve --bg --https 3001 https://127.0.0.1:3001
 
       # Home Assistant
-      tailscale serve --bg --https 8123 https://localhost:8123
+      tailscale serve --bg --https 8123 https://127.0.0.1:8123
     '';
   };
 }
