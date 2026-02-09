@@ -56,6 +56,7 @@
         ublock-origin
         privacy-badger
         proton-pass
+        bitwarden
       ];
 
       settings = {
@@ -103,6 +104,8 @@
         zen = {
           welcome-screen.seen = true;
           workspaces.continue-where-left-off = true;
+          window-sync.enable = true;
+          window-sync.sync-only-pinned-tabs = true;
         };
       };
 
