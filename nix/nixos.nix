@@ -84,6 +84,12 @@ let
     ../modules/system/hardware/audio.nix
     ../modules/system/storage/btrfs.nix
   ];
+
+  serverModules = [
+    ../modules/system/server
+    ../modules/system/service/tailscale-serve.nix
+  ];
+
 in
 {
   flake = {
@@ -103,23 +109,13 @@ in
       daze = mkSystem {
         hostname = "daze";
         system = "aarch64-linux";
-        extraModules = baseModules;
-      };
-    };
-
-    homeConfigurations = {
-      "yawarakatai@dayo" = mkHome {
-        username = "yawarakatai";
-        hostname = "dayo";
-        system = "aarch64-linux";
+        extraModules = baseModules ++ secretModules ++ serverModules;
       };
     };
 
     agenix-rekey = inputs.agenix-rekey.configure {
       userFlake = self;
-      nixosConfigurations = {
-        inherit (self.nixosConfigurations) desuwa nanodesu;
-      };
+      nixosConfigurations = self.nixosConfigurations;
     };
   };
 }
