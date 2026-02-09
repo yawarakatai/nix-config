@@ -1,6 +1,8 @@
 { ... }:
+
 {
   virtualisation.oci-containers.backend = "docker";
+
   virtualisation.oci-containers.containers.homeassistant = {
     image = "ghcr.io/home-assistant/home-assistant:stable";
     volumes = [
@@ -11,6 +13,8 @@
       "--network=host"
       "--privileged"
     ];
-    environment.TZ = "Asia/Tokyo";
+    environment = {
+      TZ = "Asia/Tokyo";
+    };
   };
 }
