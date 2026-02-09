@@ -1,13 +1,14 @@
 { lib, ... }:
 
 let
+  # Service definitions for the dashboard
   services = [
     {
       group = "Monitoring";
       items = [
         {
           name = "Uptime Kuma";
-          href = "https://daze.tail-XXXXX.ts.net:3001";
+          href = "https://daze:3001";
           icon = "uptime-kuma.png";
           description = "Service monitoring";
           widget = {
@@ -23,13 +24,14 @@ let
       items = [
         {
           name = "Home Assistant";
-          href = "https://daze.tail-XXXXX.ts.net:8123";
+          href = "https://daze:8123";
           icon = "home-assistant.png";
           description = "Home automation";
           widget = {
             type = "homeassistant";
             url = "http://localhost:8123";
-            key = ""; # TODO: HA long-lived access token
+            # TODO: Set HA long-lived access token (manage with agenix)
+            key = "";
           };
         }
       ];
@@ -56,6 +58,8 @@ let
     }
   ];
 
+  # Convert service groups to Homepage's expected format:
+  # [{GroupName: [{name, href, icon, ...}]}]
   mkServiceGroup = group: {
     ${group.group} = map (
       item:
@@ -117,9 +121,11 @@ let
 in
 {
   virtualisation.oci-containers.backend = "docker";
+
   virtualisation.oci-containers.containers.homepage = {
     image = "ghcr.io/gethomepage/homepage:latest";
-    ports = [ "3000:3000" ];
+    # Use 8082 externally to avoid conflict with Tailscale Serve binding on port 3000
+    ports = [ "8082:3000" ];
     volumes = [
       "${configDir}:/app/config:ro"
       "/var/run/docker.sock:/var/run/docker.sock:ro"
@@ -130,6 +136,8 @@ in
     };
   };
 
+  # Generate config files declaratively via /etc
+  # JSON is valid YAML (YAML is a superset of JSON)
   environment.etc = {
     "homepage/services.yaml".text = servicesYaml;
     "homepage/settings.yaml".text = settingsYaml;
