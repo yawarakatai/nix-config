@@ -2,7 +2,7 @@
 
 let
   # Service definitions for the dashboard
-  services = [
+  myServices = [
     {
       group = "Monitoring";
       items = [
@@ -57,92 +57,59 @@ let
       ];
     }
   ];
-
-  # Convert service groups to Homepage's expected format:
-  # [{GroupName: [{name, href, icon, ...}]}]
-  mkServiceGroup = group: {
-    ${group.group} = map (
-      item:
-      lib.filterAttrs (_: v: v != null && v != "") {
-        inherit (item) name description;
-        href = item.href or null;
-        icon = item.icon or null;
-        widget = item.widget or null;
-      }
-    ) group.items;
-  };
-
-  servicesYaml = builtins.toJSON (map mkServiceGroup services);
-
-  settingsYaml = builtins.toJSON {
-    title = "daze";
-    favicon = "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/raspberry-pi.png";
-    theme = "dark";
-    color = "stone";
-    headerStyle = "clean";
-    layout = {
-      Monitoring = {
-        style = "row";
-        columns = 2;
-      };
-      "Smart Home" = {
-        style = "row";
-        columns = 1;
-      };
-      Infrastructure = {
-        style = "row";
-        columns = 3;
-      };
-    };
-  };
-
-  widgetsYaml = builtins.toJSON [
-    {
-      datetime = {
-        text_size = "xl";
-        format = {
-          dateStyle = "long";
-          timeStyle = "short";
-          hour12 = false;
-        };
-      };
-    }
-    {
-      resources = {
-        cpu = true;
-        memory = true;
-        disk = "/";
-        label = "daze";
-      };
-    }
-  ];
-
-  configDir = "/etc/homepage";
 in
 {
-  virtualisation.oci-containers.backend = "docker";
+  services.homepage-dashboard = {
+    enable = true;
+    listenPort = 8082;
 
-  virtualisation.oci-containers.containers.homepage = {
-    image = "ghcr.io/gethomepage/homepage:latest";
-    # Use 8082 externally to avoid conflict with Tailscale Serve binding on port 3000
-    ports = [ "8082:3000" ];
-    volumes = [
-      "${configDir}:/app/config:ro"
-      "/var/run/docker.sock:/var/run/docker.sock:ro"
-    ];
-    environment = {
-      PUID = "1000";
-      PGID = "1000";
+    settings = {
+      title = "daze";
+      favicon = "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/raspberry-pi.png";
+      theme = "dark";
+      color = "stone";
+      headerStyle = "clean";
+      layout = {
+        Monitoring = {
+          style = "row";
+          columns = 2;
+        };
+        "Smart Home" = {
+          style = "row";
+          columns = 1;
+        };
+        Infrastructure = {
+          style = "row";
+          columns = 3;
+        };
+      };
     };
+
+    services = myServices;
+
+    widgets = [
+      {
+        datetime = {
+          text_size = "xl";
+          format = {
+            dateStyle = "long";
+            timeStyle = "short";
+            hour12 = false;
+          };
+        };
+      }
+      {
+        resources = {
+          cpu = true;
+          memory = true;
+          disk = "/";
+          label = "daze";
+        };
+      }
+    ];
   };
 
-  # Generate config files declaratively via /etc
-  # JSON is valid YAML (YAML is a superset of JSON)
-  environment.etc = {
-    "homepage/services.yaml".text = servicesYaml;
-    "homepage/settings.yaml".text = settingsYaml;
-    "homepage/widgets.yaml".text = widgetsYaml;
-    "homepage/bookmarks.yaml".text = builtins.toJSON [ ];
-    "homepage/docker.yaml".text = builtins.toJSON { };
+  systemd.services.homepage-dashboard.environment = {
+    "HOMEPAGE_ALLOWED_HOSTS" = lib.mkForce "*";
   };
 }
