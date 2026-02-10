@@ -6,7 +6,8 @@
       "tailscaled.service"
       "homepage-dashboard.service"
       "docker-homeassistant.service"
-      "uptime-kuma.service"
+      # "uptime-kuma.service"
+      "gatus.service"
     ];
     wants = [ "tailscaled.service" ];
     wantedBy = [ "multi-user.target" ];
@@ -33,7 +34,7 @@
       # Homepage
       tailscale serve --bg --https=3000 http://127.0.0.1:8082
 
-      # Uptime Kuma
+      # Gatus
       tailscale serve --bg --https=3001 http://127.0.0.1:3001
 
       # Home Assistant (tailscale serve uses 8123)
