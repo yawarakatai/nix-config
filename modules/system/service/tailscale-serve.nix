@@ -4,9 +4,9 @@
     description = "Tailscale Serve configuration";
     after = [
       "tailscaled.service"
-      "docker-homepage.service"
+      "homepage-dashboard.service"
       "docker-homeassistant.service"
-      "docker-uptime-kuma.service"
+      "uptime-kuma.service"
     ];
     wants = [ "tailscaled.service" ];
     wantedBy = [ "multi-user.target" ];
@@ -28,16 +28,16 @@
         sleep 2
       done
 
-      tailscale serve reset || true
+      tailscale serve reset 2>/dev/null || true
 
-      # Homepage: expose at https:3000, proxy to container on 8082
-      tailscale serve --bg --https 3000 https://127.0.0.1:8082
+      # Homepage
+      tailscale serve --bg --https=3000 http://127.0.0.1:8082
 
       # Uptime Kuma
-      tailscale serve --bg --https 3001 https://127.0.0.1:3001
+      tailscale serve --bg --https=3001 http://127.0.0.1:3001
 
       # Home Assistant
-      tailscale serve --bg --https 8123 https://127.0.0.1:8123
+      tailscale serve --bg --https=8123 http://127.0.0.1:8123
     '';
   };
 }

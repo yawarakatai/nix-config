@@ -87,7 +87,7 @@ let
 
   serverModules = [
     ../modules/system/server
-    # ../modules/system/service/tailscale-serve.nix
+    ../modules/system/service/tailscale-serve.nix
   ];
 
 in
