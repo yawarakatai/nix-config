@@ -103,4 +103,7 @@
   systemd.services.homepage-dashboard.environment = {
     "HOMEPAGE_ALLOWED_HOSTS" = lib.mkForce "*";
   };
+
+  systemd.services.homepage-dashboard.serviceConfig.EnvironmentFile =
+    "/var/lib/homepage-dashboard/env";
 }
