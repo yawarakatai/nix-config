@@ -10,9 +10,8 @@
       "/run/dbus:/run/dbus:ro"
     ];
     extraOptions = [
-      "--privileged"
+      "--network=host"
     ];
-    ports = [ "8123:8123" ];
     environment = {
       TZ = "Asia/Tokyo";
     };
