@@ -29,14 +29,14 @@
         Services = [
           {
             "Uptime Kuma" = {
-              href = "http://daze:3001";
+              href = "https://daze.ewe-major.ts.net:3001";
               icon = "uptime-kuma";
               description = "Service monitoring";
             };
           }
           {
             "Home Assistant" = {
-              href = "http:daze:8123";
+              href = "https://daze.ewe-major.ts.net:8123";
               icon = "home-assistant";
               description = "Home automation";
             };
