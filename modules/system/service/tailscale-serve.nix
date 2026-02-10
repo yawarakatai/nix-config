@@ -36,8 +36,8 @@
       # Uptime Kuma
       tailscale serve --bg --https=3001 http://127.0.0.1:3001
 
-      # Home Assistant
-      tailscale serve --bg --https=8123 http://127.0.0.1:8123
+      # Home Assistant (tailscale serve uses 8123)
+      tailscale serve --bg --https=8124 http://127.0.0.1:8123
     '';
   };
 }
