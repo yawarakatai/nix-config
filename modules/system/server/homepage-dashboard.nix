@@ -1,6 +1,11 @@
 { lib, ... }:
 
 {
+  age.secrets.ha-token = {
+    rekeyFile = ../../../secrets/ha-token.age;
+    mode = "400";
+  };
+
   services.homepage-dashboard = {
     enable = true;
     listenPort = 8082;
@@ -28,16 +33,26 @@
       {
         Services = [
           {
-            "Uptime Kuma" = {
+            "Gatus" = {
               href = "https://daze.ewe-major.ts.net:3001";
-              icon = "uptime-kuma";
+              icon = "gatus";
               description = "Service monitoring";
               widget = {
-                type = "uptimekuma";
-                url = "http://127.0.0.1:3001";
-                slug = "default";
+                type = "iframe";
+                src = "http://127.0.0.1:3001";
+                classes = "h-64";
               };
             };
+            # "Uptime Kuma" = {
+            #   href = "https://daze.ewe-major.ts.net:3001";
+            #   icon = "uptime-kuma";
+            #   description = "Service monitoring";
+            #   widget = {
+            #     type = "uptimekuma";
+            #     url = "http://127.0.0.1:3001";
+            #     slug = "default";
+            #   };
+            # };
           }
           {
             "Home Assistant" = {

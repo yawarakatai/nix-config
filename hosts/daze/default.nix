@@ -12,7 +12,8 @@
 
     # Server containers
     ../../modules/system/server/containers/home-assistant.nix
-    ../../modules/system/server/uptime-kuma.nix
+    # ../../modules/system/server/uptime-kuma.nix
+    ../../modules/system/server/gatus.nix
     ../../modules/system/server/homepage-dashboard.nix
   ];
 
