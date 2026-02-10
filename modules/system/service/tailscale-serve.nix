@@ -6,7 +6,6 @@
       "tailscaled.service"
       "homepage-dashboard.service"
       "docker-homeassistant.service"
-      # "uptime-kuma.service"
       "gatus.service"
     ];
     wants = [ "tailscaled.service" ];

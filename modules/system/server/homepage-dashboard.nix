@@ -37,22 +37,7 @@
               href = "https://daze.ewe-major.ts.net:3001";
               icon = "gatus";
               description = "Service monitoring";
-              widget = {
-                type = "iframe";
-                src = "http://127.0.0.1:3001";
-                classes = "h-64";
-              };
             };
-            # "Uptime Kuma" = {
-            #   href = "https://daze.ewe-major.ts.net:3001";
-            #   icon = "uptime-kuma";
-            #   description = "Service monitoring";
-            #   widget = {
-            #     type = "uptimekuma";
-            #     url = "http://127.0.0.1:3001";
-            #     slug = "default";
-            #   };
-            # };
           }
           {
             "Home Assistant" = {
