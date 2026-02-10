@@ -105,5 +105,5 @@
   };
 
   systemd.services.homepage-dashboard.serviceConfig.EnvironmentFile =
-    "/var/lib/homepage-dashboard/env";
+    lib.mkForce "/var/lib/homepage-dashboard/env";
 }
