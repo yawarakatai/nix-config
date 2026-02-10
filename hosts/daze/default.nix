@@ -12,8 +12,8 @@
 
     # Server containers
     ../../modules/system/server/containers/home-assistant.nix
-    ../../modules/system/server/containers/uptime-kuma.nix
-    ../../modules/system/server/containers/homepage.nix
+    ../../modules/system/server/uptime-kuma.nix
+    ../../modules/system/server/homepage-dashboard.nix
   ];
 
   # === Boot ===
