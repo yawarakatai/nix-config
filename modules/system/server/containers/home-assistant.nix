@@ -1,21 +1,5 @@
 { ... }:
 
-let
-  haConfig = ''
-    homeassistant:
-      name: Home
-      unit_system: metric
-      time_zone: Asia/Tokyo
-
-    default_config:
-
-    http:
-      use_x_forwarded_for: true
-      trusted_proxies:
-        - 127.0.0.1
-        - ::1
-  '';
-in
 {
   virtualisation.oci-containers.backend = "docker";
 
@@ -43,15 +27,39 @@ in
       Type = "oneshot";
       RemainAfterExit = true;
     };
+    path = [ ];
     script = ''
-      mkdir -p /var/lib/homeassistant
+            mkdir -p /var/lib/homeassistant
+            
+            CONFIG="/var/lib/homeassistant/configuration.yaml"
+            
+            if [ ! -f "$CONFIG" ]; then
+              cat > "$CONFIG" << 'HACONFIG'
+      homeassistant:
+        name: Home
+        unit_system: metric
+        time_zone: Asia/Tokyo
 
-      # create configuration.yaml at the first time
-      if [ ! -f /var/lib/homeassistant/configuration.yaml ]; then
-        cat > /var/lib/homeassistant/configuration.yaml << 'HACONFIG'
-      ${haConfig}
+      default_config:
+
+      http:
+        use_x_forwarded_for: true
+        trusted_proxies:
+          - 127.0.0.1
+          - ::1
       HACONFIG
-      fi
+            else
+              if ! grep -q "^http:" "$CONFIG"; then
+                cat >> "$CONFIG" << 'HTTPCONFIG'
+
+      http:
+        use_x_forwarded_for: true
+        trusted_proxies:
+          - 127.0.0.1
+          - ::1
+      HTTPCONFIG
+              fi
+            fi
     '';
   };
 }
