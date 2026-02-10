@@ -34,7 +34,7 @@
               description = "Service monitoring";
               widget = {
                 type = "uptimekuma";
-                url = "https://127.0.0.1:3001";
+                url = "http://127.0.0.1:3001";
                 slug = "default";
               };
             };
@@ -46,7 +46,7 @@
               description = "Home automation";
               widget = {
                 type = "homeassistant";
-                url = "https://127.0.0.1:8123";
+                url = "http://127.0.0.1:8123";
                 key = "{{HOMEPAGE_VAR_HA_TOKEN}}";
               };
             };
