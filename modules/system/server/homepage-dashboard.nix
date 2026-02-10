@@ -32,13 +32,23 @@
               href = "https://daze.ewe-major.ts.net:3001";
               icon = "uptime-kuma";
               description = "Service monitoring";
+              widget = {
+                type = "uptimekuma";
+                url = "https://127.0.0.1:3001";
+                slug = "default";
+              };
             };
           }
           {
             "Home Assistant" = {
-              href = "https://daze.ewe-major.ts.net:8123";
+              href = "https://daze.ewe-major.ts.net:8124";
               icon = "home-assistant";
               description = "Home automation";
+              widget = {
+                type = "homeassistant";
+                url = "https://127.0.0.1:8123";
+                key = "{{HOMEPAGE_VAR_HA_TOKEN}}";
+              };
             };
           }
         ];
