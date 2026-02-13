@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ../../lib/options.nix
     ./hardware-configuration.nix
 
     # Laptop-specific hardware modules

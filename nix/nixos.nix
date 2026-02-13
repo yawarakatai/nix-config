@@ -30,24 +30,8 @@ let
       ++ extraModules;
     };
 
-  mkHome =
-    {
-      username,
-      hostname,
-      system,
-    }:
-    inputs.home-manager.lib.homeManagerConfiguration {
-      pkgs = import inputs.nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-      };
-      extraSpecialArgs = { inherit inputs; };
-      modules = [
-        ../home/${hostname}/home.nix
-      ];
-    };
-
   baseModules = [
+    ../lib/options.nix
     ../modules/system/core/networking.nix
     ../modules/system/core/nix.nix
     ../modules/system/storage/zram.nix
