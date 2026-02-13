@@ -25,19 +25,7 @@ let
 
         inputs.home-manager.nixosModules.home-manager
         ../hosts/${hostname}
-
-        (
-          { config, ... }:
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.${config.my.user.name} = import ../home/${hostname}/home.nix;
-              extraSpecialArgs = { inherit inputs; };
-              backupFileExtension = "backup";
-            };
-          }
-        )
+        ../modules/system/core/home-manager.nix
       ]
       ++ extraModules;
     };
@@ -78,6 +66,7 @@ let
     inputs.stylix.nixosModules.stylix
     inputs.niri.nixosModules.niri
     ../modules/system/core/boot.nix
+    ../modules/system/core/i18n.nix
     ../modules/system/desktop
     ../modules/system/display
     ../modules/theme
