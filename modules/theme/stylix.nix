@@ -44,9 +44,8 @@ in
     # Wallpaper image
     image = processedWallpaper;
 
-    # Use RosePine color scheme
     # To generate theme FROM wallpaper instead, remove base16Scheme line
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-dark.yaml";
 
     # Polarity for the theme
     polarity = "dark";

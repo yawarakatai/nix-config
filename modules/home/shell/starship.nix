@@ -27,35 +27,23 @@
 
       # Directory
       directory = {
-        style = "bold purple";
+        style = "bold yellow";
         truncation_length = 3;
         truncate_to_repo = true;
         read_only = " 🔒";
         format = "[$path]($style)[$read_only]($read_only_style) ";
       };
 
-      # Direnv
-      direnv = {
-        disabled = false;
-        symbol = "󰌪 ";
-        style = "bold yellow";
-        format = "[$symbol]($style)";
-
-        allowed_msg = "";
-        not_allowed_msg = " (not allowed)";
-        denied_msg = " (denied)";
-      };
-
       # Git Branch
       git_branch = {
         symbol = " ";
-        style = "bold yellow";
+        style = "bold orange";
         format = "[$symbol$branch]($style) ";
       };
 
       # Git Status
       git_status = {
-        style = "bold yellow";
+        style = "bold red";
         format = "([$all_status$ahead_behind]($style) )";
         conflicted = " \${count} ";
         ahead = "⇡\${count} ";
@@ -78,6 +66,18 @@
         pure_msg = "(pure)";
       };
 
+      # Direnv
+      direnv = {
+        disabled = false;
+        symbol = "󰌪 ";
+        style = "bold green";
+        format = "[$symbol]($style) ";
+
+        allowed_msg = "";
+        not_allowed_msg = " (not allowed)";
+        denied_msg = " (denied)";
+      };
+
       # Username
       username = {
         disabled = false;
@@ -90,8 +90,9 @@
       # Hostname
       hostname = {
         disabled = false;
+        style = "bold blue";
+        format = "[@$hostname]($style) ";
         ssh_only = true;
-        format = "[@$hostname](bold blue) ";
       };
 
       # -----------------------------------------------------------------------
@@ -100,7 +101,7 @@
 
       c = {
         symbol = " ";
-        style = "blue";
+        style = "bold blue";
         format = "[$symbol($version )]($style)";
       };
 

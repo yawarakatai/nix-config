@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   # Install language servers and tools needed by Helix
@@ -14,8 +14,6 @@
     enable = true;
 
     settings = {
-      theme = lib.mkForce "stylix_override";
-
       editor = {
         mouse = true;
         cursorline = true;
@@ -161,43 +159,43 @@
     };
 
     # Theme override
-    themes = {
-      stylix_override = {
-        "inherits" = "stylix";
+    # themes = {
+    #   stylix_override = {
+    #     "inherits" = "stylix";
 
-        # Error base08
-        "diagnostic.error" = {
-          underline = {
-            color = "base08";
-            style = "curl";
-          };
-        };
+    #     # Error base08
+    #     "diagnostic.error" = {
+    #       underline = {
+    #         color = "base08";
+    #         style = "curl";
+    #       };
+    #     };
 
-        # Warning base09
-        "diagnostic.warning" = {
-          underline = {
-            color = "base09";
-            style = "curl";
-          };
-        };
+    #     # Warning base09
+    #     "diagnostic.warning" = {
+    #       underline = {
+    #         color = "base09";
+    #         style = "curl";
+    #       };
+    #     };
 
-        # Info  base0D
-        "diagnostic.info" = {
-          underline = {
-            color = "base0D";
-            style = "curl";
-          };
-        };
+    #     # Info  base0D
+    #     "diagnostic.info" = {
+    #       underline = {
+    #         color = "base0D";
+    #         style = "curl";
+    #       };
+    #     };
 
-        # Hint base03
-        "diagnostic.hint" = {
-          underline = {
-            color = "base03";
-            style = "curl";
-          };
-        };
-      };
-    };
+    #     # Hint base03
+    #     "diagnostic.hint" = {
+    #       underline = {
+    #         color = "base03";
+    #         style = "curl";
+    #       };
+    #     };
+    #   };
+    # };
 
     # Language-specific configurations
     languages = {
