@@ -36,10 +36,6 @@
   i18n.defaultLocale = "en_US.UTF-8";
   console.keyMap = "us";
 
-  # === User ===
-  my.user.name = "yawarakatai";
-  users.users.yawarakatai.shell = lib.mkForce pkgs.bash;
-
   # === Firewall ===
   networking.firewall.trustedInterfaces = [ "tailscale0" ];
 
