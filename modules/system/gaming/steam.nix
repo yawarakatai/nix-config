@@ -22,10 +22,10 @@
       extraLibraries =
         pkgs: with pkgs; [
           # Additional libraries for X11 compatibility
-          xorg.libXcursor
-          xorg.libXi
-          xorg.libXinerama
-          xorg.libXScrnSaver
+          libxcursor
+          libxi
+          libxinerama
+          libxscrnsaver
 
           libpng
           libpulseaudio
