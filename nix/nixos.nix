@@ -55,7 +55,6 @@ let
     ../modules/system/display
     ../modules/theme
     ../modules/system/hardware/audio.nix
-    ../modules/system/storage/btrfs.nix
   ];
 
   serverModules = [
@@ -79,8 +78,8 @@ in
         extraModules = baseModules ++ secretModules ++ desktopModules;
       };
 
-      daze = mkSystem {
-        hostname = "daze";
+      dayo = mkSystem {
+        hostname = "dayo";
         system = "aarch64-linux";
         extraModules = baseModules ++ secretModules ++ serverModules;
       };

@@ -8,5 +8,5 @@ in
     ++ (builtins.attrValues keys.master);
 
   "ha-token.age".publicKeys =
-    (builtins.attrValues keys.yubikey) ++ [ keys.hosts.daze ] ++ (builtins.attrValues keys.master);
+    (builtins.attrValues keys.yubikey) ++ [ keys.hosts.dayo ] ++ (builtins.attrValues keys.master);
 }

@@ -10,7 +10,7 @@
   hosts = {
     desuwa = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEnAhIcZqtU80UNZ7A/2zRQHUzIxQqXcEIZbe1LSiK/S root@desuwa";
     nanodesu = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIsIHhJfA3++zKExnOm3N6QZv5nwZrNTYvm8Ga0DU4Fo root@nanodesu";
-    daze = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOLNW7vm7pkcbFz7I0cTjaj4kDUI4nF7UsajZdbPdsVw root@daze";
+    dayo = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOLNW7vm7pkcbFz7I0cTjaj4kDUI4nF7UsajZdbPdsVw root@dayo";
   };
 
   master = {

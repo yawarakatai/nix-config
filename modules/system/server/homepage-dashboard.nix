@@ -11,7 +11,7 @@
     listenPort = 8082;
 
     settings = {
-      title = "daze";
+      title = "dayo";
       favicon = "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/raspberry-pi.png";
       theme = "dark";
       color = "stone";
@@ -34,14 +34,14 @@
         Services = [
           {
             "Gatus" = {
-              href = "https://daze.ewe-major.ts.net:3001";
+              href = "https://dayo.ewe-major.ts.net:3001";
               icon = "gatus";
               description = "Service monitoring";
             };
           }
           {
             "Home Assistant" = {
-              href = "https://daze.ewe-major.ts.net:8124";
+              href = "https://dayo.ewe-major.ts.net:8124";
               icon = "home-assistant";
               description = "Home automation";
               widget = {
@@ -68,7 +68,7 @@
             };
           }
           {
-            "daze" = {
+            "dayo" = {
               icon = "mdi-raspberry-pi";
               description = "RPi4 Server";
             };
@@ -93,7 +93,7 @@
           cpu = true;
           memory = true;
           disk = "/";
-          label = "daze";
+          label = "dayo";
         };
       }
     ];
