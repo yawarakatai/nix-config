@@ -34,7 +34,7 @@ let
     ../lib/options.nix
     ../modules/system/core/networking.nix
     ../modules/system/core/nix.nix
-    ../modules/system/storage/zram.nix
+    ../modules/system/storage
     ../modules/system/service/tailscale.nix
   ];
 

@@ -1,5 +1,4 @@
 {
-  lib,
   pkgs,
   inputs,
   ...
@@ -15,21 +14,6 @@
     ../../modules/system/server/homepage-dashboard.nix
   ];
 
-  # === Boot ===
-  boot.loader = {
-    grub.enable = false;
-    generic-extlinux-compatible.enable = true;
-  };
-  boot.kernelParams = lib.mkForce [ ];
-
-  # === Hardware ===
-  hardware.raspberry-pi."4".fkms-3d.enable = false;
-
-  services.fstrim = {
-    enable = true;
-    interval = "weekly";
-  };
-
   # === Locale ===
   time.timeZone = "Asia/Tokyo";
   i18n.defaultLocale = "en_US.UTF-8";
@@ -44,7 +28,6 @@
     git
     curl
     htop
-    lm_sensors
   ];
 
   system.stateVersion = "25.05";
