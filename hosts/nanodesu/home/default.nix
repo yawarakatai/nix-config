@@ -10,7 +10,7 @@ in
 {
   # Import common home configuration
   imports = [
-    ../../home
+    ../../../modules/home/profiles/desktop.nix
   ];
 
   # User-specific settings
@@ -44,4 +44,7 @@ in
       WantedBy = [ "default.target" ];
     };
   };
+
+  # State version - DO NOT CHANGE after initial install
+  home.stateVersion = "25.05";
 }
