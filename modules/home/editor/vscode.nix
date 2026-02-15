@@ -27,10 +27,10 @@
 
         # Terminal
         "terminal.integrated.cursorBlinking" = true;
-        "terminal.integrated.defaultProfile.linux" = "nushell";
+        "terminal.integrated.defaultProfile.linux" = "zsh";
         "terminal.integrated.profiles.linux" = {
           nushell = {
-            path = "${pkgs.nushell}/bin/nu";
+            path = "${pkgs.zsh}/bin/zsh";
           };
         };
 

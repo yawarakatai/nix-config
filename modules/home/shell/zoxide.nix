@@ -3,6 +3,7 @@
 {
   programs.zoxide = {
     enable = true;
-    enableNushellIntegration = true;
+    enableNushellIntegration = false;
+    enableZshIntegration = true;
   };
 }

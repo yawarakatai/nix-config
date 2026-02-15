@@ -3,7 +3,8 @@
 {
   programs.atuin = {
     enable = true;
-    enableNushellIntegration = true;
+    enableNushellIntegration = false;
+    enableZshIntegration = true;
 
     settings = {
       # Sync settings (optional, requires atuin server)
