@@ -4,7 +4,6 @@
   imports = [
     ../../../modules/home/profiles/desktop.nix
     ../../../modules/home/media/obs.nix
-    ../../../modules/home/media/spicetify.nix
     ../../../modules/home/creative
     ../../../modules/home/dev/claude-code.nix
     ../../../modules/home/browser/zen-browser.nix

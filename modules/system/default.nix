@@ -1,13 +1,6 @@
 { pkgs, ... }:
 
 {
-  imports = [
-    ./core
-    ./security
-    ./service
-    ./storage
-  ];
-
   environment.systemPackages = with pkgs; [
     vim
     git

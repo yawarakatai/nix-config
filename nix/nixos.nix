@@ -32,6 +32,7 @@ let
 
   baseModules = [
     ../lib/options.nix
+    ../modules/system
     ../modules/system/core/networking.nix
     ../modules/system/core/nix.nix
     ../modules/system/storage
