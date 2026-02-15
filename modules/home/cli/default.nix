@@ -2,7 +2,17 @@
 { pkgs, ... }:
 
 {
+  imports = [
+    ./yazi.nix
+    ./monitor.nix
+  ];
+
   home.packages = with pkgs; [
+    # System info
+    neofetch
+    htop
+    tree
+
     # Basic tools
     curl
     wget
@@ -11,6 +21,7 @@
     bat # cat alternative
     fd # find alternative
     ripgrep # grep alternative
+    television # fuzzy finder
 
     # Other utilities
     tealdeer # tldr (simplified man pages)
@@ -23,5 +34,6 @@
     croc # file transfer
     unar # archive unpacker
     zellij # terminal multiplexer
+    glow # markdown viewer
   ];
 }

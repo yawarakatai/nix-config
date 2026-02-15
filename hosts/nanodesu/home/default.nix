@@ -1,16 +1,13 @@
 {
-  inputs,
   osConfig,
   pkgs,
   ...
 }:
-let
-  juice-path = inputs.juice.packages.${pkgs.stdenv.hostPlatform.system}.default;
-in
 {
   # Import common home configuration
   imports = [
     ../../../modules/home/profiles/desktop.nix
+    ../../../modules/home/cli/juice.nix
   ];
 
   # User-specific settings
@@ -25,25 +22,7 @@ in
 
     libreoffice-qt
 
-    juice-path
   ];
-
-  systemd.user.services.juice-daemon = {
-    Unit = {
-      Description = "Juice battery history daemon";
-      After = [ "default.target" ];
-    };
-    Service = {
-      Type = "simple";
-      ExecStart = "${juice-path}/bin/juice daemon";
-      # ExecStart = "%h/.cargo/bin/juice daemon";
-      Restart = "on-failure";
-      RestartSec = 30;
-    };
-    Install = {
-      WantedBy = [ "default.target" ];
-    };
-  };
 
   # State version - DO NOT CHANGE after initial install
   home.stateVersion = "25.05";

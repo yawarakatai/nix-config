@@ -1,30 +1,17 @@
-# Common home configuration
-# Shared packages, XDG settings, and environment variables
-{ config, pkgs, ... }:
+{ config, ... }:
 
 {
-  # Common packages used across all home configurations
-  # These are everyday utilities that every user profile should have
-  home.packages = with pkgs; [
-    # System info
-    neofetch
-    htop
-    tree
-
-    # File manager
-    nautilus
-
-    # Image viewer
-    imv
-
-    # Markdown reader
-    glow
-
-    # Media and system controls
-    pavucontrol # PulseAudio volume control GUI
-    playerctl # Media player controls
-    brightnessctl # Brightness controls
+  imports = [
+    ../cli
+    ../dev
+    ../editor/helix.nix
+    ../shell
   ];
+
+  # Create symlink of nix-config
+  home.file."nix-config" = {
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-config";
+  };
 
   # Environment variables
   systemd.user.sessionVariables = {

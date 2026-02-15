@@ -2,11 +2,7 @@
 
 {
   imports = [
-    ../../../modules/home/cli/core.nix
-    ../../../modules/home/cli/monitor.nix
-    ../../../modules/home/editor/helix.nix
-    ../../../modules/home/dev/git.nix
-    ../../../modules/home/dev/direnv.nix
+    ../../../modules/home/profiles
   ];
 
   home.username = osConfig.my.user.name;
