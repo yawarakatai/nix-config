@@ -42,7 +42,7 @@ in
     enable = true;
 
     # Wallpaper image
-    image = processedWallpaper;
+    # image = processedWallpaper;
 
     # To generate theme FROM wallpaper instead, remove base16Scheme line
     base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-dark.yaml";

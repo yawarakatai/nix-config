@@ -69,15 +69,9 @@ in
       }
     ];
 
-    # Mouse Cursor configuration
-    # cursor = {
-    #   size = stylix.cursor.size;
-    #   theme = stylix.cursor.name;
-    # };
-
     # Layout configuration
     layout = {
-      background-color = "transparent";
+      background-color = "#000000";
 
       always-center-single-column = true;
 
@@ -124,7 +118,7 @@ in
     };
 
     overview = {
-      workspace-shadow.enable = false;
+      workspace-shadow.enable = true;
     };
 
     xwayland-satellite = {
