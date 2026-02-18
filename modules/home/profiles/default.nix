@@ -5,6 +5,7 @@
     ../cli
     ../dev
     ../editor/helix.nix
+    ../service/syncthing.nix
     ../shell
   ];
 

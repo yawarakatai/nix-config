@@ -30,7 +30,6 @@ in
 
     # Services
     ../service/ssh-client.nix
-    ../service/syncthing.nix
   ];
 
   # Common packages used across all home configurations
