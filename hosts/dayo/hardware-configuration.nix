@@ -16,6 +16,8 @@
 
   boot.initrd.availableKernelModules = [
     "xhci_pci"
+    "usbhid"
+    "usb_storage"
     "uas"
   ];
   boot.initrd.kernelModules = [ ];
@@ -23,8 +25,42 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/44444444-4444-4444-8888-888888888888";
-    fsType = "ext4";
+    device = "/dev/disk/by-uuid/9ce7d441-3bc3-4b91-810e-963e9eb4ae99";
+    fsType = "btrfs";
+    options = [ "subvol=@" ];
+  };
+
+  fileSystems."/home" = {
+    device = "/dev/disk/by-uuid/9ce7d441-3bc3-4b91-810e-963e9eb4ae99";
+    fsType = "btrfs";
+    options = [ "subvol=@home" ];
+  };
+
+  fileSystems."/nix" = {
+    device = "/dev/disk/by-uuid/9ce7d441-3bc3-4b91-810e-963e9eb4ae99";
+    fsType = "btrfs";
+    options = [ "subvol=@nix" ];
+  };
+
+  fileSystems."/var/log" = {
+    device = "/dev/disk/by-uuid/9ce7d441-3bc3-4b91-810e-963e9eb4ae99";
+    fsType = "btrfs";
+    options = [ "subvol=@log" ];
+  };
+
+  fileSystems."/tmp" = {
+    device = "/dev/disk/by-uuid/9ce7d441-3bc3-4b91-810e-963e9eb4ae99";
+    fsType = "btrfs";
+    options = [ "subvol=@tmp" ];
+  };
+
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/2178-694E";
+    fsType = "vfat";
+    options = [
+      "fmask=0022"
+      "dmask=0022"
+    ];
   };
 
   swapDevices = [ ];
