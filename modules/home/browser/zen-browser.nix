@@ -7,6 +7,7 @@
 
   programs.zen-browser = {
     enable = true;
+    suppressXdgMigrationWarning = true;
 
     policies = {
       AutofillAddressEnabled = false;
@@ -52,12 +53,12 @@
     };
 
     profiles.default = {
-      extensions.packages = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
-        ublock-origin
-        privacy-badger
-        proton-pass
-        bitwarden
-      ];
+      # extensions.packages = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
+      #   ublock-origin
+      #   privacy-badger
+      #   proton-pass
+      #   bitwarden
+      # ];
 
       settings = {
         browser = {
