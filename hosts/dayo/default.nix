@@ -19,6 +19,8 @@
     generic-extlinux-compatible.enable = lib.mkForce false;
   };
 
+  disko.devices.disk.main.device =
+    lib.mkForce "/dev/disk/by-id/usb-BUFFALO_SSD-PSM_N_0020549205024243-0\:0";
   # === Locale ===
   time.timeZone = "Asia/Tokyo";
   i18n.defaultLocale = "en_US.UTF-8";
