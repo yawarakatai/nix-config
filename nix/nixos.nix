@@ -31,10 +31,10 @@ let
     };
 
   baseModules = [
+    inputs.disko.nixosModules.disko
     ../lib/options.nix
     ../modules/system
-    ../modules/system/core/networking.nix
-    ../modules/system/core/nix.nix
+    ../modules/system/core
     ../modules/system/storage
     ../modules/system/service/tailscale.nix
   ];
@@ -42,7 +42,6 @@ let
   secretModules = [
     inputs.agenix.nixosModules.default
     inputs.agenix-rekey.nixosModules.default
-    ../modules/system/core/users.nix
     ../modules/system/security
     ../modules/system/service/openssh.nix
   ];
@@ -50,7 +49,6 @@ let
   desktopModules = [
     inputs.stylix.nixosModules.stylix
     inputs.niri.nixosModules.niri
-    ../modules/system/core/boot.nix
     ../modules/system/core/i18n.nix
     ../modules/system/desktop
     ../modules/system/display

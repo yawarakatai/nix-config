@@ -6,6 +6,8 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
+    disko.url = "github:nix-community/disko";
+
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     treefmt-nix.url = "github:numtide/treefmt-nix";
@@ -45,15 +47,10 @@
 
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     vicinae.url = "github:vicinaehq/vicinae";
-
-    spicetify-nix = {
-      url = "github:Gerg-L/spicetify-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     juice.url = "github:yawarakatai/juice";
   };
