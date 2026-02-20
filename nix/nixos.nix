@@ -82,6 +82,12 @@ in
         system = "aarch64-linux";
         extraModules = baseModules ++ secretModules ++ serverModules;
       };
+
+      desuno = mkSystem {
+        hostname = "desuno";
+        system = "x86_64-linux";
+        extraModules = baseModules ++ secretModules ++ desktopModules;
+      };
     };
 
     agenix-rekey = inputs.agenix-rekey.configure {
