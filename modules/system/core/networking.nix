@@ -29,6 +29,8 @@
     # wireless.enable = lib.mkForce false;
   };
 
+  systemd.services.NetworkManager-wait-online.enable = false;
+
   # DNS
   services.resolved = {
     enable = true;
