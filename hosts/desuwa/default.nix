@@ -3,6 +3,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./disko.nix
 
     # Hardware-specific modules
     ../../modules/system/hardware/gpu/nvidia.nix # NVIDIA RTX 3080
