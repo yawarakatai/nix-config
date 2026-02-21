@@ -29,7 +29,8 @@
       name = "DP-1";
       width = 3840;
       height = 2160;
-      refresh = 59.940;
+      refresh = 59.997;
+      scale = 1.0;
       vrr = true;
     };
   };
