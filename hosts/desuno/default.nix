@@ -6,7 +6,6 @@
     ./hardware-configuration.nix
 
     ../../modules/system/gaming # Steam
-    ../../modules/system/service/udev.nix # Udev
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
