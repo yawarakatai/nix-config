@@ -10,6 +10,9 @@ let
     "phone" = {
       id = "Y34UUSW-2VJSWMW-U7HDZYV-W62BLJB-LMJHF66-B27X2A7-LFZS27Q-TTU5ZQB";
     };
+    "desuno" = {
+      id = "A56MT4R-TES67G7-74QVYQC-7JVWJIP-H7FQAC5-XXNNRLY-VBGVXLO-S65DDAW";
+    };
   };
 
   otherDevices = lib.filterAttrs (name: _: name != osConfig.my.user.name) deviceList;
