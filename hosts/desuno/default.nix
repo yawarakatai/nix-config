@@ -30,7 +30,7 @@
       width = 3840;
       height = 2160;
       refresh = 59.997;
-      scale = 1.0;
+      scale = 2.0;
       vrr = true;
     };
   };
