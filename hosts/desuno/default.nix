@@ -4,8 +4,6 @@
   imports = [
     ./disko.nix
     ./hardware-configuration.nix
-
-    ../../modules/system/gaming # Steam
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -30,7 +28,7 @@
       width = 3840;
       height = 2160;
       refresh = 59.997;
-      scale = 2.0;
+      scale = 1.5;
       vrr = true;
     };
   };
