@@ -3,6 +3,7 @@
 {
   imports = [
     ../../../modules/home/profiles/desktop.nix
+    ../../../modules/home/creative
     ../../../modules/home/browser/zen-browser.nix
   ];
 
