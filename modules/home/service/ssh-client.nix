@@ -28,11 +28,17 @@ in
         user = "git";
         identityFile = yubikeyIdentities;
         identitiesOnly = true;
+        extraOptions = {
+          IdentityAgent = "none";
+        };
       };
 
       "192.168.*" = {
         identityFile = yubikeyIdentities;
         identitiesOnly = true;
+        extraOptions = {
+          IdentityAgent = "none";
+        };
       };
     };
   };
