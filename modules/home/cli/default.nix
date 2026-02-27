@@ -35,5 +35,6 @@
     unar # archive unpacker
     zellij # terminal multiplexer
     glow # markdown viewer
+    bitwarden-cli # passward manager
   ];
 }
