@@ -60,7 +60,7 @@
         "floating-term"
       ];
       "Mod+B".action.spawn = [ "firefox" ];
-      "Mod+Shift+B".action.spawn = [ "zen" ];
+      "Mod+Shift+B".action.spawn = [ "zen-beta" ];
       "Mod+E".action.spawn = [ "nautilus" ];
       "Mod+A".action.spawn = [ "pavucontrol" ];
 
