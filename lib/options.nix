@@ -18,7 +18,10 @@ with lib;
               refresh = mkOption { type = types.float; };
               scale = mkOption {
                 type = types.float;
-                default = 1.0;
+              };
+              transform = mkOption {
+                type = types.int;
+                default = 0;
               };
               vrr = mkOption {
                 type = types.bool;

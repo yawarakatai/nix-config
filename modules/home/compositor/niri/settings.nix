@@ -1,4 +1,5 @@
 {
+
   osConfig,
   lib,
   pkgs,
@@ -48,6 +49,7 @@ in
         };
         variable-refresh-rate = if monitors.primary.vrr then "on-demand" else false;
         scale = monitors.primary.scale;
+        transform.rotation = monitors.primary.transform;
         position = monitors.primary.position;
       };
     };
