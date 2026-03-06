@@ -21,9 +21,9 @@
 
       # Character
       character = {
-        success_symbol = "[λ](bold green)";
-        error_symbol = "[λ](bold red)";
-        vimcmd_symbol = "[λ](bold purple)";
+        success_symbol = "[>](bold green)";
+        error_symbol = "[>](bold red)";
+        vimcmd_symbol = "[>](bold purple)";
       };
 
       # Directory
