@@ -16,7 +16,7 @@ in
       keyboard = {
         xkb = {
           layout = "us";
-          # options = "ctrl:nocaps";
+          options = "ctrl:nocaps";
         };
         repeat-delay = 300;
         repeat-rate = 50;
