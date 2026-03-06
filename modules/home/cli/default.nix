@@ -9,7 +9,8 @@
 
   home.packages = with pkgs; [
     # System info
-    neofetch
+    pfetch
+    macchina
     htop
     tree
 
