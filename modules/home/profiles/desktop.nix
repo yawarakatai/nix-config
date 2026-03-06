@@ -14,7 +14,7 @@ in
     ./default.nix
 
     # Editor
-    ../editor/vscode.nix
+    # ../editor/vscode.nix
 
     # Browser
     ../browser/firefox.nix
