@@ -71,8 +71,20 @@ in
         extraModules = baseModules ++ secretModules ++ desktopModules;
       };
 
+      desuno = mkSystem {
+        hostname = "desuno";
+        system = "x86_64-linux";
+        extraModules = baseModules ++ secretModules ++ desktopModules;
+      };
+
       nanodesu = mkSystem {
         hostname = "nanodesu";
+        system = "x86_64-linux";
+        extraModules = baseModules ++ secretModules ++ desktopModules;
+      };
+
+      kamo = mkSystem {
+        hostname = "kamo";
         system = "x86_64-linux";
         extraModules = baseModules ++ secretModules ++ desktopModules;
       };
@@ -81,12 +93,6 @@ in
         hostname = "dayo";
         system = "aarch64-linux";
         extraModules = baseModules ++ secretModules ++ serverModules;
-      };
-
-      desuno = mkSystem {
-        hostname = "desuno";
-        system = "x86_64-linux";
-        extraModules = baseModules ++ secretModules ++ desktopModules;
       };
     };
 
