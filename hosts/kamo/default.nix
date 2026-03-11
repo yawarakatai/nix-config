@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ config, inputs, ... }:
 
 {
   imports = [
@@ -15,7 +15,11 @@
   ];
   services.xserver.videoDrivers = [ "amdgpu" ];
 
-  services.handheld-daemon.enable = true;
+  services.handheld-daemon = {
+    enable = true;
+    user = config.my.user.name;
+    ui.enable = true;
+  };
 
   # Tmp on tmpfs for better performance
   boot.tmp = {
@@ -31,7 +35,7 @@
       width = 1920;
       height = 1080;
       refresh = 119.880;
-      scale = 1.0;
+      scale = 1.5;
       vrr = true;
     };
   };
