@@ -41,6 +41,21 @@
         # --- Appearance ---
         "ui.systemUsesDarkTheme" = 1;
 
+        # --- History: Disable all history ---
+        "places.history.enabled" = false;
+        "browser.formfill.enable" = false;
+        "browser.cache.disk.enable" = false;
+        "browser.cache.memory.enable" = true;
+        "privacy.sanitize.sanitizeOnShutdown" = true;
+        "privacy.clearOnShutdown.history" = true;
+        "privacy.clearOnShutdown.downloads" = true;
+        "privacy.clearOnShutdown.formdata" = true;
+        "privacy.clearOnShutdown.sessions" = true;
+        "privacy.clearOnShutdown.cookies" = true;
+        "privacy.clearOnShutdown.cache" = true;
+        "browser.sessionstore.max_tabs_undo" = 0;
+        "browser.sessionstore.max_windows_undo" = 0;
+
         # --- New Tab Page: Show only Firefox logo and search bar ---
         "browser.newtabpage.enabled" = true;
         "browser.topsites.contile.enabled" = false;
@@ -68,7 +83,7 @@
         # --- Search: Enable suggestions in URL bar ---
         "browser.search.suggest.enabled" = true;
         "browser.urlbar.suggest.searches" = true;
-        "browser.urlbar.suggest.history" = true;
+        "browser.urlbar.suggest.history" = false;
         "browser.urlbar.suggest.bookmark" = true;
         "browser.urlbar.suggest.openpage" = true;
 
@@ -78,7 +93,6 @@
         "dom.security.https_only_mode" = true;
         "media.peerconnection.ice.default_address_only" = true; # Prevent WebRTC IP leak
         "extensions.pocket.enabled" = false;
-        "browser.formfill.enable" = false;
 
         # --- Telemetry (belt-and-suspenders with policies) ---
         "toolkit.telemetry.enabled" = false;
