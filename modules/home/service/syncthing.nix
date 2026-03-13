@@ -30,9 +30,9 @@ in
       devices = deviceList;
 
       folders = {
-        "docs" = {
-          label = "docs";
-          path = "/home/yawarakatai/docs";
+        "sync" = {
+          label = "sync";
+          path = "/home/yawarakatai/sync";
           devices = peerNames;
           # ignorePerms = false;
         };
