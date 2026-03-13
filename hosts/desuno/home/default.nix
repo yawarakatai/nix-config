@@ -4,6 +4,9 @@
   imports = [
     ../../../modules/home/profiles/desktop.nix
     ../../../modules/home/browser/zen-browser.nix
+
+    ../../../modules/home/creative/obs.nix
+    ../../../modules/home/dev/claude-code.nix
   ];
 
   home.username = osConfig.my.user.name;
