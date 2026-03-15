@@ -4,6 +4,9 @@
   imports = [
     ./disko.nix
     ./hardware-configuration.nix
+
+    ../../modules/system/hardware/gpu/amd.nix
+    ../../modules/system/gaming
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -29,6 +32,7 @@
       height = 2160;
       refresh = 59.997;
       scale = 1.5;
+      # transform = 90;
       vrr = true;
     };
   };
