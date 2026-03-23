@@ -11,5 +11,8 @@
 
     # PCB design
     kicad
+
+    gpu-screen-recorder
+    gpu-screen-recorder-gtk
   ];
 }
