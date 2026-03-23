@@ -4,8 +4,6 @@
   imports = [
     ../../../modules/home/profiles/desktop.nix
     ../../../modules/home/creative
-    ../../../modules/home/creative/davinci-resolve.nix
-    ../../../modules/home/creative/obs.nix
     ../../../modules/home/dev/claude-code.nix
     ../../../modules/home/browser/zen-browser.nix
   ];
