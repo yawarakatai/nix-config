@@ -8,9 +8,11 @@
         extraDefCfg = "process-unmapped-keys yes";
         config = ''
           ;; =================================================================
-          ;;  Kanata Configuration
-          ;;  Action: CapsLock -> Tap for Esc, Hold for Ctrl (escctl)
-          ;;  Layers: Alt -> Navigation / Symbols
+          ;;  Kanata Configuration — Colemak DH
+          ;;
+          ;;  Base: QWERTY physical -> Colemak DH output
+          ;;  CapsLock: Tap for Esc, Hold for Ctrl
+          ;;  RAlt: Symbols layer
           ;; =================================================================
 
           (defsrc
@@ -23,27 +25,22 @@
 
           (defalias
             escctl (tap-hold 150 150 esc lctl)
-
-            ;; nav (layer-while-held navigation)
             sym (layer-while-held symbols)
           )
 
+          ;; Colemak DH remapping on a QWERTY physical keyboard
+          ;; Physical QWERTY -> Colemak DH output
           (deflayer base
             grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-            tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-            @escctl a s    d    f    g    h    j    k    l    ;    '    ret
-            lsft z    x    c    v    b    n    m    ,    .    /    rsft
+            tab  q    w    f    p    b    j    l    u    y    ;    [    ]    \
+            @escctl a r  s    t    g    m    n    e    i    o    '    ret
+            lsft x    c    d    v    z    k    h    ,    .    /    rsft
             lctl lmet lalt           spc            @sym rmet rctl
           )
 
-          (deflayer navigation
-            _    f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  del
-            _    _    _    _    _    _    pgup home up   end  _    _    _    _
-            _    _    _    _    _    _    pgdn left down right _    _    _
-            _    _    _    _    _    _    _    _    _    _    _    _
-            _    _    _              _              _    _    _
-          )
-
+          ;; Navigation layer (RAlt held)
+          ;; neio positions on Colemak DH = physical hjkl on QWERTY
+          ;; So we map physical h/j/k/l to arrow-like functions
           (deflayer symbols
             _    _    _    _    _    _    _    _    _    _    _    _    _    _
             _    grv  S-,  S-.  S-2  S-5  _    _    _    _    _    _    _    _

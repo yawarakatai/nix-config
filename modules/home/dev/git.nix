@@ -66,7 +66,16 @@
         };
       };
 
-      # Keybindings
+      # =============================================
+      #  Colemak DH keybindings
+      #
+      #  Movement (neio):
+      #    n = left    e = down    i = up    o = right
+      #
+      #  Displaced:
+      #    n (next match) -> k
+      #    e (edit)       -> stays on 'e' contextually (lazygit uses explicit edit)
+      # =============================================
       keybinding = {
         universal = {
           quit = "q";
@@ -74,14 +83,16 @@
           return = "<esc>";
           quitWithoutChangingDirectory = "Q";
           togglePanel = "<tab>";
+
+          # Navigation: neio
           prevItem = "<up>";
           nextItem = "<down>";
-          prevItem-alt = "k";
-          nextItem-alt = "j";
+          prevItem-alt = "i"; # up
+          nextItem-alt = "e"; # down
           prevPage = ",";
           nextPage = ".";
-          scrollLeft = "H";
-          scrollRight = "L";
+          scrollLeft = "N"; # Shift+n = scroll left
+          scrollRight = "O"; # Shift+o = scroll right
           gotoTop = "<";
           gotoBottom = ">";
           toggleRangeSelect = "v";
@@ -89,10 +100,10 @@
           rangeSelectUp = "<s-up>";
           prevBlock = "<left>";
           nextBlock = "<right>";
-          prevBlock-alt = "h";
-          nextBlock-alt = "l";
-          nextMatch = "n";
-          prevMatch = "N";
+          prevBlock-alt = "n"; # left panel
+          nextBlock-alt = "o"; # right panel
+          nextMatch = "k"; # displaced from n
+          prevMatch = "K";
           startSearch = "/";
           optionMenu = "?";
           optionMenu-alt1 = "<c-w>";
@@ -100,13 +111,13 @@
           goInto = "<enter>";
           confirm = "<enter>";
           remove = "d";
-          new = "n";
-          edit = "e";
-          openFile = "o";
+          new = "a"; # 'n' is taken by movement
+          edit = "w"; # edit with editor
+          openFile = "f"; # open file
           scrollUpMain = "<pgup>";
           scrollDownMain = "<pgdown>";
-          scrollUpMain-alt1 = "K";
-          scrollDownMain-alt1 = "J";
+          scrollUpMain-alt1 = "I"; # Shift+i = scroll up main
+          scrollDownMain-alt1 = "E"; # Shift+e = scroll down main
           scrollUpMain-alt2 = "<c-u>";
           scrollDownMain-alt2 = "<c-d>";
           executeShellCommand = ":";

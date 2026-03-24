@@ -97,26 +97,62 @@
         };
       };
 
+      # =============================================
+      #  Colemak DH keybindings
+      #
+      #  Movement (neio):
+      #    n = left    e = down    i = up    o = right
+      #
+      #  Displaced keys relocated:
+      #    n (next match)   -> k
+      #    e (word end)     -> j
+      #    i (insert)       -> l
+      #    o (open below)   -> h
+      #    N (prev match)   -> K
+      #    E (word end back) -> J  (move_prev_word_end)
+      #    I (insert at bol) -> L
+      #    O (open above)   -> H
+      # =============================================
       keys = {
         normal = {
-          D = [
+          # --- Movement (neio) ---
+          "n" = "move_char_left";
+          "e" = "move_visual_line_down";
+          "i" = "move_visual_line_up";
+          "o" = "move_char_right";
+
+          "N" = "move_prev_word_start"; # extend/jump left word
+          "E" = "half_page_down";
+          "I" = "half_page_up";
+          "O" = "move_next_word_end";
+
+          # --- Displaced keys ---
+          "k" = "search_next";
+          "K" = "search_prev";
+          "j" = "move_next_word_end";
+          "J" = "move_prev_word_end";
+          "l" = "insert_mode";
+          "L" = "insert_at_line_start";
+          "h" = [
+            "open_below"
+            "normal_mode"
+          ];
+          "H" = [
+            "open_above"
+            "normal_mode"
+          ];
+
+          # --- Common operations ---
+          "D" = [
             "extend_to_line_end"
             "delete_selection"
           ];
 
-          # C = [
-          #   "extend_to_line_end"
-          #   "change_selection"
-          # ];
-
           "G" = "goto_file_end";
           "g" = {
-            n = ":bn";
-            p = ":bp";
+            "k" = ":bn"; # g+next -> next buffer
+            "K" = ":bp"; # g+prev -> prev buffer
           };
-
-          "H" = ":bp";
-          "L" = ":bn";
 
           space = {
             space = "file_picker";
@@ -134,14 +170,7 @@
           "tab" = "indent";
           "S-tab" = "unindent";
 
-          "ret" = [
-            "open_below"
-            "normal_mode"
-          ];
-          "S-ret" = [
-            "open_above"
-            "normal_mode"
-          ];
+          "ret" = "goto_word";
 
           ";" = [
             "goto_line_end"
@@ -151,51 +180,29 @@
           ];
         };
 
+        select = {
+          # --- Movement in select mode ---
+          "n" = "move_char_left";
+          "e" = "move_visual_line_down";
+          "i" = "move_visual_line_up";
+          "o" = "move_char_right";
+
+          "N" = "move_prev_word_start";
+          "E" = "half_page_down";
+          "I" = "half_page_up";
+          "O" = "move_next_word_end";
+
+          "k" = "search_next";
+          "K" = "search_prev";
+          "j" = "move_next_word_end";
+          "J" = "move_prev_word_end";
+        };
+
         insert = {
-          j.j = "normal_mode";
-          # x.x = ":x";
+          "j.j" = "normal_mode";
         };
       };
     };
-
-    # Theme override
-    # themes = {
-    #   stylix_override = {
-    #     "inherits" = "stylix";
-
-    #     # Error base08
-    #     "diagnostic.error" = {
-    #       underline = {
-    #         color = "base08";
-    #         style = "curl";
-    #       };
-    #     };
-
-    #     # Warning base09
-    #     "diagnostic.warning" = {
-    #       underline = {
-    #         color = "base09";
-    #         style = "curl";
-    #       };
-    #     };
-
-    #     # Info  base0D
-    #     "diagnostic.info" = {
-    #       underline = {
-    #         color = "base0D";
-    #         style = "curl";
-    #       };
-    #     };
-
-    #     # Hint base03
-    #     "diagnostic.hint" = {
-    #       underline = {
-    #         color = "base03";
-    #         style = "curl";
-    #       };
-    #     };
-    #   };
-    # };
 
     # Language-specific configurations
     languages = {

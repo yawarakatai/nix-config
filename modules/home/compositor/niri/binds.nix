@@ -10,24 +10,30 @@
       ];
     in
     {
+      # =============================================
+      #  Colemak DH keybindings
+      #
+      #  Movement (neio):
+      #    n = left    e = down    i = up    o = right
+      # =============================================
+
       "Mod+Shift+Slash".action.show-hotkey-overlay = [ ];
-      "Mod+O".action.toggle-overview = [ ];
       "Mod+Tab".action.toggle-overview = [ ];
 
-      # Window management
+      # --- Window management (neio) ---
       "Mod+Q".action.close-window = [ ];
-      "Mod+H".action.focus-column-left = [ ];
-      "Mod+L".action.focus-column-right = [ ];
-      "Mod+J".action.focus-window-or-monitor-down = [ ];
-      "Mod+K".action.focus-window-or-monitor-up = [ ];
-      "Mod+Shift+H".action.move-column-left = [ ];
-      "Mod+Shift+L".action.move-column-right = [ ];
-      "Mod+Shift+J".action.move-window-down = [ ];
-      "Mod+Shift+K".action.move-window-up = [ ];
+      "Mod+N".action.focus-column-left = [ ];
+      "Mod+O".action.focus-column-right = [ ];
+      "Mod+E".action.focus-window-or-monitor-down = [ ];
+      "Mod+I".action.focus-window-or-monitor-up = [ ];
+      "Mod+Shift+N".action.move-column-left = [ ];
+      "Mod+Shift+O".action.move-column-right = [ ];
+      "Mod+Shift+E".action.move-window-down = [ ];
+      "Mod+Shift+I".action.move-window-up = [ ];
       "Mod+Comma".action.move-column-to-first = [ ];
       "Mod+Period".action.move-column-to-last = [ ];
 
-      # Workspaces
+      # --- Workspaces ---
       "Mod+1".action.focus-workspace = 1;
       "Mod+2".action.focus-workspace = 2;
       "Mod+3".action.focus-workspace = 3;
@@ -38,17 +44,19 @@
       "Mod+Shift+3".action.move-window-to-workspace = 3;
       "Mod+Shift+4".action.move-window-to-workspace = 4;
       "Mod+Shift+5".action.move-window-to-workspace = 5;
-      "Mod+U".action.focus-workspace-down = [ ];
-      "Mod+I".action.focus-workspace-up = [ ];
-      "Mod+Shift+U".action.move-column-to-workspace-down = [ ];
-      "Mod+Shift+I".action.move-column-to-workspace-up = [ ];
 
-      # Layout
+      # Workspace navigation: u/y (below neio row, easy reach)
+      "Mod+U".action.focus-workspace-down = [ ];
+      "Mod+Y".action.focus-workspace-up = [ ];
+      "Mod+Shift+U".action.move-column-to-workspace-down = [ ];
+      "Mod+Shift+Y".action.move-column-to-workspace-up = [ ];
+
+      # --- Layout ---
       "Mod+R".action.switch-preset-column-width = [ ];
       "Mod+M".action.maximize-column = [ ];
       "Mod+F".action.fullscreen-window = [ ];
 
-      # Applications
+      # --- Applications ---
       "Mod+Space".action.spawn = [
         "vicinae"
         "toggle"
@@ -61,15 +69,15 @@
       ];
       "Mod+B".action.spawn = [ "firefox" ];
       "Mod+Shift+B".action.spawn = [ "zen-beta" ];
-      "Mod+E".action.spawn = [ "nautilus" ];
+      "Mod+D".action.spawn = [ "nautilus" ];
       "Mod+A".action.spawn = [ "pavucontrol" ];
 
-      # Status notifications (waybar substitution)
+      # --- Status notifications ---
       "Mod+T".action.spawn = sh ''
         notify-send -t 3000 "$(date '+%H:%M')" "$(date '+%A, %B %d, %Y')\nWeek $(date '+%V')"
       '';
 
-      "Mod+N".action.spawn = sh ''
+      "Mod+H".action.spawn = sh ''
         wifi_info=$(nmcli -t -f active,ssid,signal dev wifi | grep '^yes' | cut -d: -f2,3)
         if [ -n "$wifi_info" ]; then
           ssid=$(echo "$wifi_info" | cut -d: -f1)
@@ -101,13 +109,13 @@
         fi
       '';
 
-      # Screenshot
+      # --- Screenshot ---
       "Mod+P".action.spawn =
         sh "f=~/screenshot-$(date +%Y%m%d-%H%M%S).png && grim \"$f\" && notify-send -u low 'Screenshot' \"Saved to $f\"";
       "Mod+Shift+P".action.spawn =
         sh "f=~/screenshot-$(date +%Y%m%d-%H%M%S).png && grim -g \"$(slurp)\" \"$f\" && notify-send -u low 'Screenshot' \"Saved to $f\"";
 
-      # Media
+      # --- Media ---
       "XF86AudioPlay".action.spawn = sh "playerctl play-pause";
       "XF86AudioNext".action.spawn = sh "playerctl next";
       "XF86AudioPrev".action.spawn = sh "playerctl previous";
@@ -119,9 +127,9 @@
       "XF86MonBrightnessUp".action.spawn = sh "brightnessctl set 5%+";
       "XF86MonBrightnessDown".action.spawn = sh "brightnessctl set 5%-";
 
-      # System
-      "Mod+Alt+L".action.spawn = sh "swaylock -f -c 000000";
-      "Mod+Alt+E".action.quit = [ ];
+      # --- System ---
+      "Mod+Alt+O".action.spawn = sh "swaylock -f -c 000000"; # lock (right hand, easy reach)
+      "Mod+Alt+Q".action.quit = [ ];
       "Mod+Alt+S".action.spawn = sh "systemctl suspend";
       "Mod+Alt+R".action.spawn = sh "systemctl reboot";
       "Mod+Alt+P".action.spawn = sh "systemctl poweroff";
