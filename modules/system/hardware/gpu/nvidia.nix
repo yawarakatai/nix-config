@@ -23,7 +23,6 @@
       enable = true;
       enable32Bit = true;
 
-      # Include NVIDIA CUDA libraries for hardware encoding (NVENC)
       extraPackages = with pkgs; [
         nvidia-vaapi-driver
         cudaPackages.cuda_cudart
@@ -41,8 +40,8 @@
         finegrained = false;
       };
 
-      # Open source kernel module (experimental, use false for proprietary)
-      open = false;
+      # Open source kernel module
+      open = true;
 
       # Enable nvidia-settings menu
       nvidiaSettings = true;
@@ -54,20 +53,11 @@
 
   # Environment variables for Wayland + NVIDIA
   environment.sessionVariables = {
-    # NVIDIA Wayland support
     LIBVA_DRIVER_NAME = "nvidia";
     GBM_BACKEND = "nvidia-drm";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-
-    # Wayland fixes
     WLR_NO_HARDWARE_CURSORS = "1";
-
-    # NVIDIA-specific Wayland variables
     __GL_GSYNC_ALLOWED = "1";
     __GL_VRR_ALLOWED = "1";
   };
-
-  # Kernel parameters for NVIDIA
-  boot.kernelParams = [ ];
-
 }
