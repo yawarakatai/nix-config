@@ -32,6 +32,9 @@
       enable = true;
       createDirectories = false;
 
+      # Explicitly set to maintain current behavior (changed in HM 26.05)
+      setSessionVariables = true;
+
       # Point all directories to home to prevent creation of unwanted directories
       desktop = "${config.home.homeDirectory}";
       documents = "${config.home.homeDirectory}";

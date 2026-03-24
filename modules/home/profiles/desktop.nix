@@ -32,8 +32,10 @@ in
     ../service/ssh-client.nix
   ];
 
+  # GTK4 theme - use null (new default) since Stylix handles theming
+  gtk.gtk4.theme = null;
+
   # Common packages used across all home configurations
-  # These are everyday utilities that every user profile should have
   home.packages = with pkgs; [
     # File manager
     nautilus
