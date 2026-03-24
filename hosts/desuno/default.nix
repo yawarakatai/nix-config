@@ -2,7 +2,9 @@
 
 {
   imports = [
-    ./disko.nix
+    (import ../../modules/system/storage/disko-btrfs.nix {
+      device = "/dev/disk/by-id/wwn-0x5001b448b61d211b";
+    })
     ./hardware-configuration.nix
 
     ../../modules/system/hardware/gpu/amd.nix
@@ -32,12 +34,10 @@
       height = 2160;
       refresh = 59.997;
       scale = 1.5;
-      # transform = 90;
       vrr = true;
     };
   };
 
   # --- State Version ---
-  # State version - DO NOT CHANGE after initial install
   system.stateVersion = "25.05";
 }

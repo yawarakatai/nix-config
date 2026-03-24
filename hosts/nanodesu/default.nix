@@ -2,22 +2,23 @@
 
 {
   imports = [
+    (import ../../modules/system/storage/disko-btrfs.nix {
+      device = "/dev/disk/by-id/nvme-eui.044a5001b15002a8";
+    })
     ./hardware-configuration.nix
 
     # Laptop-specific hardware modules
-    ../../modules/system/input/touchpad.nix # Touchpad with natural scrolling, tap-to-click
-    ../../modules/system/hardware/bluetooth.nix # Bluetooth support
-    ../../modules/system/laptop/fingerprint.nix # Fingerprint reader for login/sudo
-    ../../modules/system/laptop/power.nix # TLP power management for battery optimization
-    ../../modules/system/hardware/webcam.nix # Webcam support
-    ../../modules/system/input/keyboard/kanata.nix # Specified key layout remap
+    ../../modules/system/input/touchpad.nix
+    ../../modules/system/hardware/bluetooth.nix
+    ../../modules/system/laptop/fingerprint.nix
+    ../../modules/system/laptop/power.nix
+    ../../modules/system/hardware/webcam.nix
+    ../../modules/system/input/keyboard/kanata.nix
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Workaround for Alder Lake audio firmware signature verification failure
-  # Use legacy HDA driver instead of SOF until firmware is properly signed
-  # dsp_driver: 1=legacy HDA, 3=SOF (Smart Sound)
   boot.kernelParams = [
     "snd_intel_dspcfg.dsp_driver=1"
   ];
@@ -41,6 +42,5 @@
   };
 
   # --- State Version ---
-  # State version - DO NOT CHANGE after initial install
   system.stateVersion = "25.05";
 }

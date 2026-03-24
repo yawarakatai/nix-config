@@ -4,8 +4,10 @@
   imports = [
     inputs.nixos-hardware.nixosModules.asus-ally-rc71l
 
+    (import ../../modules/system/storage/disko-btrfs.nix {
+      device = "/dev/disk/by-id/nvme-Micron_2400_MTFDKBK512QFM_23163FFC2160";
+    })
     ./hardware-configuration.nix
-    ./disko.nix
     ../../modules/system/gaming # Steam
   ];
 
@@ -40,6 +42,5 @@
   };
 
   # --- State Version ---
-  # State version - DO NOT CHANGE after initial install
   system.stateVersion = "25.05";
 }
