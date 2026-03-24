@@ -8,12 +8,6 @@
   ...
 }:
 
-let
-  btrfsOpts = [
-    "compress=zstd"
-    "noatime"
-  ];
-in
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -29,51 +23,6 @@ in
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
-
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/663c8bf1-5235-46ea-93e8-45a66800a1f7";
-    fsType = "btrfs";
-    options = [ "subvol=@" ] ++ btrfsOpts;
-  };
-
-  fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/663c8bf1-5235-46ea-93e8-45a66800a1f7";
-    fsType = "btrfs";
-    options = [ "subvol=@home" ] ++ btrfsOpts;
-  };
-
-  fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/663c8bf1-5235-46ea-93e8-45a66800a1f7";
-    fsType = "btrfs";
-    options = [ "subvol=@nix" ] ++ btrfsOpts;
-  };
-
-  fileSystems."/var/log" = {
-    device = "/dev/disk/by-uuid/663c8bf1-5235-46ea-93e8-45a66800a1f7";
-    fsType = "btrfs";
-    options = [ "subvol=@log" ] ++ btrfsOpts;
-  };
-
-  fileSystems."/var/cache" = {
-    device = "/dev/disk/by-uuid/663c8bf1-5235-46ea-93e8-45a66800a1f7";
-    fsType = "btrfs";
-    options = [ "subvol=@cache" ] ++ btrfsOpts;
-  };
-
-  fileSystems."/tmp" = {
-    device = "/dev/disk/by-uuid/663c8bf1-5235-46ea-93e8-45a66800a1f7";
-    fsType = "btrfs";
-    options = [ "subvol=@tmp" ] ++ btrfsOpts;
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/0474-E13D";
-    fsType = "vfat";
-    options = [
-      "fmask=0022"
-      "dmask=0022"
-    ];
-  };
 
   swapDevices = [ ];
 
