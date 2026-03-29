@@ -1,20 +1,11 @@
 { pkgs, ... }:
 
-let
-  uiSettings = import ../theme/settings.nix;
-in
 {
-  # Make UI settings available to all modules
-  _module.args.uiSettings = uiSettings;
-
   # Import all home modules
   # Note: niri home module is auto-imported by the NixOS module in flake.nix
   imports = [
     # Common packages and XDG settings
     ./default.nix
-
-    # Editor
-    # ../editor/vscode.nix
 
     # Browser
     ../browser/firefox.nix
