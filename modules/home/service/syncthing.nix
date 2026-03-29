@@ -15,7 +15,7 @@ let
     };
   };
 
-  otherDevices = lib.filterAttrs (name: _: name != osConfig.my.user.name) deviceList;
+  otherDevices = lib.filterAttrs (name: _: name != osConfig.networking.hostName) deviceList;
   peerNames = lib.attrNames otherDevices;
 
 in
