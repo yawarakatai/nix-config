@@ -57,6 +57,7 @@ let
   ];
 
   serverModules = [
+    ../modules/system/core/locale.nix
     ../modules/system/server
     ../modules/system/service/tailscale-serve.nix
   ];

@@ -1,16 +1,8 @@
 { pkgs, ... }:
 {
-
-  # --- Locale Timezone Input methods ---
-
-  time.timeZone = "Asia/Tokyo";
+  imports = [ ./locale.nix ];
 
   i18n = {
-    defaultLocale = "en_US.UTF-8";
-    supportedLocales = [
-      "en_US.UTF-8/UTF-8"
-      "ja_JP.UTF-8/UTF-8"
-    ];
     extraLocaleSettings = {
       LC_ADDRESS = "en_US.UTF-8";
       LC_IDENTIFICATION = "en_US.UTF-8";
@@ -23,7 +15,6 @@
       LC_TIME = "en_US.UTF-8";
     };
 
-    # Japanese input method - fcitx5 with mozc
     inputMethod = {
       enable = true;
       type = "fcitx5";
@@ -32,15 +23,10 @@
           fcitx5-mozc
           fcitx5-gtk
         ];
-
         waylandFrontend = true;
       };
     };
   };
 
-  console = {
-    font = "Lat2-Terminus16";
-    keyMap = "us";
-  };
-
+  console.font = "Lat2-Terminus16";
 }
