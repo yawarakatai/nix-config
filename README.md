@@ -2,8 +2,6 @@
 
 This guide covers adding a new host to the flake and performing a fresh NixOS install.
 
----
-
 ## 1. Add the New Host
 
 ### 1.1 Create host directory
@@ -92,8 +90,6 @@ Add to `nixosConfigurations`:
 
 Use `serverModules` instead of `desktopModules` for headless servers.
 
----
-
 ## 2. Secrets (agenix-rekey)
 
 ### 2.1 Get the host SSH public key
@@ -127,8 +123,6 @@ nix run .#agenix-rekey -- rekey
 ```
 
 Commit the rekeyed secrets in `secrets/rekeyed/<hostname>/`.
-
----
 
 ## 3. Install NixOS
 
@@ -206,8 +200,6 @@ chmod 644 /mnt/etc/ssh/ssh_host_*_key.pub
 reboot
 ```
 
----
-
 ## 4. Post-install
 
 ### 4.1 Set user password
@@ -230,8 +222,6 @@ If rekeying was done on another machine, push the updated repo and rebuild:
 nh os switch .#<hostname>
 ```
 
----
-
 ## 5. Ongoing Rebuilds
 
 ```bash
@@ -245,14 +235,10 @@ nix flake update
 nh clean all
 ```
 
----
-
 ## Reference: Host Overview
 
 | Host       | Type    | Arch           | Notes                        |
-|------------|---------|----------------|------------------------------|
-| `desuwa`   | Desktop | x86_64-linux   | Geforce RTX 3080             |
 | `desuno`   | Desktop | x86_64-linux   | Radeon RX 590                |
-| `nanodesu` | Laptop  | x86_64-linux   | Thinkpad x1 Carbon           |
+| `nanodesu` | Laptop  | x86_64-linux   | Thinkpad x1 Nano             |
 | `kamo`     | Handheld| x86_64-linux   | ROG Ally                     |
 | `dayo`     | Server  | aarch64-linux  | Raspberry Pi 4               |
