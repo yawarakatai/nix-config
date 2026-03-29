@@ -23,9 +23,20 @@ let
           nixpkgs.config.allowUnfree = true;
         }
 
-        inputs.home-manager.nixosModules.home-manager
         ../hosts/${hostname}
-        ../modules/system/core/home-manager.nix
+        inputs.home-manager.nixosModules.home-manager
+        (
+          { config, ... }:
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.${config.my.user.name} = import ../hosts/${hostname}/home;
+              extraSpecialArgs = { inherit inputs; };
+              backupFileExtension = "backup";
+            };
+          }
+        )
       ]
       ++ extraModules;
     };
