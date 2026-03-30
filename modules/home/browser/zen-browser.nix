@@ -60,6 +60,7 @@
 
       settings = {
         browser = {
+          download.useDownloadDir = false;
           search.region = "JP";
 
           urlbar = {
