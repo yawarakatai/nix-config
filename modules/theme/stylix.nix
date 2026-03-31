@@ -1,5 +1,3 @@
-# Stylix theming configuration
-# Provides consistent colors and fonts across all applications
 { pkgs, ... }:
 
 let
@@ -51,10 +49,9 @@ in
       };
     };
 
-    # Cursor configuration
     cursor = {
-      package = pkgs.phinger-cursors;
-      name = "phinger-cursors-dark";
+      package = pkgs.quintom-cursor-theme;
+      name = "Quintom_Ink";
       size = 32;
     };
 
