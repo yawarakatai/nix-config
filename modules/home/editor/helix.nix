@@ -121,38 +121,24 @@
           "i" = "move_visual_line_up";
           "o" = "move_char_right";
 
-          "N" = "move_prev_word_start"; # extend/jump left word
+          "N" = ":bp";
           "E" = "half_page_down";
           "I" = "half_page_up";
-          "O" = "move_next_word_end";
+          "O" = ":bn";
 
           # --- Displaced keys ---
           "k" = "search_next";
           "K" = "search_prev";
-          "j" = "move_next_word_end";
-          "J" = "move_prev_word_end";
           "l" = "insert_mode";
           "L" = "insert_at_line_start";
-          "h" = [
-            "open_below"
-            "normal_mode"
-          ];
-          "H" = [
-            "open_above"
-            "normal_mode"
-          ];
+          "h" = "open_below";
+          "H" = "open_above";
 
           # --- Common operations ---
           "D" = [
             "extend_to_line_end"
             "delete_selection"
           ];
-
-          "G" = "goto_file_end";
-          "g" = {
-            "k" = ":bn"; # g+next -> next buffer
-            "K" = ":bp"; # g+prev -> prev buffer
-          };
 
           space = {
             space = "file_picker";
@@ -194,12 +180,6 @@
 
           "k" = "search_next";
           "K" = "search_prev";
-          "j" = "move_next_word_end";
-          "J" = "move_prev_word_end";
-        };
-
-        insert = {
-          "j"."j" = "normal_mode";
         };
       };
     };
