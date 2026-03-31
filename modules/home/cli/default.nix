@@ -2,6 +2,8 @@
 {
   home.packages = with pkgs; [
     ripgrep
+    fd
+    bat
     television
 
     duf
