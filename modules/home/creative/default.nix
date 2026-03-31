@@ -3,16 +3,15 @@
 
 {
   home.packages = with pkgs; [
-    # Game Development
-    godot
+    # # Game Development
+    # godot
 
-    # 3D modeling
-    blender
+    # # 3D modeling
+    # blender
 
-    # PCB design
-    kicad
+    # # PCB design
+    # kicad
 
-    gpu-screen-recorder
     gpu-screen-recorder-gtk
   ];
 }
