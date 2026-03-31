@@ -54,7 +54,7 @@
       # --- Layout ---
       "Mod+R".action.switch-preset-column-width = [ ];
       "Mod+M".action.maximize-column = [ ];
-      "Mod+F".action.fullscreen-window = [ ];
+      "Mod+W".action.fullscreen-window = [ ];
 
       # --- Applications ---
       "Mod+Space".action.spawn = [
@@ -69,7 +69,7 @@
       ];
       "Mod+B".action.spawn = [ "firefox" ];
       "Mod+Shift+B".action.spawn = [ "zen-beta" ];
-      "Mod+D".action.spawn = [ "nautilus" ];
+      "Mod+F".action.spawn = [ "nautilus" ];
       "Mod+A".action.spawn = [ "pavucontrol" ];
 
       # --- Status notifications ---
@@ -128,9 +128,7 @@
       "XF86MonBrightnessDown".action.spawn = sh "brightnessctl set 5%-";
 
       # --- System ---
-      "Mod+Alt+O".action.spawn = sh "swaylock -f -c 000000"; # lock (right hand, easy reach)
       "Mod+Alt+Q".action.quit = [ ];
-      "Mod+Alt+S".action.spawn = sh "systemctl suspend";
       "Mod+Alt+R".action.spawn = sh "systemctl reboot";
       "Mod+Alt+P".action.spawn = sh "systemctl poweroff";
     };
