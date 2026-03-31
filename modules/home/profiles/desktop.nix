@@ -28,11 +28,9 @@
 
   # Common packages used across all home configurations
   home.packages = with pkgs; [
-    # File manager
     nautilus
-
-    # Image viewer
-    imv
+    loupe
+    mpv
 
     # Media and system controls
     pavucontrol # PulseAudio volume control GUI

@@ -16,7 +16,7 @@
     }
 
     {
-      matches = [ { app-id = "^imv$"; } ];
+      matches = [ { app-id = "^org\\.gnome\\.Loupe$"; } ];
       open-floating = true;
     }
 
