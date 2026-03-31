@@ -102,7 +102,7 @@
         };
 
         zen = {
-          tabs.show-netwab-vertical = false;
+          tabs.show-newtab-vertical = false;
           welcome-screen.seen = true;
           workspaces.continue-where-left-off = true;
           window-sync.enable = true;
