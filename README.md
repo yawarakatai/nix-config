@@ -1,8 +1,10 @@
-# New Machine Setup
+# Machine Setup & Reinstall Guide
 
-This guide covers adding a new host to the flake and performing a fresh NixOS install.
+This guide covers adding a new host to the flake and performing a fresh NixOS install or reinstall.
 
 ## 1. Add the New Host
+
+> Skip to [Section 3](#3-install-nixos) if reinstalling an existing host.
 
 ### 1.1 Create host directory
 
@@ -10,18 +12,13 @@ This guide covers adding a new host to the flake and performing a fresh NixOS in
 hosts/
 └── <hostname>/
     ├── default.nix
-    ├── disko.nix
-    ├── hardware-configuration.nix
     └── home/
         └── default.nix
 ```
 
-### 1.2 `disko.nix`
-
-Copy from an existing host (e.g. `hosts/desuno/disko.nix`) and update the disk device path.
+### 1.2 Find the disk ID
 
 ```bash
-# Find the disk ID on the target machine
 ls /dev/disk/by-id/
 ```
 
@@ -44,11 +41,18 @@ Minimal example for a desktop host:
 { pkgs, ... }:
 {
   imports = [
-    ./disko.nix
+    (import ../../modules/system/storage/disko-btrfs.nix {
+      device = "/dev/disk/by-id/DISK_ID";
+    })
     ./hardware-configuration.nix
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  boot.tmp = {
+    useTmpfs = true;
+    tmpfsSize = "50%";
+  };
 
   my.system.monitors.primary = {
     name = "DP-1";
@@ -91,6 +95,8 @@ Add to `nixosConfigurations`:
 Use `serverModules` instead of `desktopModules` for headless servers.
 
 ## 2. Secrets (agenix-rekey)
+
+> Skip to [Section 3](#3-install-nixos) if reinstalling and secrets are already rekeyed.
 
 ### 2.1 Get the host SSH public key
 
@@ -158,29 +164,27 @@ git clone https://github.com/yawarakatai/nix-config
 cd nix-config
 ```
 
-### 3.5 Partition and format with disko
+### 3.5 Expand tmpfs for large installs
+
+Configs with NVIDIA or other large dependencies can exhaust the default tmpfs.
+Run this before installing:
 
 ```bash
-nix --experimental-features "nix-command flakes" run \
-github:nix-community/disko#disko-install -- \
---flake .#<hostname> --disk main /dev/nvme0nX
+# 20G recommended for NVIDIA hosts, 10G sufficient for others
+mount -o remount,size=20G,noatime /nix/.rw-store
 ```
 
-### 3.6 Mount filesystems (if not using disko-install)
+### 3.6 Partition, format, and install with disko-install
+
+`disko-install` handles partitioning, formatting, mounting, and `nixos-install` in one step.
 
 ```bash
-mount /dev/<root-partition> /mnt
-mount /dev/<esp-partition> /mnt/boot
+sudo nix --experimental-features "nix-command flakes" run \
+  github:nix-community/disko#disko-install -- \
+  --flake .#<hostname> --disk main /dev/nvme0n1
 ```
 
-### 3.7 Install
-
-```bash
-nixos-install --flake .#<hostname> --no-root-passwd \
---option cores 2 # if a memory error happens
-```
-
-### 3.8 Copy host keys
+### 3.7 Copy host keys
 
 ```bash
 cp /etc/ssh/ssh_host_*_key     /mnt/etc/ssh/
@@ -189,7 +193,7 @@ chmod 600 /mnt/etc/ssh/ssh_host_*_key
 chmod 644 /mnt/etc/ssh/ssh_host_*_key.pub
 ```
 
-### 3.9 Reboot
+### 3.8 Reboot
 
 ```bash
 reboot
@@ -220,20 +224,22 @@ nh os switch .#<hostname>
 ## 5. Ongoing Rebuilds
 
 ```bash
-# Rebuild and switch (uses nh for better output)
+# Rebuild and switch
 nh os switch
 
 # Update flake inputs
 nix flake update
 
-# Garbage collection (handled automatically by nh clean, configured in nix.nix)
+# Garbage collection (runs automatically via nh clean)
 nh clean all
 ```
 
 ## Reference: Host Overview
 
-| Host       | Type    | Arch           | Notes                        |
-| `desuno`   | Desktop | x86_64-linux   | Radeon RX 590                |
-| `nanodesu` | Laptop  | x86_64-linux   | Thinkpad x1 Nano             |
-| `kamo`     | Handheld| x86_64-linux   | ROG Ally                     |
-| `dayo`     | Server  | aarch64-linux  | Raspberry Pi 4               |
+| Host       | Type     | Arch          | Notes                     |
+|------------|----------|---------------|---------------------------|
+| `desuwa`   | Desktop  | x86_64-linux  | NVIDIA RTX 3080 (main PC) |
+| `desuno`   | Desktop  | x86_64-linux  | Radeon RX 590             |
+| `nanodesu` | Laptop   | x86_64-linux  | ThinkPad X1 Nano          |
+| `kamo`     | Handheld | x86_64-linux  | ROG Ally                  |
+| `dayo`     | Server   | aarch64-linux | Raspberry Pi 4            |
