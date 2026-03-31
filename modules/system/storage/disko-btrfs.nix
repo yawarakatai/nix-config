@@ -1,10 +1,3 @@
-# Shared disko configuration for btrfs + ESP layout
-# Usage in host's default.nix:
-#   imports = [
-#     (import ../../modules/system/storage/disko-btrfs.nix {
-#       device = "/dev/disk/by-id/your-disk-id";
-#     })
-#   ];
 { device }:
 {
   disko.devices = {
@@ -28,6 +21,7 @@
                 mountOptions = [
                   "fmask=0022"
                   "dmask=0022"
+                  "umask=0077"
                 ];
               };
             };
@@ -60,20 +54,6 @@
                   };
                   "@log" = {
                     mountpoint = "/var/log";
-                    mountOptions = [
-                      "compress=zstd"
-                      "noatime"
-                    ];
-                  };
-                  "@cache" = {
-                    mountpoint = "/var/cache";
-                    mountOptions = [
-                      "compress=zstd"
-                      "noatime"
-                    ];
-                  };
-                  "@tmp" = {
-                    mountpoint = "/tmp";
                     mountOptions = [
                       "compress=zstd"
                       "noatime"
