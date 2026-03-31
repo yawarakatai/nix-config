@@ -153,23 +153,17 @@ ip a  # note the IP
 ```bash
 # From your workstation
 nix copy --to ssh://root@<target-ip> .#nixosConfigurations.<hostname>.config.system.build.toplevel
-# Or simply rsync the repo
-rsync -av --exclude='.git' ./ root@<target-ip>:/mnt/etc/nixos/
+# Or simply clone the repo
+git clone https://github.com/yawarakatai/nix-config
+cd nix-config
 ```
 
 ### 3.5 Partition and format with disko
 
 ```bash
-nix --experimental-features "nix-command flakes" run github:nix-community/disko -- \
-  --mode disko /path/to/hosts/<hostname>/disko.nix
-```
-
-Or from the flake directly:
-
-```bash
-nix run github:nix-community/disko#disko-install -- \
-  --flake .#<hostname> \
-  --disk main /dev/sdX
+nix --experimental-features "nix-command flakes" run \
+github:nix-community/disko#disko-install -- \
+--flake .#<hostname> --disk main /dev/nvme0nX
 ```
 
 ### 3.6 Mount filesystems (if not using disko-install)
@@ -182,7 +176,8 @@ mount /dev/<esp-partition> /mnt/boot
 ### 3.7 Install
 
 ```bash
-nixos-install --flake .#<hostname> --no-root-passwd --option cores 2 # if memory error occures
+nixos-install --flake .#<hostname> --no-root-passwd \
+--option cores 2 # if a memory error happens
 ```
 
 ### 3.8 Copy host keys
