@@ -20,6 +20,13 @@
       PAGER = "bat";
     };
 
+    history = {
+      size = 10000;
+      save = 10000;
+      ignoreDups = true;
+      share = true;
+    };
+
     initContent = ''
       # Ctrl+F: Fuzzy file picker
       function tv-files-widget() {
@@ -50,7 +57,6 @@
         fi
       }
       zle -N tv-text-widget
-
 
       # Keybinds
       bindkey '^F' tv-files-widget
