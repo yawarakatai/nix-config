@@ -13,7 +13,7 @@
     settings = {
       user = {
         name = "yawarakatai";
-        email = "186454332+yawarakatai@users.noreply.github.com";
+        email = "me@yawarakatai.com";
       };
 
       init.defaultBranch = "main";
@@ -113,7 +113,7 @@
           remove = "d";
           new = "a"; # 'n' is taken by movement
           edit = "w"; # edit with editor
-          openFile = "f"; # open file
+          openFile = "<disabled>"; # open file
           scrollUpMain = "<pgup>";
           scrollDownMain = "<pgdown>";
           scrollUpMain-alt1 = "I"; # Shift+i = scroll up main
@@ -142,6 +142,12 @@
           toggleWhitespaceInDiffView = "<c-w>";
           increaseContextInDiffView = "}";
           decreaseContextInDiffView = "{";
+        };
+        branches = {
+          createPullRequest = "<c-o>";
+        };
+        commits = {
+          openInBrowser = "<c-b>";
         };
       };
     };
