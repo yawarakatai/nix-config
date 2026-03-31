@@ -1,6 +1,6 @@
 { pkgs, ... }:
 
-{
+# {
   imports = [
     (import ../../modules/system/storage/disko-btrfs.nix {
       device = "/dev/disk/by-id/nvme-eui.044a5001b15002a8";
@@ -13,7 +13,6 @@
     ../../modules/system/laptop/fingerprint.nix
     ../../modules/system/laptop/power.nix
     ../../modules/system/hardware/webcam.nix
-    ../../modules/system/input/keyboard/kanata.nix
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;

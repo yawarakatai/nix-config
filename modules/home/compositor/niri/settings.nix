@@ -14,10 +14,10 @@ in
     # Input configuration
     input = {
       keyboard = {
-        xkb = {
-          layout = "us";
-          options = "ctrl:nocaps";
-        };
+        # xkb = {
+        #   layout = "us";
+        #   options = "ctrl:nocaps";
+        # };
         repeat-delay = 300;
         repeat-rate = 50;
       };

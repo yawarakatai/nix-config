@@ -48,6 +48,7 @@ let
     ../modules/system/core
     ../modules/system/storage
     ../modules/system/service/tailscale.nix
+    ../modules/system/input/keyboard/kanata.nix
   ];
 
   secretModules = [
