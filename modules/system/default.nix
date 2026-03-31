@@ -7,6 +7,7 @@
     wget
     curl
     file
+    tree
     pciutils
     usbutils
   ];
