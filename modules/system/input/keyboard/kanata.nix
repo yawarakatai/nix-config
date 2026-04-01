@@ -34,8 +34,8 @@
 
           (deflayer base
             grv     1    2    3    4    5    6    7    8    9    0    -    =    bspc
-            tab     q    w    f    p    b    j    l    u    y    '    [    ]    \
-            @escctl a    r    s    t    g    m    n    e    i    o    ;    @entctl
+            tab     q    w    f    p    b    j    l    u    y    ;    [    ]    \
+            @escctl a    r    s    t    g    m    n    e    i    o    '    @entctl
             lsft    z    x    c    d    v    k    h    ,    .    /    rsft
             lctl    lmet lalt           @spcsft        @sym rmet rctl
           )
