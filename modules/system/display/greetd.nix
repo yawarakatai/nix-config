@@ -9,6 +9,8 @@
     };
   };
 
+  security.pam.services.greetd.enableGnomeKeyring = false;
+
   # TTY session for greeter fallback
   environment.etc."greetd/sessions/tty.desktop".text = ''
     [Desktop Entry]
