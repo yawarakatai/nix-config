@@ -12,6 +12,7 @@
         "root"
         config.my.user.name
       ];
+      accept-flake-config = true;
 
       substituters = [
         "https://cache.nixos.org"
