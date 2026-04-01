@@ -3,11 +3,14 @@
 {
   # Bootloader configuration
   boot = {
+    initrd.systemd.enable = true;
+
     # Kernel parameters
     kernelParams = [
       "quiet"
       "splash"
       "nowatchdog"
+      "mitigations=auto"
     ];
 
     # Boot loader
