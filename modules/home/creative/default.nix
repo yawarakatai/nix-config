@@ -4,7 +4,7 @@
 {
   home.packages = with pkgs; [
     # # Game Development
-    # godot
+    godot
 
     # # 3D modeling
     # blender
