@@ -102,6 +102,7 @@
         };
 
         zen = {
+          zen.view.show-newtab-button-top = false;
           tabs.show-newtab-vertical = false;
           welcome-screen.seen = true;
           workspaces.continue-where-left-off = true;
