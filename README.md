@@ -164,64 +164,47 @@ git clone https://github.com/yawarakatai/nix-config
 cd nix-config
 ```
 
-### 3.5 Expand tmpfs for large installs
+### 3.5 Partition, format, and install
 
-Configs with NVIDIA or other large dependencies can exhaust the default tmpfs.
-Run this before installing:
+#### Option A: nixos-anywhere (recommended if another NixOS machine is available)
 
+Boot from ISO, then set a password and connect to network:
 ```bash
-# 20G recommended for NVIDIA hosts, 10G sufficient for others
-mount -o remount,size=20G,noatime /nix/.rw-store
+passwd nixos
+nmtui
 ```
 
-### 3.6 Partition, format, and install with disko-install
-
-`disko-install` handles partitioning, formatting, mounting, and `nixos-install` in one step.
-
+From another machine:
 ```bash
+nix run github:nix-community/nixos-anywhere -- \
+  --flake .#<hostname> \
+  root@<target-ip>
+```
+
+#### Option B: Local install from ISO
+
+`disko-install` handles partitioning, formatting, and installation in one step, but may fail
+with OOM on hosts with large dependencies (e.g. NVIDIA). Use the two-step method instead:
+```bash
+# Step 1: Partition and mount
 sudo nix --experimental-features "nix-command flakes" run \
-  github:nix-community/disko#disko-install -- \
-  --flake .#<hostname> --disk main /dev/nvme0n1
+  github:nix-community/disko -- \
+  --mode disko --flake .#<hostname>
+
+# Step 2: Redirect nix store to NVMe to avoid RAM exhaustion
+mount --bind /mnt/nix/store /nix/store
+
+# Step 3: Install
+sudo nixos-install --flake .#<hostname> --no-root-passwd
 ```
 
-### 3.7 Copy host keys
-
-```bash
-cp /etc/ssh/ssh_host_*_key     /mnt/etc/ssh/
-cp /etc/ssh/ssh_host_*_key.pub /mnt/etc/ssh/
-chmod 600 /mnt/etc/ssh/ssh_host_*_key
-chmod 644 /mnt/etc/ssh/ssh_host_*_key.pub
-```
-
-### 3.8 Reboot
+### 3.6 Reboot
 
 ```bash
 reboot
 ```
 
-## 4. Post-install
-
-### 4.1 Set user password
-
-On the first boot (password is managed via agenix, but if needed):
-
-```bash
-passwd <username>
-```
-
-### 4.2 Authorize YubiKey for SSH
-
-Ensure `~/.ssh/yubikey_5.pub` and `~/.ssh/yubikey_5c.pub` are present (home-manager deploys these automatically).
-
-### 4.3 Sync secrets
-
-If rekeying was done on another machine, push the updated repo and rebuild:
-
-```bash
-nh os switch .#<hostname>
-```
-
-## 5. Ongoing Rebuilds
+## 4. Ongoing Rebuilds
 
 ```bash
 # Rebuild and switch
@@ -238,7 +221,7 @@ nh clean all
 
 | Host       | Type     | Arch          | Notes                     |
 |------------|----------|---------------|---------------------------|
-| `desuwa`   | Desktop  | x86_64-linux  | NVIDIA RTX 3080 (main PC) |
+| `desuwa`   | Desktop  | x86_64-linux  | NVIDIA RTX 3080           |
 | `desuno`   | Desktop  | x86_64-linux  | Radeon RX 590             |
 | `nanodesu` | Laptop   | x86_64-linux  | ThinkPad X1 Nano          |
 | `kamo`     | Handheld | x86_64-linux  | ROG Ally                  |
