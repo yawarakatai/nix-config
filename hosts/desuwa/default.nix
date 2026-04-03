@@ -8,8 +8,8 @@
     ./hardware-configuration.nix
 
     # Hardware-specific modules
-    ../../modules/system/hardware/gpu/nvidia.nix # NVIDIA RTX 3080
-    ../../modules/system/security/gsr-kms-server.nix
+    # ../../modules/system/hardware/gpu/nvidia.nix # NVIDIA RTX 3080
+    # ../../modules/system/security/gsr-kms-server.nix
     ../../modules/system/input/mouse/logiops.nix # Logitech mouse
     ../../modules/system/input/keyboard/lofree.nix # Lofree Flow keyboard
   ];
