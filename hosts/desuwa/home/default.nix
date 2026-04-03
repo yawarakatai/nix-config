@@ -4,7 +4,6 @@
   imports = [
     ../../../modules/home/profiles/desktop.nix
     ../../../modules/home/creative
-    ../../../modules/home/dev/claude-code.nix
     ../../../modules/home/browser/zen-browser.nix
   ];
 
