@@ -28,7 +28,7 @@
           (defalias
             escctl (tap-hold 150 150 esc lctl)
             entctl (tap-hold 200 200 ret lctl)
-            spcsft (tap-hold 150 150 spc lsft)
+            spcsft (tap-hold 200 200 spc lsft)
             sym    (layer-while-held symbols)
           )
 
