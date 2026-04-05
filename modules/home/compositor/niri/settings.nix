@@ -90,6 +90,7 @@ in
         { proportion = 0.33333; }
         { proportion = 0.5; }
         { proportion = 0.66667; }
+        { proportion = 1.0; }
       ];
 
       default-column-width = {
@@ -114,9 +115,9 @@ in
     workspaces = {
       "1" = { };
       "2" = { };
-      # "3" = { };
-      # "4" = { };
-      # "5" = { };
+      "3" = { };
+      "4" = { };
+      "5" = { };
     };
 
     overview = {
