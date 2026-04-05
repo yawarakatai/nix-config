@@ -8,8 +8,22 @@
       device = "/dev/disk/by-id/nvme-Micron_2400_MTFDKBK512QFM_23163FFC2160";
     })
     ./hardware-configuration.nix
-    ../../modules/system/gaming # Steam
   ];
+
+  jovian = {
+    hardware.has.amd.gpu = true;
+    steam = {
+      enable = true;
+      autoStart = true;
+      user = config.my.user.name;
+      desktopSession = "niri";
+    };
+
+    devices.steamdeck = {
+      enable = true;
+      enableKernelPatches = true;
+    };
+  };
 
   boot.kernelModules = [
     "amdgpu"
