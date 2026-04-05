@@ -59,7 +59,6 @@ let
   ];
 
   desktopModules = [
-    inputs.lanzaboote.nixosModules.lanzaboote
     inputs.stylix.nixosModules.stylix
     inputs.niri.nixosModules.niri
     ../modules/system/core/i18n.nix
@@ -94,13 +93,15 @@ in
       nanodesu = mkSystem {
         hostname = "nanodesu";
         system = "x86_64-linux";
-        extraModules = baseModules ++ secretModules ++ desktopModules;
+        extraModules =
+          baseModules ++ secretModules ++ desktopModules ++ [ inputs.lanzaboote.nixosModules.lanzaboote ];
       };
 
       kamo = mkSystem {
         hostname = "kamo";
         system = "x86_64-linux";
-        extraModules = baseModules ++ secretModules ++ desktopModules;
+        extraModules =
+          baseModules ++ secretModules ++ desktopModules ++ [ inputs.jovian-nixos.nixosModules.default ];
       };
 
       dayo = mkSystem {
