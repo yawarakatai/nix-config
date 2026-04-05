@@ -1,19 +1,36 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
   imports = [
-    (import ../../modules/system/storage/disko-btrfs.nix {
+    (import ../../modules/system/storage/disko-btrfs-luks.nix {
       device = "/dev/disk/by-id/nvme-eui.044a5001b15002a8";
+      luksName = "cryptoroot";
     })
     ./hardware-configuration.nix
-
-    # Laptop-specific hardware modules
     ../../modules/system/input/touchpad.nix
     ../../modules/system/hardware/bluetooth.nix
     ../../modules/system/laptop/fingerprint.nix
     ../../modules/system/laptop/power.nix
     ../../modules/system/hardware/webcam.nix
   ];
+
+  boot.lanzaboote = {
+    enable = true;
+    pkiBundle = "/etc/secureboot";
+  };
+  boot.loader.systemd-boot.enable = lib.mkForce false;
+
+  boot.initrd.systemd.enable = true;
+  boot.initrd.luks.devices."cryptoroot" = {
+    device = "/dev/disk/by-partlabel/root";
+    crypttabExtraOpts = [
+      "tmp2-device=auto"
+      "tmp2-pcrs=7"
+    ];
+  };
+
+  security.tpm2.enable = true;
+  security.tpm2.pkcs11.enable = true;
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
