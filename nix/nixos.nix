@@ -59,6 +59,7 @@ let
   ];
 
   desktopModules = [
+    inputs.lanzaboote.nixosModules.lanzaboote
     inputs.stylix.nixosModules.stylix
     inputs.niri.nixosModules.niri
     ../modules/system/core/i18n.nix
