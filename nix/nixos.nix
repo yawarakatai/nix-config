@@ -84,11 +84,11 @@ in
         extraModules = baseModules ++ secretModules ++ desktopModules;
       };
 
-      desuno = mkSystem {
-        hostname = "desuno";
-        system = "x86_64-linux";
-        extraModules = baseModules ++ secretModules ++ desktopModules;
-      };
+      # desuno = mkSystem {
+      #   hostname = "desuno";
+      #   system = "x86_64-linux";
+      #   extraModules = baseModules ++ secretModules ++ desktopModules;
+      # };
 
       nanodesu = mkSystem {
         hostname = "nanodesu";
