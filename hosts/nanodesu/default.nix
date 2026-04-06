@@ -22,7 +22,6 @@
 
   boot.initrd.systemd.enable = true;
   boot.initrd.luks.devices."cryptoroot" = {
-    device = "/dev/disk/by-partlabel/root";
     crypttabExtraOpts = [
       "tmp2-device=auto"
       "tmp2-pcrs=7"
