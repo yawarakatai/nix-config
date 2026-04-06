@@ -20,7 +20,7 @@
 
   boot.lanzaboote = {
     enable = true;
-    pkiBundle = "/var/lib/sbctl";
+    pkiBundle = "/etc/secureboot";
   };
   boot.loader.systemd-boot.enable = lib.mkForce false;
 
