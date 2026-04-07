@@ -13,8 +13,9 @@
           ;;  Base: QWERTY physical -> Colemak DH output
           ;;  Home row mods (GACS/SCAG): Meta, Alt, Ctrl, Shift
           ;;  CapsLock: Esc
-          ;;  Space: Space (plain)
-          ;;  Backspace: Tap for Bspc, Hold for layer toggle
+          ;;  Space: Space / Shift
+          ;;  Backspace: Bspc / Num
+          ;;  Return: Ret / Nav
           ;; =================================================================
 
           (defvar
@@ -42,23 +43,33 @@
             o_met (tap-hold-release $tap-timeout $hold-timeout o rmet)
 
             ;; --- thumb keys ---
-            bspcly (tap-hold-release $tt-fast $hold-timeout bspc (layer-toggle layer))
+            rtnav (tap-hold-release $tap-timeout $hold-timeout ret  (layer-toggle nav))
+            bsnum (tap-hold-release $tap-timeout $hold-timeout bspc (layer-toggle num))
+            spsft (tap-hold-release $tap-timeout $hold-timeout spc  lsft)
           )
 
           (deflayer base
-            grv     1    2    3    4    5    6    7    8    9    0    -    =    bspc
-            tab     q    w    f    p    b    j    l    u    y    ;    [    ]    \
-            esc     @a_met @r_alt @s_ctl @t_sft g  m  @n_sft @e_ctl @i_alt @o_met '  ret
-            z       x    c    d    v    j    k    h    ,    .    /    del
-            _       lmet lalt           spc            @bspcly   _    _
+            grv    1      2      3      4      5      6      7      8      9      0      -      =      _
+            tab    q      w      f      p      b      j      l      u      y      ;      [      ]      \
+            esc    @a_met @r_alt @s_ctl @t_sft g      m      @n_sft @e_ctl @i_alt @o_met '      _
+            z      x      c      d      v      z      k      h      ,      .      /      _
+            _      _      @rtnav               @spsft               @bsnum _      _
           )
 
-          (deflayer layer
-            _     _     _     _     _     _     _     _     _     _     _     _     _     _
-            _     _     7     8     9     _     _     _     _     _     _     _     _     _
-            _     _     4     5     6     _     _     left  down  up    right _     _
-            _     _     1     2     3     _     _     _     _     _     _     _
-            _     _     _              0              _     _     _
+          (deflayer num
+            _      _      _      _      _      _      _      _      _      _      _      _      _      _
+            _      _      7      8      9      _      _      _      _      _      _      _      _      _
+            _      _      4      5      6      _      _      _      _      _      _      _      _
+            _      _      1      2      3      _      _      _      _      _      _      _
+            _      _      .                    0                    _      _      _ 
+          )
+
+          (deflayer nav
+            _      _      _      _      _      _      _      _      _      _      _      _      _      _
+            _      _      _      _      _      _      _      home   pgdn   pgup   end    _      _      _
+            _      _      _      _      _      _      _      left   down   up     right  _      _
+            _      _      _      _      _      _      _      _      _      _      _      _
+            _      _      _                    _                    _      _      _ 
           )
         '';
       };
