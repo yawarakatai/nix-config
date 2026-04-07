@@ -131,5 +131,6 @@
       "Mod+Alt+Q".action.quit = [ ];
       "Mod+Alt+R".action.spawn = sh "systemctl reboot";
       "Mod+Alt+P".action.spawn = sh "systemctl poweroff";
+      "Mod+Alt+S".action.spawn = sh "systemctl suspend";
     };
 }
