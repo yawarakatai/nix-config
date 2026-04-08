@@ -1,9 +1,12 @@
-{ ... }:
+{ lib, ... }:
 
 {
   # Bootloader configuration
   boot = {
-    initrd.systemd.enable = true;
+    initrd.systemd = {
+      enable = true;
+      contents."/etc/vconsole.conf".text = lib.mkForce "FONT=\n";
+    };
 
     # Kernel parameters
     kernelParams = [

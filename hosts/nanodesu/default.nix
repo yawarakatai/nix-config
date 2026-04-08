@@ -25,17 +25,11 @@
       pkiBundle = "/etc/secureboot";
     };
 
-    initrd = {
-      systemd = {
-        enable = true;
-        contents."/etc/vconsole.conf".text = lib.mkForce "FONT=\n";
-      };
-      luks.devices."cryptoroot" = {
-        crypttabExtraOpts = [
-          "tmp2-device=auto"
-          "tmp2-pcrs=7"
-        ];
-      };
+    initrd.luks.devices."cryptoroot" = {
+      crypttabExtraOpts = [
+        "tmp2-device=auto"
+        "tmp2-pcrs=7"
+      ];
     };
   };
 
