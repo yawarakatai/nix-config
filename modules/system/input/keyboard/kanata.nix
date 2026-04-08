@@ -67,7 +67,7 @@
           (deflayer nav
             _      _      _      _      _      _      _      _      _      _      _      _      _      _
             _      _      _      _      _      _      _      home   pgdn   pgup   end    _      _      _
-            _      _      _      _      _      _      _      left   down   up     right  _      _
+            _      lmet   lalt   lctl   lsft   _      _      left   down   up     right  _      _
             _      _      _      _      _      _      _      _      _      _      _      _
             _      _      _                    _                    _      _      _ 
           )
