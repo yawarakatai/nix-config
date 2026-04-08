@@ -5,7 +5,7 @@
     inputs.nixos-hardware.nixosModules.asus-ally-rc71l
 
     (import ../../modules/system/storage/disko-btrfs.nix {
-      device = "/dev/disk/by-id/nvme-Micron_2400_MTFDKBK512QFM_23163FFC2160";
+      device = "/dev/disk/by-id/nvme-WD_BLACK_SN770_1TB_22134E800783";
     })
     ./hardware-configuration.nix
   ];
