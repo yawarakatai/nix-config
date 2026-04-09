@@ -97,12 +97,12 @@ in
           baseModules ++ secretModules ++ desktopModules ++ [ inputs.lanzaboote.nixosModules.lanzaboote ];
       };
 
-      kamo = mkSystem {
-        hostname = "kamo";
-        system = "x86_64-linux";
-        extraModules =
-          baseModules ++ secretModules ++ desktopModules ++ [ inputs.jovian-nixos.nixosModules.default ];
-      };
+      # kamo = mkSystem {
+      #   hostname = "kamo";
+      #   system = "x86_64-linux";
+      #   extraModules =
+      #     baseModules ++ secretModules ++ desktopModules ++ [ inputs.jovian-nixos.nixosModules.default ];
+      # };
 
       dayo = mkSystem {
         hostname = "dayo";
