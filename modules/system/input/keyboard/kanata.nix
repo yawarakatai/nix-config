@@ -7,20 +7,9 @@
       internal = {
         extraDefCfg = "process-unmapped-keys yes";
         config = ''
-          ;; =================================================================
-          ;;  Kanata Configuration — Colemak DH + Home Row Mods
-          ;;
-          ;;  Base: QWERTY physical -> Colemak DH output
-          ;;  Home row mods (GACS/SCAG): Meta, Alt, Ctrl, Shift
-          ;;  CapsLock: Esc
-          ;;  Space: Space / Shift
-          ;;  Backspace: Bspc / Num
-          ;;  Return: Ret / Nav
-          ;; =================================================================
-
           (defvar
-            tap-timeout   200
-            hold-timeout  200
+            tap-timeout   150
+            hold-timeout  250
           )
 
           (defsrc
@@ -32,36 +21,21 @@
           )
 
           (defalias
-            ;; --- home row mods (tap-hold-release for rollover tolerance) ---
-            a_met (tap-hold-release $tap-timeout $hold-timeout a lmet)
-            r_alt (tap-hold-release $tap-timeout $hold-timeout r lalt)
-            s_ctl (tap-hold-release $tap-timeout $hold-timeout s lctl)
-            t_sft (tap-hold-release $tap-timeout $hold-timeout t lsft)
-            n_sft (tap-hold-release $tap-timeout $hold-timeout n rsft)
-            e_ctl (tap-hold-release $tap-timeout $hold-timeout e rctl)
-            i_alt (tap-hold-release $tap-timeout $hold-timeout i ralt)
-            o_met (tap-hold-release $tap-timeout $hold-timeout o rmet)
-
-            ;; --- thumb keys ---
-            rtnav (tap-hold-release $tap-timeout $hold-timeout ret  (layer-toggle nav))
-            bsnum (tap-hold-release $tap-timeout $hold-timeout bspc (layer-toggle num))
+            esctl (tap-hold-release $tap-timeout $hold-timeout esc  lctl)
+            bsnav (tap-hold-release $tap-timeout $hold-timeout bspc (layer-toggle nav))
             spsft (tap-hold-release $tap-timeout $hold-timeout spc  lsft)
+            rtalt (tap-hold-release $tap-timeout $hold-timeout ret  lalt)
+
+            colqw (layer-switch qwerty)
+            qwcol (layer-switch colemak-dh)
           )
 
-          (deflayer base
-            grv    1      2      3      4      5      6      7      8      9      0      -      =      _
+          (deflayer colemak-dh
+            grv    1      2      3      4      5      6      7      8      9      0      -      =      bspc
             tab    q      w      f      p      b      j      l      u      y      ;      [      ]      \
-            esc    @a_met @r_alt @s_ctl @t_sft g      m      @n_sft @e_ctl @i_alt @o_met '      _
-            z      x      c      d      v      z      k      h      ,      .      /      _
-            _      _      @rtnav               @spsft               @bsnum _      _
-          )
-
-          (deflayer num
-            _      _      _      _      _      _      _      _      _      _      _      _      _      _
-            _      _      7      8      9      _      _      _      _      _      _      _      _      _
-            _      _      4      5      6      _      _      _      _      _      _      _      _
-            _      _      1      2      3      _      _      _      _      _      _      _
-            _      _      .                    0                    _      _      _ 
+            @esctl a      r      s      t      g      m      n      e      i      o      '      ret
+            lsft   x      c      d      v      z      k      h      ,      .      /      rsft
+            @colqw lmet   @rtalt               @spsft               @bsnav rmet   rctl
           )
 
           (deflayer nav
@@ -70,6 +44,14 @@
             _      lmet   lalt   lctl   lsft   _      _      left   down   up     right  _      _
             _      _      _      _      _      _      _      _      _      _      _      _
             _      _      _                    _                    _      _      _ 
+          )
+
+          (deflayer qwerty
+            grv    1      2      3      4      5      6      7      8      9      0      -      =      bspc
+            tab    q      w      e      r      t      y      u      i      o      p      [      ]      \
+            lctl   a      s      d      f      g      h      j      k      l      ;      '      ret
+            lsft   z      x      c      v      b      n      m      ,      .      /      rsft
+            @qwcol lmet   lalt                 spc                  ralt   rmet   rctl
           )
         '';
       };
