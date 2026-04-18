@@ -18,6 +18,7 @@
   home.packages = with pkgs; [
     thunderbird
     slack
+    libreoffice-qt
   ];
 
   # State version - DO NOT CHANGE after initial install
