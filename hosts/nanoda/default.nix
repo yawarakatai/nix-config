@@ -11,11 +11,6 @@
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  boot.tmp = {
-    useTmpfs = true;
-    tmpfsSize = "50%";
-  };
-
   # --- Application and Service Settings ---;
   services.logind.settings.Login = {
     HandleLidSwitch = "suspend";
@@ -24,13 +19,12 @@
   };
 
   # --- My Options ---
-
   my = {
     system.monitors.primary = {
       name = "eDP-1";
       width = 1920;
       height = 1200;
-      refresh = 59.940;
+      refresh = 60.076;
     };
   };
 
