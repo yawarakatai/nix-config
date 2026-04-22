@@ -2,6 +2,15 @@
 
 {
   programs.niri.settings.window-rules = [
+    # {
+    #   matches = [ { app-id = "^Alacritty$"; } ];
+    #   background-effect = {
+    #     blur = {
+    #       enable = true;
+    #     };
+    #   };
+    # }
+
     {
       matches = [
         { app-id = "^floating-term$"; }
