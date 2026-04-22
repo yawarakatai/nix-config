@@ -3,7 +3,7 @@
 {
   imports = [
     (import ../../modules/system/storage/disko-btrfs.nix {
-      device = "/dev/disk/by-id/ata-BC711_NVMe_SK_hynix_256GB_CSA5N48991030585U";
+      device = "/dev/disk/by-id/ata-SAMSUNG_MZNLN256HAJQ-00007_S3UBNX0M300285";
     })
     ./hardware-configuration.nix
     ../../modules/system/laptop/power.nix
