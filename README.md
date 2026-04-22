@@ -156,11 +156,11 @@ Commit the rekeyed secrets in `secrets/rekeyed/<hostname>/`.
 Copy the ISO host key locally so nixos-anywhere can pass it to the target:
 
 ```bash
-mkdir -p /tmp/<hostname>-extra/etc/ssh/
+mkdir -p /tmp/<hostname>/etc/ssh/
 scp root@<target-ip>:/etc/ssh/ssh_host_ed25519_key \
-    /tmp/<hostname>-extra/etc/ssh/
+    /tmp/<hostname>/etc/ssh/
 scp root@<target-ip>:/etc/ssh/ssh_host_ed25519_key.pub \
-    /tmp/<hostname>-extra/etc/ssh/
+    /tmp/<hostname>/etc/ssh/
 ```
 
 ---
@@ -194,7 +194,7 @@ ip a  # note the IP
 ```bash
 nix run github:nix-community/nixos-anywhere -- \
   --flake .#<hostname> \
-  --extra-files /tmp/<hostname>-extra \
+  --extra-files /tmp/<hostname> \
   root@<target-ip>
 ```
 
@@ -384,6 +384,7 @@ find /boot/EFI -name "*.efi" | xargs -I{} sbctl sign -s {}
 |------------|----------|---------------|---------------------------------------------|
 | `desuwa`   | Desktop  | x86_64-linux  | NVIDIA RTX 3080                             |
 | `desuno`   | Desktop  | x86_64-linux  | Radeon RX 590                               |
-| `nanodesu` | Laptop   | x86_64-linux  | ThinkPad X1 Nano, LUKS + TPM2 + lanzaboote |
+| `nanodesu` | Laptop   | x86_64-linux  | ThinkPad X1 Nano, LUKS + TPM2 + lanzaboote  |
+| `nanoda`   | Laptop   | x86_64-linux  | Let's Note CF-SZ6                           |
 | `kamo`     | Handheld | x86_64-linux  | ROG Ally                                    |
 | `dayo`     | Server   | aarch64-linux | Raspberry Pi 4                              |
