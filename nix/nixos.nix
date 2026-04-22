@@ -97,6 +97,12 @@ in
           baseModules ++ secretModules ++ desktopModules ++ [ inputs.lanzaboote.nixosModules.lanzaboote ];
       };
 
+      nanoda = mkSystem {
+        hostname = "nanoda";
+        system = "x86_64-linux";
+        extraModules = baseModules ++ secretModules ++ desktopModules;
+      };
+
       # kamo = mkSystem {
       #   hostname = "kamo";
       #   system = "x86_64-linux";
