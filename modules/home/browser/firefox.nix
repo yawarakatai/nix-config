@@ -10,7 +10,7 @@
       DontCheckDefaultBrowser = true;
       OverrideFirstRunPage = "";
       OverridePostUpdatePage = "";
-      PasswordManagerEnabled = false;
+      PasswordManagerEnabled = true;
       DisplayBookmarksToolbar = "never";
       DisplayMenuBar = "default-off";
       SearchBar = "unified";
@@ -42,16 +42,16 @@
         "ui.systemUsesDarkTheme" = 1;
 
         # --- History: Disable all history ---
-        "places.history.enabled" = false;
+        "places.history.enabled" = true;
         "browser.formfill.enable" = false;
         "browser.cache.disk.enable" = false;
         "browser.cache.memory.enable" = true;
-        "privacy.sanitize.sanitizeOnShutdown" = true;
+        "privacy.sanitize.sanitizeOnShutdown" = false;
         "privacy.clearOnShutdown.history" = true;
         "privacy.clearOnShutdown.downloads" = true;
         "privacy.clearOnShutdown.formdata" = true;
-        "privacy.clearOnShutdown.sessions" = true;
-        "privacy.clearOnShutdown.cookies" = true;
+        "privacy.clearOnShutdown.sessions" = false;
+        "privacy.clearOnShutdown.cookies" = false;
         "privacy.clearOnShutdown.cache" = true;
         "browser.sessionstore.max_tabs_undo" = 0;
         "browser.sessionstore.max_windows_undo" = 0;
