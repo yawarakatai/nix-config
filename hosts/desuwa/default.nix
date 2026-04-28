@@ -12,6 +12,7 @@
     ../../modules/system/security/gsr-kms-server.nix
     ../../modules/system/input/mouse/logiops.nix # Logitech mouse
     ../../modules/system/input/keyboard/lofree.nix # Lofree Flow keyboard
+    ../../modules/system/service/udev.nix
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
