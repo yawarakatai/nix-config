@@ -168,18 +168,18 @@
 
         select = {
           # --- Movement in select mode ---
-          "n" = "move_char_left";
-          "e" = "move_visual_line_down";
-          "i" = "move_visual_line_up";
-          "o" = "move_char_right";
+          "n" = "extend_char_left";
+          "e" = "extend_visual_line_down";
+          "i" = "extend_visual_line_up";
+          "o" = "extend_char_right";
 
-          "N" = "move_prev_word_start";
-          "E" = "half_page_down";
-          "I" = "half_page_up";
-          "O" = "move_next_word_end";
+          "N" = "extend_prev_word_start";
+          "E" = "extend_visual_line_down";
+          "I" = "extend_visual_line_up";
+          "O" = "extend_next_word_end";
 
-          "k" = "search_next";
-          "K" = "search_prev";
+          "k" = "extend_search_next";
+          "K" = "extend_search_prev";
         };
       };
     };

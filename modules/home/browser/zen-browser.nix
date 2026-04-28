@@ -94,8 +94,11 @@
           xr = 2;
         };
 
+        places.history.enabled = false;
+
         privacy = {
           clearOnShutdown_v2.formdata = true;
+          clearSiteData.browsingHistoryAndDownloads = true;
           globalprivacycontrol.was_ever_enabled = true;
           history.custom = true;
           userContext.enabled = false;

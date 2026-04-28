@@ -72,6 +72,11 @@
     vicinae.url = "github:vicinaehq/vicinae";
 
     juice.url = "github:yawarakatai/juice";
+
+    firn = {
+      url = "github:yawarakatai/firn";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
