@@ -6,7 +6,6 @@
 
     ../../../modules/home/browser/zen-browser.nix
     ../../../modules/home/creative
-    ../../../modules/home/dev/claude-code.nix
   ];
 
   home.username = osConfig.my.user.name;

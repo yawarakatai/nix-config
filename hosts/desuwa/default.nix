@@ -23,6 +23,8 @@
     tmpfsSize = "50%";
   };
 
+  services.flatpak.enable = true;
+
   # --- Application and Service Settings ---;
   environment.sessionVariables = {
     __GL_SHADER_DISK_CACHE = "1";
