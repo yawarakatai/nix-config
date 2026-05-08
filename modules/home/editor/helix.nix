@@ -194,6 +194,15 @@
             command = "nixfmt";
           };
         }
+        {
+          name = "gdscript";
+          language-servers = [ "godot" ];
+          formatter = {
+            command = "gdformat";
+            args = [ "-" ];
+          };
+          auto-format = true;
+        }
       ];
 
       # Language server configurations
@@ -202,6 +211,14 @@
           args = [
             "--background-index"
             "--clang-tidy"
+          ];
+        };
+
+        godot = {
+          command = "nc";
+          args = [
+            "localhost"
+            "6005"
           ];
         };
 
