@@ -19,6 +19,7 @@
     thunderbird
     slack
     libreoffice-qt
+    gimp
   ];
 
   # State version - DO NOT CHANGE after initial install
