@@ -1,5 +1,8 @@
 { inputs, pkgs, ... }:
 
+let
+  madoriLib = import ../../lib/madori.nix;
+in
 {
   imports = [
     (import ../../features/storage/disko-btrfs.nix {
@@ -40,26 +43,11 @@
     enable = true;
     package = inputs.madori.packages.x86_64-linux.default;
 
-    monitors = {
-      innocn = {
-        matchBy.connector = "HDMI-A-1";
-        scale = 1.0;
-      };
-    };
+    monitors.innocn = madoriLib.mkMonitor "HDMI-A-1" 1.0;
 
     rules = [
-      {
-        match = [ "innocn" ];
-        layout.innocn.position = "0,0";
-      }
-      {
-        match = [ "*" ];
-        virtual = {
-          width = 3840;
-          height = 2160;
-          refresh = 120;
-        };
-      }
+      (madoriLib.only "innocn")
+      (madoriLib.virtual 3840 2160 120)
     ];
   };
 

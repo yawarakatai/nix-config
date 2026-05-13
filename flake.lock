@@ -631,11 +631,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1778708449,
-        "narHash": "sha256-Zx8ZV46f83VBsUgePuWFsvXyP18Wyij1hu0fiP1mWeY=",
+        "lastModified": 1778711114,
+        "narHash": "sha256-8c+XjoL/FODElKXHtp2aCc97k/w/9m+i7F3ZQgtIwsY=",
         "owner": "yawarakatai",
         "repo": "madori",
-        "rev": "8b3b0ad4db2228b314486e8495966ba1e473ce96",
+        "rev": "34babae0825be3c1cfee44318d0be6494ac1af0e",
         "type": "github"
       },
       "original": {

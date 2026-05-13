@@ -1,5 +1,8 @@
 { config, inputs, ... }:
 
+let
+  madoriLib = import ../../lib/madori.nix;
+in
 {
   imports = [
     inputs.nixos-hardware.nixosModules.asus-ally-rc71l
@@ -56,25 +59,11 @@
     enable = true;
     package = inputs.madori.packages.x86_64-linux.default;
 
-    monitors = {
-      ally = {
-        matchBy.connector = "eDP-1";
-        scale = 1.5;
-      };
-    };
+    monitors.ally = madoriLib.mkMonitor "eDP-1" 1.5;
 
     rules = [
-      {
-        match = [ "ally" ];
-        layout.ally.position = "0,0";
-      }
-      {
-        match = [ "*" ];
-        virtual = {
-          width = 1920;
-          height = 1080;
-        };
-      }
+      (madoriLib.only "ally")
+      (madoriLib.virtual 1920 1080 60)
     ];
   };
 
