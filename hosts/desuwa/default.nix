@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 
 {
   imports = [
@@ -34,6 +34,33 @@
   # --- My Options ---
   my = {
     system.monitors.primary = (import ../../displays).innocn-32m2v;
+  };
+
+  services.madori = {
+    enable = true;
+    package = inputs.madori.packages.x86_64-linux.default;
+
+    monitors = {
+      innocn = {
+        matchBy.connector = "HDMI-A-1";
+        scale = 1.0;
+      };
+    };
+
+    rules = [
+      {
+        match = [ "innocn" ];
+        layout.innocn.position = "0,0";
+      }
+      {
+        match = [ "*" ];
+        virtual = {
+          width = 3840;
+          height = 2160;
+          refresh = 120;
+        };
+      }
+    ];
   };
 
   # --- State Version ---

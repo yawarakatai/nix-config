@@ -52,6 +52,32 @@
     system.monitors.primary = (import ../../displays).ally-builtin;
   };
 
+  services.madori = {
+    enable = true;
+    package = inputs.madori.packages.x86_64-linux.default;
+
+    monitors = {
+      ally = {
+        matchBy.connector = "eDP-1";
+        scale = 1.5;
+      };
+    };
+
+    rules = [
+      {
+        match = [ "ally" ];
+        layout.ally.position = "0,0";
+      }
+      {
+        match = [ "*" ];
+        virtual = {
+          width = 1920;
+          height = 1080;
+        };
+      }
+    ];
+  };
+
   # --- State Version ---
   system.stateVersion = "25.05";
 }

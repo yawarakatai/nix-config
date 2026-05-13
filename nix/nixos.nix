@@ -24,26 +24,24 @@ let
       ../features/service/openssh.nix
     ];
 
-    niriDesktop = secret ++ [
+    commonDesktop = secret ++ [
       inputs.stylix.nixosModules.stylix
-      inputs.niri.nixosModules.niri
+      inputs.madori.nixosModules.default
       ../features/core/i18n.nix
       ../features/desktop/common.nix
       ../features/desktop/wayland.nix
-      ../features/display/greetd.nix
-      ../features/niri/system.nix
       ../features/theme
       ../features/hardware/audio.nix
     ];
 
-    gnomeDesktop = secret ++ [
-      inputs.stylix.nixosModules.stylix
-      ../features/core/i18n.nix
-      ../features/desktop/common.nix
-      ../features/desktop/wayland.nix
+    niriDesktop = commonDesktop ++ [
+      inputs.niri.nixosModules.niri
+      ../features/display/greetd.nix
+      ../features/niri/system.nix
+    ];
+
+    gnomeDesktop = commonDesktop ++ [
       ../features/gnome/system.nix
-      ../features/theme
-      ../features/hardware/audio.nix
     ];
 
     laptop = niriDesktop ++ [

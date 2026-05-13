@@ -73,6 +73,11 @@
       url = "github:yawarakatai/firn";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    madori = {
+      url = "github:yawarakatai/madori";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
