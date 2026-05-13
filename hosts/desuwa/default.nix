@@ -2,17 +2,17 @@
 
 {
   imports = [
-    (import ../../modules/system/storage/disko-btrfs.nix {
+    (import ../../features/storage/disko-btrfs.nix {
       device = "/dev/disk/by-id/nvme-Predator_SSD_GM7_M.2_2TB_PSBH53340306970";
     })
     ./hardware-configuration.nix
 
     # Hardware-specific modules
-    ../../modules/system/hardware/gpu/nvidia.nix # NVIDIA RTX 3080
-    ../../modules/system/security/gsr-kms-server.nix
-    ../../modules/system/input/mouse/logiops.nix # Logitech mouse
-    ../../modules/system/input/keyboard/lofree.nix # Lofree Flow keyboard
-    ../../modules/system/service/udev.nix
+    ../../features/hardware/gpu/nvidia.nix # NVIDIA RTX 3080
+    ../../features/security/gsr-kms-server.nix
+    ../../features/input/mouse/logiops.nix # Logitech mouse
+    ../../features/input/keyboard/lofree.nix # Lofree Flow keyboard
+    ../../features/service/udev.nix
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -33,13 +33,7 @@
 
   # --- My Options ---
   my = {
-    system.monitors.primary = {
-      name = "HDMI-A-1";
-      width = 3840;
-      height = 2160;
-      refresh = 119.880;
-      vrr = true;
-    };
+    system.monitors.primary = (import ../../displays).innocn-32m2v;
   };
 
   # --- State Version ---

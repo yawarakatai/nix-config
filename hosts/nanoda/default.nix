@@ -2,11 +2,11 @@
 
 {
   imports = [
-    (import ../../modules/system/storage/disko-btrfs.nix {
+    (import ../../features/storage/disko-btrfs.nix {
       device = "/dev/disk/by-id/ata-SAMSUNG_MZNLN256HAJQ-00007_S3UBNX0M300285";
     })
     ./hardware-configuration.nix
-    ../../modules/system/laptop/power.nix
+    ../../features/laptop/power.nix
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -20,12 +20,7 @@
 
   # --- My Options ---
   my = {
-    system.monitors.primary = {
-      name = "eDP-1";
-      width = 1920;
-      height = 1200;
-      refresh = 60.076;
-    };
+    system.monitors.primary = (import ../../displays).nanoda-builtin;
   };
 
   # --- State Version ---

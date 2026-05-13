@@ -2,13 +2,13 @@
 
 {
   imports = [
-    (import ../../modules/system/storage/disko-btrfs.nix {
+    (import ../../features/storage/disko-btrfs.nix {
       device = "/dev/disk/by-id/wwn-0x5001b448b61d211b";
     })
     ./hardware-configuration.nix
 
-    ../../modules/system/hardware/gpu/amd.nix
-    ../../modules/system/gaming
+    ../../features/hardware/gpu/amd.nix
+    ../../features/gaming
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;

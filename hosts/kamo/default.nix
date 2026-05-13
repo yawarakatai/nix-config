@@ -4,7 +4,7 @@
   imports = [
     inputs.nixos-hardware.nixosModules.asus-ally-rc71l
 
-    (import ../../modules/system/storage/disko-btrfs.nix {
+    (import ../../features/storage/disko-btrfs.nix {
       device = "/dev/disk/by-id/nvme-WD_BLACK_SN770_1TB_22134E800783";
     })
     ./hardware-configuration.nix
@@ -16,7 +16,7 @@
       enable = true;
       autoStart = true;
       user = config.my.user.name;
-      desktopSession = "niri";
+      desktopSession = "gnome";
     };
 
     devices.steamdeck = {
@@ -46,13 +46,7 @@
   # --- My Options ---
 
   my = {
-    system.monitors.primary = {
-      name = "eDP-1";
-      width = 1920;
-      height = 1080;
-      refresh = 119.999;
-      vrr = true;
-    };
+    system.monitors.primary = (import ../../displays).ally-builtin;
   };
 
   # --- State Version ---

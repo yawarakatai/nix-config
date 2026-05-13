@@ -9,9 +9,9 @@
     # inputs.nixos-hardware.nixosModules.raspberry-pi-4
 
     # Server containers
-    ../../modules/system/server/containers/home-assistant.nix
-    ../../modules/system/server/gatus.nix
-    ../../modules/system/server/homepage-dashboard.nix
+    ../../features/server/containers/home-assistant.nix
+    ../../features/server/gatus.nix
+    ../../features/server/homepage-dashboard.nix
   ];
 
   boot.loader = {

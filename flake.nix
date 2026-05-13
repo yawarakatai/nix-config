@@ -12,7 +12,6 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
     lanzaboote = {
@@ -21,9 +20,7 @@
     };
 
     disko.url = "github:nix-community/disko";
-
     flake-parts.url = "github:hercules-ci/flake-parts";
-
     treefmt-nix.url = "github:numtide/treefmt-nix";
 
     jovian-nixos = {
@@ -70,7 +67,6 @@
     };
 
     vicinae.url = "github:vicinaehq/vicinae";
-
     juice.url = "github:yawarakatai/juice";
 
     firn = {

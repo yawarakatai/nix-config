@@ -2,16 +2,16 @@
 
 {
   imports = [
-    (import ../../modules/system/storage/disko-btrfs-luks.nix {
+    (import ../../features/storage/disko-btrfs-luks.nix {
       device = "/dev/disk/by-id/nvme-eui.044a5001b15002a8";
       luksName = "cryptoroot";
     })
     ./hardware-configuration.nix
-    ../../modules/system/input/touchpad.nix
-    ../../modules/system/hardware/bluetooth.nix
-    ../../modules/system/laptop/fingerprint.nix
-    ../../modules/system/laptop/power.nix
-    ../../modules/system/hardware/webcam.nix
+    ../../features/input/touchpad.nix
+    ../../features/hardware/bluetooth.nix
+    ../../features/laptop/fingerprint.nix
+    ../../features/laptop/power.nix
+    ../../features/hardware/webcam.nix
   ];
 
   environment.systemPackages = with pkgs; [
@@ -53,12 +53,7 @@
   # --- My Options ---
 
   my = {
-    system.monitors.primary = {
-      name = "eDP-1";
-      width = 2160;
-      height = 1350;
-      refresh = 59.940;
-    };
+    system.monitors.primary = (import ../../displays).nanodesu-builtin;
   };
 
   # --- State Version ---

@@ -4,17 +4,73 @@
   ...
 }:
 let
-  mkSystem =
+  inherit (inputs.nixpkgs.lib) nixosSystem;
+
+  profiles = rec {
+    base = [
+      inputs.disko.nixosModules.disko
+      ../lib/options.nix
+      ../features
+      ../features/core
+      ../features/storage
+      ../features/service/tailscale.nix
+      ../features/input/keyboard/kanata.nix
+    ];
+
+    secret = base ++ [
+      inputs.agenix.nixosModules.default
+      inputs.agenix-rekey.nixosModules.default
+      ../features/security
+      ../features/service/openssh.nix
+    ];
+
+    niriDesktop = secret ++ [
+      inputs.stylix.nixosModules.stylix
+      inputs.niri.nixosModules.niri
+      ../features/core/i18n.nix
+      ../features/desktop/common.nix
+      ../features/desktop/wayland.nix
+      ../features/display/greetd.nix
+      ../features/niri/system.nix
+      ../features/theme
+      ../features/hardware/audio.nix
+    ];
+
+    gnomeDesktop = secret ++ [
+      inputs.stylix.nixosModules.stylix
+      ../features/core/i18n.nix
+      ../features/desktop/common.nix
+      ../features/desktop/wayland.nix
+      ../features/gnome/system.nix
+      ../features/theme
+      ../features/hardware/audio.nix
+    ];
+
+    laptop = niriDesktop ++ [
+      ../features/laptop/power.nix
+      ../features/laptop/lid.nix
+    ];
+
+    handheld = gnomeDesktop ++ [
+      inputs.jovian-nixos.nixosModules.default
+    ];
+
+    server = secret ++ [
+      ../features/core/locale.nix
+      ../features/server
+      ../features/service/tailscale-serve.nix
+    ];
+  };
+
+  mkHost =
+    hostname: profileModules:
     {
-      hostname,
-      system,
       extraModules ? [ ],
+      system ? "x86_64-linux",
     }:
-    inputs.nixpkgs.lib.nixosSystem {
+    nixosSystem {
       inherit system;
-
       specialArgs = { inherit inputs; };
-
       modules = [
         {
           nixpkgs.overlays = import ../overlays;
@@ -22,7 +78,6 @@ let
           nixpkgs.hostPlatform = system;
           nixpkgs.config.allowUnfree = true;
         }
-
         ../hosts/${hostname}
         inputs.home-manager.nixosModules.home-manager
         (
@@ -38,82 +93,26 @@ let
           }
         )
       ]
+      ++ profileModules
       ++ extraModules;
     };
-
-  baseModules = [
-    inputs.disko.nixosModules.disko
-    ../lib/options.nix
-    ../modules/system
-    ../modules/system/core
-    ../modules/system/storage
-    ../modules/system/service/tailscale.nix
-    ../modules/system/input/keyboard/kanata.nix
-  ];
-
-  secretModules = [
-    inputs.agenix.nixosModules.default
-    inputs.agenix-rekey.nixosModules.default
-    ../modules/system/security
-    ../modules/system/service/openssh.nix
-  ];
-
-  desktopModules = [
-    inputs.stylix.nixosModules.stylix
-    inputs.niri.nixosModules.niri
-    ../modules/system/core/i18n.nix
-    ../modules/system/desktop
-    ../modules/system/display
-    ../modules/theme
-    ../modules/system/hardware/audio.nix
-  ];
-
-  serverModules = [
-    ../modules/system/core/locale.nix
-    ../modules/system/server
-    ../modules/system/service/tailscale-serve.nix
-  ];
 
 in
 {
   flake = {
     nixosConfigurations = {
-      desuwa = mkSystem {
-        hostname = "desuwa";
-        system = "x86_64-linux";
-        extraModules = baseModules ++ secretModules ++ desktopModules;
+      desuwa = mkHost "desuwa" profiles.niriDesktop { };
+
+      nanodesu = mkHost "nanodesu" profiles.laptop {
+        extraModules = [ inputs.lanzaboote.nixosModules.lanzaboote ];
       };
 
-      # desuno = mkSystem {
-      #   hostname = "desuno";
-      #   system = "x86_64-linux";
-      #   extraModules = baseModules ++ secretModules ++ desktopModules;
-      # };
+      nanoda = mkHost "nanoda" profiles.laptop { };
 
-      nanodesu = mkSystem {
-        hostname = "nanodesu";
-        system = "x86_64-linux";
-        extraModules =
-          baseModules ++ secretModules ++ desktopModules ++ [ inputs.lanzaboote.nixosModules.lanzaboote ];
-      };
+      kamo = mkHost "kamo" profiles.handheld { };
 
-      nanoda = mkSystem {
-        hostname = "nanoda";
-        system = "x86_64-linux";
-        extraModules = baseModules ++ secretModules ++ desktopModules;
-      };
-
-      # kamo = mkSystem {
-      #   hostname = "kamo";
-      #   system = "x86_64-linux";
-      #   extraModules =
-      #     baseModules ++ secretModules ++ desktopModules ++ [ inputs.jovian-nixos.nixosModules.default ];
-      # };
-
-      dayo = mkSystem {
-        hostname = "dayo";
+      dayo = mkHost "dayo" profiles.server {
         system = "aarch64-linux";
-        extraModules = baseModules ++ secretModules ++ serverModules;
       };
     };
 
