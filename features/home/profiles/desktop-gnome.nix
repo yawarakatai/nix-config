@@ -18,6 +18,8 @@
     brightnessctl
   ];
 
+  gtk.gtk4.theme = null;
+
   stylix.targets.firefox.profileNames = [ "default" ];
   stylix.targets.zen-browser.profileNames = [ "default" ];
 

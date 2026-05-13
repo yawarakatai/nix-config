@@ -43,6 +43,9 @@
     tmpfsSize = "50%";
   };
 
+  # Fix panel orientation (Ally reports as portrait natively)
+  boot.kernelParams = [ "video=eDP-1:panel_orientation=right_side_up" ];
+
   # --- My Options ---
 
   my = {

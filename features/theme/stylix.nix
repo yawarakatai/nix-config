@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 let
   wallpaper = pkgs.fetchurl {
@@ -69,5 +69,7 @@ in
       desktop = 1.0;
       popups = 0.95;
     };
+
+    targets.qt.platform = lib.mkForce "qtct";
   };
 }
