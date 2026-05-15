@@ -37,7 +37,7 @@ in
   services.handheld-daemon = {
     enable = true;
     user = config.my.user.name;
-    ui.enable = true;
+    ui.enable = false;
   };
 
   # Tmp on tmpfs for better performance
@@ -48,7 +48,7 @@ in
 
   # Allow video group to control backlight (GNOME settings)
   services.udev.extraRules = ''
-    SUBSYSTEM=="backlight", MODE="0664", GROUP="video"
+    SUBSYSTEM=="backlight", TAG+="uaccess", MODE="0664", GROUP="video"
   '';
 
   # --- My Options ---
@@ -61,7 +61,7 @@ in
     enable = true;
     package = inputs.madori.packages.x86_64-linux.default;
 
-    monitors.ally = madoriLib.mkMonitor "eDP-1" 1.5;
+    monitors.ally = madoriLib.mkMonitor "eDP-1" 1.0;
 
     rules = [
       (madoriLib.only "ally")
