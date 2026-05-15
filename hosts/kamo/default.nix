@@ -46,11 +46,6 @@ in
     tmpfsSize = "50%";
   };
 
-  # Allow video group to control backlight (GNOME settings)
-  services.udev.extraRules = ''
-    SUBSYSTEM=="backlight", TAG+="uaccess", MODE="0664", GROUP="video"
-  '';
-
   # --- My Options ---
 
   my = {
