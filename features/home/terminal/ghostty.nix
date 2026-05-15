@@ -10,7 +10,7 @@
       window-padding-y = 2;
       background-opacity = 0.95;
       confirm-close-surface = false;
-      gtk-titlebar = "system";
+      gtk-titlebar = true;
       shell-integration = "zsh";
     };
   };
