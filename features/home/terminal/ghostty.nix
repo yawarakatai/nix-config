@@ -5,7 +5,7 @@
     enable = true;
     settings = {
       font-family = "Iosevka Term Nerd Font";
-      font-size = 11;
+      font-size = 14;
       window-padding-x = 2;
       window-padding-y = 2;
       background-opacity = 0.95;
