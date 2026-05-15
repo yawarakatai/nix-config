@@ -46,8 +46,10 @@ in
     tmpfsSize = "50%";
   };
 
-  # Fix panel orientation (Ally reports as portrait natively)
-  boot.kernelParams = [ "video=eDP-1:panel_orientation=left_side_up" ];
+  # Allow video group to control backlight (GNOME settings)
+  services.udev.extraRules = ''
+    SUBSYSTEM=="backlight", MODE="0664", GROUP="video"
+  '';
 
   # --- My Options ---
 
