@@ -61,5 +61,13 @@
     {
       "easyeffects/irs/Dolby ATMOS ((128K MP3)) 1.Default.irs".source = dolbyIrs;
       "easyeffects/output/ROG Ally Speakers.json".text = presetJson;
+      "autostart/easyeffects.desktop".text = ''
+        [Desktop Entry]
+        Name=EasyEffects
+        Exec=easyeffects --gapplication-service
+        Terminal=false
+        Type=Application
+        X-GNOME-Autostart-enabled=true
+      '';
     };
 }
