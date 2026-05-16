@@ -18,12 +18,14 @@
         "https://cache.nixos.org"
         "https://vicinae.cachix.org"
         "https://niri.cachix.org"
+        "https://jovian-experiments.cachix.org"
       ];
 
       trusted-public-keys = [
         "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
         "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc="
         "niri.cachix.org-1:Wv0OmO7PsuocCEqiFIrqvuHimi4EPCmOsAQYxNDdZ/v="
+        "jovian-experiments.cachix.org-1:qF1xksRRHeLP5SQ5ETEWxxJryQ6vGeMy2AVMSw4uSQA="
       ];
     };
 
