@@ -21,6 +21,10 @@
         screen-keyboard-enabled = true;
       };
 
+      "org/gnome/desktop/a11y/keyboard" = {
+        enable = true;
+      };
+
       "org/gnome/settings-daemon/plugins/power" = {
         sleep-inactive-ac-type = "nothing";
         sleep-inactive-battery-type = "suspend";
