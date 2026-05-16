@@ -7,7 +7,6 @@
     calf
     zam-plugins
     mda_lv2
-    antimicrox
   ];
 
   xdg.configFile =
@@ -26,14 +25,6 @@
         [Desktop Entry]
         Name=EasyEffects
         Exec=easyeffects --gapplication-service
-        Terminal=false
-        Type=Application
-        X-GNOME-Autostart-enabled=true
-      '';
-      "autostart/antimicrox.desktop".text = ''
-        [Desktop Entry]
-        Name=AntiMicroX
-        Exec=antimicrox --tray
         Terminal=false
         Type=Application
         X-GNOME-Autostart-enabled=true

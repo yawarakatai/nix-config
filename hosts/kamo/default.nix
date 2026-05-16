@@ -49,11 +49,6 @@ in
     tmpfsSize = "25%";
   };
 
-  # Allow input group to access joystick devices
-  services.udev.extraRules = ''
-    SUBSYSTEM=="input", KERNEL=="js*", MODE="0660", GROUP="input"
-  '';
-
   # --- My Options ---
 
   my = {
