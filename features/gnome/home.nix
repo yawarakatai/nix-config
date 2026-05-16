@@ -10,7 +10,6 @@
     settings = {
       "org/gnome/mutter" = {
         experimental-features = [ "variable-refresh-rate" ];
-        edge-tiling = false;
       };
 
       "org/gnome/desktop/peripherals/touchpad" = {
