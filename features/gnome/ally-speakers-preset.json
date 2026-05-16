@@ -1,0 +1,107 @@
+{
+  "output": {
+    "blocklist": [],
+    "convolver#0": {
+      "autogain": true,
+      "bypass": false,
+      "dry": -100.0,
+      "input-gain": 0.0,
+      "ir-width": 100,
+      "kernel-name": "Dolby ATMOS ((128K MP3)) 1.Default",
+      "output-gain": 0.0,
+      "wet": 0.0
+    },
+    "equalizer#0": {
+      "balance": 0.0,
+      "bypass": false,
+      "input-gain": 0.0,
+      "left": {
+        "band0": {
+          "frequency": 150.0,
+          "gain": 0.0,
+          "mode": "RLC (BT)",
+          "mute": false,
+          "q": 4.36,
+          "slope": "x1",
+          "solo": false,
+          "type": "Hi-pass",
+          "width": 4.0
+        }
+      },
+      "mode": "IIR",
+      "num-bands": 1,
+      "output-gain": -4.0,
+      "pitch-left": 0.0,
+      "pitch-right": 0.0,
+      "right": {
+        "band0": {
+          "frequency": 150.0,
+          "gain": 0.0,
+          "mode": "RLC (BT)",
+          "mute": false,
+          "q": 4.36,
+          "slope": "x1",
+          "solo": false,
+          "type": "Hi-pass",
+          "width": 4.0
+        }
+      },
+      "split-channels": false
+    },
+    "limiter#0": {
+      "alr": false,
+      "alr-attack": 5.0,
+      "alr-knee": 0.0,
+      "alr-release": 50.0,
+      "attack": 5.0,
+      "bypass": false,
+      "dithering": "None",
+      "gain-boost": true,
+      "input-gain": 0.0,
+      "input-to-link": 0.0,
+      "input-to-sidechain": 0.0,
+      "link-to-input": 0.0,
+      "link-to-sidechain": 0.0,
+      "lookahead": 10.0,
+      "mode": "Herm Wide",
+      "output-gain": 0.0,
+      "oversampling": "None",
+      "release": 5.0,
+      "sidechain-preamp": 0.0,
+      "sidechain-to-input": 0.0,
+      "sidechain-to-link": 0.0,
+      "sidechain-type": "Internal",
+      "stereo-link": 100.0,
+      "threshold": 0.0
+    },
+    "plugins_order": [
+      "convolver#0",
+      "equalizer#0",
+      "stereo_tools#0",
+      "limiter#0"
+    ],
+    "stereo_tools#0": {
+      "balance-in": 0.0,
+      "balance-out": 0.0,
+      "bypass": false,
+      "delay": 0.0,
+      "dry": -100.0,
+      "input-gain": 0.0,
+      "middle-level": 0.0,
+      "middle-panorama": 0.0,
+      "mode": "LR > LR (Stereo Default)",
+      "mutel": false,
+      "muter": false,
+      "output-gain": 0.0,
+      "phasel": false,
+      "phaser": false,
+      "sc-level": 1.0,
+      "side-balance": 0.0,
+      "side-level": 0.0,
+      "softclip": false,
+      "stereo-base": 0.25,
+      "stereo-phase": 0.0,
+      "wet": 0.0
+    }
+  }
+}
