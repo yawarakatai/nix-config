@@ -41,6 +41,19 @@
       "org/gnome/desktop/interface" = {
         enable-hot-corners = false;
       };
+
+      "org/gnome/desktop/input-sources" = {
+        sources = [
+          [
+            "xkb"
+            "us"
+          ]
+          [
+            "ibus"
+            "mozc-jp"
+          ]
+        ];
+      };
     };
   };
 

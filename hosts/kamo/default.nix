@@ -49,6 +49,11 @@ in
     tmpfsSize = "25%";
   };
 
+  # Allow hhd to access ASUS N-KEY device (needed for controller emulation)
+  services.udev.extraRules = ''
+    KERNEL=="hidraw*", ATTRS{idVendor}=="0b05", ATTRS{idProduct}=="1abe", MODE="0660", TAG+="uaccess"
+  '';
+
   # --- My Options ---
 
   my = {
