@@ -1,4 +1,9 @@
-{ config, inputs, ... }:
+{
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
 
 let
   madoriLib = import ../../lib/madori.nix;
@@ -22,16 +27,14 @@ in
       desktopSession = "gnome";
     };
 
-    devices.steamdeck = {
-      enable = true;
-      enableKernelPatches = true;
-    };
+    devices.steamdeck.enable = false;
   };
 
   boot.kernelModules = [
     "amdgpu"
     "kvm-amd"
   ];
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   services.xserver.videoDrivers = [ "amdgpu" ];
 
   services.handheld-daemon = {
@@ -43,7 +46,7 @@ in
   # Tmp on tmpfs for better performance
   boot.tmp = {
     useTmpfs = true;
-    tmpfsSize = "50%";
+    tmpfsSize = "25%";
   };
 
   # --- My Options ---
