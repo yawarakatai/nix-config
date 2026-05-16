@@ -22,6 +22,7 @@
         "video"
         "audio"
         "plugdev"
+        "input"
       ]
       ++ lib.optional config.virtualisation.docker.enable "docker";
       hashedPasswordFile = config.age.secrets.user-password.path;
