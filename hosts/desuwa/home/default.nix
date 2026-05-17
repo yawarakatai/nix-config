@@ -8,5 +8,8 @@
     ../../../features/home/creative
   ];
 
-  home.packages = with pkgs; [ opencode ];
+  home.packages = with pkgs; [
+    opencode
+    discord
+  ];
 }
