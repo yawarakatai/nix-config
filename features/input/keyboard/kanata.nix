@@ -24,8 +24,6 @@
             esctl (tap-hold-release $tap-timeout $hold-timeout esc  lctl)
             bsnav (tap-hold-release $tap-timeout $hold-timeout bspc (layer-toggle nav))
             spsft (tap-hold-release $tap-timeout $hold-timeout spc  lsft)
-            rtalt (tap-hold-release $tap-timeout $hold-timeout ret  lalt)
-
             colqw (layer-switch qwerty)
             qwcol (layer-switch colemak-dh)
           )
@@ -35,7 +33,7 @@
             tab    q      w      f      p      b      j      l      u      y      ;      [      ]      \
             @esctl a      r      s      t      g      m      n      e      i      o      '      ret
             lsft   x      c      d      v      z      k      h      ,      .      /      rsft
-            lctl   lmet   @rtalt               @spsft               @bsnav rmet   @colqw
+            lctl   lmet   lalt                 @spsft               @bsnav rmet   @colqw
           )
 
           (deflayer nav
