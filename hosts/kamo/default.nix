@@ -54,6 +54,17 @@ in
     KERNEL=="hidraw*", ATTRS{idVendor}=="0b05", ATTRS{idProduct}=="1abe", MODE="0660", TAG+="uaccess"
   '';
 
+  # Default to balanced power profile on boot (handheld is always on battery)
+  systemd.services.power-profile-balanced = {
+    description = "Set default power profile to balanced";
+    wantedBy = [ "multi-user.target" ];
+    after = [ "power-profiles-daemon.service" ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.power-profiles-daemon}/bin/powerprofilesctl set balanced";
+    };
+  };
+
   # --- My Options ---
 
   my = {
