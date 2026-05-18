@@ -34,6 +34,11 @@ in
     __GL_THREADED_OPTIMIZATION = "1";
   };
 
+  # Restrict kanata to physical keyboard only (avoid intercepting logid Virtual Input)
+  services.kanata.keyboards.internal.devices = [
+    "/dev/input/by-id/usb-CX_2.4G_Wireless_Receiver-event-kbd"
+  ];
+
   # --- My Options ---
   my = {
     system.monitors.primary = (import ../../displays).innocn-32m2v;
