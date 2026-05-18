@@ -35,7 +35,7 @@
             tab    q      w      f      p      b      j      l      u      y      ;      [      ]      \
             @esctl a      r      s      t      g      m      n      e      i      o      '      ret
             lsft   x      c      d      v      z      k      h      ,      .      /      rsft
-            lctl   @colqw @rtalt               @spsft               @bsnav rmet   @qwcol
+            lctl   lmet   @rtalt               @spsft               @bsnav rmet   @colqw
           )
 
           (deflayer nav
@@ -51,7 +51,7 @@
             tab    q      w      e      r      t      y      u      i      o      p      [      ]      \
             lctl   a      s      d      f      g      h      j      k      l      ;      '      ret
             lsft   z      x      c      v      b      n      m      ,      .      /      rsft
-            lctl   @qwcol lalt                 spc                  ralt   rmet  @colqw
+            lctl   lmet   lalt                 spc                  ralt   rmet   @qwcol
           )
         '';
       };
