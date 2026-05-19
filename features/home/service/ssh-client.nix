@@ -17,28 +17,20 @@ in
     enable = true;
     enableDefaultConfig = false;
 
-    matchBlocks = {
-      "*" = {
-        setEnv = {
-          TERM = "xterm-256color";
-        };
-      };
+    settings = {
+      "*".setEnv = "TERM=xterm-256color";
 
       "github.com" = {
         user = "git";
         identityFile = yubikeyIdentities;
         identitiesOnly = true;
-        extraOptions = {
-          IdentityAgent = "none";
-        };
+        identityAgent = "none";
       };
 
       "192.168.*" = {
         identityFile = yubikeyIdentities;
         identitiesOnly = true;
-        extraOptions = {
-          IdentityAgent = "none";
-        };
+        identityAgent = "none";
       };
     };
   };
