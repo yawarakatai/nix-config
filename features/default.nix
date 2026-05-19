@@ -10,5 +10,6 @@
     tree
     pciutils
     usbutils
+    btop
   ];
 }
