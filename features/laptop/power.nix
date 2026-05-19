@@ -17,7 +17,7 @@
       CPU_BOOST_ON_AC = 0;
       CPU_BOOST_ON_BAT = 0;
       CPU_MAX_PERF_ON_AC = 90;
-      CPU_MAX_PERF_ON_BAT = 60;
+      CPU_MAX_PERF_ON_BAT = 80;
       CPU_HWP_DYN_BOOST_ON_AC = 0;
 
       # Platform
