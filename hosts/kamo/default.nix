@@ -40,7 +40,7 @@ in
   services.handheld-daemon = {
     enable = true;
     user = config.my.user.name;
-    ui.enable = false;
+    ui.enable = true;
   };
 
   # Tmp on tmpfs for better performance
