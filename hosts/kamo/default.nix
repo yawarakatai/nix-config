@@ -59,9 +59,12 @@ in
     description = "Set default power profile to balanced";
     wantedBy = [ "multi-user.target" ];
     after = [ "power-profiles-daemon.service" ];
+    requires = [ "power-profiles-daemon.service" ];
     serviceConfig = {
       Type = "oneshot";
       ExecStart = "${pkgs.power-profiles-daemon}/bin/powerprofilesctl set balanced";
+      Restart = "on-failure";
+      RestartSec = 5;
     };
   };
 
