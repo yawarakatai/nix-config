@@ -1,9 +1,9 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
     ./default.nix
-    ../browser/firefox.nix
+    ../browser/zen-browser.nix
     ../terminal/alacritty.nix
     ../service/ssh-client.nix
     ../../gnome/home.nix
@@ -20,18 +20,15 @@
 
   gtk.gtk4.theme = null;
 
-  stylix.targets.firefox.profileNames = [ "default" ];
-  stylix.targets.zen-browser.profileNames = [ "default" ];
-
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
-      "text/html" = "firefox.desktop";
-      "x-scheme-handler/http" = "firefox.desktop";
-      "x-scheme-handler/https" = "firefox.desktop";
-      "x-scheme-handler/about" = "firefox.desktop";
-      "x-scheme-handler/unknown" = "firefox.desktop";
-      "application/pdf" = "firefox.desktop";
+      "text/html" = "zen-beta.desktop";
+      "x-scheme-handler/http" = "zen-beta.desktop";
+      "x-scheme-handler/https" = "zen-beta.desktop";
+      "x-scheme-handler/about" = "zen-beta.desktop";
+      "x-scheme-handler/unknown" = "zen-beta.desktop";
+      "application/pdf" = "zen-beta.desktop";
       "image/*" = "org.gnome.loupe.desktop";
       "video/*" = "mpv.desktop";
     };
