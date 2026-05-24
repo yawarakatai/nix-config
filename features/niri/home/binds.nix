@@ -67,8 +67,8 @@
         "--class"
         "floating-term"
       ];
-      "Mod+B".action.spawn = [ "firefox" ];
-      "Mod+Shift+B".action.spawn = [ "zen-beta" ];
+      "Mod+B".action.spawn = [ "zen-beta" ];
+      "Mod+X".action.spawn = [ "ungoogled-chromium" ];
       "Mod+F".action.spawn = [ "nautilus" ];
       "Mod+A".action.spawn = [ "pavucontrol" ];
 

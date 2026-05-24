@@ -28,6 +28,11 @@
         Fingerprinting = true;
       };
 
+      Preferences."zen.view.show-newtab-button-top" = {
+        Value = false;
+        Status = "locked";
+      };
+
       # Filters for uBlock Origin
       "3rdparty".Extensions."uBlock0@raymondhill.net" = {
         adminSettings = {
@@ -150,40 +155,6 @@
             ];
             icon = "${pkgs.nixos-icons}/share//icons/hicolor/scalable/apps/nix-snowflake.svg";
             definedAliases = [ "@nx" ];
-          };
-        };
-      };
-    };
-
-    profiles.x = {
-      id = 1;
-      extensions.packages = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
-        ublock-origin
-      ];
-      settings = {
-        "privacy.resistFingerprinting" = false;
-        "privacy.clearOnShutdown_v2.formdata" = true;
-        "places.history.enabled" = false;
-        "dom.security.https_only_mode" = true;
-      };
-      search = {
-        force = true;
-        default = "brave";
-        engines = {
-          brave = {
-            name = "Brave Search";
-            urls = [
-              {
-                template = "https://search.brave.com/search?q={searchTerms}";
-                params = [
-                  {
-                    name = "query";
-                    value = "searchTerms";
-                  }
-                ];
-              }
-            ];
-            definedAliases = [ "@brave" ];
           };
         };
       };
