@@ -1,35 +1,23 @@
 {
-  config,
   lib,
   pkgs,
   ...
 }:
-
-let
-  wallpaper =
-    if config.my.wallpaper != null then
-      config.my.wallpaper
-    else
-      builtins.toString (
-        pkgs.fetchurl {
-          url = "https://i.redd.it/mg5w8i3gkstg1.jpeg";
-          hash = "sha256-02EacG9i2c4puqQ5VRVPTBZmZDInA8pBC8QG9IMJEn8=";
-        }
-      );
-in
 
 {
   stylix = {
     enable = true;
     enableReleaseChecks = false;
 
-    image = lib.mkForce wallpaper;
+    image = pkgs.fetchurl {
+      url = "https://i.redd.it/mg5w8i3gkstg1.jpeg";
+      hash = "sha256-02EacG9i2c4puqQ5VRVPTBZmZDInA8pBC8QG9IMJEn8=";
+    };
 
     base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-dark.yaml";
 
     polarity = "dark";
 
-    # Font configuration
     fonts = {
       monospace = {
         package = pkgs.nerd-fonts.jetbrains-mono;
@@ -72,7 +60,6 @@ in
       dark = "Papirus-Dark";
     };
 
-    # Opacity settings
     opacity = {
       terminal = 1.0;
       applications = 1.0;

@@ -73,8 +73,6 @@ in
 
     # Layout configuration
     layout = {
-      background-color = "#000000";
-
       always-center-single-column = true;
 
       gaps = osConfig.my.theme.gaps.inner;
