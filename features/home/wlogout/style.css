@@ -1,0 +1,40 @@
+* {
+  background-image: none;
+  font-family: "JetBrainsMono NL Nerd Font";
+}
+
+window {
+  background-color: alpha(@base00, 0.7);
+}
+
+#outer-box {
+  padding: 40px;
+}
+
+#container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 24px;
+}
+
+button {
+  background-color: @base01;
+  border-radius: 16px;
+  border: 2px solid @base02;
+  color: @base05;
+  font-size: 11pt;
+  min-width: 80px;
+  min-height: 80px;
+  padding: 12px;
+}
+
+button:focus, button:hover {
+  background-color: @base03;
+  border-color: @base06;
+}
+
+#logout:hover { color: @base0D; border-color: @base0D; }
+#suspend:hover { color: @base0B; border-color: @base0B; }
+#reboot:hover { color: @base0C; border-color: @base0C; }
+#shutdown:hover { color: @base08; border-color: @base08; }

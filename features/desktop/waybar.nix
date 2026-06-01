@@ -27,8 +27,8 @@
         "cpu"
         "memory"
         "battery"
-        "custom/power"
         "tray"
+        "custom/power"
       ];
 
       "niri/workspaces" = {

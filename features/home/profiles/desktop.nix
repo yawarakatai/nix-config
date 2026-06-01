@@ -26,6 +26,11 @@
     wlogout
   ];
 
+  xdg.configFile = {
+    "wlogout/layout".source = ../wlogout/layout;
+    "wlogout/style.css".source = ../wlogout/style.css;
+  };
+
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
