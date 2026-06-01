@@ -128,9 +128,7 @@
       "XF86MonBrightnessDown".action.spawn = sh "brightnessctl set 5%-";
 
       # --- System ---
-      "Mod+Alt+Q".action.quit = [ ];
-      "Mod+Alt+R".action.spawn = sh "systemctl reboot";
-      "Mod+Alt+P".action.spawn = sh "systemctl poweroff";
+      "Mod+Alt+Q".action.spawn = [ "wlogout" ];
       "Mod+Alt+S".action.spawn = sh "systemctl suspend";
     };
 }

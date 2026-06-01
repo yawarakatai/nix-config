@@ -42,10 +42,11 @@ in
   # --- My Options ---
   my = {
     system.monitors.primary = (import ../../displays).innocn-32m2v;
-    wallpaper = pkgs.fetchurl {
-      url = "https://i.redd.it/mg5w8i3gkstg1.jpeg";
-      hash = "sha256-02EacG9i2c4puqQ5VVVPTBZmZDInA8pBC8QG9IMJJ38=";
-    };
+  };
+
+  stylix.image = pkgs.fetchurl {
+    url = "https://i.redd.it/mg5w8i3gkstg1.jpeg";
+    hash = "sha256-02EacG9i2c4puqQ5VRVPTBZmZDInA8pBC8QG9IMJEn8=";
   };
 
   services.madori = {

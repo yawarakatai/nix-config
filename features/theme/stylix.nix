@@ -18,7 +18,7 @@ in
     enable = true;
     enableReleaseChecks = false;
 
-    image = wallpaper;
+    image = lib.mkDefault wallpaper;
 
     base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-dark.yaml";
 

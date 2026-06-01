@@ -23,6 +23,7 @@
     playerctl
     brightnessctl
     blueman
+    wlogout
   ];
 
   xdg.mimeApps = {
