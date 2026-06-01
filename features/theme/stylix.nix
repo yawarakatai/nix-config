@@ -12,6 +12,7 @@ let
       hash = "sha256-xJyvFH4zyHApiOjYEtgVPSeXz+ghuAIHs1fH8qCy8Z4=";
     });
 in
+
 {
   stylix = {
     enable = true;
