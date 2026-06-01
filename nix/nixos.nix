@@ -32,6 +32,7 @@ let
       ../features/desktop/wayland.nix
       ../features/theme
       ../features/hardware/audio.nix
+      ../features/hardware/bluetooth.nix
     ];
 
     niriDesktop = commonDesktop ++ [
