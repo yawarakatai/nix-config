@@ -27,6 +27,7 @@
         "cpu"
         "memory"
         "battery"
+        "custom/power"
         "tray"
       ];
 
@@ -139,6 +140,12 @@
           critical = 10;
         };
         tooltip-format = "{capacity}% - {timeTo}";
+      };
+
+      "custom/power" = {
+        format = "⏻";
+        on-click = "wlogout";
+        tooltip-format = "Power Menu (Logout/Reboot/Shutdown)";
       };
 
       tray = {
