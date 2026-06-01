@@ -23,6 +23,7 @@
         "tray"
         "bluetooth"
         "network"
+        "backlight"
         "pulseaudio"
         "memory"
         "cpu"
@@ -55,9 +56,25 @@
         };
       };
 
+      backlight = {
+        format = "BL {icon}";
+        format-icons = [
+          "<span size='10pt' color='#6e6a86'>░░░░░░</span>"
+          "<span size='10pt' color='#f6c177'>█░░░░░</span>"
+          "<span size='10pt' color='#f6c177'>██░░░░</span>"
+          "<span size='10pt' color='#f6c177'>███░░░</span>"
+          "<span size='10pt' color='#f6c177'>████░░</span>"
+          "<span size='10pt' color='#f6c177'>█████░</span>"
+          "<span size='10pt' color='#f6c177'>██████</span>"
+        ];
+        on-scroll-up = "brightnessctl s 5%+";
+        on-scroll-down = "brightnessctl s 5%-";
+        tooltip-format = "Brightness: {percent}%";
+      };
+
       memory = {
         interval = 5;
-        format = "{icon}";
+        format = "MEM {icon}";
         format-icons = [
           "<span size='10pt' color='#6e6a86'>░░░░░░</span>"
           "<span size='10pt' color='#c4a7e7'>█░░░░░</span>"
@@ -68,11 +85,12 @@
           "<span size='10pt' color='#c4a7e7'>██████</span>"
         ];
         on-click = "btop";
+        tooltip-format = "{percentage}%";
       };
 
       cpu = {
         interval = 5;
-        format = "{icon}";
+        format = "CPU {icon}";
         format-icons = [
           "<span size='10pt' color='#6e6a86'>░░░░░░</span>"
           "<span size='10pt' color='#ebbcba'>█░░░░░</span>"
@@ -83,11 +101,12 @@
           "<span size='10pt' color='#ebbcba'>██████</span>"
         ];
         on-click = "btop";
+        tooltip-format = "{usage}%";
       };
 
       pulseaudio = {
-        format = "{icon}";
-        format-muted = "󰖁";
+        format = "VOL {icon}";
+        format-muted = "VOL 󰖁";
         format-icons = [
           "<span size='10pt' color='#6e6a86'>░░░░░░</span>"
           "<span size='10pt' color='#9ccfd8'>█░░░░░</span>"
@@ -102,62 +121,45 @@
         tooltip-format = "{volume}%";
       };
 
+      battery = {
+        format = "BAT {icon}";
+        format-plugged = "BAT ";
+        format-full = "BAT ";
+        format-icons = [
+          "<span size='10pt' color='#6e6a86'>░░░░░░</span>"
+          "<span size='10pt' color='#a3be8c'>█░░░░░</span>"
+          "<span size='10pt' color='#a3be8c'>██░░░░</span>"
+          "<span size='10pt' color='#a3be8c'>███░░░</span>"
+          "<span size='10pt' color='#a3be8c'>████░░</span>"
+          "<span size='10pt' color='#a3be8c'>█████░</span>"
+          "<span size='10pt' color='#a3be8c'>██████</span>"
+        ];
+        states = {
+          warning = 20;
+          critical = 10;
+        };
+        tooltip-format = "{capacity}% - {timeTo}";
+      };
+
       tray = {
         icon-size = 13;
         spacing = 4;
       };
 
       bluetooth = {
-        format = "󰂯 {num_connections}";
+        format = "BT 󰂯 {num_connections}";
         format-disabled = "";
-        format-off = "󰂲";
-        format-connected = "󰂯 {num_connections}";
+        format-off = "BT 󰂲";
+        format-connected = "BT 󰂯 {num_connections}";
         tooltip-format = "Devices: {num_connections}";
       };
 
       network = {
-        format-wifi = "  {essid}";
-        format-ethernet = "  {ifname}";
-        format-disconnected = "󰤭";
-        tooltip-format-wifi = "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes} ⇡{bandwidthUpBytes}";
+        format-wifi = "NET   {essid}";
+        format-ethernet = "NET   {ifname}";
+        format-disconnected = "NET 󰤭";
+        tooltip-format-wifi = "{essid} ({frequency} GHz) - ⇣{bandwidthDownBytes} ⇡{bandwidthUpBytes}";
         tooltip-format-disconnected = "Disconnected";
-      };
-
-      battery = {
-        format = "{icon}";
-        format-plugged = "";
-        format-full = "";
-        format-icons = {
-          charging = [
-            "󰢜"
-            "󰂆"
-            "󰂇"
-            "󰂈"
-            "󰢝"
-            "󰂉"
-            "󰢞"
-            "󰂊"
-            "󰂋"
-            "󰂅"
-          ];
-          default = [
-            "󰁺"
-            "󰁻"
-            "󰁼"
-            "󰁽"
-            "󰁾"
-            "󰁿"
-            "󰂀"
-            "󰂁"
-            "󰂂"
-            "󰁹"
-          ];
-        };
-        states = {
-          warning = 20;
-          critical = 10;
-        };
-        tooltip-format = "{capacity}%\n{timeTo}";
       };
 
       style = ''
@@ -200,6 +202,7 @@
         #tray,
         #bluetooth,
         #network,
+        #backlight,
         #pulseaudio,
         #memory,
         #cpu,
@@ -224,8 +227,9 @@
 
         tooltip {
           background: alpha(@base00, 0.9);
-          border: 1px solid @base02;
+          border: none;
           border-radius: 8px;
+          padding: 4px 8px;
         }
       '';
     };
