@@ -20,6 +20,7 @@
       ];
 
       modules-right = [
+        "tray"
         "bluetooth"
         "network"
         "backlight"
@@ -27,7 +28,6 @@
         "cpu"
         "memory"
         "battery"
-        "tray"
         "custom/power"
       ];
 
@@ -143,7 +143,7 @@
       };
 
       "custom/power" = {
-        format = "⏻";
+        format = " ⏻ ";
         on-click = "wlogout";
         tooltip-format = "Power Menu (Logout/Reboot/Shutdown)";
       };
