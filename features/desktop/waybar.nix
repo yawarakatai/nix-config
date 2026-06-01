@@ -16,7 +16,7 @@
       ];
 
       modules-center = [
-        "niri/window"
+        "clock"
       ];
 
       modules-right = [
@@ -27,7 +27,6 @@
         "memory"
         "cpu"
         "battery"
-        "clock"
       ];
 
       "niri/workspaces" = {
@@ -39,11 +38,6 @@
           default = "󰊠";
           empty = "󱙝";
         };
-      };
-
-      "niri/window" = {
-        format = "{title}";
-        max-length = 40;
       };
 
       clock = {
@@ -63,46 +57,49 @@
 
       memory = {
         interval = 5;
-        format = "MEM {icon} {percentage:02}%";
+        format = "{icon}";
         format-icons = [
-          "<span size='10pt'>░░░░░░</span>"
-          "<span size='10pt'>█░░░░░</span>"
-          "<span size='10pt'>██░░░░</span>"
-          "<span size='10pt'>███░░░</span>"
-          "<span size='10pt'>████░░</span>"
-          "<span size='10pt'>█████░</span>"
-          "<span size='10pt'>██████</span>"
+          "<span size='10pt' color='#6e6a86'>░░░░░░</span>"
+          "<span size='10pt' color='#c4a7e7'>█░░░░░</span>"
+          "<span size='10pt' color='#c4a7e7'>██░░░░</span>"
+          "<span size='10pt' color='#c4a7e7'>███░░░</span>"
+          "<span size='10pt' color='#c4a7e7'>████░░</span>"
+          "<span size='10pt' color='#c4a7e7'>█████░</span>"
+          "<span size='10pt' color='#c4a7e7'>██████</span>"
         ];
+        on-click = "btop";
       };
 
       cpu = {
         interval = 5;
-        format = "CPU {icon} {usage:02}%";
+        format = "{icon}";
         format-icons = [
-          "<span size='10pt'>░░░░░░</span>"
-          "<span size='10pt'>█░░░░░</span>"
-          "<span size='10pt'>██░░░░</span>"
-          "<span size='10pt'>███░░░</span>"
-          "<span size='10pt'>████░░</span>"
-          "<span size='10pt'>█████░</span>"
-          "<span size='10pt'>██████</span>"
+          "<span size='10pt' color='#6e6a86'>░░░░░░</span>"
+          "<span size='10pt' color='#ebbcba'>█░░░░░</span>"
+          "<span size='10pt' color='#ebbcba'>██░░░░</span>"
+          "<span size='10pt' color='#ebbcba'>███░░░</span>"
+          "<span size='10pt' color='#ebbcba'>████░░</span>"
+          "<span size='10pt' color='#ebbcba'>█████░</span>"
+          "<span size='10pt' color='#ebbcba'>██████</span>"
         ];
+        on-click = "btop";
       };
 
       pulseaudio = {
-        format = "VOL {icon} {volume}%";
-        format-muted = "VOL 󰖁 MUTED";
+        format = "{icon}";
+        format-muted = "󰖁";
         format-icons = [
-          "<span size='10pt'>░░░░░░</span>"
-          "<span size='10pt'>█░░░░░</span>"
-          "<span size='10pt'>██░░░░</span>"
-          "<span size='10pt'>███░░░</span>"
-          "<span size='10pt'>████░░</span>"
-          "<span size='10pt'>█████░</span>"
-          "<span size='10pt'>██████</span>"
+          "<span size='10pt' color='#6e6a86'>░░░░░░</span>"
+          "<span size='10pt' color='#9ccfd8'>█░░░░░</span>"
+          "<span size='10pt' color='#9ccfd8'>██░░░░</span>"
+          "<span size='10pt' color='#9ccfd8'>███░░░</span>"
+          "<span size='10pt' color='#9ccfd8'>████░░</span>"
+          "<span size='10pt' color='#9ccfd8'>█████░</span>"
+          "<span size='10pt' color='#9ccfd8'>██████</span>"
         ];
         on-click = "pavucontrol";
         on-click-right = "pamixer -t";
+        tooltip-format = "{volume}%";
       };
 
       tray = {
@@ -111,10 +108,10 @@
       };
 
       bluetooth = {
-        format = "BT{num_connections}";
+        format = "󰂯 {num_connections}";
         format-disabled = "";
-        format-off = "BT";
-        format-connected = "BT{num_connections}";
+        format-off = "󰂲";
+        format-connected = "󰂯 {num_connections}";
         tooltip-format = "Devices: {num_connections}";
       };
 
@@ -127,10 +124,9 @@
       };
 
       battery = {
-        format = "BAT {capacity}%";
-        format-charging = "BAT {capacity}%";
+        format = "{icon}";
         format-plugged = "";
-        format-full = "BAT FULL";
+        format-full = "";
         format-icons = {
           charging = [
             "󰢜"
@@ -161,6 +157,7 @@
           warning = 20;
           critical = 10;
         };
+        tooltip-format = "{capacity}%\n{timeTo}";
       };
 
       style = ''
@@ -191,11 +188,13 @@
           color: @base06;
         }
 
-        #window {
+        #clock {
           background: alpha(@base00, 0.5);
           border-radius: 8px;
           padding: 0 12px;
           margin: 2px 4px;
+          font-weight: bold;
+          font-size: 12pt;
         }
 
         #tray,
@@ -204,16 +203,11 @@
         #pulseaudio,
         #memory,
         #cpu,
-        #battery,
-        #clock {
+        #battery {
           background: alpha(@base00, 0.5);
           border-radius: 8px;
           padding: 0 10px;
           margin: 2px 2px;
-        }
-
-        #clock {
-          font-weight: bold;
         }
 
         #battery.warning {
