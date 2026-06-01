@@ -10,8 +10,8 @@
     "separator": ""
   },
   "logo": {
-    "type": "kitty-direct",
-    "source": "~/.config/fastfetch/marin.png",
+    "type": "raw",
+    "source": "~/.config/fastfetch/logo.txt",
     "width": 20,
     "height": 10
   },
