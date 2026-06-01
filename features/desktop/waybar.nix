@@ -20,14 +20,14 @@
       ];
 
       modules-right = [
-        "tray"
         "bluetooth"
         "network"
         "backlight"
         "pulseaudio"
-        "memory"
         "cpu"
+        "memory"
         "battery"
+        "tray"
       ];
 
       "niri/workspaces" = {
@@ -57,7 +57,7 @@
       };
 
       backlight = {
-        format = "BL {icon}";
+        format = "BRT {icon}";
         format-icons = [
           "<span size='10pt' color='#6e6a86'>░░░░░░</span>"
           "<span size='10pt' color='#f6c177'>█░░░░░</span>"
@@ -147,17 +147,18 @@
       };
 
       bluetooth = {
-        format = "BT 󰂯 {num_connections}";
+        format = "󰂯 {num_connections}";
         format-disabled = "";
-        format-off = "BT 󰂲";
-        format-connected = "BT 󰂯 {num_connections}";
+        format-off = "󰂲";
+        format-connected = "󰂯 {num_connections}";
         tooltip-format = "Devices: {num_connections}";
+        on-click = "blueman-manager";
       };
 
       network = {
-        format-wifi = "NET   {essid}";
-        format-ethernet = "NET   {ifname}";
-        format-disconnected = "NET 󰤭";
+        format-wifi = "  {essid}";
+        format-ethernet = "󰈀  {ifname}";
+        format-disconnected = "󰤭";
         tooltip-format-wifi = "{essid} ({frequency} GHz) - ⇣{bandwidthDownBytes} ⇡{bandwidthUpBytes}";
         tooltip-format-disconnected = "Disconnected";
       };

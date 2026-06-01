@@ -22,6 +22,7 @@
     pavucontrol
     playerctl
     brightnessctl
+    blueman
   ];
 
   xdg.mimeApps = {
