@@ -4,37 +4,37 @@
 }
 
 window {
-  background-color: alpha(@base00, 0.7);
+  background-color: alpha(#0f1419, 0.7);
 }
 
 #outer-box {
-  padding: 40px;
+  padding: 20px;
 }
 
 #container {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 24px;
+  gap: 20px;
 }
 
 button {
-  background-color: @base01;
+  background-color: #131721;
   border-radius: 16px;
-  border: 2px solid @base02;
-  color: @base05;
+  border: 2px solid #272d38;
+  color: #e6e1cf;
   font-size: 11pt;
-  min-width: 80px;
-  min-height: 80px;
-  padding: 12px;
+  min-width: 72px;
+  min-height: 72px;
+  padding: 10px;
 }
 
 button:focus, button:hover {
-  background-color: @base03;
-  border-color: @base06;
+  background-color: #3e4b59;
+  border-color: #e6e1cf;
 }
 
-#logout:hover { color: @base0D; border-color: @base0D; }
-#suspend:hover { color: @base0B; border-color: @base0B; }
-#reboot:hover { color: @base0C; border-color: @base0C; }
-#shutdown:hover { color: @base08; border-color: @base08; }
+#logout:hover { color: #ff8f40; border-color: #ff8f40; }
+#suspend:hover { color: #aad94c; border-color: #aad94c; }
+#reboot:hover { color: #95e6cb; border-color: #95e6cb; }
+#shutdown:hover { color: #f07178; border-color: #f07178; }
