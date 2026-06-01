@@ -73,6 +73,8 @@ in
 
     # Layout configuration
     layout = {
+      background-color = "transparent";
+
       always-center-single-column = true;
 
       gaps = osConfig.my.theme.gaps.inner;
@@ -119,7 +121,7 @@ in
     };
 
     overview = {
-      workspace-shadow.enable = true;
+      workspace-shadow.enable = false;
     };
 
     xwayland-satellite = {

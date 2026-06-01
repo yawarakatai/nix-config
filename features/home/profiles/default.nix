@@ -21,6 +21,8 @@
     source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-config";
   };
 
+  xdg.configFile."fastfetch/config.jsonc".source = ../fastfetch/config.jsonc;
+
   # Environment variables
   systemd.user.sessionVariables = {
     XMODIFIERS = "@im=fcitx";

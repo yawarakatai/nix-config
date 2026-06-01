@@ -8,12 +8,12 @@ with lib;
   options.my.theme = {
     rounding = mkOption {
       type = types.int;
-      default = 20;
+      default = 0;
     };
     gaps = {
       inner = mkOption {
         type = types.int;
-        default = 0;
+        default = 20;
       };
       outer = mkOption {
         type = types.int;
