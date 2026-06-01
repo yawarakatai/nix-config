@@ -19,7 +19,7 @@ in
 
     image = wallpaper;
 
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-dark.yaml";
 
     polarity = "dark";
 
