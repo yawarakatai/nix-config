@@ -23,8 +23,8 @@ in
     # Font configuration
     fonts = {
       monospace = {
-        package = pkgs.nerd-fonts.iosevka-term;
-        name = "Iosevka Term Nerd Font";
+        package = pkgs.nerd-fonts.jetbrains-mono;
+        name = "JetBrainsMono NL Nerd Font";
       };
 
       sansSerif = {
