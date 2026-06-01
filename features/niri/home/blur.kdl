@@ -1,0 +1,10 @@
+// Blur rules
+window-rule {
+    match app-id="^Alacritty$"
+    background-effect { blur true }
+}
+
+window-rule {
+    match app-id="^floating-term$"
+    background-effect { blur true }
+}

@@ -19,9 +19,9 @@ in
 
     image = wallpaper;
 
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-latte.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
 
-    polarity = "light";
+    polarity = "dark";
 
     # Font configuration
     fonts = {
