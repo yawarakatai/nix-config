@@ -8,8 +8,14 @@
     ./window-rules.nix
   ];
 
-  xdg.configFile."niri/blur.kdl".source = ./blur.kdl;
-
-  # Inject include directive into generated niri config
-  programs.niri.config = lib.mkOrder 1500 ''include "blur.kdl"'';
+  programs.niri.config = lib.mkOrder 1500 ''
+    window-rule {
+        match app-id="^Alacritty$"
+        background-effect { blur true }
+    }
+    window-rule {
+        match app-id="^floating-term$"
+        background-effect { blur true }
+    }
+  '';
 }
