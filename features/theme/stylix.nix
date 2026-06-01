@@ -9,6 +9,7 @@ in
 {
   stylix = {
     enable = true;
+    enableReleaseChecks = false;
 
     # Wallpaper image
     # image = processedWallpaper;

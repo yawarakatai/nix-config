@@ -9,10 +9,12 @@
     ../shell
   ];
 
-  home.username = osConfig.my.user.name;
-  home.homeDirectory = "/home/${osConfig.my.user.name}";
-
-  home.stateVersion = "25.05";
+  home = {
+    username = osConfig.my.user.name;
+    homeDirectory = "/home/${osConfig.my.user.name}";
+    stateVersion = "25.05";
+    enableNixpkgsReleaseCheck = false;
+  };
 
   # Create symlink of nix-config
   home.file."nix-config" = {
