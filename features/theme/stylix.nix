@@ -7,10 +7,15 @@
 
 let
   wallpaper =
-    config.my.wallpaper or (builtins.toString pkgs.fetchurl {
-      url = "https://cdnb.artstation.com/p/assets/images/images/024/049/327/large/rodion-yushmanov-dsc-0198.jpg?1581157890";
-      hash = "sha256-xJyvFH4zyHApiOjYEtgVPSeXz+ghuAIHs1fH8qCy8Z4=";
-    });
+    if config.my.wallpaper != null then
+      config.my.wallpaper
+    else
+      builtins.toString (
+        pkgs.fetchurl {
+          url = "https://i.redd.it/mg5w8i3gkstg1.jpeg";
+          hash = "sha256-02EacG9i2c4puqQ5VRVPTBZmZDInA8pBC8QG9IMJEn8=";
+        }
+      );
 in
 
 {
@@ -18,7 +23,7 @@ in
     enable = true;
     enableReleaseChecks = false;
 
-    image = lib.mkDefault wallpaper;
+    image = lib.mkForce wallpaper;
 
     base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-dark.yaml";
 
