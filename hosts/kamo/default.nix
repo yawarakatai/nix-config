@@ -54,6 +54,16 @@ in
     KERNEL=="hidraw*", ATTRS{idVendor}=="0b05", ATTRS{idProduct}=="1abe", MODE="0660", TAG+="uaccess"
   '';
 
+  # Disable USB autosuspend to prevent Bluetooth adapter loss
+  boot.kernelParams = [ "usbcore.autosuspend=-1" ];
+
+  # Bluetooth resilience: auto-restart after USB reset / suspend
+  systemd.services.bluetooth.serviceConfig = {
+    Restart = "always";
+    RestartSec = 10;
+    ExecStartPre = "${pkgs.coreutils}/bin/sleep 2";
+  };
+
   # Default to balanced power profile on boot (handheld is always on battery)
   systemd.services.power-profile-balanced = {
     description = "Set default power profile to balanced";
