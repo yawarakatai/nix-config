@@ -20,6 +20,8 @@ in
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   # Tmp on tmpfs for better performance
   boot.tmp = {
     useTmpfs = true;
