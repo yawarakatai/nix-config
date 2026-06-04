@@ -77,7 +77,7 @@ in
 
       always-center-single-column = true;
 
-      gaps = osConfig.my.theme.gaps.inner;
+      gaps = osConfig.my.theme.gaps;
 
       border = {
         enable = osConfig.my.theme.border.enable;

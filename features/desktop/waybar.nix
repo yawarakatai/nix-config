@@ -1,4 +1,4 @@
-{ ... }:
+{ osConfig, ... }:
 
 {
   programs.waybar = {
@@ -7,9 +7,9 @@
     settings.mainBar = {
       layer = "top";
       position = "top";
-      margin-left = 5;
-      margin-right = 5;
-      margin-top = 4;
+      margin-left = osConfig.my.theme.gaps;
+      margin-right = osConfig.my.theme.gaps;
+      margin-top = osConfig.my.theme.gaps;
 
       modules-left = [
         "niri/workspaces"

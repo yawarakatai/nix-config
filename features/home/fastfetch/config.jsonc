@@ -9,30 +9,35 @@
     },
     "separator": ""
   },
-  "logo": {
-    "type": "raw",
-    "source": "~/.config/fastfetch/logo.txt",
-    "width": 24,
-    "height": 12
-  },
-  "modules": [
+  "logo": { "type": "auto" },
+    "modules": [
+    {
+      "type": "title",
+      "key": "who",
+      "keyColor": "black",
+      "color": {
+        "user": "blue",
+        "at": "default",
+        "host": "blue"
+      }
+    },
     "break",
-    "title",
     {
       "type": "os",
       "key": "os",
-      "keyColor": "yellow",
+      "keyColor": "blue",
       "format": "{name}"
     },
     {
       "type": "kernel",
       "key": "ker",
-      "keyColor": "green"
+      "keyColor": "blue"
     },
     {
       "type": "packages",
       "key": "pkgs",
-      "keyColor": "cyan"
+      "keyColor": "blue",
+      "format": "{1}"
     },
     {
       "type": "shell",
@@ -43,38 +48,46 @@
     {
       "type": "wm",
       "key": "wm",
-      "keyColor": "red",
+      "keyColor": "blue",
       "format": "{pretty-name}"
     },
     {
-      "type": "uptime",
-      "key": "up",
-      "keyColor": "green"
+      "type": "terminal",
+      "key": "term",
+      "keyColor": "blue",
+      "format": "{pretty-name}"
     },
     {
       "type": "cpu",
       "key": "cpu",
-      "keyColor": "red",
+      "keyColor": "blue",
       "format": "{name}"
     },
     {
       "type": "memory",
       "key": "ram",
-      "keyColor": "yellow",
+      "keyColor": "blue",
       "format": "{used} / {total}"
     },
     {
       "type": "disk",
       "key": "disk",
-      "keyColor": "cyan",
+      "keyColor": "blue",
       "folders": [
         "/"
       ],
       "format": "{size-used} / {size-total}"
     },
+    {
+      "type": "uptime",
+      "key": "up",
+      "keyColor": "blue"
+    },
     "break",
     {
       "type": "custom",
+      "key": "color",
+      "keyColor": "blue",
       "format": "\u001b[33m󰮯 \u001b[32m󰊠 \u001b[34m󰊠 \u001b[31m󰊠 \u001b[36m󰊠 \u001b[35m󰊠 \u001b[37m󰊠 \u001b[97m󰊠"
     }
   ]
