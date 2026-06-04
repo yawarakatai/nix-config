@@ -7,6 +7,11 @@ with lib;
       default = "yawarakatai";
     };
 
+    wallpaper = mkOption {
+      type = types.nullOr types.path;
+      default = null;
+    };
+
     system = {
       monitors = mkOption {
         type = types.attrsOf (

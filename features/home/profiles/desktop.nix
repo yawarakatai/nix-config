@@ -10,6 +10,7 @@
     ../compositor/launcher/vicinae.nix
     ../compositor/notification/mako.nix
     ../service/ssh-client.nix
+    ../../desktop/waybar.nix
   ];
 
   gtk.gtk4.theme = null;
@@ -21,6 +22,8 @@
     pavucontrol
     playerctl
     brightnessctl
+    blueman
+    wlogout
   ];
 
   xdg.mimeApps = {

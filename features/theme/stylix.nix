@@ -1,26 +1,23 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  ...
+}:
 
-let
-  wallpaper = pkgs.fetchurl {
-    url = "https://cdnb.artstation.com/p/assets/images/images/024/049/327/large/rodion-yushmanov-dsc-0198.jpg?1581157890";
-    hash = "sha256-xJyvFH4zyHApiOjYEtgVPSeXz+ghuAIHs1fH8qCy8Z4=";
-  };
-in
 {
   stylix = {
     enable = true;
     enableReleaseChecks = false;
 
-    # Wallpaper image
-    # image = processedWallpaper;
+    image = pkgs.fetchurl {
+      url = "https://i.redd.it/mg5w8i3gkstg1.jpeg";
+      hash = "sha256-02EacG9i2c4puqQ5VRVPTBZmZDInA8pBC8QG9IMJEn8=";
+    };
 
-    # To generate theme FROM wallpaper instead, remove base16Scheme line
     base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-dark.yaml";
 
-    # Polarity for the theme
     polarity = "dark";
 
-    # Font configuration
     fonts = {
       monospace = {
         package = pkgs.nerd-fonts.jetbrains-mono;
@@ -63,12 +60,11 @@ in
       dark = "Papirus-Dark";
     };
 
-    # Opacity settings
     opacity = {
       terminal = 1.0;
       applications = 1.0;
       desktop = 1.0;
-      popups = 0.95;
+      popups = 0.90;
     };
 
     targets.qt.platform = lib.mkForce "qtct";

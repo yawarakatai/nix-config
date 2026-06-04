@@ -15,6 +15,7 @@
     croc
     tokei
     glow
+    fastfetch
   ];
 
   programs.bottom = {
