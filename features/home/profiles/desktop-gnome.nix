@@ -18,8 +18,6 @@
     brightnessctl
   ];
 
-  gtk.gtk4.theme = null;
-
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
@@ -29,7 +27,7 @@
       "x-scheme-handler/about" = "zen-beta.desktop";
       "x-scheme-handler/unknown" = "zen-beta.desktop";
       "application/pdf" = "zen-beta.desktop";
-      "image/*" = "org.gnome.loupe.desktop";
+      "image/*" = "imv.desktop";
       "video/*" = "mpv.desktop";
     };
   };

@@ -13,11 +13,9 @@
     ../../desktop/waybar.nix
   ];
 
-  gtk.gtk4.theme = null;
-
   home.packages = with pkgs; [
     nautilus
-    loupe
+    imv
     mpv
     pavucontrol
     playerctl
@@ -35,7 +33,7 @@
       "x-scheme-handler/about" = "zen-beta.desktop";
       "x-scheme-handler/unknown" = "zen-beta.desktop";
       "application/pdf" = "zen-beta.desktop";
-      "image/*" = "org.gnome.loupe.desktop";
+      "image/*" = "imv.desktop";
       "video/*" = "mpv.desktop";
     };
   };
