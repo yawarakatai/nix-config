@@ -14,7 +14,7 @@ let
       list = "allow";
       webfetch = "ask";
       bash = {
-        "*" = "ask";
+        "*" = "allow";
         "nix flake *" = "allow";
         "nix fmt" = "allow";
         "nix build *" = "allow";
@@ -22,10 +22,19 @@ let
         "nix *" = "ask";
         "home-manager *" = "allow";
         "git *" = "allow";
-        "curl *" = "deny";
-        "wget *" = "deny";
+        "rm *" = "ask";
+        "rmdir *" = "ask";
+        "chmod *" = "ask";
+        "kill *" = "ask";
+        "pkill *" = "ask";
+        "curl *" = "ask";
+        "wget *" = "ask";
         "nc *" = "deny";
         "sudo *" = "deny";
+        "chown *" = "deny";
+        "dd *" = "deny";
+        "shutdown *" = "deny";
+        "reboot *" = "deny";
       };
       external_directory = {
         "/tmp/**" = "allow";
