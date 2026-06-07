@@ -1,26 +1,6 @@
-{ osConfig, pkgs, ... }:
+{ osConfig, ... }:
 
-let
-  bluetoothIndicator = pkgs.writeShellScriptBin "bluetooth-indicator" ''
-    HCI=$(ls /sys/class/bluetooth/ 2>/dev/null | head -1)
-    if [ -z "$HCI" ]; then
-      echo '{"text": ""}'
-      exit 0
-    fi
-
-    POWERED=$(timeout 1 bluetoothctl show 2>/dev/null | grep -c 'Powered: yes' || true)
-    if [ "$POWERED" -gt 0 ]; then
-      echo '{"text": "󰂯", "class": "on", "tooltip": "Bluetooth on"}'
-    else
-      echo '{"text": "󰂲", "class": "off", "tooltip": "Bluetooth off"}'
-    fi
-  '';
-in
 {
-  home.packages = [
-    bluetoothIndicator
-  ];
-
   programs.waybar = {
     enable = true;
 
@@ -41,7 +21,7 @@ in
 
       modules-right = [
         "tray"
-        "custom/bluetooth"
+        "bluetooth"
         "network"
         "backlight"
         "pulseaudio"
@@ -165,10 +145,12 @@ in
         spacing = 4;
       };
 
-      "custom/bluetooth" = {
-        exec = "bluetooth-indicator";
-        interval = 5;
-        return-type = "json";
+      bluetooth = {
+        format = "󰂯 {num_connections}";
+        format-disabled = "";
+        format-off = "󰂲";
+        format-connected = "󰂯 {num_connections}";
+        tooltip-format = "Devices: {num_connections}";
         on-click = "blueman-manager";
       };
 
@@ -218,7 +200,7 @@ in
         }
 
         #tray,
-        #custom-bluetooth,
+        #bluetooth,
         #network,
         #backlight,
         #pulseaudio,
