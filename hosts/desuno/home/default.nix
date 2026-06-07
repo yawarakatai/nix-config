@@ -2,6 +2,6 @@
 
 {
   imports = [
-    ../../../features/home/profiles/desktop.nix
+    ../../../features/home/profiles/desktop-niri.nix
   ];
 }

@@ -1,6 +1,26 @@
-{ osConfig, ... }:
+{ osConfig, pkgs, ... }:
 
+let
+  bluetoothIndicator = pkgs.writeShellScriptBin "bluetooth-indicator" ''
+    HCI=$(ls /sys/class/bluetooth/ 2>/dev/null | head -1)
+    if [ -z "$HCI" ]; then
+      echo '{"text": ""}'
+      exit 0
+    fi
+
+    POWERED=$(timeout 1 bluetoothctl show 2>/dev/null | grep -c 'Powered: yes' || true)
+    if [ "$POWERED" -gt 0 ]; then
+      echo '{"text": "󰂯", "class": "on", "tooltip": "Bluetooth on"}'
+    else
+      echo '{"text": "󰂲", "class": "off", "tooltip": "Bluetooth off"}'
+    fi
+  '';
+in
 {
+  home.packages = [
+    bluetoothIndicator
+  ];
+
   programs.waybar = {
     enable = true;
 
@@ -16,13 +36,12 @@
       ];
 
       modules-center = [
-        "clock"
+        "custom/recording"
       ];
 
       modules-right = [
-        "custom/recording"
         "tray"
-        "bluetooth"
+        "custom/bluetooth"
         "network"
         "backlight"
         "pulseaudio"
@@ -40,21 +59,6 @@
           active = "󰮯";
           default = "󰊠";
           empty = "󱙝";
-        };
-      };
-
-      clock = {
-        format = "{:%H:%M}";
-        interval = 60;
-        tooltip-format = "<span>{calendar}</span>";
-        calendar = {
-          mode = "month";
-          mode-mon-col = 2;
-          format = {
-            month = "<span color='#f6c177'><b>{}</b></span>";
-            weekdays = "<span color='#c4a7e7'><b>{}</b></span>";
-            today = "<span color='#eb6f92'><b>{}</b></span>";
-          };
         };
       };
 
@@ -145,10 +149,9 @@
 
       "custom/recording" = {
         exec = "recording-indicator";
-        interval = 2;
+        interval = 1;
         return-type = "json";
         on-click = "toggle-recording";
-        tooltip-format = "{tooltip}";
       };
 
       "custom/power" = {
@@ -162,18 +165,16 @@
         spacing = 4;
       };
 
-      bluetooth = {
-        format = "󰂯 {num_connections}";
-        format-disabled = "";
-        format-off = "󰂲";
-        format-connected = "󰂯 {num_connections}";
-        tooltip-format = "Devices: {num_connections}";
+      "custom/bluetooth" = {
+        exec = "bluetooth-indicator";
+        interval = 5;
+        return-type = "json";
         on-click = "blueman-manager";
       };
 
       network = {
-        format-wifi = "  {essid}";
-        format-ethernet = "󰈀  {ifname}";
+        format-wifi = " {essid}";
+        format-ethernet = "󰈀 {ifname}";
         format-disconnected = "󰤭";
         tooltip-format-wifi = "{essid} ({frequency} GHz) - ⇣{bandwidthDownBytes} ⇡{bandwidthUpBytes}";
         tooltip-format-disconnected = "Disconnected";
@@ -207,7 +208,7 @@
           color: @base06;
         }
 
-        #clock {
+        #custom-recording {
           background: alpha(@base00, 0.5);
           border-radius: 8px;
           padding: 0 12px;
@@ -216,9 +217,8 @@
           font-size: 12pt;
         }
 
-        #custom-recording,
         #tray,
-        #bluetooth,
+        #custom-bluetooth,
         #network,
         #backlight,
         #pulseaudio,
@@ -229,12 +229,6 @@
           border-radius: 8px;
           padding: 0 10px;
           margin: 2px 2px;
-        }
-
-        #custom-recording.recording {
-          background: alpha(@base08, 0.8);
-          color: @base00;
-          font-weight: bold;
         }
 
         #battery.warning {

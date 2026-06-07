@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ../../../features/home/profiles/desktop.nix
+    ../../../features/home/profiles/desktop-niri.nix
     ../../../features/home/cli/juice.nix
   ];
 

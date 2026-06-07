@@ -31,9 +31,9 @@ let
   recordingIndicator = pkgs.writeShellScriptBin "recording-indicator" ''
     PID_FILE="/tmp/gpu-screen-recorder.pid"
     if [ -f "$PID_FILE" ] && kill -0 "$(cat "$PID_FILE")" 2>/dev/null; then
-      echo '{"text": "  \uf04d REC  ", "class": "recording", "tooltip": "Recording to ~/rec/"}'
+      echo '{"text": "\uf04d REC", "class": "recording", "tooltip": "Recording to ~/rec/"}'
     else
-      echo '{"text": ""}'
+      echo "{\"text\": \"$(date '+%H:%M')\", \"class\": \"\"}"
     fi
   '';
 in
