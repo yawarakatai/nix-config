@@ -73,9 +73,9 @@
       "Mod+A".action.spawn = [ "pavucontrol" ];
 
       # --- Screenshot ---
-      "Mod+P".action.spawn =
+      "Mod+S".action.spawn =
         sh "f=~/screenshot-$(date +%Y%m%d-%H%M%S).png && grim \"$f\" && notify-send -u low 'Screenshot' \"Saved to $f\"";
-      "Mod+Shift+P".action.spawn =
+      "Mod+Shift+S".action.spawn =
         sh "f=~/screenshot-$(date +%Y%m%d-%H%M%S).png && grim -g \"$(slurp)\" \"$f\" && notify-send -u low 'Screenshot' \"Saved to $f\"";
 
       # --- Media ---
