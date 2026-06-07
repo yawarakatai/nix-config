@@ -33,7 +33,25 @@ let
     if [ -f "$PID_FILE" ] && kill -0 "$(cat "$PID_FILE")" 2>/dev/null; then
       echo '{"text": "\uf04d REC", "class": "recording", "tooltip": "Recording to ~/rec/"}'
     else
-      echo "{\"text\": \"$(date '+%H:%M')\", \"class\": \"\"}"
+      TIME=$(date +%H:%M)
+      TODAY=$(date +%-d)
+      C1="#f6c177"
+      C2="#c4a7e7"
+      C3="#eb6f92"
+      CAL=$(cal | awk -v t="$TODAY" -v c1="$C1" -v c2="$C2" -v c3="$C3" '
+        NR==1 { printf "<span color=%c%s%c><b>%s</b></span>\\n", 39, c1, 39, $0; next }
+        NR==2 { printf "<span color=%c%s%c><b>%s</b></span>\\n", 39, c2, 39, $0; next }
+        {
+          for (i=1; i<=NF; i++) {
+            d=$i
+            if (d+0 == t+0 && d != "")
+              printf " <span color=%c%s%c><b>%2s</b></span>", 39, c3, 39, d
+            else
+              printf " %2s", d
+          }
+          printf "\\n"
+        }')
+      printf '{"text": "%s", "tooltip": "%s"}\n' "$TIME" "$CAL"
     fi
   '';
 in
