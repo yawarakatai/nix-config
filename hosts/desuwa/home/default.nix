@@ -7,7 +7,6 @@
   ];
 
   home.packages = with pkgs; [
-    opencode
     discord
     ungoogled-chromium
   ];
