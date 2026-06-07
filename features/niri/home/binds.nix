@@ -52,7 +52,7 @@
       "Mod+Shift+Y".action.move-column-to-workspace-up = [ ];
 
       # --- Layout ---
-      "Mod+R".action.switch-preset-column-width = [ ];
+      "Mod+T".action.switch-preset-column-width = [ ];
       "Mod+M".action.maximize-column = [ ];
       "Mod+W".action.fullscreen-window = [ ];
 
@@ -71,6 +71,9 @@
       "Mod+X".action.spawn = [ "ungoogled-chromium" ];
       "Mod+F".action.spawn = [ "nautilus" ];
       "Mod+A".action.spawn = [ "pavucontrol" ];
+
+      # --- Recording ---
+      "Mod+R".action.spawn = [ "toggle-recording" ];
 
       # --- Screenshot ---
       "Mod+S".action.spawn =

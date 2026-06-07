@@ -20,6 +20,7 @@
       ];
 
       modules-right = [
+        "custom/recording"
         "tray"
         "bluetooth"
         "network"
@@ -142,6 +143,14 @@
         tooltip-format = "{capacity}% - {timeTo}";
       };
 
+      "custom/recording" = {
+        exec = "recording-indicator";
+        interval = 2;
+        return-type = "json";
+        on-click = "toggle-recording";
+        tooltip-format = "{tooltip}";
+      };
+
       "custom/power" = {
         format = " ⏻ ";
         on-click = "wlogout";
@@ -207,6 +216,7 @@
           font-size: 12pt;
         }
 
+        #custom-recording,
         #tray,
         #bluetooth,
         #network,
@@ -219,6 +229,12 @@
           border-radius: 8px;
           padding: 0 10px;
           margin: 2px 2px;
+        }
+
+        #custom-recording.recording {
+          background: alpha(@base08, 0.8);
+          color: @base00;
+          font-weight: bold;
         }
 
         #battery.warning {

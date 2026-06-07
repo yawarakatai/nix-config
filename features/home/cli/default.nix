@@ -11,6 +11,8 @@
 
     bottom
 
+    jq
+
     zellij
     croc
     tokei

@@ -2,6 +2,10 @@
 { pkgs, ... }:
 
 {
+  imports = [
+    ./gpu-screen-recorder.nix
+  ];
+
   home.packages = with pkgs; [
     # # Game Development
     godot
@@ -13,7 +17,5 @@
 
     # # PCB design
     # kicad
-
-    gpu-screen-recorder-gtk
   ];
 }
