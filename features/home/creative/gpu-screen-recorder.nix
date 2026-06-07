@@ -22,7 +22,8 @@ let
         -q very_high \
         -cr full \
         -ffmpeg-video-opts "colorspace=bt709;colorprim=bt709;transfer=bt709" \
-        -o "$OUTPUT" &
+        -o "$OUTPUT" >/dev/null 2>&1 &
+      disown
       echo $! > "$PID_FILE"
     fi
   '';
