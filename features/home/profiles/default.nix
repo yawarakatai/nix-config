@@ -24,13 +24,15 @@
   xdg.configFile."fastfetch/config.jsonc".source = ../fastfetch/config.jsonc;
 
   # Environment variables
-  systemd.user.sessionVariables = {
-    XMODIFIERS = "@im=fcitx";
-    QT_IM_MODULE = "wayland;fcitx";
-
+  home.sessionVariables = {
     EDITOR = "hx";
     VISUAL = "hx";
     PAGER = "cat";
+  };
+
+  systemd.user.sessionVariables = {
+    XMODIFIERS = "@im=fcitx";
+    QT_IM_MODULE = "wayland;fcitx";
   };
 
   # XDG configuration

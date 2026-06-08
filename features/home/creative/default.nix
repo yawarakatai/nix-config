@@ -12,6 +12,8 @@
 
     pixelorama
 
+    kdePackages.kdenlive
+
     # # 3D modeling
     # blender
 
