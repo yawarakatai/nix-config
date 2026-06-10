@@ -1,5 +1,9 @@
 { pkgs, ... }:
 {
+  imports = [
+    ./zellij.nix
+  ];
+
   home.packages = with pkgs; [
     ripgrep
     fd
