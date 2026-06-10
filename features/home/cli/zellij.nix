@@ -8,14 +8,15 @@
             bind "o" "Right" { MoveFocus "Right"; }
             bind "e" "Down" { MoveFocus "Down"; }
             bind "i" "Up" { MoveFocus "Up"; }
-            bind "N" { NewPane; SwitchToMode "Normal"; }
+            bind "p" { NewPane; SwitchToMode "Normal"; }
+            bind "P" { SwitchFocus; }
             bind "E" { TogglePaneEmbedOrFloating; SwitchToMode "Normal"; }
             bind "I" { TogglePanePinned; SwitchToMode "Normal"; }
         }
         tab {
             bind "n" "Left" "Up" { GoToPreviousTab; SwitchToMode "Normal"; }
             bind "o" "Right" "Down" { GoToNextTab; SwitchToMode "Normal"; }
-            bind "N" { NewTab; SwitchToMode "Normal"; }
+            bind "t" { NewTab; SwitchToMode "Normal"; }
         }
         resize {
             bind "n" "Left" { Resize "Increase Left"; }
