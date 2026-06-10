@@ -2,6 +2,8 @@
 
 {
   xdg.configFile."zellij/config.kdl".text = ''
+    show_startup_tips false
+
     keybinds {
         pane {
             bind "n" "Left" { MoveFocus "Left"; }
