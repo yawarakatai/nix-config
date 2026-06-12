@@ -82,5 +82,4 @@ in
   };
 
   # --- State Version ---
-  system.stateVersion = "25.05";
 }

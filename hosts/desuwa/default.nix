@@ -60,5 +60,4 @@ in
 
   # --- State Version ---
   # State version - DO NOT CHANGE after initial install
-  system.stateVersion = "25.05";
 }
