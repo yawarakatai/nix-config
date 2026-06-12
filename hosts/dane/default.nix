@@ -1,5 +1,10 @@
 # ROCK 5T Headless Server — hostname "dane"
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   networking.hostName = lib.mkForce "dane";
@@ -12,7 +17,10 @@
   fileSystems."/boot" = {
     device = "/dev/disk/by-label/FIRMWARE";
     fsType = "vfat";
-    options = [ "fmask=0077" "dmask=0077" ];
+    options = [
+      "fmask=0077"
+      "dmask=0077"
+    ];
   };
 
   boot = {

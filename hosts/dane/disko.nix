@@ -41,7 +41,10 @@ in
                 subvolumes = {
                   "@data" = {
                     mountpoint = "/data";
-                    mountOptions = [ "compress=zstd" "noatime" ];
+                    mountOptions = [
+                      "compress=zstd"
+                      "noatime"
+                    ];
                   };
                 };
               };
