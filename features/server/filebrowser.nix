@@ -1,6 +1,11 @@
 { config, pkgs, ... }:
 
 {
+  # Ensure /data/filebrowser exists with correct permissions
+  systemd.tmpfiles.rules = [
+    "d /data/filebrowser 0755 ${config.my.user.name} users - -"
+  ];
+
   systemd.services.filebrowser = {
     description = "FileBrowser";
     wantedBy = [ "multi-user.target" ];
