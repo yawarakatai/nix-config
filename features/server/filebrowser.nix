@@ -1,7 +1,8 @@
 { config, pkgs, ... }:
 
 {
-  # Ensure /data/filebrowser exists with correct permissions
+  networking.firewall.allowedTCPPorts = [ 8080 ];
+
   systemd.tmpfiles.rules = [
     "d /data/filebrowser 0755 ${config.my.user.name} users - -"
   ];
