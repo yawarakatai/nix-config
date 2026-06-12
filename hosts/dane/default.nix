@@ -1,30 +1,31 @@
 # ROCK 5T Headless Server — hostname "dane"
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ lib, ... }:
 
 {
   networking.hostName = lib.mkForce "dane";
 
-  imports = [
-    ./disko.nix
-  ];
-
-  # SD card FAT partition as /boot (extlinux)
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-label/FIRMWARE";
-    fsType = "vfat";
-    options = [
-      "fmask=0077"
-      "dmask=0077"
-    ];
+  # Root on SD, data on NVMe
+  fileSystems = lib.mkForce {
+    "/" = {
+      device = "/dev/disk/by-label/NIXOS_SD";
+      fsType = "ext4";
+    };
+    "/boot" = {
+      device = "/dev/disk/by-label/FIRMWARE";
+      fsType = "vfat";
+      options = [ "fmask=0077" "dmask=0077" ];
+    };
+    "/data" = {
+      device = "/dev/disk/by-id/nvme-BC711_NVMe_SK_hynix_256GB____CDA3N81581070463W-part1";
+      fsType = "ext4";
+    };
+    "/backup" = {
+      device = "/dev/disk/by-id/nvme-WD_BLACK_SN770_1TB_22134E800783-part1";
+      fsType = "ext4";
+    };
   };
 
   boot = {
-    # Override systemd-boot from server profile — use extlinux
     loader = {
       grub.enable = lib.mkForce false;
       systemd-boot.enable = lib.mkForce false;
@@ -32,7 +33,6 @@
       generic-extlinux-compatible.enable = lib.mkForce true;
     };
 
-    # Board-specific kernel params
     kernelParams = lib.mkForce [
       "rootwait"
       "rw"
@@ -40,6 +40,7 @@
       "consoleblank=0"
       "coherent_pool=2M"
       "irqchip.gicv3_pseudo_nmi=0"
+      "root=fstab"
       "console=ttyS2,1500000n8"
     ];
   };

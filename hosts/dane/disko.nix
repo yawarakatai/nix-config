@@ -1,5 +1,4 @@
-# Rock 5T storage: 256GB NVMe (system) + 1TB NVMe (data), SD card (/boot)
-{ lib, ... }:
+{ ... }:
 
 let
   btrfs-subvols = import ../../lib/disko-common.nix { };
