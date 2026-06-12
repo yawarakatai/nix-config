@@ -1,8 +1,21 @@
 # ROCK 5T Headless Server — hostname "dane"
-{ lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   networking.hostName = lib.mkForce "dane";
+
+  imports = [
+    ./disko.nix
+    ../../features/server/vaultwarden.nix
+    ../../features/server/filebrowser.nix
+    ../../features/server/borg.nix
+    ../../features/server/containers/dev.nix
+  ];
 
   # Root on SD, data on NVMe
   fileSystems = lib.mkForce {
@@ -13,7 +26,10 @@
     "/boot" = {
       device = "/dev/disk/by-label/FIRMWARE";
       fsType = "vfat";
-      options = [ "fmask=0077" "dmask=0077" ];
+      options = [
+        "fmask=0077"
+        "dmask=0077"
+      ];
     };
     "/data" = {
       device = "/dev/disk/by-id/nvme-BC711_NVMe_SK_hynix_256GB____CDA3N81581070463W-part1";
@@ -44,6 +60,18 @@
       "console=ttyS2,1500000n8"
     ];
   };
+
+  security.sudo.extraRules = [
+    {
+      users = [ config.my.user.name ];
+      commands = [
+        {
+          command = "ALL";
+          options = [ "NOPASSWD" ];
+        }
+      ];
+    }
+  ];
 
   system.stateVersion = "25.05";
 }
