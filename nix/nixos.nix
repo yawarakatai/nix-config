@@ -113,6 +113,11 @@ in
       dayo = mkHost "dayo" profiles.server {
         system = "aarch64-linux";
       };
+
+      dane = mkHost "dane" profiles.server {
+        system = "aarch64-linux";
+        extraModules = [ inputs.nixos-rock5t.nixosModules.rock5t ];
+      };
     };
 
     agenix-rekey = inputs.agenix-rekey.configure {

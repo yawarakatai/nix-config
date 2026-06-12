@@ -14,6 +14,7 @@
     nanoda = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIphjyoM8mIYKXd/g+usgNK7pTxQSK/KlpgC0ix0tJXD root@nanoda";
     kamo = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDlUslf9FoV5dK0v7INMA4ZVYomHs6S5dtdmyFFMlU24 root@kamo";
     dayo = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJHfMsVphgO8fB+Yrs4nYf83tf5DwrOdGiBagwfbxHYN root@dayo";
+    dane = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPfDKauQBP/jxoSr4Xdr91be2FKSPfkNMQUVD7mvuEKi root@rock5t";
   };
 
   master = {
