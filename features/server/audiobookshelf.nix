@@ -10,6 +10,7 @@
   services.audiobookshelf = {
     enable = true;
     host = "0.0.0.0";
+    port = 13378;
   };
 
   systemd.services.tailscale-serve-audiobookshelf = {
@@ -20,7 +21,7 @@
       RemainAfterExit = true;
     };
     script = ''
-      ${pkgs.tailscale}/bin/tailscale serve --bg --set-path /audiobooks 13378
+      ${pkgs.tailscale}/bin/tailscale serve --bg --set-path /audiobookshelf 13378
     '';
   };
 }
