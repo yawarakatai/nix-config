@@ -82,8 +82,7 @@
     };
 
     nixos-rock5t = {
-      # TODO: change to github:yawarakatai/nixos-rock5t after pushing
-      url = "path:/home/yawarakatai/dev/nixos-rock5t";
+      url = "github:yawarakatai/nixos-rock5t";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
