@@ -14,6 +14,8 @@
     ../../features/server/vaultwarden.nix
     ../../features/server/filebrowser.nix
     ../../features/server/borg.nix
+    ../../features/server/audiobookshelf.nix
+    ../../features/server/forgejo.nix
     ../../features/server/containers/dev.nix
   ];
 
