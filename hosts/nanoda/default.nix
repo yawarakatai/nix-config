@@ -9,6 +9,9 @@
     ../../features/laptop/power.nix
   ];
 
-  # --- State Version ---
-  # State version - DO NOT CHANGE after initial install
+  # --- My Options ---
+
+  my = {
+    system.monitors.primary = (import ../../displays).nanoda-builtin;
+  };
 }
