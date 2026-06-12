@@ -4,7 +4,7 @@
   networking.firewall.allowedTCPPorts = [ 8222 ];
 
   age.secrets.vaultwarden-admin-token = {
-    file = ../../secrets/vaultwarden-admin-token.age;
+    rekeyFile = ../../secrets/vaultwarden-admin-token.age;
     owner = "vaultwarden";
   };
 
