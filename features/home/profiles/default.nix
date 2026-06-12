@@ -3,7 +3,6 @@
 {
   imports = [
     ../cli
-    ../dev
     ../editor/helix.nix
     ../service/syncthing.nix
     ../shell
@@ -27,12 +26,7 @@
   home.sessionVariables = {
     EDITOR = "hx";
     VISUAL = "hx";
-    PAGER = "cat";
-  };
-
-  systemd.user.sessionVariables = {
-    XMODIFIERS = "@im=fcitx";
-    QT_IM_MODULE = "wayland;fcitx";
+    PAGER = "bat";
   };
 
   # XDG configuration
