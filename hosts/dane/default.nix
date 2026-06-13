@@ -2,7 +2,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 
@@ -10,13 +9,12 @@
   networking.hostName = lib.mkForce "dane";
 
   imports = [
-    ./disko.nix
+    ./containers
     ../../features/server/vaultwarden.nix
     ../../features/server/filebrowser.nix
     ../../features/server/borg.nix
     ../../features/server/audiobookshelf.nix
     ../../features/server/forgejo.nix
-    ../../features/server/containers/dev.nix
   ];
 
   # Root on SD, data on NVMe
@@ -59,7 +57,15 @@
       "coherent_pool=2M"
       "irqchip.gicv3_pseudo_nmi=0"
       "root=fstab"
+      "pcie_aspm=force"
       "console=ttyS2,1500000n8"
+    ];
+
+    blacklistedKernelModules = [
+      "rtw89_8852be"
+      "rtw89_8852b"
+      "rtk_btusb"
+      "btusb"
     ];
   };
 
@@ -74,6 +80,13 @@
       ];
     }
   ];
+
+  # Power saving
+  powerManagement.cpuFreqGovernor = "schedutil";
+
+  services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="usb", TEST=="power/control", ATTR{power/control}="auto"
+  '';
 
   systemd.services.tailscale-serve.script = lib.mkForce ''
     until tailscale status --json 2>/dev/null | jq -e '.Self.Online' > /dev/null 2>&1; do
