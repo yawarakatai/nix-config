@@ -17,16 +17,4 @@
       DOMAIN = "https://dane.ewe-major.ts.net";
     };
   };
-
-  systemd.services.tailscale-serve-vaultwarden = {
-    wantedBy = [ "multi-user.target" ];
-    after = [ "tailscaled.service" ];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-    };
-    script = ''
-      ${pkgs.tailscale}/bin/tailscale serve --bg 8222
-    '';
-  };
 }

@@ -18,16 +18,4 @@
       Group = "users";
     };
   };
-
-  systemd.services.tailscale-serve-filebrowser = {
-    wantedBy = [ "multi-user.target" ];
-    after = [ "tailscaled.service" ];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-    };
-    script = ''
-      ${pkgs.tailscale}/bin/tailscale serve --bg --set-path /files 8080
-    '';
-  };
 }

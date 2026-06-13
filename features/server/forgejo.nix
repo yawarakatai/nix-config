@@ -17,16 +17,4 @@
       };
     };
   };
-
-  systemd.services.tailscale-serve-forgejo = {
-    wantedBy = [ "multi-user.target" ];
-    after = [ "tailscaled.service" ];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-    };
-    script = ''
-      ${pkgs.tailscale}/bin/tailscale serve --bg --set-path /git 3000
-    '';
-  };
 }
