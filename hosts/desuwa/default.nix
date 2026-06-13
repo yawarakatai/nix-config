@@ -50,7 +50,7 @@ in
     enable = true;
     package = inputs.madori.packages.x86_64-linux.default;
 
-    monitors.innocn = madoriLib.mkMonitor "HDMI-A-1" 1.0;
+    monitors.innocn = madoriLib.mkMonitor "DP-3" 1.0;
 
     rules = [
       (madoriLib.only "innocn")
