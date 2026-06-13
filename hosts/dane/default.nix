@@ -37,7 +37,7 @@
       device = "/dev/disk/by-id/nvme-BC711_NVMe_SK_hynix_256GB____CDA3N81581070463W-part1";
       fsType = "ext4";
     };
-    "/backup" = {
+    "/storage" = {
       device = "/dev/disk/by-id/nvme-WD_BLACK_SN770_1TB_22134E800783-part1";
       fsType = "ext4";
     };

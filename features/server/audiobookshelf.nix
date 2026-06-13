@@ -4,7 +4,7 @@
   networking.firewall.allowedTCPPorts = [ 13378 ];
 
   systemd.tmpfiles.rules = [
-    "d /data/audiobookshelf 0750 audiobookshelf audiobookshelf - -"
+    "d /storage/shared 0755 ${config.my.user.name} users - -"
   ];
 
   services.audiobookshelf = {
