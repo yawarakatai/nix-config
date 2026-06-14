@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 
 {
   age.secrets.ha-token = {
@@ -106,4 +106,8 @@
 
   systemd.services.homepage-dashboard.serviceConfig.EnvironmentFile =
     lib.mkForce "/var/lib/homepage-dashboard/env";
+
+  systemd.services.tailscale-serve.script = lib.mkAfter ''
+    tailscale serve --bg --https=3000 http://127.0.0.1:8082
+  '';
 }

@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   networking.firewall.allowedTCPPorts = [ 8080 ];
@@ -18,4 +23,8 @@
       Group = "users";
     };
   };
+
+  systemd.services.tailscale-serve.script = lib.mkAfter ''
+    tailscale serve --bg --set-path /files 8080
+  '';
 }

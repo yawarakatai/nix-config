@@ -88,15 +88,5 @@
     ACTION=="add", SUBSYSTEM=="usb", TEST=="power/control", ATTR{power/control}="auto"
   '';
 
-  systemd.services.tailscale-serve.script = lib.mkForce ''
-    until tailscale status --json 2>/dev/null | jq -e '.Self.Online' > /dev/null 2>&1; do
-      sleep 2
-    done
-    tailscale serve --bg 8222
-    tailscale serve --bg --set-path /git 3000
-    tailscale serve --bg --set-path /files 8080
-    tailscale serve --bg --set-path /audiobookshelf 13378
-  '';
-
   system.stateVersion = "25.05";
 }

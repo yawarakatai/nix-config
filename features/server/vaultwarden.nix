@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   networking.firewall.allowedTCPPorts = [ 8222 ];
@@ -17,4 +22,8 @@
       DOMAIN = "https://dane.ewe-major.ts.net";
     };
   };
+
+  systemd.services.tailscale-serve.script = lib.mkAfter ''
+    tailscale serve --bg 8222
+  '';
 }

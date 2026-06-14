@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, pkgs, ... }:
 
 {
   virtualisation.oci-containers.backend = "docker";
@@ -59,7 +59,11 @@
           - ::1
       HTTPCONFIG
               fi
-            fi
+             fi
     '';
   };
+
+  systemd.services.tailscale-serve.script = lib.mkAfter ''
+    tailscale serve --bg --https=8124 http://127.0.0.1:8123
+  '';
 }

@@ -57,7 +57,6 @@ let
     server = secret ++ [
       ../features/core/locale.nix
       ../features/server
-      ../features/service/tailscale-serve.nix
     ];
   };
 

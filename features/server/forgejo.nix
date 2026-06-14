@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   networking.firewall.allowedTCPPorts = [ 3000 ];
@@ -17,4 +22,8 @@
       };
     };
   };
+
+  systemd.services.tailscale-serve.script = lib.mkAfter ''
+    tailscale serve --bg --set-path /git 3000
+  '';
 }

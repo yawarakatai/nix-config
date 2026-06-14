@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, pkgs, ... }:
 
 {
   services.gatus = {
@@ -35,4 +35,8 @@
       ];
     };
   };
+
+  systemd.services.tailscale-serve.script = lib.mkAfter ''
+    tailscale serve --bg --https=3001 http://127.0.0.1:3001
+  '';
 }
