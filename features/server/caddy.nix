@@ -56,10 +56,6 @@
         }
       '';
     };
-
-    globalConfig = ''
-      auto_https off
-    '';
   };
 
   networking.firewall.allowedTCPPorts = [
