@@ -24,4 +24,9 @@ in
     (builtins.attrValues keys.yubikey)
     ++ (builtins.attrValues keys.hosts)
     ++ (builtins.attrValues keys.master);
+
+  "kavita-token.age".publicKeys =
+    (builtins.attrValues keys.yubikey)
+    ++ (builtins.attrValues keys.hosts)
+    ++ (builtins.attrValues keys.master);
 }
