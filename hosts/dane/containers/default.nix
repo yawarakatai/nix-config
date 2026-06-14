@@ -13,15 +13,25 @@
     localAddress = "10.0.1.2";
 
     bindMounts = {
-      "/data/projects" = {
-        hostPath = "/data/projects";
-      };
+      "/data/projects".hostPath = "/data/projects";
       "/home/dev/nix-config" = {
         hostPath = "/home/yawarakatai/nix-config";
         isReadOnly = true;
       };
       "/home/dev/.ssh" = {
         hostPath = "/home/yawarakatai/.ssh";
+        isReadOnly = true;
+      };
+      "/home/dev/.config/helix" = {
+        hostPath = "/home/yawarakatai/.config/helix";
+        isReadOnly = true;
+      };
+      "/home/dev/.config/zellij" = {
+        hostPath = "/home/yawarakatai/.config/zellij";
+        isReadOnly = true;
+      };
+      "/home/dev/.config/git" = {
+        hostPath = "/home/yawarakatai/.config/git";
         isReadOnly = true;
       };
     };
@@ -47,12 +57,16 @@
       };
 
       environment.systemPackages = with pkgs; [
+        direnv
+        fd
         git
-        neovim
-        zsh
-        tmux
-        htop
+        helix
+        jq
+        lazygit
         nix
+        ripgrep
+        zellij
+        zsh
       ];
 
       networking.firewall.enable = false;
