@@ -34,14 +34,14 @@
         Services = [
           {
             "Gatus" = {
-              href = "https://dayo.ewe-major.ts.net:3001";
+              href = "https://dayo.ewe-major.ts.net/gatus";
               icon = "gatus";
               description = "Service monitoring";
             };
           }
           {
             "Home Assistant" = {
-              href = "https://dayo.ewe-major.ts.net:8124";
+              href = "https://dayo.ewe-major.ts.net/ha";
               icon = "home-assistant";
               description = "Home automation";
               widget = {
@@ -108,6 +108,6 @@
     lib.mkForce "/var/lib/homepage-dashboard/env";
 
   systemd.services.tailscale-serve.script = lib.mkAfter ''
-    tailscale serve --bg --https=3000 http://127.0.0.1:8082
+    tailscale serve --bg --https --set-path /home http://127.0.0.1:8082
   '';
 }

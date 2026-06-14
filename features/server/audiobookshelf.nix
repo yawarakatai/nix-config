@@ -19,6 +19,6 @@
   };
 
   systemd.services.tailscale-serve.script = lib.mkAfter ''
-    tailscale serve --bg --set-path /audiobookshelf 13378
+    tailscale serve --bg --set-path /audiobook 13378
   '';
 }

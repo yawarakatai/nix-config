@@ -17,7 +17,7 @@
     description = "FileBrowser";
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
-      ExecStart = "${pkgs.filebrowser}/bin/filebrowser -d /data/filebrowser/filebrowser.db -r /storage/shared -a 0.0.0.0 -p 8080 -b /files";
+      ExecStart = "${pkgs.filebrowser}/bin/filebrowser -d /data/filebrowser/filebrowser.db -r /storage/shared -a 0.0.0.0 -p 8080 -b /file";
       Restart = "on-failure";
       User = config.my.user.name;
       Group = "users";
@@ -25,6 +25,6 @@
   };
 
   systemd.services.tailscale-serve.script = lib.mkAfter ''
-    tailscale serve --bg --set-path /files 8080
+    tailscale serve --bg --set-path /file 8080
   '';
 }

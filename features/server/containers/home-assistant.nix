@@ -64,6 +64,6 @@
   };
 
   systemd.services.tailscale-serve.script = lib.mkAfter ''
-    tailscale serve --bg --https=8124 http://127.0.0.1:8123
+    tailscale serve --bg --https --set-path /ha http://127.0.0.1:8123
   '';
 }
