@@ -2,6 +2,6 @@
 
 {
   imports = [
-    ../../../features/home/profiles
+    ../../../features/home/profiles/server.nix
   ];
 }
