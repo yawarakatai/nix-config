@@ -1,14 +1,14 @@
 { config, pkgs, ... }:
 
 {
-  systemd.services.caddy = {
-    preStart = ''
-      printf 'CF_API_TOKEN=%s' "$(cat ${config.age.secrets.cloudflare-token.path})" > /run/caddy/env
-    '';
-    serviceConfig = {
-      EnvironmentFile = "/run/caddy/env";
-      RuntimeDirectory = "caddy";
-    };
+  system.activationScripts.caddy-env = ''
+    printf 'CF_API_TOKEN=%s' "$(cat ${config.age.secrets.cloudflare-token.path})" > /run/caddy-env
+    chmod 600 /run/caddy-env
+    chown caddy:caddy /run/caddy-env 2>/dev/null || true
+  '';
+
+  systemd.services.caddy.serviceConfig = {
+    EnvironmentFile = "/run/caddy-env";
   };
 
   age.secrets.cloudflare-token = {
