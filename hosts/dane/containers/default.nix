@@ -22,18 +22,6 @@
         hostPath = "/home/yawarakatai/.ssh";
         isReadOnly = true;
       };
-      "/home/dev/.config/helix" = {
-        hostPath = "/home/yawarakatai/.config/helix";
-        isReadOnly = true;
-      };
-      "/home/dev/.config/zellij" = {
-        hostPath = "/home/yawarakatai/.config/zellij";
-        isReadOnly = true;
-      };
-      "/home/dev/.config/git" = {
-        hostPath = "/home/yawarakatai/.config/git";
-        isReadOnly = true;
-      };
     };
 
     config = { pkgs, ... }: {
