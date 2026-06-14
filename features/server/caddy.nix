@@ -23,39 +23,29 @@
       hash = "sha256-8yZDrejNKsaUnUaTUFYbarWNmxafqp2z2rWo+XRsxV8=";
     };
 
-    virtualHosts."vault.yawarakatai.com" = {
-      serverAliases = [ "*.yawarakatai.com" ];
-      extraConfig = ''
-        tls {
-          dns cloudflare {env.CF_API_TOKEN}
-        }
+    globalConfig = ''
+      acme_dns cloudflare {env.CF_API_TOKEN}
+    '';
 
-        @vault host vault.yawarakatai.com
-        handle @vault {
-          reverse_proxy localhost:8222
-        }
+    virtualHosts."vault.yawarakatai.com".extraConfig = ''
+      reverse_proxy localhost:8222
+    '';
 
-        @git host git.yawarakatai.com
-        handle @git {
-          reverse_proxy localhost:3000
-        }
+    virtualHosts."git.yawarakatai.com".extraConfig = ''
+      reverse_proxy localhost:3000
+    '';
 
-        @file host file.yawarakatai.com
-        handle @file {
-          reverse_proxy localhost:8080
-        }
+    virtualHosts."file.yawarakatai.com".extraConfig = ''
+      reverse_proxy localhost:8080
+    '';
 
-        @navidrome host navidrome.yawarakatai.com
-        handle @navidrome {
-          reverse_proxy localhost:4533
-        }
+    virtualHosts."navidrome.yawarakatai.com".extraConfig = ''
+      reverse_proxy localhost:4533
+    '';
 
-        @kavita host kavita.yawarakatai.com
-        handle @kavita {
-          reverse_proxy localhost:5000
-        }
-      '';
-    };
+    virtualHosts."kavita.yawarakatai.com".extraConfig = ''
+      reverse_proxy localhost:5000
+    '';
   };
 
   networking.firewall.allowedTCPPorts = [
