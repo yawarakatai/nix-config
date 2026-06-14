@@ -3,7 +3,6 @@
 {
   imports = [
     ../dev/git.nix
-    ../service/ssh-client.nix
     ../shell
   ];
 
