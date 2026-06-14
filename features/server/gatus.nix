@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ ... }:
 
 {
   services.gatus = {
@@ -6,7 +6,7 @@
 
     settings = {
       web = {
-        address = "0.0.0.0";
+        address = "127.0.0.1";
         port = 3001;
       };
 
@@ -35,8 +35,4 @@
       ];
     };
   };
-
-  systemd.services.tailscale-serve.script = lib.mkAfter ''
-    tailscale serve --bg --https --set-path /gatus http://127.0.0.1:3001
-  '';
 }

@@ -26,26 +26,6 @@
     globalConfig = ''
       acme_dns cloudflare {env.CF_API_TOKEN}
     '';
-
-    virtualHosts."vault.yawarakatai.com".extraConfig = ''
-      reverse_proxy localhost:8222
-    '';
-
-    virtualHosts."git.yawarakatai.com".extraConfig = ''
-      reverse_proxy localhost:3000
-    '';
-
-    virtualHosts."file.yawarakatai.com".extraConfig = ''
-      reverse_proxy localhost:8080
-    '';
-
-    virtualHosts."navidrome.yawarakatai.com".extraConfig = ''
-      reverse_proxy localhost:4533
-    '';
-
-    virtualHosts."kavita.yawarakatai.com".extraConfig = ''
-      reverse_proxy localhost:5000
-    '';
   };
 
   networking.firewall.allowedTCPPorts = [

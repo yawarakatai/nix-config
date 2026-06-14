@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ lib, ... }:
 
 {
   age.secrets.ha-token = {
@@ -34,14 +34,14 @@
         Services = [
           {
             "Gatus" = {
-              href = "https://dayo.ewe-major.ts.net/gatus";
+              href = "https://gatus.yawarakatai.com";
               icon = "gatus";
               description = "Service monitoring";
             };
           }
           {
             "Home Assistant" = {
-              href = "https://dayo.ewe-major.ts.net/ha";
+              href = "https://ha.yawarakatai.com";
               icon = "home-assistant";
               description = "Home automation";
               widget = {
@@ -106,8 +106,4 @@
 
   systemd.services.homepage-dashboard.serviceConfig.EnvironmentFile =
     lib.mkForce "/var/lib/homepage-dashboard/env";
-
-  systemd.services.tailscale-serve.script = lib.mkAfter ''
-    tailscale serve --bg --https --set-path /home http://127.0.0.1:8082
-  '';
 }

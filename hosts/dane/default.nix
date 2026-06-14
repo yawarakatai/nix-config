@@ -90,5 +90,25 @@
     ACTION=="add", SUBSYSTEM=="usb", TEST=="power/control", ATTR{power/control}="auto"
   '';
 
+  services.caddy.virtualHosts."vault.yawarakatai.com".extraConfig = ''
+    reverse_proxy localhost:8222
+  '';
+
+  services.caddy.virtualHosts."git.yawarakatai.com".extraConfig = ''
+    reverse_proxy localhost:3000
+  '';
+
+  services.caddy.virtualHosts."file.yawarakatai.com".extraConfig = ''
+    reverse_proxy localhost:8080
+  '';
+
+  services.caddy.virtualHosts."navidrome.yawarakatai.com".extraConfig = ''
+    reverse_proxy localhost:4533
+  '';
+
+  services.caddy.virtualHosts."kavita.yawarakatai.com".extraConfig = ''
+    reverse_proxy localhost:5000
+  '';
+
   system.stateVersion = "25.05";
 }
