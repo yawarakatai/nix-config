@@ -5,15 +5,12 @@
 
   system.activationScripts.navidrome-dirs = ''
     mkdir -p /storage/shared/music /storage/shared/voice /data/navidrome
-    chown ${config.my.user.name}:users /storage/shared/music /storage/shared/voice 2>/dev/null || true
+    chown ${config.my.user.name}:users /storage/shared/music /storage/shared/voice /storage/shared 2>/dev/null || true
     chown navidrome:navidrome /data/navidrome 2>/dev/null || true
   '';
 
   systemd.services.navidrome.serviceConfig = {
-    ReadWritePaths = [
-      "/storage/shared/music"
-      "/storage/shared/voice"
-    ];
+    ReadWritePaths = [ "/storage/shared" ];
   };
 
   services.navidrome = {
@@ -21,7 +18,7 @@
     settings = {
       Address = "0.0.0.0";
       Port = 4533;
-      MusicFolder = "/storage/shared/music:/storage/shared/voice";
+      MusicFolder = "/storage/shared";
       DataFolder = "/data/navidrome";
     };
   };
