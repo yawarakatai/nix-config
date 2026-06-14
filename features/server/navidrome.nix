@@ -1,15 +1,25 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   networking.firewall.allowedTCPPorts = [ 4533 ];
 
   systemd.tmpfiles.rules = [
+    "d /storage/shared 0755 ${config.my.user.name} users - -"
     "d /storage/shared/music 0755 ${config.my.user.name} users - -"
     "d /storage/shared/voice 0755 ${config.my.user.name} users - -"
     "d /data/navidrome 0755 navidrome navidrome - -"
   ];
 
   systemd.services.navidrome.serviceConfig = {
+    ExecStartPre = [
+      "+${pkgs.coreutils}/bin/mkdir -p /storage/shared/music /storage/shared/voice"
+      "+${pkgs.coreutils}/bin/chown ${config.my.user.name}:users /storage/shared/music /storage/shared/voice"
+    ];
     ReadWritePaths = [
       "/storage/shared/music"
       "/storage/shared/voice"
