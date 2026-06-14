@@ -20,6 +20,20 @@ in
     settings = {
       "*".setEnv = "TERM=xterm-256color";
 
+      "dane" = {
+        hostname = "dane.yawarakatai.com";
+        identityFile = yubikeyIdentities;
+        identitiesOnly = true;
+        identityAgent = "none";
+      };
+
+      "dayo" = {
+        hostname = "dayo.yawarakatai.com";
+        identityFile = yubikeyIdentities;
+        identitiesOnly = true;
+        identityAgent = "none";
+      };
+
       "github.com" = {
         user = "git";
         identityFile = yubikeyIdentities;
