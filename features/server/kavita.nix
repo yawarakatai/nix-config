@@ -1,8 +1,6 @@
-{ config, lib, ... }:
+{ config, ... }:
 
 {
-  networking.firewall.allowedTCPPorts = [ 5000 ];
-
   system.activationScripts.kavita-dirs = ''
     mkdir -p /storage/shared/manga /storage/shared/books
     chown ${config.my.user.name}:users /storage/shared/manga /storage/shared/books 2>/dev/null || true
@@ -24,8 +22,4 @@
     enable = true;
     tokenKeyFile = config.age.secrets.kavita-token.path;
   };
-
-  systemd.services.tailscale-serve.script = lib.mkAfter ''
-    tailscale serve --bg --set-path /kavita 5000
-  '';
 }

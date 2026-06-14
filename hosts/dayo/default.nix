@@ -12,6 +12,7 @@
     ../../features/server/containers/home-assistant.nix
     ../../features/server/gatus.nix
     ../../features/server/homepage-dashboard.nix
+    ../../features/server/tailscale-serve.nix
   ];
 
   boot.loader = {

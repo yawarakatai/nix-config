@@ -10,6 +10,7 @@
 
   imports = [
     ./containers
+    ../../features/server/caddy.nix
     ../../features/server/vaultwarden.nix
     ../../features/server/filebrowser.nix
     ../../features/server/borg.nix

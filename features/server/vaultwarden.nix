@@ -1,13 +1,10 @@
 {
   config,
-  lib,
   pkgs,
   ...
 }:
 
 {
-  networking.firewall.allowedTCPPorts = [ 8222 ];
-
   age.secrets.vaultwarden-admin-token = {
     rekeyFile = ../../secrets/vaultwarden-admin-token.age;
     owner = "vaultwarden";
@@ -17,13 +14,9 @@
     enable = true;
     environmentFile = config.age.secrets.vaultwarden-admin-token.path;
     config = {
-      ROCKET_ADDRESS = "0.0.0.0";
+      ROCKET_ADDRESS = "127.0.0.1";
       ROCKET_PORT = 8222;
-      DOMAIN = "https://dane.ewe-major.ts.net";
+      DOMAIN = "https://vault.yawarakatai.com";
     };
   };
-
-  systemd.services.tailscale-serve.script = lib.mkAfter ''
-    tailscale serve --bg 8222
-  '';
 }

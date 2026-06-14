@@ -29,4 +29,9 @@ in
     (builtins.attrValues keys.yubikey)
     ++ (builtins.attrValues keys.hosts)
     ++ (builtins.attrValues keys.master);
+
+  "cloudflare-api-token.age".publicKeys =
+    (builtins.attrValues keys.yubikey)
+    ++ (builtins.attrValues keys.hosts)
+    ++ (builtins.attrValues keys.master);
 }

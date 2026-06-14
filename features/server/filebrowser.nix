@@ -1,13 +1,10 @@
 {
   config,
-  lib,
   pkgs,
   ...
 }:
 
 {
-  networking.firewall.allowedTCPPorts = [ 8080 ];
-
   systemd.tmpfiles.rules = [
     "d /data/filebrowser 0755 ${config.my.user.name} users - -"
     "d /storage/shared 0755 ${config.my.user.name} users - -"
@@ -17,14 +14,10 @@
     description = "FileBrowser";
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
-      ExecStart = "${pkgs.filebrowser}/bin/filebrowser -d /data/filebrowser/filebrowser.db -r /storage/shared -a 0.0.0.0 -p 8080 -b /file";
+      ExecStart = "${pkgs.filebrowser}/bin/filebrowser -d /data/filebrowser/filebrowser.db -r /storage/shared -a 127.0.0.1 -p 8080 -b /files";
       Restart = "on-failure";
       User = config.my.user.name;
       Group = "users";
     };
   };
-
-  systemd.services.tailscale-serve.script = lib.mkAfter ''
-    tailscale serve --bg --set-path /file 8080
-  '';
 }
