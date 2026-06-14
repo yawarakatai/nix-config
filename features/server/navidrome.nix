@@ -9,6 +9,11 @@
     "d /data/navidrome 0755 navidrome navidrome - -"
   ];
 
+  systemd.services.navidrome.preStart = ''
+    mkdir -p /storage/shared/music /storage/shared/voice
+    chown ${config.my.user.name}:users /storage/shared/music /storage/shared/voice 2>/dev/null || true
+  '';
+
   services.navidrome = {
     enable = true;
     settings = {

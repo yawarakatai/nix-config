@@ -14,14 +14,6 @@
 
     bindMounts = {
       "/data/projects".hostPath = "/data/projects";
-      "/home/dev/nix-config" = {
-        hostPath = "/home/yawarakatai/nix-config";
-        isReadOnly = true;
-      };
-      "/home/dev/.ssh" = {
-        hostPath = "/home/yawarakatai/.ssh";
-        isReadOnly = true;
-      };
     };
 
     config = { pkgs, ... }: {
