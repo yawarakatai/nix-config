@@ -8,6 +8,10 @@
     taplo # TOML LSP and formatter
     yaml-language-server # YAML LSP
     marksman # Markdown LSP
+    vscode-json-languageserver # JSON LSP
+
+    # === Formatters ===
+    mdformat # Markdown formatter
   ];
 
   programs.helix = {
@@ -202,6 +206,28 @@
             args = [ "-" ];
           };
           auto-format = true;
+        }
+        {
+          name = "markdown";
+          language-servers = [ "marksman" ];
+          auto-pairs = false;
+          formatter = {
+            command = "mdformat";
+            args = [ "-" ];
+          };
+          auto-format = true;
+        }
+        {
+          name = "json";
+          language-servers = [ "vscode-json-language-server" ];
+        }
+        {
+          name = "yaml";
+          language-servers = [ "yaml-language-server" ];
+        }
+        {
+          name = "toml";
+          language-servers = [ "taplo" ];
         }
       ];
 
