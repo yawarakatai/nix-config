@@ -11,7 +11,7 @@
     vscode-json-languageserver # JSON LSP
 
     # === Formatters ===
-    mdformat # Markdown formatter
+    prettier # Markdown (and general) formatter
   ];
 
   programs.helix = {
@@ -212,8 +212,11 @@
           language-servers = [ "marksman" ];
           auto-pairs = false;
           formatter = {
-            command = "mdformat";
-            args = [ "-" ];
+            command = "prettier";
+            args = [
+              "--parser"
+              "markdown"
+            ];
           };
           auto-format = true;
         }
