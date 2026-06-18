@@ -232,6 +232,13 @@
           name = "toml";
           language-servers = [ "taplo" ];
         }
+        {
+          name = "python";
+          language-servers = [
+            "pyright"
+            "ruff"
+          ];
+        }
       ];
 
       # Language server configurations
