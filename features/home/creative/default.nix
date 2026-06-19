@@ -16,6 +16,7 @@
 
     # # 3D modeling
     # blender
+    orca-slicer
 
     # # PCB design
     # kicad
