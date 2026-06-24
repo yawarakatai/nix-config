@@ -20,6 +20,13 @@ in
     settings = {
       "*".setEnv = "TERM=xterm-256color";
 
+      "desuwa" = {
+        hostname = "desuwa";
+        identityFile = yubikeyIdentities;
+        identitiesOnly = true;
+        identityAgent = "none";
+      };
+
       "dane" = {
         hostname = "dane.yawarakatai.com";
         identityFile = yubikeyIdentities;

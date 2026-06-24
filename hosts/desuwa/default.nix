@@ -16,6 +16,8 @@ in
     ../../features/input/mouse/logiops.nix # Logitech mouse
     ../../features/input/keyboard/lofree.nix # Lofree Flow keyboard
     ../../features/service/udev.nix
+
+    ../../features/service
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;

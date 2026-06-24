@@ -85,6 +85,8 @@
       url = "github:yawarakatai/nixos-rock5t";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    gura.url = "path:/home/yawarakatai/dev/gura";
   };
 
   outputs =

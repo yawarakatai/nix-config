@@ -7,15 +7,12 @@
 {
   imports = [ inputs.vicinae.homeManagerModules.default ];
 
-  services.vicinae = {
+  programs.vicinae = {
     enable = true;
 
     systemd = {
       enable = true;
       autoStart = true;
-      environment = {
-        USE_LAYER_SHELL = 1;
-      };
     };
 
     settings = {
