@@ -2,12 +2,15 @@
 {
   imports = [
     ./zellij.nix
+    ./television.nix
   ];
 
   home.packages = with pkgs; [
     ripgrep
     fd
     bat
+    eza
+    erdtree
     television
 
     duf

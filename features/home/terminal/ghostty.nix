@@ -14,6 +14,8 @@
       shell-integration = "zsh";
       mouse-hide-while-typing = true;
       copy-on-select = "clipboard";
+      window-save-state = "always";
+      cursor-style = "bar";
       quick-terminal-position = "bottom";
       quick-terminal-autohide = true;
 
