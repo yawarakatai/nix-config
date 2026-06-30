@@ -56,6 +56,29 @@
       bindkey '^F' tv-files-widget
       bindkey '^T' tv-dirs-widget
       bindkey '^G' tv-text-widget
+
+      # Ctrl+P: Fuzzy process search (ps → PID to buffer)
+      function tv-procs-widget() {
+        local selected=$(ps aux | tv)
+        if [ -n "$selected" ]; then
+          local pid=$(echo "$selected" | awk '{print $2}')
+          LBUFFER+="$pid"
+          zle reset-prompt
+        fi
+      }
+      zle -N tv-procs-widget
+      bindkey '^P' tv-procs-widget
+
+      # Ctrl+J: Project jump (fd → cd into dev subdirectory)
+      function tv-projects-widget() {
+        local selected=$(fd -t d -d 3 . ~/dev | tv)
+        if [ -n "$selected" ]; then
+          cd "$selected"
+          zle reset-prompt
+        fi
+      }
+      zle -N tv-projects-widget
+      bindkey '^J' tv-projects-widget
     '';
   };
 }

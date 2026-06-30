@@ -3,14 +3,6 @@
 {
   programs.niri.settings.window-rules = [
     {
-      matches = [
-        { app-id = "^floating-term$"; }
-      ];
-      open-floating = true;
-      opacity = 0.95;
-    }
-
-    {
       matches = [ { app-id = "^org\\.gnome\\.Nautilus$"; } ];
       open-floating = true;
     }

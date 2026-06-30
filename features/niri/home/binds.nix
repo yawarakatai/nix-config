@@ -61,12 +61,7 @@
         "vicinae"
         "toggle"
       ];
-      "Mod+Return".action.spawn = [ "alacritty" ];
-      "Mod+Shift+Return".action.spawn = [
-        "alacritty"
-        "--class"
-        "floating-term"
-      ];
+      "Mod+Return".action.spawn = sh "exec ghostty --working-directory=\"$HOME\"";
       "Mod+B".action.spawn = [ "zen-beta" ];
       "Mod+X".action.spawn = [ "ungoogled-chromium" ];
       "Mod+F".action.spawn = [ "nautilus" ];

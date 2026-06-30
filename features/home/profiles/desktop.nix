@@ -33,7 +33,7 @@ in
     ./default.nix
     ../browser/zen-browser.nix
     ../dev
-    ../terminal/alacritty.nix
+    ../terminal/ghostty.nix
     ../service/ssh-client.nix
   ];
 
