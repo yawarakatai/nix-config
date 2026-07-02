@@ -3,11 +3,13 @@
     extra-substituters = [
       "https://niri.cachix.org"
       "https://vicinae.cachix.org"
+      "https://noctalia.cachix.org"
       "https://jovian-experiments.cachix.org"
     ];
     extra-trusted-public-keys = [
       "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
       "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc="
+      "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
       "jovian-experiments.cachix.org-1:qF1xksRRHeLP5SQ5ETEWxxJryQ6vGeMy2AVMSw4uSQA="
     ];
   };
@@ -69,6 +71,7 @@
     };
 
     vicinae.url = "github:vicinaehq/vicinae";
+    noctalia.url = "github:noctalia-dev/noctalia";
     juice.url = "github:yawarakatai/juice";
 
     firn = {

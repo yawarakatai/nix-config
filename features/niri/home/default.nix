@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./blur.nix
     ./binds.nix
     ./settings.nix
     ./startups.nix

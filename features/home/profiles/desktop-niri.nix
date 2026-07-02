@@ -5,9 +5,7 @@
     ./desktop.nix
     ../compositor/common.nix
     ../../niri/home
-    ../compositor/launcher/vicinae.nix
-    ../compositor/notification/mako.nix
-    ../../desktop/waybar.nix
+    ../../desktop/noctalia.nix
   ];
 
   home.packages = with pkgs; [

@@ -7,5 +7,6 @@
     ./firn.nix
     ./git.nix
     ./opencode.nix
+    ./codex.nix
   ];
 }
