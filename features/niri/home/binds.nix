@@ -57,10 +57,8 @@
       "Mod+W".action.fullscreen-window = [ ];
 
       # --- Applications ---
-      "Mod+Space".action.spawn = [
-        "vicinae"
-        "toggle"
-      ];
+      "Mod+Space".action.spawn = sh "noctalia msg panel-toggle launcher";
+      "Mod+D".action.spawn = sh "noctalia msg panel-toggle control-center home";
       "Mod+Return".action.spawn = sh "exec ghostty --working-directory=\"$HOME\"";
       "Mod+B".action.spawn = [ "zen-beta" ];
       "Mod+X".action.spawn = [ "ungoogled-chromium" ];
@@ -89,6 +87,6 @@
       "XF86MonBrightnessDown".action.spawn = sh "brightnessctl set 5%-";
 
       # --- System ---
-      "Mod+Escape".action.spawn = [ "wlogout" ];
+      "Mod+Escape".action.spawn = sh "noctalia msg panel-toggle session";
     };
 }

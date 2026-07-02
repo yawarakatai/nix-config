@@ -104,7 +104,7 @@ in
     layer-rules = [
       {
         matches = [
-          { namespace = "^wallpaper$"; }
+          { namespace = "^noctalia-overview"; }
         ];
         place-within-backdrop = true;
       }
@@ -120,7 +120,8 @@ in
     };
 
     overview = {
-      workspace-shadow.enable = false;
+      backdrop-color = "#0b0f14";
+      workspace-shadow.enable = true;
     };
 
     xwayland-satellite = {

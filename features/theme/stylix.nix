@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   ...
@@ -61,10 +62,10 @@
     };
 
     opacity = {
-      terminal = 1.0;
-      applications = 1.0;
-      desktop = 1.0;
-      popups = 0.90;
+      terminal = config.my.theme.opacity.terminal;
+      applications = config.my.theme.opacity.applications;
+      desktop = config.my.theme.opacity.desktop;
+      popups = config.my.theme.opacity.popups;
     };
 
     targets.qt.platform = lib.mkForce "qtct";

@@ -1,14 +1,17 @@
-{ ... }:
+{ osConfig, ... }:
 
 {
   programs.ghostty = {
     enable = true;
     settings = {
-      font-family = "JetBrainsMonoNL Nerd Font, Noto Sans CJK JP";
+      font-family = [
+        "JetBrainsMonoNL Nerd Font"
+        "Noto Sans Mono CJK JP"
+      ];
       font-size = 14;
-      window-padding-x = 8;
-      window-padding-y = 8;
-      background-opacity = 0.95;
+      window-padding-x = osConfig.my.theme.terminal.padding;
+      window-padding-y = osConfig.my.theme.terminal.padding;
+      background-opacity = osConfig.my.theme.opacity.terminal;
       confirm-close-surface = false;
       gtk-titlebar = true;
       shell-integration = "zsh";

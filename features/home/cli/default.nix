@@ -5,10 +5,11 @@
     ./television.nix
   ];
 
+  programs.bat.enable = true;
+
   home.packages = with pkgs; [
     ripgrep
     fd
-    bat
     eza
     erdtree
     television

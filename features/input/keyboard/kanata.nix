@@ -22,6 +22,7 @@
 
           (defalias
             esctl (tap-hold-release $tap-timeout $hold-timeout esc  lctl)
+            metdb (tap-hold-release $tap-timeout $hold-timeout (multi lmet d) lmet)
             bsnav (tap-hold-release $tap-timeout $hold-timeout bspc (layer-toggle nav))
             spsft (tap-hold-release $tap-timeout $hold-timeout spc  lsft)
             colqw (layer-switch qwerty)
@@ -33,7 +34,7 @@
             tab    q      w      f      p      b      j      l      u      y      ;      [      ]      \
             @esctl a      r      s      t      g      m      n      e      i      o      '      ret
             lsft   x      c      d      v      z      k      h      ,      .      /      rsft
-            lctl   lmet   lalt                 @spsft               @bsnav rmet   @colqw
+            lctl   @metdb lalt                 @spsft               @bsnav rmet   @colqw
           )
 
           (deflayer nav
@@ -49,7 +50,7 @@
             tab    q      w      e      r      t      y      u      i      o      p      [      ]      \
             lctl   a      s      d      f      g      h      j      k      l      ;      '      ret
             lsft   z      x      c      v      b      n      m      ,      .      /      rsft
-            lctl   lmet   lalt                 spc                  ralt   rmet   @qwcol
+            lctl   @metdb lalt                 spc                  ralt   rmet   @qwcol
           )
         '';
       };

@@ -1,4 +1,4 @@
-{ ... }:
+{ osConfig, ... }:
 
 {
   programs.alacritty = {
@@ -13,6 +13,7 @@
         };
         decorations = "none";
         blur = true;
+        opacity = osConfig.my.theme.opacity.terminal;
       };
 
       # Cursor
