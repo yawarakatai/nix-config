@@ -15,7 +15,7 @@ in
 {
   imports = [
     self.modules.homeManager.profiles.desktopNiri
-    ../../../features/home/creative
+    ../../../modules/home/creative
   ];
 
   home.packages = with pkgs; [

@@ -22,5 +22,5 @@
     VISUAL = "hx";
   };
 
-  xdg.configFile."fastfetch/config.jsonc".source = ../../../features/home/fastfetch/config.jsonc;
+  xdg.configFile."fastfetch/config.jsonc".source = ../../home/fastfetch/config.jsonc;
 }

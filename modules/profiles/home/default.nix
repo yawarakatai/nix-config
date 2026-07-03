@@ -9,7 +9,7 @@
   imports = [
     self.modules.homeManager.cli
     self.modules.homeManager.editor
-    ../../../features/home/service/syncthing.nix
+    ../../home/services/syncthing.nix
     self.modules.homeManager.shell
   ];
 
@@ -25,7 +25,7 @@
     source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-config";
   };
 
-  xdg.configFile."fastfetch/config.jsonc".source = ../../../features/home/fastfetch/config.jsonc;
+  xdg.configFile."fastfetch/config.jsonc".source = ../../home/fastfetch/config.jsonc;
 
   # Environment variables
   home.sessionVariables = {
