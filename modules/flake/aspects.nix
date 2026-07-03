@@ -32,19 +32,19 @@
       themeStylix = {
         imports = [
           inputs.stylix.nixosModules.stylix
-          ../../features/theme
+          ../theme
         ];
       };
 
       desktopWayland = {
         imports = [
-          ../../features/desktop/wayland.nix
+          ../desktop/wayland.nix
         ];
       };
 
       desktopGreetd = {
         imports = [
-          ../../features/display/greetd.nix
+          ../desktop/greetd.nix
         ];
       };
 
@@ -143,7 +143,7 @@
 
       desktopNoctalia = {
         imports = [
-          ../../features/desktop/noctalia.nix
+          ../desktop/noctalia.nix
         ];
       };
 
