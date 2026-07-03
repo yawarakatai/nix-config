@@ -10,11 +10,6 @@
     enable = true;
     enableReleaseChecks = false;
 
-    image = pkgs.fetchurl {
-      url = "https://i.redd.it/mg5w8i3gkstg1.jpeg";
-      hash = "sha256-02EacG9i2c4puqQ5VRVPTBZmZDInA8pBC8QG9IMJEn8=";
-    };
-
     base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-dark.yaml";
 
     polarity = "dark";

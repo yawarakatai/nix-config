@@ -61,12 +61,8 @@
       "Mod+D".action.spawn = sh "noctalia msg panel-toggle control-center home";
       "Mod+Return".action.spawn = sh "exec ghostty --working-directory=\"$HOME\"";
       "Mod+B".action.spawn = [ "zen-beta" ];
-      "Mod+X".action.spawn = [ "ungoogled-chromium" ];
       "Mod+F".action.spawn = [ "nautilus" ];
       "Mod+A".action.spawn = [ "pavucontrol" ];
-
-      # --- Recording ---
-      "Mod+R".action.spawn = [ "toggle-recording" ];
 
       # --- Screenshot ---
       "Mod+S".action.spawn =

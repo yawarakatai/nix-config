@@ -1,6 +1,5 @@
 {
   inputs,
-  lib,
   osConfig,
   ...
 }:
@@ -58,10 +57,6 @@ let
 in
 {
   imports = [ inputs.noctalia.homeModules.default ];
-
-  programs.waybar.enable = lib.mkForce false;
-  services.mako.enable = lib.mkForce false;
-  programs.vicinae.enable = lib.mkForce false;
 
   programs.noctalia = {
     enable = true;
@@ -128,6 +123,8 @@ in
         center = [ "clock" ];
         end = [
           "tray"
+          "volume"
+          "battery"
         ];
         dead_zone.command = "noctalia msg panel-toggle control-center home";
       };

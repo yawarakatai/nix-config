@@ -20,7 +20,7 @@
       window-save-state = "always";
       cursor-style = "bar";
       quick-terminal-position = "bottom";
-      quick-terminal-autohide = true;
+      quick-terminal-autohide = false;
 
       keybind = [
         # Tab navigation (Colemak-DH neio, Alt mod)
