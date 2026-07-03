@@ -48,6 +48,12 @@
         ];
       };
 
+      desktopNiri = {
+        imports = [
+          ../../features/niri/system.nix
+        ];
+      };
+
       profileBase = {
         imports = [
           inputs.disko.nixosModules.disko
@@ -89,7 +95,7 @@
           themeStylix
           hardware
           desktopGreetd
-          ../../features/niri/system.nix
+          desktopNiri
         ];
       };
 
@@ -110,7 +116,7 @@
       };
     };
 
-    homeManager = {
+    homeManager = rec {
       cli = {
         imports = [
           ../../features/home/cli
@@ -141,6 +147,26 @@
         ];
       };
 
+      desktopNiri = {
+        imports = [
+          ../../features/niri/home
+        ];
+      };
+
+      desktopGhostty = {
+        imports = [
+          ../../features/home/terminal/ghostty.nix
+        ];
+      };
+
+      desktopDisplayTools =
+        { pkgs, ... }:
+        {
+          home.packages = [
+            pkgs.wlr-randr
+          ];
+        };
+
       profiles = {
         base = {
           imports = [
@@ -151,6 +177,7 @@
         desktop = {
           imports = [
             ../../features/home/profiles/desktop.nix
+            desktopGhostty
           ];
         };
 

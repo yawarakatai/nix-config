@@ -5,7 +5,7 @@
     ./default.nix
     ../browser/zen-browser.nix
     self.modules.homeManager.dev
-    ../terminal/ghostty.nix
+    self.modules.homeManager.desktopDisplayTools
     ../service/ssh-client.nix
   ];
 
@@ -16,7 +16,6 @@
     pavucontrol
     playerctl
     brightnessctl
-    wlr-randr
   ];
 
   systemd.user.sessionVariables = {

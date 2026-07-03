@@ -4,7 +4,8 @@
   imports = [
     ./desktop.nix
     ../compositor/common.nix
-    ../../niri/home
+    self.modules.homeManager.desktopNiri
     self.modules.homeManager.desktopNoctalia
+    self.modules.homeManager.desktopGhostty
   ];
 }
