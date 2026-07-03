@@ -1,5 +1,4 @@
 {
-  inputs,
   lib,
   pkgs,
   ...
@@ -58,6 +57,13 @@
   # --- My Options ---
 
   my = {
-    system.monitors.primary = (import ../../displays).nanodesu-builtin;
+    system.monitors.primary = {
+      name = "eDP-1";
+      width = 2160;
+      height = 1350;
+      refresh = 59.940;
+      scale = 1.0;
+      vrr = false;
+    };
   };
 }
