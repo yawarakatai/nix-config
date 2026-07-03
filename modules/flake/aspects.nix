@@ -70,7 +70,7 @@
           profileBase
           inputs.agenix.nixosModules.default
           inputs.agenix-rekey.nixosModules.default
-          ../../features/security
+          ../security
           servicesOpenSsh
         ];
       };
