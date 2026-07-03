@@ -11,7 +11,7 @@
     {
       devShells.default = pkgs.mkShell {
         buildInputs = with pkgs; [
-          nil
+          nixd
           statix
           inputs'.agenix-rekey.packages.default
           pkgs.age-plugin-fido2-hmac

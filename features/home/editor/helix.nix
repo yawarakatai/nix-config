@@ -1,32 +1,10 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 
-let
-  gura = inputs.gura;
-
-  tree-sitter-gura = pkgs.tree-sitter.buildGrammar {
-    language = "gura";
-    version = "0.1.0";
-    src = gura + "/editors/tree-sitter";
-  };
-in
 {
-  # Gura language runtime files for tree-sitter syntax highlighting
-  xdg.configFile = {
-    "helix/runtime/queries/gura/highlights.scm".source =
-      gura + "/editors/tree-sitter/queries/gura/highlights.scm";
-    "helix/runtime/queries/gura/indents.scm".source =
-      gura + "/editors/tree-sitter/queries/gura/indents.scm";
-    "helix/runtime/queries/gura/locals.scm".source =
-      gura + "/editors/tree-sitter/queries/gura/locals.scm";
-    "helix/runtime/queries/gura/textobjects.scm".source =
-      gura + "/editors/tree-sitter/queries/gura/textobjects.scm";
-    "helix/runtime/grammars/gura.so".source = "${tree-sitter-gura}/parser";
-  };
-
   # Install language servers and tools needed by Helix
   home.packages = with pkgs; [
     # === LSP Servers ===
-    nil # Nix LSP
+    nixd # Nix LSP
     taplo # TOML LSP and formatter
     yaml-language-server # YAML LSP
     marksman # Markdown LSP
