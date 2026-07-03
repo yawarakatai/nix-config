@@ -50,7 +50,7 @@
 
       desktopNiri = {
         imports = [
-          ../../features/niri/system.nix
+          ../desktop/niri/system.nix
         ];
       };
 
@@ -149,7 +149,7 @@
 
       desktopNiri = {
         imports = [
-          ../../features/niri/home
+          ../desktop/niri/home
         ];
       };
 
