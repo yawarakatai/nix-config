@@ -58,7 +58,6 @@ let
       specialArgs = { inherit inputs; };
       modules = [
         {
-          nixpkgs.overlays = import ../overlays;
           networking.hostName = hostname;
           nixpkgs.hostPlatform = system;
           nixpkgs.config.allowUnfree = true;
