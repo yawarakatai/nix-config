@@ -111,7 +111,7 @@
         imports = [
           profileSecret
           ../core/locale.nix
-          ../../features/server
+          ../server
         ];
       };
     };

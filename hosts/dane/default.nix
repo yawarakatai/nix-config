@@ -9,15 +9,15 @@
   networking.hostName = lib.mkForce "dane";
 
   imports = [
-    ../../features/server/homepage-dashboard.nix
-    ../../features/server/gatus.nix
-    ../../features/server/caddy.nix
-    ../../features/server/vaultwarden.nix
-    ../../features/server/filebrowser.nix
-    ../../features/server/borg.nix
-    ../../features/server/navidrome.nix
-    ../../features/server/kavita.nix
-    ../../features/server/forgejo.nix
+    ../../modules/server/homepage-dashboard.nix
+    ../../modules/server/gatus.nix
+    ../../modules/server/caddy.nix
+    ../../modules/server/vaultwarden.nix
+    ../../modules/server/filebrowser.nix
+    ../../modules/server/borg.nix
+    ../../modules/server/navidrome.nix
+    ../../modules/server/kavita.nix
+    ../../modules/server/forgejo.nix
   ];
 
   # Root on SD, data on NVMe
