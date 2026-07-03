@@ -5,9 +5,6 @@
   ...
 }:
 
-let
-  madoriLib = import ../../lib/madori.nix;
-in
 {
   imports = [
     (import ../../features/storage/disko-btrfs-luks.nix {
@@ -63,23 +60,4 @@ in
   my = {
     system.monitors.primary = (import ../../displays).nanodesu-builtin;
   };
-
-  services.madori = {
-    enable = true;
-    package = inputs.madori.packages.x86_64-linux.default;
-
-    monitors = {
-      nanodesu = madoriLib.mkMonitor "eDP-1" 1.0;
-      innocn = madoriLib.mkMonitor "HDMI-A-1" 1.0;
-    };
-
-    rules = [
-      (madoriLib.only "nanodesu")
-      (madoriLib.disableExternal "nanodesu" "innocn")
-      (madoriLib.mirrorExternal "nanodesu")
-      (madoriLib.virtual 1920 1080 60)
-    ];
-  };
-
-  # --- State Version ---
 }

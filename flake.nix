@@ -2,15 +2,11 @@
   nixConfig = {
     extra-substituters = [
       "https://niri.cachix.org"
-      "https://vicinae.cachix.org"
       "https://noctalia.cachix.org"
-      "https://jovian-experiments.cachix.org"
     ];
     extra-trusted-public-keys = [
       "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
-      "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc="
       "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
-      "jovian-experiments.cachix.org-1:qF1xksRRHeLP5SQ5ETEWxxJryQ6vGeMy2AVMSw4uSQA="
     ];
   };
 
@@ -26,11 +22,6 @@
     disko.url = "github:nix-community/disko";
     flake-parts.url = "github:hercules-ci/flake-parts";
     treefmt-nix.url = "github:numtide/treefmt-nix";
-
-    jovian-nixos = {
-      url = "github:Jovian-Experiments/Jovian-NixOS";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -70,17 +61,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    vicinae.url = "github:vicinaehq/vicinae";
     noctalia.url = "github:noctalia-dev/noctalia";
-    juice.url = "github:yawarakatai/juice";
 
     firn = {
       url = "github:yawarakatai/firn";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    madori = {
-      url = "github:yawarakatai/madori";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -88,8 +72,6 @@
       url = "github:yawarakatai/nixos-rock5t";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    gura.url = "path:/home/yawarakatai/dev/gura";
   };
 
   outputs =

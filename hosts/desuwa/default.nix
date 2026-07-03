@@ -1,8 +1,5 @@
-{ inputs, pkgs, ... }:
+{ pkgs, ... }:
 
-let
-  madoriLib = import ../../lib/madori.nix;
-in
 {
   imports = [
     (import ../../features/storage/disko-btrfs.nix {
@@ -47,19 +44,4 @@ in
   my = {
     system.monitors.primary = (import ../../displays).innocn-32m2v;
   };
-
-  services.madori = {
-    enable = true;
-    package = inputs.madori.packages.x86_64-linux.default;
-
-    monitors.innocn = madoriLib.mkMonitor "DP-3" 1.0;
-
-    rules = [
-      (madoriLib.only "innocn")
-      (madoriLib.virtual 3840 2160 120)
-    ];
-  };
-
-  # --- State Version ---
-  # State version - DO NOT CHANGE after initial install
 }

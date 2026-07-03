@@ -20,6 +20,5 @@ in
 
   home.packages = with pkgs; [
     discord-wrapped
-    ungoogled-chromium
   ];
 }
