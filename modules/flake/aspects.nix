@@ -5,7 +5,6 @@
     nixos = rec {
       core = {
         imports = [
-          ../../features
           ../core
         ];
       };

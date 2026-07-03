@@ -41,7 +41,7 @@ This repository is a personal NixOS/Home Manager configuration. It uses flake-pa
 - Helix: `modules/home/editor/helix.nix`
 - Desktop profile aggregation: `modules/profiles/home/desktop*.nix` and `modules/flake/aspects.nix`
 - Host-specific configuration: `hosts/<host>/default.nix`
-- Server services: `features/server/` until moved into `modules/server/`
+- Server services: `modules/server/`
 
 ## High-risk areas
 
