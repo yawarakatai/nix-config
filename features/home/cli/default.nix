@@ -1,7 +1,6 @@
 { pkgs, ... }:
 {
   imports = [
-    ./zellij.nix
     ./television.nix
   ];
 
@@ -11,31 +10,17 @@
     ripgrep
     fd
     eza
-    erdtree
     television
 
     duf
     dust
 
-    bottom
-
     jq
+    btop
 
-    zellij
     croc
     tokei
     glow
     fastfetch
   ];
-
-  programs.bottom = {
-    enable = true;
-    settings = {
-      flags = {
-        color = "default";
-        mem_as_value = true;
-        tree = true;
-      };
-    };
-  };
 }

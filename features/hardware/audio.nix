@@ -37,7 +37,6 @@
 
   # Additional packages for audio troubleshooting
   environment.systemPackages = with pkgs; [
-    pavucontrol # PulseAudio/PipeWire volume control
     alsa-utils # ALSA utilities (aplay, arecord, etc.)
     wireplumber # WirePlumber utilities
     pipewire # PipeWire utilities (pw-cli, pw-top, etc.)

@@ -4,9 +4,6 @@
 
 {
   home.packages = with pkgs; [
-    # Wallpaper
-    swaybg
-
     # Clipboard and screen utilities
     wl-clipboard # Wayland clipboard utilities
     wayland-utils # Wayland debugging tools
