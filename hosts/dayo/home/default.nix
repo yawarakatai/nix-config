@@ -1,7 +1,0 @@
-{ ... }:
-
-{
-  imports = [
-    ../../../features/home/profiles
-  ];
-}

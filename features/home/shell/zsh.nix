@@ -10,12 +10,11 @@
     dotDir = config.xdg.configHome;
 
     shellAliases = {
+      ls = "eza --icons --group-directories-first";
       la = "ls -a";
       ll = "ls -la";
-      ls = "eza --icons --group-directories-first";
-      tree = "erd";
+      tree = "eza --tree";
       cat = "bat --paging=never";
-      grep = "rg";
     };
 
     history = {

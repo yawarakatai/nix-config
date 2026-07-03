@@ -42,6 +42,13 @@
 
   # --- My Options ---
   my = {
-    system.monitors.primary = (import ../../displays).innocn-32m2v;
+    system.monitors.primary = {
+      name = "DP-3";
+      width = 3840;
+      height = 2160;
+      refresh = 119.880;
+      scale = 1.0;
+      vrr = true;
+    };
   };
 }

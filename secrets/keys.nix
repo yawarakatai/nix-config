@@ -9,11 +9,7 @@
   # Obtain with: cat /etc/ssh/ssh_host_ed25519_key.pub
   hosts = {
     desuwa = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEnAhIcZqtU80UNZ7A/2zRQHUzIxQqXcEIZbe1LSiK/S root@desuwa";
-    desuno = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE/IJnaOf9OpJ1CIVeWOKOU/dy3e/fiFwxil63gpu2Rv root@desuno";
     nanodesu = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICxg8hL0i1hQY11LLEih0wXnxcEUOBOYQYvNvb1sp99/ root@nanodesu";
-    nanoda = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIphjyoM8mIYKXd/g+usgNK7pTxQSK/KlpgC0ix0tJXD root@nanoda";
-    kamo = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDlUslf9FoV5dK0v7INMA4ZVYomHs6S5dtdmyFFMlU24 root@kamo";
-    dayo = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJHfMsVphgO8fB+Yrs4nYf83tf5DwrOdGiBagwfbxHYN root@dayo";
     dane = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICVys/U5xxiWVwmI8kZ8g8drk/CSZS1DXtYIgr6zzxET root@dane";
   };
 

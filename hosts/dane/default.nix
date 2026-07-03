@@ -9,7 +9,8 @@
   networking.hostName = lib.mkForce "dane";
 
   imports = [
-    ./containers
+    ../../features/server/homepage-dashboard.nix
+    ../../features/server/gatus.nix
     ../../features/server/caddy.nix
     ../../features/server/vaultwarden.nix
     ../../features/server/filebrowser.nix
