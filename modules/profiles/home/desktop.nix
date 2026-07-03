@@ -5,7 +5,7 @@
     ./default.nix
     ../../home/browser/zen-browser.nix
     self.modules.homeManager.dev
-    self.modules.homeManager.desktopDisplayTools
+    self.modules.homeManager.homeDisplayTools
     ../../home/services/ssh-client.nix
   ];
 

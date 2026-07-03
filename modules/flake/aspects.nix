@@ -140,25 +140,25 @@
         ];
       };
 
-      desktopNoctalia = {
+      homeNoctalia = {
         imports = [
           ../desktop/noctalia.nix
         ];
       };
 
-      desktopNiri = {
+      homeNiri = {
         imports = [
           ../desktop/niri/home
         ];
       };
 
-      desktopGhostty = {
+      homeGhostty = {
         imports = [
           ../home/terminal/ghostty.nix
         ];
       };
 
-      desktopDisplayTools =
+      homeDisplayTools =
         { pkgs, ... }:
         {
           home.packages = [
@@ -176,7 +176,7 @@
         desktop = {
           imports = [
             ../profiles/home/desktop.nix
-            desktopGhostty
+            homeGhostty
           ];
         };
 
