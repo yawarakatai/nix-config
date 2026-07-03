@@ -56,7 +56,19 @@ Do not modify these unless explicitly requested:
 
 ## Validation
 
-After Nix refactors, run:
+After normal Nix refactors, prefer:
+
+```bash
+just check
+```
+
+For desktop or system-level changes, prefer:
+
+```bash
+just full-check
+```
+
+Equivalent manual commands for environments without `just`:
 
 ```bash
 nix fmt
