@@ -1,11 +1,16 @@
-{ config, osConfig, ... }:
+{
+  config,
+  osConfig,
+  self,
+  ...
+}:
 
 {
   imports = [
-    ../cli
-    ../editor/helix.nix
+    self.modules.homeManager.cli
+    self.modules.homeManager.editor
     ../service/syncthing.nix
-    ../shell
+    self.modules.homeManager.shell
   ];
 
   home = {

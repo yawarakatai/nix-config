@@ -1,8 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, self, ... }:
 
 {
   imports = [
-    ../../../features/home/profiles/desktop-niri.nix
+    self.modules.homeManager.profiles.desktopNiri
   ];
 
   home.packages = with pkgs; [

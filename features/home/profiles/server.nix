@@ -1,9 +1,13 @@
-{ config, osConfig, ... }:
+{
+  osConfig,
+  self,
+  ...
+}:
 
 {
   imports = [
     ../dev/git.nix
-    ../shell
+    self.modules.homeManager.shell
   ];
 
   home = {

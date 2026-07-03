@@ -1,10 +1,10 @@
-{ ... }:
+{ self, ... }:
 
 {
   imports = [
     ./desktop.nix
     ../compositor/common.nix
     ../../niri/home
-    ../../desktop/noctalia.nix
+    self.modules.homeManager.desktopNoctalia
   ];
 }

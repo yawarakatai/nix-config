@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, self, ... }:
 
 let
   discord-wrapped = pkgs.symlinkJoin {
@@ -14,7 +14,7 @@ let
 in
 {
   imports = [
-    ../../../features/home/profiles/desktop-niri.nix
+    self.modules.homeManager.profiles.desktopNiri
     ../../../features/home/creative
   ];
 

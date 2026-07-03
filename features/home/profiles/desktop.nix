@@ -1,10 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, self, ... }:
 
 {
   imports = [
     ./default.nix
     ../browser/zen-browser.nix
-    ../dev
+    self.modules.homeManager.dev
     ../terminal/ghostty.nix
     ../service/ssh-client.nix
   ];
