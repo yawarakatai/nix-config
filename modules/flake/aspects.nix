@@ -119,25 +119,25 @@
     homeManager = rec {
       cli = {
         imports = [
-          ../../features/home/cli
+          ../home/cli
         ];
       };
 
       dev = {
         imports = [
-          ../../features/home/dev
+          ../home/dev
         ];
       };
 
       shell = {
         imports = [
-          ../../features/home/shell
+          ../home/shell
         ];
       };
 
       editor = {
         imports = [
-          ../../features/home/editor/helix.nix
+          ../home/editor/helix.nix
         ];
       };
 
@@ -155,7 +155,7 @@
 
       desktopGhostty = {
         imports = [
-          ../../features/home/terminal/ghostty.nix
+          ../home/terminal/ghostty.nix
         ];
       };
 

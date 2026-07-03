@@ -6,7 +6,7 @@
 
 {
   imports = [
-    ../dev/git.nix
+    ../../../modules/home/dev/git.nix
     self.modules.homeManager.shell
   ];
 
