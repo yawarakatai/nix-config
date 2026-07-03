@@ -3,10 +3,10 @@
 {
   imports = [
     ./default.nix
-    ../browser/zen-browser.nix
+    ../../../features/home/browser/zen-browser.nix
     self.modules.homeManager.dev
     self.modules.homeManager.desktopDisplayTools
-    ../service/ssh-client.nix
+    ../../../features/home/service/ssh-client.nix
   ];
 
   home.packages = with pkgs; [

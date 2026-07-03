@@ -170,26 +170,26 @@
       profiles = {
         base = {
           imports = [
-            ../../features/home/profiles/default.nix
+            ../profiles/home/default.nix
           ];
         };
 
         desktop = {
           imports = [
-            ../../features/home/profiles/desktop.nix
+            ../profiles/home/desktop.nix
             desktopGhostty
           ];
         };
 
         desktopNiri = {
           imports = [
-            ../../features/home/profiles/desktop-niri.nix
+            ../profiles/home/desktop-niri.nix
           ];
         };
 
         server = {
           imports = [
-            ../../features/home/profiles/server.nix
+            ../profiles/home/server.nix
           ];
         };
       };

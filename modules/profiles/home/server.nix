@@ -6,7 +6,7 @@
 
 {
   imports = [
-    ../../../modules/home/dev/git.nix
+    ../../home/dev/git.nix
     self.modules.homeManager.shell
   ];
 
@@ -22,5 +22,5 @@
     VISUAL = "hx";
   };
 
-  xdg.configFile."fastfetch/config.jsonc".source = ../fastfetch/config.jsonc;
+  xdg.configFile."fastfetch/config.jsonc".source = ../../../features/home/fastfetch/config.jsonc;
 }
