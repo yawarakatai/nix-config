@@ -10,8 +10,8 @@
     # Hardware-specific modules
     ../../modules/hardware/gpu/nvidia.nix # NVIDIA RTX 3080
     ../../features/security/gsr-kms-server.nix
-    ../../features/input/mouse/logiops.nix # Logitech mouse
-    ../../features/input/keyboard/lofree.nix # Lofree Flow keyboard
+    ../../modules/input/mouse/logiops.nix # Logitech mouse
+    ../../modules/input/keyboard/lofree.nix # Lofree Flow keyboard
     ../../modules/services/udev.nix
 
     ../../modules/services

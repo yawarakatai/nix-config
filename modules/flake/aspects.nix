@@ -61,7 +61,7 @@
           core
           ../../features/storage
           servicesTailscale
-          ../../features/input/keyboard/kanata.nix
+          ../input/keyboard/kanata.nix
         ];
       };
 
@@ -102,8 +102,8 @@
       profileLaptop = {
         imports = [
           profileDesktopNiri
-          ../../features/laptop/power.nix
-          ../../features/laptop/lid.nix
+          ../laptop/power.nix
+          ../laptop/lid.nix
         ];
       };
 

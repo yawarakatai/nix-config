@@ -11,10 +11,10 @@
       luksName = "cryptoroot";
     })
     ./hardware-configuration.nix
-    ../../features/input/touchpad.nix
+    ../../modules/input/touchpad.nix
     ../../modules/hardware/bluetooth.nix
-    ../../features/laptop/fingerprint.nix
-    ../../features/laptop/power.nix
+    ../../modules/laptop/fingerprint.nix
+    ../../modules/laptop/power.nix
     ../../modules/hardware/webcam.nix
   ];
 
