@@ -8,13 +8,13 @@
     ./hardware-configuration.nix
 
     # Hardware-specific modules
-    ../../features/hardware/gpu/nvidia.nix # NVIDIA RTX 3080
+    ../../modules/hardware/gpu/nvidia.nix # NVIDIA RTX 3080
     ../../features/security/gsr-kms-server.nix
     ../../features/input/mouse/logiops.nix # Logitech mouse
     ../../features/input/keyboard/lofree.nix # Lofree Flow keyboard
-    ../../features/service/udev.nix
+    ../../modules/services/udev.nix
 
-    ../../features/service
+    ../../modules/services
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;

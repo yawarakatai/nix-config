@@ -6,26 +6,26 @@
       core = {
         imports = [
           ../../features
-          ../../features/core
+          ../core
         ];
       };
 
       servicesTailscale = {
         imports = [
-          ../../features/service/tailscale.nix
+          ../services/tailscale.nix
         ];
       };
 
       servicesOpenSsh = {
         imports = [
-          ../../features/service/openssh.nix
+          ../services/openssh.nix
         ];
       };
 
       hardware = {
         imports = [
-          ../../features/hardware/audio.nix
-          ../../features/hardware/bluetooth.nix
+          ../hardware/audio.nix
+          ../hardware/bluetooth.nix
         ];
       };
 
@@ -78,7 +78,7 @@
       profileDesktop = {
         imports = [
           profileSecret
-          ../../features/core/i18n.nix
+          ../core/i18n.nix
           desktopWayland
           themeStylix
           hardware
@@ -90,7 +90,7 @@
         imports = [
           profileSecret
           inputs.niri.nixosModules.niri
-          ../../features/core/i18n.nix
+          ../core/i18n.nix
           desktopWayland
           themeStylix
           hardware
@@ -110,7 +110,7 @@
       profileServer = {
         imports = [
           profileSecret
-          ../../features/core/locale.nix
+          ../core/locale.nix
           ../../features/server
         ];
       };

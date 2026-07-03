@@ -12,10 +12,10 @@
     })
     ./hardware-configuration.nix
     ../../features/input/touchpad.nix
-    ../../features/hardware/bluetooth.nix
+    ../../modules/hardware/bluetooth.nix
     ../../features/laptop/fingerprint.nix
     ../../features/laptop/power.nix
-    ../../features/hardware/webcam.nix
+    ../../modules/hardware/webcam.nix
   ];
 
   environment.systemPackages = with pkgs; [
