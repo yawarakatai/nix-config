@@ -41,7 +41,7 @@ Minimal example for a desktop host with LUKS + lanzaboote:
 { lib, pkgs, ... }:
 {
   imports = [
-    (import ../../modules/system/storage/disko-btrfs-luks.nix {
+    (import ../../modules/storage/disko-btrfs-luks.nix {
       device = "/dev/disk/by-id/DISK_ID";
     })
     ./hardware-configuration.nix
@@ -85,10 +85,10 @@ Minimal example for a desktop host with LUKS + lanzaboote:
 ### 1.5 `home/default.nix`
 
 ```nix
-{ osConfig, ... }:
+{ osConfig, self, ... }:
 {
   imports = [
-    ../../../modules/home/profiles/desktop.nix
+    self.modules.homeManager.profiles.desktopNiri
   ];
 
   home.username = osConfig.my.user.name;
@@ -97,19 +97,17 @@ Minimal example for a desktop host with LUKS + lanzaboote:
 }
 ```
 
-### 1.6 Register in `nix/nixos.nix`
+### 1.6 Register in `modules/flake/nixos.nix`
 
 Add to `nixosConfigurations`:
 
 ```nix
-<hostname> = mkSystem {
-  hostname = "<hostname>";
-  system = "x86_64-linux";  # or "aarch64-linux"
-  extraModules = baseModules ++ secretModules ++ desktopModules;
+<hostname> = mkHost "<hostname>" nixosModules.profileDesktopNiri {
+  system = "x86_64-linux"; # or "aarch64-linux"
 };
 ```
 
-Use `serverModules` instead of `desktopModules` for headless servers.
+Use `nixosModules.profileServer` instead of `nixosModules.profileDesktopNiri` for headless servers.
 
 ---
 
