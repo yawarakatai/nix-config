@@ -59,7 +59,7 @@
           inputs.disko.nixosModules.disko
           ../../lib/options.nix
           core
-          ../../features/storage
+          ../storage
           servicesTailscale
           ../input/keyboard/kanata.nix
         ];

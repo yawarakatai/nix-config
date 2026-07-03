@@ -6,7 +6,7 @@
 
 {
   imports = [
-    (import ../../features/storage/disko-btrfs-luks.nix {
+    (import ../../modules/storage/disko-btrfs-luks.nix {
       device = "/dev/disk/by-id/nvme-eui.044a5001b15002a8";
       luksName = "cryptoroot";
     })
