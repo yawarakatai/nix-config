@@ -18,7 +18,6 @@
     jq
     btop
 
-    croc
     tokei
     glow
     fastfetch
