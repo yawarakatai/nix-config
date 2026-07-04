@@ -1,7 +1,7 @@
-{ ... }:
+{ self, ... }:
 
 {
   imports = [
-    ../../../features/home/profiles/server.nix
+    self.modules.homeManager.profiles.server
   ];
 }

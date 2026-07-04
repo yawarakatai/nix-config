@@ -1,11 +1,16 @@
-{ config, osConfig, ... }:
+{
+  config,
+  osConfig,
+  self,
+  ...
+}:
 
 {
   imports = [
-    ../cli
-    ../editor/helix.nix
-    ../service/syncthing.nix
-    ../shell
+    self.modules.homeManager.cli
+    self.modules.homeManager.editor
+    ../../home/services/syncthing.nix
+    self.modules.homeManager.shell
   ];
 
   home = {
@@ -20,7 +25,7 @@
     source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-config";
   };
 
-  xdg.configFile."fastfetch/config.jsonc".source = ../fastfetch/config.jsonc;
+  xdg.configFile."fastfetch/config.jsonc".source = ../../home/fastfetch/config.jsonc;
 
   # Environment variables
   home.sessionVariables = {

@@ -1,12 +1,12 @@
-{ pkgs, ... }:
+{ pkgs, self, ... }:
 
 {
   imports = [
     ./default.nix
-    ../browser/zen-browser.nix
-    ../dev
-    ../terminal/ghostty.nix
-    ../service/ssh-client.nix
+    ../../home/browser/zen-browser.nix
+    self.modules.homeManager.dev
+    self.modules.homeManager.homeDisplayTools
+    ../../home/services/ssh-client.nix
   ];
 
   home.packages = with pkgs; [
@@ -16,7 +16,6 @@
     pavucontrol
     playerctl
     brightnessctl
-    wlr-randr
   ];
 
   systemd.user.sessionVariables = {

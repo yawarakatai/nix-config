@@ -1,4 +1,4 @@
-{ ... }:
+_:
 
 {
   perSystem =
@@ -11,6 +11,7 @@
     {
       devShells.default = pkgs.mkShell {
         buildInputs = with pkgs; [
+          just
           nixd
           statix
           inputs'.agenix-rekey.packages.default

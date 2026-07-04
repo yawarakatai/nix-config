@@ -86,8 +86,9 @@
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         inputs.treefmt-nix.flakeModule
-        ./nix/dev.nix
-        ./nix/nixos.nix
+        ./modules/flake/aspects.nix
+        ./modules/flake/dev.nix
+        ./modules/flake/nixos.nix
       ];
       systems = [
         "x86_64-linux"

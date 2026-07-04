@@ -1,5 +1,6 @@
 {
   inputs,
+  lib,
   osConfig,
   ...
 }:
@@ -71,7 +72,7 @@ in
       };
 
       shell = {
-        font_family = "JetBrainsMono NL Nerd Font";
+        font_family = lib.mkForce "JetBrainsMono NL Nerd Font";
         ui_scale = 1.2;
         niri_overview_type_to_launch_enabled = true;
 
@@ -95,12 +96,12 @@ in
       };
 
       notification = {
-        background_opacity = theme.opacity.shellPopups;
+        background_opacity = lib.mkForce theme.opacity.shellPopups;
         layer = "top";
       };
 
       osd = {
-        background_opacity = theme.opacity.shellPopups;
+        background_opacity = lib.mkForce theme.opacity.shellPopups;
         position = "top_right";
       };
 

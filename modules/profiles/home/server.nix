@@ -1,9 +1,13 @@
-{ config, osConfig, ... }:
+{
+  osConfig,
+  self,
+  ...
+}:
 
 {
   imports = [
-    ../dev/git.nix
-    ../shell
+    ../../home/dev/git.nix
+    self.modules.homeManager.shell
   ];
 
   home = {
@@ -18,5 +22,5 @@
     VISUAL = "hx";
   };
 
-  xdg.configFile."fastfetch/config.jsonc".source = ../fastfetch/config.jsonc;
+  xdg.configFile."fastfetch/config.jsonc".source = ../../home/fastfetch/config.jsonc;
 }

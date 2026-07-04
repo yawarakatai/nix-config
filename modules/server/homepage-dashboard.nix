@@ -1,11 +1,6 @@
 { lib, ... }:
 
 {
-  age.secrets.ha-token = {
-    rekeyFile = ../../secrets/ha-token.age;
-    mode = "400";
-  };
-
   services.homepage-dashboard = {
     enable = true;
     listenPort = 8082;

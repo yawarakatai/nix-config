@@ -6,16 +6,16 @@
 
 {
   imports = [
-    (import ../../features/storage/disko-btrfs-luks.nix {
+    (import ../../modules/storage/disko-btrfs-luks.nix {
       device = "/dev/disk/by-id/nvme-eui.044a5001b15002a8";
       luksName = "cryptoroot";
     })
     ./hardware-configuration.nix
-    ../../features/input/touchpad.nix
-    ../../features/hardware/bluetooth.nix
-    ../../features/laptop/fingerprint.nix
-    ../../features/laptop/power.nix
-    ../../features/hardware/webcam.nix
+    ../../modules/input/touchpad.nix
+    ../../modules/hardware/bluetooth.nix
+    ../../modules/laptop/fingerprint.nix
+    ../../modules/laptop/power.nix
+    ../../modules/hardware/webcam.nix
   ];
 
   environment.systemPackages = with pkgs; [

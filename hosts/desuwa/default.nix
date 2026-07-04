@@ -2,19 +2,19 @@
 
 {
   imports = [
-    (import ../../features/storage/disko-btrfs.nix {
+    (import ../../modules/storage/disko-btrfs.nix {
       device = "/dev/disk/by-id/nvme-Predator_SSD_GM7_M.2_2TB_PSBH53340306970";
     })
     ./hardware-configuration.nix
 
     # Hardware-specific modules
-    ../../features/hardware/gpu/nvidia.nix # NVIDIA RTX 3080
-    ../../features/security/gsr-kms-server.nix
-    ../../features/input/mouse/logiops.nix # Logitech mouse
-    ../../features/input/keyboard/lofree.nix # Lofree Flow keyboard
-    ../../features/service/udev.nix
+    ../../modules/hardware/gpu/nvidia.nix # NVIDIA RTX 3080
+    ../../modules/security/gsr-kms-server.nix
+    ../../modules/input/mouse/logiops.nix # Logitech mouse
+    ../../modules/input/keyboard/lofree.nix # Lofree Flow keyboard
+    ../../modules/services/udev.nix
 
-    ../../features/service
+    ../../modules/services
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
