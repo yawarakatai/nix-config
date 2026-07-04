@@ -117,7 +117,7 @@ Use `nixosModules.profileServer` instead of `nixosModules.profileDesktopNiri` fo
 
 ### 2.1 Get the host SSH public key
 
-**Important:** The host key must be obtained and rekeyed *before* running nixos-anywhere.
+**Important:** The host key must be obtained and rekeyed _before_ running nixos-anywhere.
 If the key changes after install, agenix will fail to decrypt secrets on first boot.
 
 Boot the NixOS ISO on the target machine, then:
@@ -235,6 +235,7 @@ lanzaboote wraps systemd-boot and signs Unified Kernel Images (UKIs) to enable S
 ### 4.1 Enter Setup Mode
 
 In UEFI settings:
+
 1. Secure Boot → **Disabled**
 2. Reset to Setup Mode (or Clear Secure Boot Keys)
 3. Save & Exit, boot into NixOS
@@ -339,6 +340,7 @@ reboot
 ### 5.4 Re-enrollment (when required)
 
 Re-enroll TPM2 after any of the following:
+
 - Re-generating Secure Boot keys (`sbctl create-keys`)
 - Re-enrolling UEFI keys (`sbctl enroll-keys`)
 - Resetting Secure Boot in UEFI (Reset to Setup Mode)
@@ -378,11 +380,8 @@ find /boot/EFI -name "*.efi" | xargs -I{} sbctl sign -s {}
 
 ## Reference: Host Overview
 
-| Host       | Type     | Arch          | Notes                                       |
-|------------|----------|---------------|---------------------------------------------|
-| `desuwa`   | Desktop  | x86_64-linux  | NVIDIA RTX 3080                             |
-| `desuno`   | Desktop  | x86_64-linux  | Radeon RX 590                               |
-| `nanodesu` | Laptop   | x86_64-linux  | ThinkPad X1 Nano, LUKS + TPM2 + lanzaboote  |
-| `nanoda`   | Laptop   | x86_64-linux  | Let's Note CF-SZ6                           |
-| `kamo`     | Handheld | x86_64-linux  | ROG Ally                                    |
-| `dayo`     | Server   | aarch64-linux | Raspberry Pi 4                              |
+| Host       | Type    | Arch          | Notes                                      |
+| ---------- | ------- | ------------- | ------------------------------------------ |
+| `desuwa`   | Desktop | x86_64-linux  | NVIDIA RTX 3080                            |
+| `nanodesu` | Laptop  | x86_64-linux  | ThinkPad X1 Nano, LUKS + TPM2 + lanzaboote |
+| `dane`     | Server  | aarch64-linux | Radxa Rock 5T                              |

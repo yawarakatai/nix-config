@@ -85,6 +85,6 @@ If a change only touches server services, evaluating `dane` is required. If a ch
 
 - Move files in small phases.
 - Keep aspect names stable when moving implementation files.
-- Do not introduce `import-tree` until the `modules/` tree is fully converted and helper files are clearly marked.
+- Do not introduce `import-tree` unless explicitly requested.
 - Prefer explicit imports over implicit magic while refactoring.
 - Summarize moved files, updated imports, and behavior changes after each task.
