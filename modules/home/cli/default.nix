@@ -5,6 +5,7 @@
   ];
 
   programs.bat.enable = true;
+  programs.bottom.enable = true;
 
   home.packages = with pkgs; [
     ripgrep
@@ -16,7 +17,6 @@
     dust
 
     jq
-    btop
 
     tokei
     glow
