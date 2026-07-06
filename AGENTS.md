@@ -16,12 +16,20 @@ This repository is a personal NixOS/Home Manager configuration. It uses flake-pa
 
 ## Design rules
 
+### Refactor shape
+
 - Prefer behavior-preserving changes.
+- Move files in small phases.
+- Keep aspect names stable when moving implementation files.
 - Keep profiles as aggregators only.
 - Keep host files limited to host-specific facts and exceptions.
 - Importing an aspect should generally enable it; do not add custom enable options unless explicitly requested.
 - Avoid broad abstractions unless they reduce actual duplication.
-- Do not reintroduce removed components: madori, kanshi, vicinae, waybar, mako, gura integration, juice, devenv, Jovian/GNOME handheld stack.
+- Prefer explicit imports over implicit magic while refactoring.
+- Do not introduce `import-tree` unless explicitly requested.
+
+### Ownership boundaries
+
 - Noctalia owns wallpaper.
 - Stylix owns colors, fonts, cursor, and application theming only.
 - Do not add `stylix.image`.
@@ -54,18 +62,28 @@ Do not modify these unless explicitly requested:
 - hardware-configuration files
 - production server service data paths
 
+## Git / Change management
+
+- At the start of a task, inspect `git status --short`.
+- If there are existing uncommitted changes, distinguish user changes from agent changes and do not overwrite or mix unrelated changes.
+- For multi-step refactors, work in small validated phases and ask whether to create a checkpoint commit after each phase.
+- At the end of a task, show the final worktree status, summarize changed files, and suggest an English conventional commit message.
+- Do not create commits unless explicitly requested, or unless the user explicitly opted into auto-committing for the current task/session.
+- Never commit unrelated changes, unvalidated changes, secrets, or high-risk configuration changes.
+- Do not update `flake.lock` unless explicitly requested.
+
 ## Validation
 
 After normal Nix refactors, prefer:
 
 ```bash
-just check
+nix develop -c just check
 ```
 
 For desktop or system-level changes, prefer:
 
 ```bash
-just full-check
+nix develop -c just full-check
 ```
 
 Equivalent manual commands for environments without `just`:
@@ -81,10 +99,9 @@ nix build .#nixosConfigurations.desuwa.config.system.build.toplevel
 
 If a change only touches server services, evaluating `dane` is required. If a change touches desktop behavior, building `desuwa` is required.
 
-## Refactor policy
+If validation cannot be run, report the exact command that was skipped and why.
 
-- Move files in small phases.
-- Keep aspect names stable when moving implementation files.
-- Do not introduce `import-tree` unless explicitly requested.
-- Prefer explicit imports over implicit magic while refactoring.
+## Documentation
+
+- Update `AGENTS.md` or repository docs when changing architecture, validation commands, ownership boundaries, important edit locations, or refactor policy.
 - Summarize moved files, updated imports, and behavior changes after each task.
