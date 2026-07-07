@@ -11,6 +11,7 @@
     vscode-json-languageserver # JSON LSP
 
     # === Formatters ===
+    nixfmt
     prettier # Markdown (and general) formatter
   ];
 
@@ -193,6 +194,7 @@
       language = [
         {
           name = "nix";
+          language-servers = [ "nixd" ];
           auto-format = true;
           formatter = {
             command = "nixfmt";
@@ -260,6 +262,10 @@
 
       # Language server configurations
       language-server = {
+        nixd = {
+          command = "nixd";
+        };
+
         clangd = {
           args = [
             "--background-index"
