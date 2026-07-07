@@ -1,7 +1,7 @@
 {
   config,
-  osConfig,
   self,
+  username,
   ...
 }:
 
@@ -14,8 +14,8 @@
   ];
 
   home = {
-    username = osConfig.my.user.name;
-    homeDirectory = "/home/${osConfig.my.user.name}";
+    inherit username;
+    homeDirectory = "/home/${username}";
     stateVersion = "25.05";
     enableNixpkgsReleaseCheck = false;
   };

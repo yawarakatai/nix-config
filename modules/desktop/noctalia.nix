@@ -7,62 +7,41 @@
 
 let
   theme = osConfig.my.theme;
-  colors = osConfig.lib.stylix.colors.withHashtag;
-  noctaliaPalette = {
-    primary = colors.base0D;
-    onPrimary = colors.base00;
-    secondary = colors.base0C;
-    onSecondary = colors.base00;
-    tertiary = colors.base0E;
-    onTertiary = colors.base00;
-    error = colors.base08;
-    onError = colors.base00;
-    surface = colors.base00;
-    onSurface = colors.base05;
-    surfaceVariant = colors.base01;
-    onSurfaceVariant = colors.base04;
-    outline = colors.base03;
-    shadow = colors.base00;
-    hover = colors.base02;
-    onHover = colors.base05;
+  ui = osConfig.my.ui;
+  monitor = osConfig.my.system.monitors.primary;
 
-    terminal = {
-      foreground = colors.base05;
-      background = colors.base00;
-      cursor = colors.base05;
-      cursorText = colors.base00;
-      selectionFg = colors.base05;
-      selectionBg = colors.base02;
-      normal = {
-        black = colors.base00;
-        red = colors.base08;
-        green = colors.base0B;
-        yellow = colors.base0A;
-        blue = colors.base0D;
-        magenta = colors.base0E;
-        cyan = colors.base0C;
-        white = colors.base05;
-      };
-      bright = {
-        black = colors.base03;
-        red = colors.base08;
-        green = colors.base0B;
-        yellow = colors.base0A;
-        blue = colors.base0D;
-        magenta = colors.base0E;
-        cyan = colors.base0C;
-        white = colors.base07;
-      };
-    };
-  };
+  clamp =
+    min: max: value:
+    if value < min then
+      min
+    else if value > max then
+      max
+    else
+      value;
+
+  isVerticalBar = builtins.elem ui.bar.position [
+    "left"
+    "right"
+  ];
+
+  relevantDimension = if isVerticalBar then monitor.width else monitor.height;
+
+  computedBarThickness = clamp ui.bar.minThickness ui.bar.maxThickness (
+    builtins.floor (relevantDimension * ui.bar.thicknessRatio)
+  );
+
+  computedMarginEnds = clamp 0 ui.bar.maxMarginEnds (
+    builtins.floor (monitor.width * ui.bar.marginEndsRatio)
+  );
 in
 {
-  imports = [ inputs.noctalia.homeModules.default ];
+  imports = [
+    inputs.noctalia.homeModules.default
+  ];
 
   programs.noctalia = {
     enable = true;
     systemd.enable = true;
-    customPalettes.stylix.dark = noctaliaPalette;
 
     settings = {
       theme = {
@@ -73,7 +52,7 @@ in
 
       shell = {
         font_family = lib.mkForce "JetBrainsMono NL Nerd Font";
-        ui_scale = 1.2;
+        ui_scale = ui.scale;
         niri_overview_type_to_launch_enabled = true;
 
         panel = {
@@ -106,15 +85,15 @@ in
       };
 
       bar.main = {
-        position = theme.bar.position;
-        thickness = theme.bar.thickness;
-        scale = 1.1;
+        position = ui.bar.position;
+        thickness = computedBarThickness;
+        inherit (ui) scale;
         background_opacity = theme.opacity.shell;
         radius = theme.rounding;
-        margin_ends = theme.bar.marginEnds;
+        margin_ends = computedMarginEnds;
         margin_edge = 0;
         margin_opposite_edge = 0;
-        padding = theme.bar.padding;
+        padding = ui.bar.padding;
         shadow = false;
         contact_shadow = false;
         auto_hide = true;

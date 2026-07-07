@@ -1,7 +1,7 @@
 # ROCK 5T Headless Server — hostname "dane"
 {
-  config,
   lib,
+  username,
   ...
 }:
 
@@ -74,7 +74,7 @@
 
   security.sudo.extraRules = [
     {
-      users = [ config.my.user.name ];
+      users = [ username ];
       commands = [
         {
           command = "ALL";

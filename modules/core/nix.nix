@@ -1,4 +1,4 @@
-{ config, ... }:
+{ username, ... }:
 
 {
   nix = {
@@ -10,7 +10,7 @@
       auto-optimise-store = true;
       trusted-users = [
         "root"
-        config.my.user.name
+        username
       ];
       accept-flake-config = true;
 
@@ -44,6 +44,6 @@
       enable = true;
       extraArgs = "--keep-since 4d --keep 5";
     };
-    flake = "/home/${config.my.user.name}/.config/nix-config";
+    flake = "/home/${username}/.config/nix-config";
   };
 }

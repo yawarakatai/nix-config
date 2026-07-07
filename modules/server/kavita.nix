@@ -1,9 +1,9 @@
-{ config, ... }:
+{ config, username, ... }:
 
 {
   system.activationScripts.kavita-dirs = ''
     mkdir -p /storage/shared/manga /storage/shared/books
-    chown ${config.my.user.name}:users /storage/shared/manga /storage/shared/books 2>/dev/null || true
+    chown ${username}:users /storage/shared/manga /storage/shared/books 2>/dev/null || true
   '';
 
   systemd.services.kavita.serviceConfig = {

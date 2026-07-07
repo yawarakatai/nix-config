@@ -1,13 +1,13 @@
 {
-  config,
   pkgs,
+  username,
   ...
 }:
 
 {
   systemd.tmpfiles.rules = [
-    "d /data/filebrowser 0755 ${config.my.user.name} users - -"
-    "d /storage/shared 0755 ${config.my.user.name} users - -"
+    "d /data/filebrowser 0755 ${username} users - -"
+    "d /storage/shared 0755 ${username} users - -"
   ];
 
   systemd.services.filebrowser = {
@@ -16,7 +16,7 @@
     serviceConfig = {
       ExecStart = "${pkgs.filebrowser}/bin/filebrowser -d /data/filebrowser/filebrowser.db -r /storage/shared -a 127.0.0.1 -p 8080 -b /files";
       Restart = "on-failure";
-      User = config.my.user.name;
+      User = username;
       Group = "users";
     };
   };

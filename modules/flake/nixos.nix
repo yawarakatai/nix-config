@@ -12,10 +12,11 @@ let
     {
       extraModules ? [ ],
       system ? "x86_64-linux",
+      username ? "yawarakatai",
     }:
     nixosSystem {
       inherit system;
-      specialArgs = { inherit inputs self; };
+      specialArgs = { inherit inputs self username; };
       modules = [
         {
           networking.hostName = hostname;
@@ -25,18 +26,15 @@ let
         }
         ../../hosts/${hostname}
         inputs.home-manager.nixosModules.home-manager
-        (
-          { config, ... }:
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.${config.my.user.name} = import ../../hosts/${hostname}/home;
-              extraSpecialArgs = { inherit inputs self; };
-              backupFileExtension = "backup";
-            };
-          }
-        )
+        (_: {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users.${username} = import ../../hosts/${hostname}/home;
+            extraSpecialArgs = { inherit inputs self username; };
+            backupFileExtension = "backup";
+          };
+        })
         profileModule
       ]
       ++ extraModules;
@@ -55,6 +53,10 @@ in
       dane = mkHost "dane" nixosModules.profileServer {
         system = "aarch64-linux";
         extraModules = [ inputs.nixos-rock5t.nixosModules.rock5t ];
+      };
+
+      kamo = mkHost "kamo" nixosModules.profileDesktopNiri {
+        extraModules = [ inputs.nixos-hardware.nixosModules.asus-ally-rc71l ];
       };
     };
 

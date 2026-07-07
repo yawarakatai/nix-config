@@ -4,6 +4,7 @@
   config,
   lib,
   pkgs,
+  username,
   ...
 }:
 
@@ -12,9 +13,9 @@
 
   users = {
     mutableUsers = false;
-    users.${config.my.user.name} = {
+    users.${username} = {
       isNormalUser = true;
-      description = config.my.user.name;
+      description = username;
       shell = pkgs.zsh;
       extraGroups = [
         "networkmanager"
