@@ -9,8 +9,8 @@ let
 in
 {
   home.file = {
-    ".ssh/yubikey_5.pub".text = keys.yubikey.yubikey_5;
-    ".ssh/yubikey_5c.pub".text = keys.yubikey.yubikey_5c;
+    ".ssh/yubikey_5.pub".text = keys.ssh.yubikey-5;
+    ".ssh/yubikey_5c.pub".text = keys.ssh.yubikey-5c;
   };
 
   programs.ssh = {
