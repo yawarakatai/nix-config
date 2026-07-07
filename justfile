@@ -17,7 +17,7 @@ build host:
     nix build .#nixosConfigurations.{{host}}.config.system.build.toplevel
 
 check:
-    nix fmt
+    just fmt
     just lint
     just dead
-    nix flake check
+    nix flake check --all-systems
