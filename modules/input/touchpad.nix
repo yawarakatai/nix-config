@@ -1,4 +1,4 @@
-{ ... }:
+_:
 
 {
   # Touchpad configuration for laptops

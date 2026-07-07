@@ -1,4 +1,4 @@
-{ ... }:
+_:
 let
   keys = import ../../../secrets/keys.nix;
 

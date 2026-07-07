@@ -1,5 +1,5 @@
 # TLP - Power management for laptops
-{ ... }:
+_:
 
 {
   services.tlp = {

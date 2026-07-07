@@ -1,5 +1,4 @@
-{ ... }:
-{
+_: {
   time.timeZone = "Asia/Tokyo";
 
   i18n = {

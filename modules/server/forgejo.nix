@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}:
+_:
 
 {
   systemd.tmpfiles.rules = [

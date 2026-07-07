@@ -76,11 +76,7 @@
 
   outputs =
     inputs@{
-      self,
-      nixpkgs,
-      nixos-hardware,
       flake-parts,
-      agenix-rekey,
       ...
     }:
     flake-parts.lib.mkFlake { inherit inputs; } {

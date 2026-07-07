@@ -1,4 +1,4 @@
-{ ... }:
+_:
 
 {
   # Kernel module configuration for keyboards

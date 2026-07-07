@@ -1,4 +1,4 @@
-{ ... }:
+_:
 
 let
   btrfs-subvols = import ../../lib/disko-common.nix { };

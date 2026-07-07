@@ -1,4 +1,4 @@
-{ ... }:
+_:
 
 {
   # Fingerprint reader support (fprintd)

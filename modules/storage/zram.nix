@@ -1,4 +1,4 @@
-{ ... }:
+_:
 
 {
   # zram configuration for swap
