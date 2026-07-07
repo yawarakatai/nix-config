@@ -3,7 +3,6 @@ _:
 {
   perSystem =
     {
-      config,
       pkgs,
       inputs',
       ...
@@ -12,8 +11,12 @@ _:
       devShells.default = pkgs.mkShell {
         buildInputs = with pkgs; [
           just
+
           nixd
+          nixfmt
           statix
+          deadnix
+
           inputs'.agenix-rekey.packages.default
           pkgs.age-plugin-fido2-hmac
         ];

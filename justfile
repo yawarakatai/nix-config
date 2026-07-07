@@ -4,6 +4,12 @@ default:
 fmt:
     nix fmt
 
+lint:
+    statix check .    
+
+dead:
+    deadnix --fail .
+
 eval-all:
     nix eval --raw .#nixosConfigurations.desuwa.config.system.build.toplevel.drvPath
     nix eval --raw .#nixosConfigurations.nanodesu.config.system.build.toplevel.drvPath
@@ -11,6 +17,8 @@ eval-all:
 
 check:
     nix fmt
+    just lint
+    just dead
     nix flake check
     just eval-all
 
