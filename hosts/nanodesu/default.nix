@@ -65,5 +65,6 @@
       scale = 1.0;
       vrr = false;
     };
+    ui.scale = 1.25;
   };
 }
