@@ -47,7 +47,6 @@ in
       theme = {
         mode = "dark";
         source = "custom";
-        custom_palette = "stylix";
       };
 
       shell = {
@@ -59,8 +58,6 @@ in
           transparency_mode = "glass";
           borders = true;
           shadow = true;
-          launcher_placement = "centered";
-          clipboard_placement = "centered";
           control_center_placement = "attached";
           wallpaper_placement = "attached";
           session_placement = "attached";
@@ -76,7 +73,7 @@ in
 
       notification = {
         background_opacity = lib.mkForce theme.opacity.shellPopups;
-        layer = "top";
+        layer = "bottom";
       };
 
       osd = {
@@ -99,11 +96,18 @@ in
         auto_hide = true;
         reserve_space = false;
         show_on_workspace_switch = true;
-        start = [ "workspaces" ];
+        start = [
+          "launcher"
+          "workspaces"
+        ];
         center = [ "clock" ];
         end = [
           "tray"
+          "clipboard"
+          "network"
+          "bluetooth"
           "volume"
+          "brightness"
           "battery"
         ];
         dead_zone.command = "noctalia msg panel-toggle control-center home";

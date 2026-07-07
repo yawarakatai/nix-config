@@ -52,7 +52,7 @@
     };
 
     ui = {
-      scale = 1.0;
+      scale = 1.25;
 
       bar = {
         position = "bottom";
@@ -61,7 +61,7 @@
         maxThickness = 44;
         padding = 10;
         marginEndsRatio = 0.333;
-        maxMarginEnds = 1280;
+        maxMarginEnds = 1920;
       };
     };
   };
