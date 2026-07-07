@@ -17,17 +17,17 @@
     ../../modules/services
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot = {
+    kernelPackages = pkgs.linuxPackages_latest;
 
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+    binfmt.emulatedSystems = [ "aarch64-linux" ];
 
-  # Tmp on tmpfs for better performance
-  boot.tmp = {
-    useTmpfs = true;
-    tmpfsSize = "50%";
+    # Tmp on tmpfs for better performance
+    tmp = {
+      useTmpfs = true;
+      tmpfsSize = "50%";
+    };
   };
-
-  services.flatpak.enable = true;
 
   # --- Application and Service Settings ---;
   environment.sessionVariables = {

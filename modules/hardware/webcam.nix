@@ -1,26 +1,28 @@
 { pkgs, ... }:
 
 {
-  # Enable webcam support - load multiple kernel modules for different camera types
-  boot.kernelModules = [
-    "uvcvideo" # USB Video Class (UVC) cameras
-  ];
+  boot = {
+    # Enable webcam support - load multiple kernel modules for different camera types
+    kernelModules = [
+      "uvcvideo" # USB Video Class (UVC) cameras
+    ];
+
+    # Kernel parameters for Intel IPU6 cameras (11th gen and newer Intel CPUs)
+    # These cameras need special drivers and firmware
+    kernelParams = [
+      # Enable media controller API for complex camera pipelines
+      "intel_ipu6.dyndbg=+p"
+    ];
+
+    # Load camera-related modules early
+    initrd.kernelModules = [ ];
+  };
 
   # Enable all firmware including Intel camera firmware
   hardware.enableAllFirmware = true;
   hardware.firmware = with pkgs; [
     linux-firmware # General firmware including Intel camera firmware
   ];
-
-  # Kernel parameters for Intel IPU6 cameras (11th gen and newer Intel CPUs)
-  # These cameras need special drivers and firmware
-  boot.kernelParams = [
-    # Enable media controller API for complex camera pipelines
-    "intel_ipu6.dyndbg=+p"
-  ];
-
-  # Load camera-related modules early
-  boot.initrd.kernelModules = [ ];
 
   # Webcam utilities and debugging tools
   environment.systemPackages = with pkgs; [

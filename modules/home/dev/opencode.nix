@@ -32,7 +32,9 @@ let
 
 in
 {
-  home.packages = with pkgs; [ opencode ];
-  home.file.".config/opencode/opencode.jsonc".text = lib.generators.toJSON { } opencodeConfig;
-  home.file.".config/opencode/AGENTS.md".text = agentInstructions;
+  home = {
+    packages = with pkgs; [ opencode ];
+    file.".config/opencode/opencode.jsonc".text = lib.generators.toJSON { } opencodeConfig;
+    file.".config/opencode/AGENTS.md".text = agentInstructions;
+  };
 }

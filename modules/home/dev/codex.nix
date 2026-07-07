@@ -21,15 +21,17 @@ let
   '';
 in
 {
-  home.packages = with pkgs; [ codex ];
+  home = {
+    packages = with pkgs; [ codex ];
 
-  home.activation.codexConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-          mkdir -p "$HOME/.codex"
-          cat > "$HOME/.codex/config.toml" <<'EOF'
-    ${codexConfig}
-    EOF
-          chmod u+w "$HOME/.codex/config.toml"
-  '';
+    activation.codexConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+            mkdir -p "$HOME/.codex"
+            cat > "$HOME/.codex/config.toml" <<'EOF'
+      ${codexConfig}
+      EOF
+            chmod u+w "$HOME/.codex/config.toml"
+    '';
 
-  home.file.".codex/AGENTS.md".text = agentInstructions;
+    file.".codex/AGENTS.md".text = agentInstructions;
+  };
 }
