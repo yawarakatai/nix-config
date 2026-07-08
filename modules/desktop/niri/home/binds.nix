@@ -66,9 +66,9 @@ _:
 
       # --- Screenshot ---
       "Mod+S".action.spawn =
-        sh "f=~/screenshot-$(date +%Y%m%d-%H%M%S).png && grim \"$f\" && notify-send -u low 'Screenshot' \"Saved to $f\"";
+        sh "grim -g \"$(slurp)\" - | wl-copy && notify-send -u low 'Screenshot' 'Copied to clipboard'";
       "Mod+Shift+S".action.spawn =
-        sh "f=~/screenshot-$(date +%Y%m%d-%H%M%S).png && grim -g \"$(slurp)\" \"$f\" && notify-send -u low 'Screenshot' \"Saved to $f\"";
+        sh "grim - | wl-copy && notify-send -u low 'Screenshot' 'Copied to clipboard'";
 
       # --- Media ---
       "XF86AudioPlay".action.spawn = sh "playerctl play-pause";
