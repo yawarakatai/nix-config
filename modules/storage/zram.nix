@@ -1,11 +1,11 @@
-_:
+{ lib, ... }:
 
 {
   # zram configuration for swap
   zramSwap = {
     enable = true;
     algorithm = "zstd";
-    memoryPercent = 50; # Use 50% of RAM for zram
+    memoryPercent = lib.mkDefault 50; # Use 50% of RAM for zram
     priority = 100;
   };
 

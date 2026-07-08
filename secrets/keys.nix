@@ -16,6 +16,6 @@
     desuwa = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEnAhIcZqtU80UNZ7A/2zRQHUzIxQqXcEIZbe1LSiK/S root@desuwa";
     nanodesu = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICxg8hL0i1hQY11LLEih0wXnxcEUOBOYQYvNvb1sp99/ root@nanodesu";
     dane = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICVys/U5xxiWVwmI8kZ8g8drk/CSZS1DXtYIgr6zzxET root@dane";
-    kamo = "PLACEHOLDER";
+    kamo = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINb9pLAskLkP1WXlGwBAUI/ZWip40O5+JicctVf6fs3N root@kamo";
   };
 }
