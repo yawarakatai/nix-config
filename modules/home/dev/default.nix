@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -9,4 +9,6 @@
     ./codex.nix
     ./antigravity.nix
   ];
+
+  home.packages = [ pkgs.herdr ];
 }
