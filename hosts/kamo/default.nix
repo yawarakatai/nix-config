@@ -61,7 +61,7 @@ in
       name = "eDP-1";
       width = 1920;
       height = 1080;
-      refresh = 120.0;
+      refresh = 59.999;
       scale = 1.0;
       vrr = true;
     };
