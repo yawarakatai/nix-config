@@ -1,3 +1,6 @@
+let
+  readKey = path: builtins.replaceStrings [ "\n" ] [ "" ] (builtins.readFile path);
+in
 {
   master = {
     yubikey-5 = "age1xnx786rjc69fp65qqruglkqy8tlgjl3x7akvrlke4h3cpprsx9gsm88het";
@@ -13,9 +16,9 @@
   # Host SSH keys (for agenix-rekey rekeying)
   # Obtain with: cat /etc/ssh/ssh_host_ed25519_key.pub
   hosts = {
-    desuwa = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEnAhIcZqtU80UNZ7A/2zRQHUzIxQqXcEIZbe1LSiK/S root@desuwa";
-    nanodesu = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICxg8hL0i1hQY11LLEih0wXnxcEUOBOYQYvNvb1sp99/ root@nanodesu";
-    dane = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICVys/U5xxiWVwmI8kZ8g8drk/CSZS1DXtYIgr6zzxET root@dane";
-    kamo = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINb9pLAskLkP1WXlGwBAUI/ZWip40O5+JicctVf6fs3N root@kamo";
+    desuwa = readKey ../hosts/desuwa/ssh_host_ed25519_key.pub;
+    nanodesu = readKey ../hosts/nanodesu/ssh_host_ed25519_key.pub;
+    dane = readKey ../hosts/dane/ssh_host_ed25519_key.pub;
+    kamo = readKey ../hosts/kamo/ssh_host_ed25519_key.pub;
   };
 }
