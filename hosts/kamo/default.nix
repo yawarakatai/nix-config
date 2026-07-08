@@ -7,12 +7,13 @@
 }:
 
 let
+  disk = ./disk.nix;
   niriSession = "${config.programs.niri.package}/bin/niri-session";
 in
 {
   imports = [
     (import ../../modules/storage/disko-ext4.nix {
-      device = "/dev/disk/by-id/nvme-Micron_2400_MTFDKBK512QFM_23163FFC2160";
+      inherit (disk) device;
     })
 
     ./hardware-configuration.nix

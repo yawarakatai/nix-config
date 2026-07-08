@@ -4,10 +4,13 @@
   ...
 }:
 
+let
+  disk = ./disk.nix;
+in
 {
   imports = [
     (import ../../modules/storage/disko-btrfs-luks.nix {
-      device = "/dev/disk/by-id/nvme-eui.044a5001b15002a8";
+      inherit (disk) device;
       luksName = "cryptoroot";
     })
     ./hardware-configuration.nix
@@ -65,6 +68,19 @@
       scale = 1.0;
       vrr = false;
     };
-    ui.scale = 1.25;
+
+    ui = {
+      scale = 1.25;
+
+      bar = {
+        position = "bottom";
+        thicknessRatio = 0.016;
+        minThickness = 34;
+        maxThickness = 44;
+        padding = 10;
+        marginEndsRatio = 0.25;
+        maxMarginEnds = 1920;
+      };
+    };
   };
 }
