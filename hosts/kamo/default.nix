@@ -29,8 +29,6 @@ in
     priority = 100;
   };
 
-  swapDevices = lib.mkForce [ ];
-
   hardware.enableRedistributableFirmware = true;
 
   services = {
@@ -40,8 +38,6 @@ in
   };
 
   hardware.asus.battery.chargeUpto = 80;
-
-  services.kanata.enable = lib.mkForce false;
 
   services.greetd.settings.initial_session = {
     command = niriSession;
@@ -70,7 +66,7 @@ in
     };
 
     ui = {
-      scale = 1.0;
+      scale = 1.25;
 
       bar = {
         position = "bottom";
