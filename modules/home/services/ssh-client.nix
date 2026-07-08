@@ -9,6 +9,7 @@ let
 in
 {
   home.file = {
+    ".ssh/.keep".text = "";
     ".ssh/yubikey_5.pub".text = keys.ssh.yubikey-5;
     ".ssh/yubikey_5c.pub".text = keys.ssh.yubikey-5c;
   };
@@ -21,7 +22,7 @@ in
       "*".setEnv = "TERM=xterm-256color";
 
       "desuwa" = {
-        hostname = "desuwa";
+        hostname = "desuwa.yawarakatai.com";
         identityFile = yubikeyIdentities;
         identitiesOnly = true;
         identityAgent = "none";
@@ -34,8 +35,8 @@ in
         identityAgent = "none";
       };
 
-      "dayo" = {
-        hostname = "dayo.yawarakatai.com";
+      "kamo" = {
+        hostname = "kamo.yawarakatai.com";
         identityFile = yubikeyIdentities;
         identitiesOnly = true;
         identityAgent = "none";

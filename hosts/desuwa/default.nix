@@ -16,8 +16,6 @@ in
     ../../modules/input/mouse/logiops.nix # Logitech mouse
     ../../modules/input/keyboard/lofree.nix # Lofree Flow keyboard
     ../../modules/services/udev.nix
-
-    ../../modules/services
   ];
 
   boot = {
