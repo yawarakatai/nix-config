@@ -40,6 +40,7 @@
         fi
       }
       zle -N tv-files-widget
+      bindkey '^F' tv-files-widget
 
       # Ctrl+T: Directory picker (sorted exact)
       function tv-dirs-widget() {
@@ -50,22 +51,7 @@
         fi
       }
       zle -N tv-dirs-widget
-
-      # Ctrl+G: Text search (exact → fuzzy fallback)
-      function tv-text-widget() {
-        local selected=$(tv text --exact)
-        [ -z "$selected" ] && selected=$(tv text)
-        if [ -n "$selected" ]; then
-          LBUFFER+="$(echo $selected | cut -d: -f1)"
-          zle reset-prompt
-        fi
-      }
-      zle -N tv-text-widget
-
-      # Keybinds
-      bindkey '^F' tv-files-widget
       bindkey '^T' tv-dirs-widget
-      bindkey '^G' tv-text-widget
 
       # Ctrl+P: Fuzzy process search (ps → PID to buffer)
       function tv-procs-widget() {
