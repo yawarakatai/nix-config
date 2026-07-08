@@ -65,19 +65,6 @@ in
       scale = 1.0;
       vrr = true;
     };
-
-    ui = {
-      scale = 1.25;
-
-      bar = {
-        position = "bottom";
-        thicknessRatio = 0.026;
-        minThickness = 28;
-        maxThickness = 36;
-        padding = 8;
-        marginEndsRatio = 0.16;
-        maxMarginEnds = 320;
-      };
-    };
+    ui.scale = 2.0;
   };
 }

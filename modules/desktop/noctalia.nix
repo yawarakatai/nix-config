@@ -8,31 +8,6 @@
 let
   theme = osConfig.my.theme;
   ui = osConfig.my.ui;
-  monitor = osConfig.my.system.monitors.primary;
-
-  clamp =
-    min: max: value:
-    if value < min then
-      min
-    else if value > max then
-      max
-    else
-      value;
-
-  isVerticalBar = builtins.elem ui.bar.position [
-    "left"
-    "right"
-  ];
-
-  relevantDimension = if isVerticalBar then monitor.width else monitor.height;
-
-  computedBarThickness = clamp ui.bar.minThickness ui.bar.maxThickness (
-    builtins.floor (relevantDimension * ui.bar.thicknessRatio)
-  );
-
-  computedMarginEnds = clamp 0 ui.bar.maxMarginEnds (
-    builtins.floor (monitor.width * ui.bar.marginEndsRatio)
-  );
 in
 {
   imports = [
@@ -82,15 +57,12 @@ in
       };
 
       bar.main = {
-        position = ui.bar.position;
-        thickness = computedBarThickness;
+        position = "bottom";
         inherit (ui) scale;
         background_opacity = theme.opacity.shell;
         radius = theme.rounding;
-        margin_ends = computedMarginEnds;
         margin_edge = 0;
         margin_opposite_edge = 0;
-        padding = ui.bar.padding;
         shadow = false;
         contact_shadow = false;
         auto_hide = true;
@@ -109,6 +81,7 @@ in
           "volume"
           "brightness"
           "battery"
+          "session"
         ];
         dead_zone.command = "noctalia msg panel-toggle control-center home";
       };

@@ -59,71 +59,10 @@ in
       };
     };
 
-    ui = {
-      scale = mkOption {
-        type = types.float;
-        default = 1.0;
-        description = "Global shell/UI scale preference for this device.";
-      };
-
-      density = mkOption {
-        type = types.enum [
-          "compact"
-          "normal"
-          "comfortable"
-        ];
-        default = "compact";
-        description = "General UI density preference.";
-      };
-
-      bar = {
-        position = mkOption {
-          type = types.enum [
-            "top"
-            "bottom"
-            "left"
-            "right"
-          ];
-          default = "bottom";
-          description = "Main shell bar position.";
-        };
-
-        thicknessRatio = mkOption {
-          type = types.float;
-          default = 0.012;
-          description = "Bar thickness as a ratio of the relevant monitor dimension.";
-        };
-
-        minThickness = mkOption {
-          type = types.int;
-          default = 32;
-          description = "Minimum bar thickness in pixels.";
-        };
-
-        maxThickness = mkOption {
-          type = types.int;
-          default = 48;
-          description = "Maximum bar thickness in pixels.";
-        };
-
-        padding = mkOption {
-          type = types.int;
-          default = 10;
-          description = "Bar internal padding.";
-        };
-
-        marginEndsRatio = mkOption {
-          type = types.float;
-          default = 0.333;
-          description = "Bar end margin as a ratio of monitor width.";
-        };
-
-        maxMarginEnds = mkOption {
-          type = types.int;
-          default = 1280;
-          description = "Maximum bar end margin.";
-        };
-      };
+    ui.scale = mkOption {
+      type = types.float;
+      default = 1.0;
+      description = "Global shell/UI scale preference for this device.";
     };
   };
 }
