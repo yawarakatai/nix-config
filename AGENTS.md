@@ -7,7 +7,7 @@ This repository is a personal NixOS/Home Manager configuration. It uses flake-pa
 ## Architecture
 
 - `modules/flake/` contains flake-parts entry modules.
-- `modules/flake/aspects.nix` exports reusable NixOS and Home Manager aspects.
+- `modules/flake/module-registry.nix` publishes stable reusable NixOS and Home Manager module names.
 - `modules/profiles/` contains profile aggregations.
 - `modules/home/` contains Home Manager feature implementations.
 - `modules/desktop/` contains desktop/session/compositor/shell modules.
@@ -22,6 +22,8 @@ This repository is a personal NixOS/Home Manager configuration. It uses flake-pa
 - Move files in small phases.
 - Keep aspect names stable when moving implementation files.
 - Keep profiles as aggregators only.
+- Keep `modules/flake/module-registry.nix` thin; it should publish stable names, not own feature implementation.
+- Profiles should import feature modules directly instead of reaching back through `self.modules`.
 - Keep host files limited to host-specific facts and exceptions.
 - Importing an aspect should generally enable it; do not add custom enable options unless explicitly requested.
 - Avoid broad abstractions unless they reduce actual duplication.
@@ -47,8 +49,13 @@ This repository is a personal NixOS/Home Manager configuration. It uses flake-pa
 - Development tools: `modules/home/dev/default.nix`
 - Shell/zsh/starship: `modules/home/shell/`
 - Helix: `modules/home/editor/helix.nix`
-- Desktop profile aggregation: `modules/profiles/home/desktop*.nix` and `modules/flake/aspects.nix`
-- Host-specific configuration: `hosts/<host>/default.nix`
+- Desktop profile aggregation: `modules/profiles/home/desktop*.nix`
+- Flake module registry: `modules/flake/module-registry.nix`
+- Host import glue: `hosts/<host>/default.nix`
+- Host-specific system settings: `hosts/<host>/system.nix`
+- Host-specific hardware imports and quirks: `hosts/<host>/hardware.nix`
+- Host disk layout: `hosts/<host>/storage/disko.nix`
+- Generated host facts: `hosts/<host>/generated/`
 - Server services: `modules/server/`
 
 ## High-risk areas
@@ -57,9 +64,9 @@ Do not modify these unless explicitly requested:
 
 - `secrets/`
 - agenix or agenix-rekey configuration
-- disk layout and disko files
+- host disk layout and disko files, especially `hosts/<host>/storage/disko.nix`
 - LUKS, Secure Boot, or TPM settings
-- hardware-configuration files
+- generated hardware-configuration files under `hosts/<host>/generated/`
 - production server service data paths
 
 ## Git / Change management

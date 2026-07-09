@@ -1,16 +1,15 @@
 {
   config,
-  self,
   username,
   ...
 }:
 
 {
   imports = [
-    self.modules.homeManager.cli
-    self.modules.homeManager.editor
+    ../../home/cli
+    ../../home/editor/helix.nix
     ../../home/services/syncthing.nix
-    self.modules.homeManager.shell
+    ../../home/shell
   ];
 
   home = {

@@ -6,7 +6,7 @@ in
 {
   # Agenix-rekey configuration
   age.rekey = {
-    # Host public key for rekeying (from /etc/ssh/ssh_host_ed25519_key.pub)
+    # Host public key for rekeying, tracked under hosts/<host>/generated/.
     hostPubkey = keys.hosts.${config.networking.hostName};
 
     # Master identity (YubiKey FIDO2)

@@ -176,7 +176,6 @@
         desktop = {
           imports = [
             ../profiles/home/desktop.nix
-            homeGhostty
           ];
         };
 

@@ -1,15 +1,16 @@
-{ pkgs, self, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
     ./default.nix
     ../../home/browser/zen-browser.nix
-    self.modules.homeManager.dev
-    self.modules.homeManager.homeDisplayTools
     ../../home/services/ssh-client.nix
+    ../../home/dev
+    ../../home/terminal/ghostty.nix
   ];
 
   home.packages = with pkgs; [
+    wlr-randr
     nautilus
     loupe
     mpv

@@ -1,7 +1,10 @@
 _:
 
 let
-  btrfs-subvols = import ../../lib/disko-common.nix { };
+  mountOptions = [
+    "compress=zstd"
+    "noatime"
+  ];
 in
 {
   disko.devices = {
@@ -18,7 +21,24 @@ in
               content = {
                 type = "btrfs";
                 extraArgs = [ "-f" ];
-                subvolumes = btrfs-subvols;
+                subvolumes = {
+                  "@" = {
+                    mountpoint = "/";
+                    inherit mountOptions;
+                  };
+                  "@home" = {
+                    mountpoint = "/home";
+                    inherit mountOptions;
+                  };
+                  "@nix" = {
+                    mountpoint = "/nix";
+                    inherit mountOptions;
+                  };
+                  "@log" = {
+                    mountpoint = "/var/log";
+                    inherit mountOptions;
+                  };
+                };
               };
             };
           };

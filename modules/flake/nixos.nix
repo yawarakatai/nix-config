@@ -46,18 +46,13 @@ in
     nixosConfigurations = {
       desuwa = mkHost "desuwa" nixosModules.profileDesktopNiri { };
 
-      nanodesu = mkHost "nanodesu" nixosModules.profileLaptop {
-        extraModules = [ inputs.lanzaboote.nixosModules.lanzaboote ];
-      };
+      nanodesu = mkHost "nanodesu" nixosModules.profileLaptop { };
 
       dane = mkHost "dane" nixosModules.profileServer {
         system = "aarch64-linux";
-        extraModules = [ inputs.nixos-rock5t.nixosModules.rock5t ];
       };
 
-      kamo = mkHost "kamo" nixosModules.profileDesktopNiri {
-        extraModules = [ inputs.nixos-hardware.nixosModules.asus-ally-rc71l ];
-      };
+      kamo = mkHost "kamo" nixosModules.profileDesktopNiri { };
     };
 
     agenix-rekey = inputs.agenix-rekey.configure {

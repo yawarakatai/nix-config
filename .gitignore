@@ -2,9 +2,9 @@
 result
 result-*
 
-# Hardware configuration (machine-specific, regenerate on each machine)
+# Hardware configuration (machine-specific, generated under hosts/*/generated)
 # Uncomment if you want to regenerate on each machine:
-# hosts/*/hardware-configuration.nix
+# hosts/*/generated/hardware-configuration.nix
 
 # Secrets - NEVER commit unencrypted secrets
 secrets/*.key
