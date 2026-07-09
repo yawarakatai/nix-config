@@ -50,10 +50,6 @@
         vrr = false;
       };
     };
-    wallpaper.image = pkgs.fetchurl {
-      url = "https://i.redd.it/mg5w8i3gkstg1.jpeg";
-      hash = "sha256-02EacG9i2c4puqQ5VRVPTBZmZDInA8pBC8QG9IMJEn8=";
-    };
     ui.scale = 1.25;
   };
 }
