@@ -25,6 +25,7 @@
             metdb (tap-hold-release $tap-timeout $hold-timeout (multi lmet d) lmet)
             bsnav (tap-hold-release $tap-timeout $hold-timeout bspc (layer-toggle nav))
             spsft (tap-hold-release $tap-timeout $hold-timeout spc  lsft)
+            qwhld (layer-while-held qwerty)
             colqw (layer-switch qwerty)
             qwcol (layer-switch colemak-dh)
           )
@@ -34,7 +35,7 @@
             tab    q      w      f      p      b      j      l      u      y      ;      [      ]      \
             @esctl a      r      s      t      g      m      n      e      i      o      '      ret
             lsft   x      c      d      v      z      k      h      ,      .      /      rsft
-            lctl   @metdb lalt                 @spsft               @bsnav rmet   @colqw
+            @qwhld @metdb lalt                 @spsft               @bsnav rmet   @colqw
           )
 
           (deflayer nav
