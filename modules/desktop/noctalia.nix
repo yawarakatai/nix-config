@@ -76,12 +76,9 @@ in
         end = [
           "tray"
           "clipboard"
-          "network"
-          "bluetooth"
           "volume"
           "brightness"
           "battery"
-          "session"
         ];
         dead_zone.command = "noctalia msg panel-toggle control-center home";
       };
