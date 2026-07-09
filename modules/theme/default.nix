@@ -6,7 +6,6 @@ in
 {
   imports = [
     ./stylix.nix
-    ./wallpaper.nix
   ];
 
   options.my.theme = {

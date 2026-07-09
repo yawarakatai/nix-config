@@ -8,11 +8,19 @@
 let
   theme = osConfig.my.theme;
   ui = osConfig.my.ui;
+  wallpaper = osConfig.my.wallpaper;
 in
 {
   imports = [
     inputs.noctalia.homeModules.default
   ];
+
+  home.file.".cache/noctalia/wallpapers.json" = lib.mkIf (wallpaper.image != null) {
+    text = builtins.toJSON {
+      defaultWallpaper = "${wallpaper.image}";
+      wallpapers = { };
+    };
+  };
 
   programs.noctalia = {
     enable = true;

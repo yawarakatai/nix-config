@@ -7,7 +7,8 @@
 }:
 
 let
-  monitors = osConfig.my.system.monitors;
+  outputs = osConfig.my.display.outputs;
+  wallpaper = osConfig.my.wallpaper;
 in
 {
   programs.niri.settings = {
@@ -40,19 +41,15 @@ in
     };
 
     # Output configuration
-    outputs = {
-      "${monitors.primary.name}" = {
-        mode = {
-          width = monitors.primary.width;
-          height = monitors.primary.height;
-          refresh = monitors.primary.refresh;
-        };
-        variable-refresh-rate = if monitors.primary.vrr then "on-demand" else false;
-        scale = monitors.primary.scale;
-        transform.rotation = monitors.primary.transform;
-        position = monitors.primary.position;
+    outputs = lib.mapAttrs (_name: output: {
+      inherit (output) enable;
+      mode = {
+        inherit (output) width height refresh;
       };
-    };
+      variable-refresh-rate = if output.vrr then "on-demand" else false;
+      inherit (output) scale position;
+      transform.rotation = output.transform;
+    }) outputs;
 
     window-rules = lib.mkBefore [
       {
@@ -73,7 +70,7 @@ in
 
     # Layout configuration
     layout = {
-      background-color = "transparent";
+      background-color = if wallpaper.image == null then wallpaper.fallbackColor else "transparent";
 
       always-center-single-column = true;
 

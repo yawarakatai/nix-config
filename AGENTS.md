@@ -44,6 +44,7 @@ This repository is a personal NixOS/Home Manager configuration. It uses flake-pa
 - Niri window rules: `modules/desktop/niri/home/window-rules.nix`
 - Niri output/settings: `modules/desktop/niri/home/settings.nix`
 - Noctalia: `modules/desktop/noctalia.nix`
+- Wallpaper options: `my.wallpaper.*` in host `system.nix`; Noctalia writes wallpaper state
 - Ghostty: `modules/home/terminal/ghostty.nix`
 - CLI tools: `modules/home/cli/default.nix`
 - Development tools: `modules/home/dev/default.nix`
@@ -52,7 +53,7 @@ This repository is a personal NixOS/Home Manager configuration. It uses flake-pa
 - Desktop profile aggregation: `modules/profiles/home/desktop*.nix`
 - Flake module registry: `modules/flake/module-registry.nix`
 - Host import glue: `hosts/<host>/default.nix`
-- Host-specific system settings: `hosts/<host>/system.nix`
+- Host-specific system, display, and wallpaper settings: `hosts/<host>/system.nix`
 - Host-specific hardware imports and quirks: `hosts/<host>/hardware.nix`
 - Host disk layout: `hosts/<host>/storage/disko.nix`
 - Generated host facts: `hosts/<host>/generated/`

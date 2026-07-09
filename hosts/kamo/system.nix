@@ -48,13 +48,19 @@ in
   ];
 
   my = {
-    system.monitors.primary = {
-      name = "eDP-1";
-      width = 1920;
-      height = 1080;
-      refresh = 59.999;
-      scale = 1.0;
-      vrr = true;
+    display.outputs = {
+      "eDP-1" = {
+        primary = true;
+        width = 1920;
+        height = 1080;
+        refresh = 59.999;
+        scale = 1.0;
+        vrr = true;
+      };
+    };
+    wallpaper.image = pkgs.fetchurl {
+      url = "https://i.redd.it/mg5w8i3gkstg1.jpeg";
+      hash = "sha256-02EacG9i2c4puqQ5VRVPTBZmZDInA8pBC8QG9IMJEn8=";
     };
     ui.scale = 2.0;
   };

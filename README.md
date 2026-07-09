@@ -56,7 +56,7 @@ Private SSH host keys are never committed. They are copied temporarily to `/tmp/
 
 | Change | Edit |
 | ------ | ---- |
-| Host-specific boot, services, monitor, or package settings | `hosts/<host>/system.nix` |
+| Host-specific boot, services, display, wallpaper, or package settings | `hosts/<host>/system.nix` |
 | Host-specific hardware modules and device quirks | `hosts/<host>/hardware.nix` |
 | Host install disk layout | `hosts/<host>/storage/disko.nix` |
 | Generated hardware facts or SSH host public key | `hosts/<host>/generated/` via `install-host` |
@@ -64,6 +64,10 @@ Private SSH host keys are never committed. They are copied temporarily to `/tmp/
 | Reusable NixOS or Home Manager features | `modules/` |
 | Profile aggregation | `modules/profiles/` |
 | Published flake module names | `modules/flake/module-registry.nix` |
+
+Display outputs are configured with `my.display.outputs`, keyed by output name. Set `enable = false` on an output to keep a known external display disabled.
+
+Wallpaper is configured with `my.wallpaper.image` and is shared across all displays. When it is `null`, Niri uses `my.wallpaper.fallbackColor` as a solid background. Noctalia owns wallpaper JSON generation; Stylix should not set `stylix.image`.
 
 ## Common commands
 
