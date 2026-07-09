@@ -88,10 +88,11 @@ After normal Nix refactors, prefer:
 nix develop -c just check
 ```
 
-For desktop or system-level changes, prefer:
+For desktop or system-level changes, run `check` and build the affected host:
 
 ```bash
-nix develop -c just full-check
+nix develop -c just check
+nix develop -c just build desuwa
 ```
 
 Equivalent manual commands for environments without `just`:

@@ -15,13 +15,6 @@ in
     inputs.noctalia.homeModules.default
   ];
 
-  home.file.".cache/noctalia/wallpapers.json" = lib.mkIf (wallpaper.image != null) {
-    text = builtins.toJSON {
-      defaultWallpaper = "${wallpaper.image}";
-      wallpapers = { };
-    };
-  };
-
   programs.noctalia = {
     enable = true;
     systemd.enable = true;
@@ -52,6 +45,10 @@ in
         enabled = true;
         blur_intensity = 0.55;
         tint_intensity = 0.2;
+      };
+
+      wallpaper = lib.mkIf (wallpaper.image != null) {
+        default.path = "${wallpaper.image}";
       };
 
       notification = {
