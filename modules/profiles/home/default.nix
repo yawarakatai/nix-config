@@ -25,7 +25,7 @@
     source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-config";
   };
 
-  xdg.configFile."fastfetch/config.jsonc".source = ../../home/fastfetch/config.jsonc;
+  xdg.configFile."fastfetch/config.jsonc".source = ../../home/cli/fastfetch/config.jsonc;
 
   # Environment variables
   home.sessionVariables = {
