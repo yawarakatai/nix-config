@@ -20,8 +20,11 @@ let
       modules = [
         {
           networking.hostName = hostname;
-          nixpkgs.hostPlatform = system;
-          nixpkgs.config.allowUnfree = true;
+          nixpkgs = {
+            hostPlatform = system;
+            config.allowUnfree = true;
+            overlays = [ self.overlays.default ];
+          };
           system.stateVersion = "25.05";
         }
         ../../hosts/${hostname}

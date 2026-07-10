@@ -43,10 +43,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    niri = {
-      url = "github:sodiboo/niri-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    niri.url = "github:sodiboo/niri-flake";
 
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
@@ -87,6 +84,7 @@
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         inputs.treefmt-nix.flakeModule
+        ./overlays
         ./modules/flake/module-registry.nix
         ./modules/flake/dev.nix
         ./modules/flake/nixos.nix
