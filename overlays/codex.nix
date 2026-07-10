@@ -17,7 +17,6 @@ let
     }
     .${prev.stdenv.hostPlatform.system}
       or (throw "codex: unsupported system ${prev.stdenv.hostPlatform.system}");
-
 in
 {
   codex = prev.stdenvNoCC.mkDerivation {
@@ -33,6 +32,7 @@ in
 
     nativeBuildInputs = [
       prev.installShellFiles
+      prev.makeWrapper
     ];
 
     installPhase = ''
@@ -40,7 +40,14 @@ in
 
       install -Dm755 \
         codex-${platform.target} \
-        $out/bin/codex
+        $out/libexec/codex
+
+      makeWrapper $out/libexec/codex $out/bin/codex \
+        --prefix PATH : "${
+          prev.lib.makeBinPath [
+            prev.bubblewrap
+          ]
+        }"
 
       runHook postInstall
     '';
