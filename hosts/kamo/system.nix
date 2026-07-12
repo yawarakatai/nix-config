@@ -27,6 +27,8 @@ in
     power-profiles-daemon.enable = true;
     upower.enable = true;
     fwupd.enable = true;
+
+    logind.settings.Login.HandlePowerKey = "ignore";
   };
 
   hardware.asus.battery.chargeUpto = 80;
