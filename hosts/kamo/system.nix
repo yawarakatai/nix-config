@@ -59,6 +59,9 @@ in
         scale = 1.0;
         vrr = true;
       };
+      "DP-2" = {
+        enable = false;
+      };
     };
     wallpaper.image = pkgs.fetchurl {
       url = "https://i.redd.it/mg5w8i3gkstg1.jpeg";
