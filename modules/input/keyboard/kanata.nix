@@ -58,6 +58,14 @@
     };
   };
 
+  # Bluetooth keyboards can temporarily remove their evdev device while
+  # sleeping or reconnecting. Kanata exits on some of those races, so let
+  # systemd bring it back once the device is available again.
+  systemd.services.kanata-internal.serviceConfig = {
+    Restart = "on-failure";
+    RestartSec = "3s";
+  };
+
   users.users.${username}.extraGroups = [
     "uinput"
     "input"
