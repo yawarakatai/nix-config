@@ -23,7 +23,6 @@ let
           nixpkgs = {
             hostPlatform = system;
             config.allowUnfree = true;
-            overlays = [ self.overlays.default ];
           };
           system.stateVersion = "25.05";
         }
