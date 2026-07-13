@@ -4,6 +4,7 @@
   imports = [
     ./blur.nix
     ./binds.nix
+    ./clipboard.nix
     ./settings.nix
     ./window-rules.nix
   ];

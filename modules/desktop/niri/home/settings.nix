@@ -130,6 +130,19 @@ in
       hide-not-bound = true;
     };
 
+    # Make the active Wayland display available to commands run over SSH.
+    spawn-at-startup = [
+      {
+        argv = [
+          "${pkgs.dbus}/bin/dbus-update-activation-environment"
+          "--systemd"
+          "WAYLAND_DISPLAY"
+          "XDG_CURRENT_DESKTOP"
+          "XDG_SESSION_TYPE"
+        ];
+      }
+    ];
+
     # Animations
     animations = {
       enable = true;
