@@ -161,7 +161,8 @@ let
           gamepad:
             button: RightStick
         target_events:
-          - keyboard: KeyF13
+          - keyboard: KeyLeftMeta
+          - keyboard: KeyG
   '';
 
   inputplumberData = pkgs.symlinkJoin {
