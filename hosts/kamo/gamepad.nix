@@ -1,9 +1,7 @@
-_:
+{ lib, pkgs, ... }:
 
-{
-  services.inputplumber.enable = true;
-
-  environment.etc."inputplumber/profiles/default.yaml".text = ''
+let
+  desktopProfile = pkgs.writeTextDir "share/inputplumber/profiles/default.yaml" ''
     version: 1
     kind: DeviceProfile
     name: Kamo desktop controls
@@ -40,8 +38,8 @@ _:
         target_events:
           - keyboard: KeyRight
 
-      # Left stick: scrolling
-      - name: Scroll up
+      # Left stick: page navigation
+      - name: Page up
         source_event:
           gamepad:
             axis:
@@ -49,9 +47,8 @@ _:
               direction: up
               deadzone: 0.2
         target_events:
-          - mouse:
-              button: WheelUp
-      - name: Scroll down
+          - keyboard: KeyPageUp
+      - name: Page down
         source_event:
           gamepad:
             axis:
@@ -59,9 +56,8 @@ _:
               direction: down
               deadzone: 0.2
         target_events:
-          - mouse:
-              button: WheelDown
-      - name: Scroll left
+          - keyboard: KeyPageDown
+      - name: Home
         source_event:
           gamepad:
             axis:
@@ -69,9 +65,8 @@ _:
               direction: left
               deadzone: 0.2
         target_events:
-          - mouse:
-              button: WheelLeft
-      - name: Scroll right
+          - keyboard: KeyHome
+      - name: End
         source_event:
           gamepad:
             axis:
@@ -79,8 +74,7 @@ _:
               direction: right
               deadzone: 0.2
         target_events:
-          - mouse:
-              button: WheelRight
+          - keyboard: KeyEnd
 
       # Right stick: pointer
       - name: Mouse pointer
@@ -104,18 +98,18 @@ _:
       - name: X right click
         source_event:
           gamepad:
-            button: West
+            button: North
         target_events:
           - mouse:
               button: Right
       - name: Y middle click
         source_event:
           gamepad:
-            button: North
+            button: West
         target_events:
           - mouse:
               button: Middle
-      - name: LT left click
+      - name: LT right click
         source_event:
           gamepad:
             trigger:
@@ -123,8 +117,8 @@ _:
               deadzone: 0.2
         target_events:
           - mouse:
-              button: Left
-      - name: RT right click
+              button: Right
+      - name: RT left click
         source_event:
           gamepad:
             trigger:
@@ -132,7 +126,7 @@ _:
               deadzone: 0.2
         target_events:
           - mouse:
-              button: Right
+              button: Left
 
       # Keyboard and Niri shortcuts
       - name: B escape
@@ -141,19 +135,20 @@ _:
             button: East
         target_events:
           - keyboard: KeyEsc
-      - name: Menu return
+      - name: Menu launcher
         source_event:
           gamepad:
             button: Start
         target_events:
-          - keyboard: KeyEnter
-      - name: View launcher
+          - keyboard: KeyLeftMeta
+          - keyboard: KeySpace
+      - name: View session menu
         source_event:
           gamepad:
             button: Select
         target_events:
           - keyboard: KeyLeftMeta
-          - keyboard: KeySpace
+          - keyboard: KeyEsc
       - name: L3 close window
         source_event:
           gamepad:
@@ -166,20 +161,19 @@ _:
           gamepad:
             button: RightStick
         target_events:
-          - keyboard: KeyLeftMeta
-          - keyboard: KeyM
-      - name: M1 session menu
-        source_event:
-          gamepad:
-            button: RightPaddle1
-        target_events:
-          - keyboard: KeyLeftMeta
-          - keyboard: KeyEsc
-      - name: M2 play pause
-        source_event:
-          gamepad:
-            button: LeftPaddle1
-        target_events:
-          - keyboard: KeyPlayPause
+          - keyboard: KeyF13
   '';
+
+  inputplumberData = pkgs.symlinkJoin {
+    name = "inputplumber-data";
+    paths = [
+      desktopProfile
+      pkgs.inputplumber
+    ];
+  };
+in
+{
+  services.inputplumber.enable = true;
+
+  systemd.services.inputplumber.environment.XDG_DATA_DIRS = lib.mkForce "${inputplumberData}/share";
 }

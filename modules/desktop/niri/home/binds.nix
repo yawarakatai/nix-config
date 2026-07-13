@@ -52,6 +52,7 @@ _:
       "Mod+Shift+Y".action.move-column-to-workspace-up = [ ];
 
       # --- Layout ---
+      "F13".action.maximize-column = [ ]; # InputPlumber R3
       "Mod+T".action.switch-preset-column-width = [ ];
       "Mod+M".action.maximize-column = [ ];
       "Mod+W".action.fullscreen-window = [ ];
