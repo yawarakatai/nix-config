@@ -40,6 +40,12 @@ in
       };
     };
 
+    switch-events = {
+      power-key = {
+        action.power-off-monitors = [ ];
+      };
+    };
+
     # Output configuration
     outputs = lib.mapAttrs (_name: output: {
       inherit (output) enable;
