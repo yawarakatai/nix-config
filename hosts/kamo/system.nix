@@ -28,12 +28,6 @@ in
     upower.enable = true;
     fwupd.enable = true;
 
-    logind.settings.Login = {
-      HandlePowerKey = "ignore";
-      HandlePowerKeyLongPress = "ignore";
-    };
-
-    acpid.enable = false;
   };
 
   hardware.asus.battery.chargeUpto = 80;
