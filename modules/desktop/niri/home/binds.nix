@@ -84,6 +84,5 @@ _:
 
       # --- System ---
       "Mod+Escape".action.spawn = sh "noctalia msg panel-toggle session";
-      "XF86PowerOff".action.power-off-monitors = [ ];
     };
 }

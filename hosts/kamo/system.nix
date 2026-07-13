@@ -28,7 +28,41 @@ in
     upower.enable = true;
     fwupd.enable = true;
 
-    logind.settings.Login.HandlePowerKey = "ignore";
+    logind.settings.Login = {
+      HandlePowerKey = "ignore";
+      HandlePowerKeyLongPress = "ignore";
+    };
+
+    acpid = {
+      enable = true;
+      logEvents = true;
+
+      powerEventCommands = ''
+        niri_socket="$(
+          find /run/user/* \
+            -maxdepth 1 \
+            -type s \
+            -name 'niri*.sock' \
+            -print \
+            -quit 2>/dev/null
+        )"
+
+        if [ -z "$niri_socket" ]; then
+          echo "No active niri socket found" >&2
+          exit 1
+        fi
+
+        socket_uid="$(${pkgs.coreutils}/bin/stat -c %u "$niri_socket")"
+        socket_user="$(${pkgs.coreutils}/bin/id -nu "$socket_uid")"
+
+        ${pkgs.util-linux}/bin/runuser \
+          -u "$socket_user" \
+          -- ${pkgs.coreutils}/bin/env \
+          NIRI_SOCKET="$niri_socket" \
+          ${config.programs.niri.package}/bin/niri \
+          msg action power-off-monitors
+      '';
+    };
   };
 
   hardware.asus.battery.chargeUpto = 80;
