@@ -50,7 +50,7 @@ in
 
       nanodesu = mkHost "nanodesu" nixosModules.profileLaptop { };
 
-      dane = mkHost "dane" nixosModules.profileServer {
+      dane = mkHost "dane" nixosModules.profileMinimal {
         system = "aarch64-linux";
       };
 

@@ -64,6 +64,20 @@
         ];
       };
 
+      # Headless hosts that only need local administration over SSH.
+      profileMinimal = {
+        imports = [
+          inputs.disko.nixosModules.disko
+          ../core/boot.nix
+          ../core/locale.nix
+          ../core/networking.nix
+          ../core/nix.nix
+          ../core/packages.nix
+          ../storage/zram.nix
+          servicesOpenSsh
+        ];
+      };
+
       profileSecret = {
         imports = [
           profileBase
@@ -167,6 +181,12 @@
         };
 
       profiles = {
+        minimal = {
+          imports = [
+            ../profiles/home/minimal.nix
+          ];
+        };
+
         base = {
           imports = [
             ../profiles/home/default.nix
