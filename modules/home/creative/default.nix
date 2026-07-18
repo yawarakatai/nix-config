@@ -13,5 +13,7 @@
 
     # # PCB design
     # kicad
+
+    kdePackages.kdenlive
   ];
 }
