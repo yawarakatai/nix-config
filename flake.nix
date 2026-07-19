@@ -86,6 +86,7 @@
         inputs.treefmt-nix.flakeModule
         ./modules/flake/module-registry.nix
         ./modules/flake/dev.nix
+        ./modules/flake/home.nix
         ./modules/flake/nixos.nix
       ];
       systems = [
