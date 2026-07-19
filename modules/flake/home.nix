@@ -20,7 +20,7 @@ let
       };
 
       modules = [
-        self.modules.homeManager.profiles.portable
+        ../profiles/home/portable.nix
         {
           home = {
             inherit username;
