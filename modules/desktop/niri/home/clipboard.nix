@@ -2,6 +2,8 @@
 
 {
   home.packages = [
+    pkgs.wl-clipboard
+
     (pkgs.writeShellScriptBin "clip-send" ''
       set -eu
 
