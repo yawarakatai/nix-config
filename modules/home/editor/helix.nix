@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
   # Install language servers and tools needed by Helix
@@ -18,7 +18,15 @@
   programs.helix = {
     enable = true;
 
+    themes.stylix-vivid = {
+      inherits = "stylix";
+      operator = "base0E";
+      "punctuation.delimiter" = "base04";
+    };
+
     settings = {
+      theme = lib.mkForce "stylix-vivid";
+
       editor = {
         mouse = true;
         cursorline = true;
@@ -242,21 +250,18 @@
           ];
         }
         {
-          name = "gura";
-          scope = "source.gura";
-          file-types = [ "gura" ];
+          name = "tyfu";
+          scope = "source.tyfu";
+          file-types = [ "fu" ];
           comment-token = "#";
           indent = {
             tab-width = 4;
             unit = "    ";
           };
           language-servers = [
-            "gura"
+            "tyfu"
           ];
-          formatter = {
-            command = "gura";
-            args = [ "fmt" ];
-          };
+          auto-format = true;
         }
       ];
 
@@ -294,8 +299,8 @@
           };
         };
 
-        gura = {
-          command = "gura";
+        tyfu = {
+          command = "tyfu";
           args = [ "lsp" ];
         };
       };
