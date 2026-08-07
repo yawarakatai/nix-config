@@ -1,15 +1,23 @@
-_:
+{
+  config,
+  lib,
+  ...
+}:
 let
   keys = import ../../../secrets/keys.nix;
-
-  yubikeyIdentities = [
-    "~/.ssh/yubikey_5"
-    "~/.ssh/yubikey_5c"
-  ];
+  identities = config.my.ssh.identityFiles;
 in
 {
+  options.my.ssh.identityFiles = lib.mkOption {
+    type = lib.types.listOf lib.types.str;
+    default = [
+      "~/.ssh/yubikey_5"
+      "~/.ssh/yubikey_5c"
+    ];
+    description = "SSH identity files used for hosts managed by this configuration.";
+  };
+
   home.file = {
-    ".ssh/.keep".text = "";
     ".ssh/yubikey_5.pub".text = keys.ssh.yubikey-5;
     ".ssh/yubikey_5c.pub".text = keys.ssh.yubikey-5c;
   };
@@ -23,34 +31,34 @@ in
 
       "desuwa" = {
         hostname = "desuwa.yawarakatai.com";
-        identityFile = yubikeyIdentities;
+        identityFile = identities;
         identitiesOnly = true;
         identityAgent = "none";
       };
 
       "dane" = {
         hostname = "dane.yawarakatai.com";
-        identityFile = yubikeyIdentities;
+        identityFile = identities;
         identitiesOnly = true;
         identityAgent = "none";
       };
 
       "kamo" = {
         hostname = "kamo.yawarakatai.com";
-        identityFile = yubikeyIdentities;
+        identityFile = identities;
         identitiesOnly = true;
         identityAgent = "none";
       };
 
       "github.com" = {
         user = "git";
-        identityFile = yubikeyIdentities;
+        identityFile = identities;
         identitiesOnly = true;
         identityAgent = "none";
       };
 
       "192.168.*" = {
-        identityFile = yubikeyIdentities;
+        identityFile = identities;
         identitiesOnly = true;
         identityAgent = "none";
       };
