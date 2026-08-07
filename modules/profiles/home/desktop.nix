@@ -5,6 +5,7 @@
     ./default.nix
     ../../home/browser/zen-browser.nix
     ../../home/services/ssh-client.nix
+    ../../home/services/ssh-agenix.nix
     ../../home/dev
     ../../home/terminal/ghostty.nix
   ];
