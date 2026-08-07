@@ -9,6 +9,7 @@
     ../../home/cli
     ../../home/editor/helix.nix
     ../../home/shell
+    ../../home/nix-config.nix
   ];
 
   home = {
@@ -16,11 +17,6 @@
     homeDirectory = "/home/${username}";
     stateVersion = "25.05";
     enableNixpkgsReleaseCheck = false;
-  };
-
-  # Create symlink of nix-config
-  home.file."nix-config" = {
-    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-config";
   };
 
   xdg.configFile."fastfetch/config.jsonc".source = ../../home/cli/fastfetch/config.jsonc;
