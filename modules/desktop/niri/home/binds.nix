@@ -54,8 +54,7 @@ _:
       # --- Layout ---
       "Mod+T".action.switch-preset-column-width = [ ];
       "Mod+M".action.maximize-column = [ ];
-      "Mod+G".action.maximize-column = [ ];
-      "Mod+W".action.fullscreen-window = [ ];
+      "Mod+G".action.fullscreen-window = [ ];
 
       # --- Applications ---
       "Mod+Space".action.spawn = sh "noctalia msg panel-toggle launcher";
