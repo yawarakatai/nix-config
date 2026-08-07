@@ -17,6 +17,15 @@ Nix must be installed before this flake can be evaluated. On a normal Linux dist
 sh <(curl -L https://nixos.org/nix/install) --daemon
 ```
 
+If you are using distros with SELinux (Fedora, Bazzite, etc.)
+Use `Determinate Nix` instead.
+
+```bash
+curl --proto '=https' --tlsv1.2 -sSf -L \
+  https://install.determinate.systems/nix | \
+  sh -s -- install
+```
+
 Restart the shell after installation and verify it:
 
 ```bash
