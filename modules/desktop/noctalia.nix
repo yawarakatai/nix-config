@@ -30,9 +30,12 @@ in
         source = "custom";
       };
 
+      accessibility = {
+        ui_scale = ui.scale;
+      };
+
       shell = {
         font_family = lib.mkForce "JetBrainsMono NL Nerd Font";
-        ui_scale = ui.scale;
         niri_overview_type_to_launch_enabled = true;
 
         panel = {
