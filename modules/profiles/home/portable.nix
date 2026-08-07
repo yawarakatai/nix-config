@@ -10,7 +10,10 @@
 
   programs.home-manager.enable = true;
 
-  targets.genericLinux.enable = true;
+  targets.genericLinux.enable = {
+    enable = true;
+    gpu.enable = false;
+  };
 
   xdg.enable = true;
 
