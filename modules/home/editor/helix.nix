@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   # Install language servers and tools needed by Helix
@@ -18,14 +18,8 @@
   programs.helix = {
     enable = true;
 
-    themes.stylix-vivid = {
-      inherits = "stylix";
-      operator = "base0E";
-      "punctuation.delimiter" = "base04";
-    };
-
     settings = {
-      theme = lib.mkForce "stylix-vivid";
+      theme = "ayu-dark";
 
       editor = {
         mouse = true;
