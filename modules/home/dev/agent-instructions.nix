@@ -4,48 +4,33 @@
   ## General
 
   - Keep changes scoped to the user's request.
-  - Prefer small incremental changes over large rewrites.
-  - Understand nearby code and existing design before editing.
-  - If the task completes successfully and there are changes, always ask whether to commit them.
-
-  ## Environment
-
-  - Use the project's existing tools, languages, conventions, and package manager.
-  - Use Nix flakes when the project provides them.
-  - Prefer `nix develop -c <command>` for commands that need the dev environment.
-
-  ## Code Quality
-
-  - Prefer clear, readable, self-documenting code.
-  - Write code comments in English.
-  - Avoid premature abstraction.
-  - Prefer small, focused functions with a single responsibility.
-  - Extract helpers when they improve readability, testability, or remove repeated non-trivial logic.
-  - Avoid excessive fragmentation into tiny helpers.
-  - Keep core logic as pure as practical and keep I/O at the edges.
-  - Prefer explicit error handling over panics for recoverable errors.
-
-  ## Documentation
-
-  - Update documentation when changing user-visible behavior, CLI flags, config formats, public APIs, architecture, setup steps, or examples.
-  - Keep README, examples, and command help consistent with the implementation.
-  - Remove or update stale documentation instead of adding contradictory notes.
+  - Understand relevant existing code and design before editing.
+  - Prefer small, focused changes over unnecessary rewrites.
+  - Follow the project's existing tools, conventions, and architecture.
+  - Do not modify unrelated user changes.
 
   ## Dependencies
 
-  - Do not add new dependencies unless clearly justified.
-  - Prefer the standard library or existing project dependencies when practical.
-  - Ask before adding, replacing, or major-upgrading dependencies.
-  - Ask before updating lockfiles unless explicitly requested.
+  - Prefer existing dependencies and the standard library when practical.
+  - Do not add, replace, or major-upgrade dependencies unless necessary for the task or explicitly requested.
+  - Do not update lockfiles unnecessarily.
+
+  ## Quality
+
+  - Prefer clear, readable code and avoid premature abstraction.
+  - Keep I/O and side effects localized when practical.
+  - Handle recoverable errors explicitly rather than panicking.
+  - Update relevant documentation when user-facing behavior or interfaces change.
 
   ## Validation
 
-  - Add or update tests for behavior changes, bug fixes, parsers, protocols, and edge cases.
-  - Run relevant tests, linters and formatters after changes.
-  - If validation cannot be run, report the exact command that was skipped and why.
+  - Add or update tests when behavior changes warrant them.
+  - Run relevant tests, linters, and formatters after changes.
+  - If validation cannot be run, report what was skipped and why.
 
   ## Safety
 
   - Do not perform destructive, privileged, secret-related, or workspace-external actions unless explicitly requested.
   - Do not overwrite, revert, reformat, or move unrelated user changes.
+
 ''

@@ -9,5 +9,6 @@
     ./lazygit.nix
     ./codex.nix
     ./claude-code.nix
+    ./pi.nix
   ];
 }
