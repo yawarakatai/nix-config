@@ -6,6 +6,7 @@
     ../../home/editor/helix.nix
     ../../home/shell
     ../../home/dev
+    ../../home/services/ssh-client.nix
   ];
 
   programs.home-manager.enable = true;
