@@ -17,7 +17,12 @@ Target requirements:
   - SSH reachable, usually as nixos@<ip>
 
 What this script does:
-  - checks SSH connectivity
+  - checks the local flake host
+  - creates a temporary SSH key
+  - authenticates once with the installer password
+  - installs the temporary SSH public key on the installer
+  - reuses that key for all subsequent SSH connections
+  - checks/fixes large clock skew on the installer
   - shows remote disk IDs for comparison with hosts/<host>/storage/disko.nix
   - writes hosts/<host>/generated/hardware-configuration.nix
   - writes hosts/<host>/generated/ssh_host_ed25519_key.pub
@@ -70,41 +75,134 @@ confirm() {
   esac
 }
 
-write_host_key_file() {
-  local host="$1"
-  local target="$2"
-  local file="hosts/${host}/generated/ssh_host_ed25519_key.pub"
+# ---------------------------------------------------------------------------
+# SSH helpers
+# ---------------------------------------------------------------------------
 
-  mkdir -p "hosts/${host}/generated"
+ssh_tmp=""
+ssh_key=""
+ssh_known_hosts=""
 
-  ssh "$target" 'cat /etc/ssh/ssh_host_ed25519_key.pub' > "$file"
-
-  echo "wrote: $file"
-  echo "public key: $(cat "$file")"
+cleanup() {
+  if [[ -n "$ssh_tmp" && -d "$ssh_tmp" ]]; then
+    rm -rf "$ssh_tmp"
+  fi
 }
 
-prepare_extra_files() {
-  local host="$1"
-  local target="$2"
-  local extra_dir="/tmp/${host}"
+trap cleanup EXIT INT TERM
 
-  rm -rf "$extra_dir"
-  mkdir -p "$extra_dir/etc/ssh"
+setup_ssh() {
+  ssh_tmp="$(mktemp -d)"
+  ssh_key="${ssh_tmp}/id_ed25519"
+  ssh_known_hosts="${ssh_tmp}/known_hosts"
 
-  ssh "$target" \
-    'sudo tar -C /etc/ssh -cf - ssh_host_ed25519_key ssh_host_ed25519_key.pub' \
-    | tar -C "$extra_dir/etc/ssh" -xf -
+  ssh-keygen \
+    -q \
+    -t ed25519 \
+    -N "" \
+    -C "nixos-anywhere temporary installer key" \
+    -f "$ssh_key"
 
-  chmod 600 "$extra_dir/etc/ssh/ssh_host_ed25519_key"
-  chmod 644 "$extra_dir/etc/ssh/ssh_host_ed25519_key.pub"
-
-  echo "$extra_dir"
+  touch "$ssh_known_hosts"
+  chmod 600 "$ssh_known_hosts"
 }
+
+# SSH connection used after the initial password bootstrap.
+remote_ssh() {
+  ssh \
+    -i "$ssh_key" \
+    -o IdentitiesOnly=yes \
+    -o "UserKnownHostsFile=${ssh_known_hosts}" \
+    -o StrictHostKeyChecking=accept-new \
+    "$@"
+}
+
+bootstrap_ssh_key() {
+  local target="$1"
+
+  info "Installing temporary SSH key"
+  echo "The installer password should be requested once here."
+
+  cat "${ssh_key}.pub" |
+    ssh \
+      -o "UserKnownHostsFile=${ssh_known_hosts}" \
+      -o StrictHostKeyChecking=accept-new \
+      "$target" \
+      '
+        set -eu
+
+        umask 077
+        mkdir -p ~/.ssh
+        touch ~/.ssh/authorized_keys
+
+        key="$(cat)"
+
+        if ! grep -qxF "$key" ~/.ssh/authorized_keys; then
+          printf "%s\n" "$key" >> ~/.ssh/authorized_keys
+        fi
+      '
+
+  info "Checking key-based SSH connectivity"
+  remote_ssh "$target" 'echo connected'
+}
+
+# ---------------------------------------------------------------------------
+# Clock
+# ---------------------------------------------------------------------------
+
+check_remote_clock() {
+  local target="$1"
+  local local_epoch
+  local remote_epoch
+  local diff
+
+  local_epoch="$(date +%s)"
+  remote_epoch="$(remote_ssh "$target" 'date +%s')"
+
+  if (( local_epoch >= remote_epoch )); then
+    diff=$((local_epoch - remote_epoch))
+  else
+    diff=$((remote_epoch - local_epoch))
+  fi
+
+  if (( diff <= 300 )); then
+    echo "Clock difference: ${diff}s"
+    return
+  fi
+
+  warn "installer clock differs from local clock by ${diff}s"
+  info "Synchronizing installer clock"
+
+  # Set a sane clock immediately. The live ISO is ephemeral, so changing its
+  # clock here is safe and avoids TLS/tar/Nix failures caused by large skew.
+  remote_ssh "$target" \
+    "sudo date -u -s '@${local_epoch}' >/dev/null"
+
+  # Let NTP take over afterwards when available.
+  remote_ssh "$target" \
+    'sudo timedatectl set-ntp true >/dev/null 2>&1 || true'
+
+  remote_epoch="$(remote_ssh "$target" 'date +%s')"
+  local_epoch="$(date +%s)"
+
+  if (( local_epoch >= remote_epoch )); then
+    diff=$((local_epoch - remote_epoch))
+  else
+    diff=$((remote_epoch - local_epoch))
+  fi
+
+  echo "Clock difference after synchronization: ${diff}s"
+}
+
+# ---------------------------------------------------------------------------
+# Remote inspection/generation
+# ---------------------------------------------------------------------------
 
 show_disk_ids() {
   local target="$1"
 
-  ssh "$target" 'ls -l /dev/disk/by-id/ | sed -n "1,200p"'
+  remote_ssh "$target" \
+    'ls -l /dev/disk/by-id/ | sed -n "1,200p"'
 }
 
 generate_hardware_config() {
@@ -119,10 +217,49 @@ generate_hardware_config() {
     echo "backup: ${file}.bak"
   fi
 
-  ssh "$target" 'nixos-generate-config --show-hardware-config' > "$file"
+  remote_ssh "$target" \
+    'nixos-generate-config --no-filesystems --show-hardware-config' \
+    > "$file"
 
   echo "wrote: $file"
 }
+
+write_host_key_file() {
+  local host="$1"
+  local target="$2"
+  local file="hosts/${host}/generated/ssh_host_ed25519_key.pub"
+
+  mkdir -p "hosts/${host}/generated"
+
+  remote_ssh "$target" \
+    'cat /etc/ssh/ssh_host_ed25519_key.pub' \
+    > "$file"
+
+  echo "wrote: $file"
+  echo "public key: $(cat "$file")"
+}
+
+prepare_extra_files() {
+  local host="$1"
+  local target="$2"
+  local extra_dir="/tmp/${host}"
+
+  rm -rf "$extra_dir"
+  mkdir -p "$extra_dir/etc/ssh"
+
+  remote_ssh "$target" \
+    'sudo tar -C /etc/ssh -cf - ssh_host_ed25519_key ssh_host_ed25519_key.pub' \
+    | tar -C "$extra_dir/etc/ssh" -xf -
+
+  chmod 600 "$extra_dir/etc/ssh/ssh_host_ed25519_key"
+  chmod 644 "$extra_dir/etc/ssh/ssh_host_ed25519_key.pub"
+
+  echo "$extra_dir"
+}
+
+# ---------------------------------------------------------------------------
+# Arguments
+# ---------------------------------------------------------------------------
 
 no_install=0
 no_rekey=0
@@ -135,29 +272,36 @@ while [[ $# -gt 0 ]]; do
       no_install=1
       shift
       ;;
+
     --no-rekey)
       no_rekey=1
       shift
       ;;
+
     --no-format)
       no_format=1
       shift
       ;;
+
     --force)
       force=1
       shift
       ;;
+
     -h|--help)
       usage
       exit 0
       ;;
+
     --)
       shift
       break
       ;;
+
     -*)
       die "unknown option: $1"
       ;;
+
     *)
       break
       ;;
@@ -167,18 +311,38 @@ done
 host="${1:-}"
 target="${2:-}"
 
-[[ -n "$host" ]] || { usage; exit 1; }
-[[ -n "$target" ]] || { usage; exit 1; }
-[[ $# -le 2 ]] || die "disk argument was removed; edit hosts/${host}/storage/disko.nix instead"
+[[ -n "$host" ]] || {
+  usage
+  exit 1
+}
 
-[[ -f flake.nix ]] || die "run this script from the flake root"
-[[ -d "hosts/$host" ]] || die "hosts/$host does not exist"
-[[ -f "hosts/$host/storage/disko.nix" ]] || die "hosts/$host/storage/disko.nix does not exist"
+[[ -n "$target" ]] || {
+  usage
+  exit 1
+}
+
+[[ $# -le 2 ]] ||
+  die "disk argument was removed; edit hosts/${host}/storage/disko.nix instead"
+
+# ---------------------------------------------------------------------------
+# Local validation
+# ---------------------------------------------------------------------------
+
+[[ -f flake.nix ]] ||
+  die "run this script from the flake root"
+
+[[ -d "hosts/$host" ]] ||
+  die "hosts/$host does not exist"
+
+[[ -f "hosts/$host/storage/disko.nix" ]] ||
+  die "hosts/$host/storage/disko.nix does not exist"
 
 require_cmd ssh
+require_cmd ssh-keygen
 require_cmd tar
 require_cmd nix
 require_cmd chmod
+require_cmd date
 
 if [[ "$no_rekey" != "1" ]]; then
   require_cmd agenix
@@ -189,10 +353,28 @@ echo "Host:   $host"
 echo "Target: $target"
 
 info "Checking flake host"
-nix eval --raw ".#nixosConfigurations.${host}.config.networking.hostName" >/dev/null
+nix eval \
+  --raw \
+  ".#nixosConfigurations.${host}.config.networking.hostName" \
+  >/dev/null
 
-info "Checking SSH connectivity"
-ssh "$target" 'echo connected'
+# ---------------------------------------------------------------------------
+# SSH bootstrap
+# ---------------------------------------------------------------------------
+
+setup_ssh
+bootstrap_ssh_key "$target"
+
+# ---------------------------------------------------------------------------
+# Clock
+# ---------------------------------------------------------------------------
+
+info "Checking installer clock"
+check_remote_clock "$target"
+
+# ---------------------------------------------------------------------------
+# Disk confirmation
+# ---------------------------------------------------------------------------
 
 info "Remote disk IDs"
 show_disk_ids "$target"
@@ -200,7 +382,12 @@ echo
 
 info "Host disko configuration"
 echo "Using: hosts/${host}/storage/disko.nix"
+
 confirm "Continue using this disko configuration for ${host}?"
+
+# ---------------------------------------------------------------------------
+# Generate machine-specific state
+# ---------------------------------------------------------------------------
 
 info "Generating hardware configuration"
 generate_hardware_config "$host" "$target"
@@ -212,12 +399,20 @@ info "Preparing extra-files with ISO SSH host keys"
 extra_dir="$(prepare_extra_files "$host" "$target")"
 echo "prepared: $extra_dir"
 
+# ---------------------------------------------------------------------------
+# Agenix
+# ---------------------------------------------------------------------------
+
 if [[ "$no_rekey" != "1" ]]; then
   info "Rekeying agenix secrets"
   agenix rekey
 else
   warn "skipping agenix rekey due to --no-rekey"
 fi
+
+# ---------------------------------------------------------------------------
+# Formatting
+# ---------------------------------------------------------------------------
 
 if [[ "$no_format" != "1" ]]; then
   info "Formatting repository"
@@ -226,10 +421,23 @@ else
   warn "skipping nix fmt due to --no-format"
 fi
 
+# ---------------------------------------------------------------------------
+# Final evaluation
+# ---------------------------------------------------------------------------
+
 info "Evaluating host"
-nix eval --raw ".#nixosConfigurations.${host}.config.system.build.toplevel.drvPath" >/dev/null
+
+nix eval \
+  --raw \
+  ".#nixosConfigurations.${host}.config.system.build.toplevel.drvPath" \
+  >/dev/null
+
+# ---------------------------------------------------------------------------
+# Summary
+# ---------------------------------------------------------------------------
 
 info "Summary"
+
 echo "Host:       $host"
 echo "Target:     $target"
 echo "Disko:      hosts/${host}/storage/disko.nix"
@@ -246,13 +454,32 @@ if [[ "$no_install" == "1" ]]; then
   exit 0
 fi
 
-echo "This will install NixOS using hosts/${host}/storage/disko.nix and may destroy existing data."
+# ---------------------------------------------------------------------------
+# Destructive confirmation
+# ---------------------------------------------------------------------------
+
+echo "This will install NixOS using hosts/${host}/storage/disko.nix"
+echo "and may destroy existing data on the configured disk."
 echo
+
 read -r -p "Type '${host}' to start nixos-anywhere: " typed
-[[ "$typed" == "$host" ]] || die "host confirmation did not match"
+
+[[ "$typed" == "$host" ]] ||
+  die "host confirmation did not match"
+
+# ---------------------------------------------------------------------------
+# Installation
+# ---------------------------------------------------------------------------
 
 info "Running nixos-anywhere"
+
 nix run github:nix-community/nixos-anywhere -- \
   --flake ".#${host}" \
   --extra-files "$extra_dir" \
+  -i "$ssh_key" \
+  --ssh-option "IdentitiesOnly=yes" \
+  --ssh-option "UserKnownHostsFile=${ssh_known_hosts}" \
+  --ssh-option "StrictHostKeyChecking=accept-new" \
   "$target"
+
+info "Installation completed"
