@@ -69,8 +69,8 @@ in
       };
     };
     wallpaper.image = pkgs.fetchurl {
-      url = "https://i.redd.it/mg5w8i3gkstg1.jpeg";
-      hash = "sha256-02EacG9i2c4puqQ5VRVPTBZmZDInA8pBC8QG9IMJEn8=";
+      url = "https://github.com/dharmx/walls/blob/main/abstract/a_blue_and_orange_background.jpg?raw=true";
+      hash = "sha256-pqjk+zuSAcvTYHF7uPnf+2uIFg4l7Waz6fGzOUVDwFI=";
     };
     ui.scale = 2.0;
   };
