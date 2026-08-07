@@ -67,6 +67,8 @@
 
       settings = {
         browser = {
+          tabs.allow_transparent_browser = true;
+
           download.useDownloadDir = false;
           search.region = "JP";
 
@@ -112,12 +114,13 @@
         };
 
         zen = {
-          zen.view.show-newtab-button-top = false;
+          view.show-newtab-button-top = false;
           tabs.show-newtab-vertical = false;
           welcome-screen.seen = true;
           workspaces.continue-where-left-off = true;
           window-sync.enable = true;
           window-sync.sync-only-pinned-tabs = true;
+          widget.linux.transparency = true;
         };
       };
 
