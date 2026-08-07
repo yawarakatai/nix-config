@@ -15,11 +15,13 @@
     prettier # Markdown (and general) formatter
   ];
 
+  stylix.targets.helix.colors.enable = false;
+
   programs.helix = {
     enable = true;
 
     settings = {
-      theme = "ayu-dark";
+      theme = "ayu_evolve";
 
       editor = {
         mouse = true;
