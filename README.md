@@ -54,16 +54,16 @@ Private SSH host keys are never committed. They are copied temporarily to `/tmp/
 
 ## Where to edit
 
-| Change | Edit |
-| ------ | ---- |
-| Host-specific boot, services, display, wallpaper, or package settings | `hosts/<host>/system.nix` |
-| Host-specific hardware modules and device quirks | `hosts/<host>/hardware.nix` |
-| Host install disk layout | `hosts/<host>/storage/disko.nix` |
-| Generated hardware facts or SSH host public key | `hosts/<host>/generated/` via `install-host` |
-| Home Manager host-only additions | `hosts/<host>/home/default.nix` |
-| Reusable NixOS or Home Manager features | `modules/` |
-| Profile aggregation | `modules/profiles/` |
-| Published flake module names | `modules/flake/module-registry.nix` |
+| Change                                                                | Edit                                         |
+| --------------------------------------------------------------------- | -------------------------------------------- |
+| Host-specific boot, services, display, wallpaper, or package settings | `hosts/<host>/system.nix`                    |
+| Host-specific hardware modules and device quirks                      | `hosts/<host>/hardware.nix`                  |
+| Host install disk layout                                              | `hosts/<host>/storage/disko.nix`             |
+| Generated hardware facts or SSH host public key                       | `hosts/<host>/generated/` via `install-host` |
+| Home Manager host-only additions                                      | `hosts/<host>/home/default.nix`              |
+| Reusable NixOS or Home Manager features                               | `modules/`                                   |
+| Profile aggregation                                                   | `modules/profiles/`                          |
+| Published flake module names                                          | `modules/flake/module-registry.nix`          |
 
 Display outputs are configured with `my.display.outputs`, keyed by output name. Set `enable = false` on an output to keep a known external display disabled.
 
@@ -151,7 +151,6 @@ in
   hosts = {
     desuwa = readKey ../hosts/desuwa/generated/ssh_host_ed25519_key.pub;
     kamo = readKey ../hosts/kamo/generated/ssh_host_ed25519_key.pub;
-    dane = readKey ../hosts/dane/generated/ssh_host_ed25519_key.pub;
     nanodesu = readKey ../hosts/nanodesu/generated/ssh_host_ed25519_key.pub;
   };
 }
