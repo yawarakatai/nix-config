@@ -15,10 +15,7 @@
   environment.systemPackages = with pkgs; [
     protonplus
     heroic
-  ];
 
-  programs.mangohud = {
-    enable = true;
-    enableSessionWide = true;
-  };
+    mangohud
+  ];
 }
