@@ -4,5 +4,6 @@
     ./generated/hardware-configuration.nix
     ./hardware.nix
     ./system.nix
+    ../../modules/gaming
   ];
 }

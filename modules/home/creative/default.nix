@@ -12,7 +12,7 @@
     orca-slicer
 
     # # PCB design
-    # kicad
+    kicad
 
     kdePackages.kdenlive
   ];
