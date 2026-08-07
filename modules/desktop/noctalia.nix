@@ -20,6 +20,11 @@ in
     systemd.enable = true;
 
     settings = {
+      storage = {
+        key_source = "file";
+        key_file = "/run/agenix/noctalia-storage-key";
+      };
+
       theme = {
         mode = "dark";
         source = "custom";
