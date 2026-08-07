@@ -38,7 +38,7 @@ in
   };
 
   age.secrets.noctalia-storage-key = {
-    file = ../../secrets/noctalia-storage-key.age;
+    rekeyFile = ../../secrets/noctalia-storage-key.age;
     owner = username;
     mode = "0400";
   };
