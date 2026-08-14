@@ -15,10 +15,9 @@ in
     # Input configuration
     input = {
       keyboard = {
-        # xkb = {
-        #   layout = "us";
-        #   options = "ctrl:nocaps";
-        # };
+        xkb = {
+          options = "caps:none";
+        };
         repeat-delay = 300;
         repeat-rate = 50;
       };
