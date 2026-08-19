@@ -7,6 +7,9 @@
 }:
 
 let
+  edp1 = config.my.display.outputs."eDP-1";
+  dp2 = config.my.display.outputs."DP-2";
+
   niriSession = "${config.programs.niri.package}/bin/niri-session";
 in
 {
@@ -57,15 +60,29 @@ in
   my = {
     display.outputs = {
       "eDP-1" = {
-        primary = true;
+        primary = false;
         width = 1920;
         height = 1080;
         refresh = 59.999;
         scale = 1.0;
         vrr = true;
+        position = {
+          x = builtins.floor ((dp2.width / dp2.scale - edp1.width / edp1.scale) / 2);
+          y = builtins.floor (dp2.height / dp2.scale);
+        };
       };
       "DP-2" = {
-        enable = false;
+        enable = !edp1.primary;
+        primary = !edp1.primary;
+        width = 3840;
+        height = 2160;
+        refresh = 59.951000;
+        scale = 1.5;
+        vrr = true;
+        position = {
+          x = 0;
+          y = 0;
+        };
       };
     };
     wallpaper.image = pkgs.fetchurl {
