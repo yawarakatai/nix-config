@@ -57,24 +57,24 @@ let
               deadzone: 0.2
         target_events:
           - keyboard: KeyPageDown
-      - name: Home
-        source_event:
-          gamepad:
-            axis:
-              name: LeftStick
-              direction: left
-              deadzone: 0.2
-        target_events:
-          - keyboard: KeyHome
-      - name: End
-        source_event:
-          gamepad:
-            axis:
-              name: LeftStick
-              direction: right
-              deadzone: 0.2
-        target_events:
-          - keyboard: KeyEnd
+      # - name: Home
+      #   source_event:
+      #     gamepad:
+      #       axis:
+      #         name: LeftStick
+      #         direction: left
+      #         deadzone: 0.2
+      #   target_events:
+      #     - keyboard: KeyHome
+      # - name: End
+      #   source_event:
+      #     gamepad:
+      #       axis:
+      #         name: LeftStick
+      #         direction: right
+      #         deadzone: 0.2
+      #   target_events:
+      #     - keyboard: KeyEnd
 
       # Right stick: pointer
       - name: Mouse pointer
@@ -85,30 +85,35 @@ let
         target_events:
           - mouse:
               motion:
-                speed_pps: 800
+                speed_pps: 1400
 
       # Face buttons and triggers: mouse buttons
-      - name: A left click
+      - name: A Return
         source_event:
           gamepad:
             button: South
         target_events:
-          - mouse:
-              button: Left
-      - name: X right click
+          - keyboard: KeyEnter
+      - name: B Escape
+        source_event:
+          gamepad:
+            button: East
+        target_events:
+          - keyboard: KeyEsc
+      - name: X Overview
         source_event:
           gamepad:
             button: North
         target_events:
-          - mouse:
-              button: Right
-      - name: Y middle click
+          - keyboard: KeyLeftMeta
+          - keyboard: KeyTab
+      - name: Y Maximize
         source_event:
           gamepad:
             button: West
         target_events:
-          - mouse:
-              button: Middle
+          - keyboard: KeyLeftMeta
+          - keyboard: KeyG
       - name: LT right click
         source_event:
           gamepad:
@@ -129,12 +134,6 @@ let
               button: Left
 
       # Keyboard and Niri shortcuts
-      - name: B escape
-        source_event:
-          gamepad:
-            button: East
-        target_events:
-          - keyboard: KeyEsc
       - name: Menu launcher
         source_event:
           gamepad:
@@ -161,8 +160,8 @@ let
           gamepad:
             button: RightStick
         target_events:
-          - keyboard: KeyLeftMeta
-          - keyboard: KeyG
+          - mouse:
+              button: Middle
   '';
 
   inputplumberData = pkgs.symlinkJoin {
