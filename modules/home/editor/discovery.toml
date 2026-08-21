@@ -158,25 +158,25 @@
 # ─────────────────────────────
 
 [palette]
-background   = "#000000"
-surface      = "#11110D"
-selection    = "#1A170F"
+background   = "#000000" # base00
+surface      = "#1A1812" # base01
+selection    = "#5A543A" # base02
 
-divider      = "#534E36"
-panel        = "#6C6853"
-header       = "#BCA874"
+divider      = "#6F6747" # base03
+panel        = "#5A543A" # base02
+header       = "#BCA874" # base0A
 
-text         = "#DCC78E"
-bright-text  = "#E6D7AC"
-muted        = "#8F8460"
-subtle       = "#6C6853"
-comment      = "#AC2C0D"
+text         = "#DCC78E" # base05
+bright-text  = "#E6D7AC" # base06
+muted        = "#8F8460" # base04
+subtle       = "#6F6747" # base03
+comment      = "#D04428" # base08
 
-yellow       = "#E0B84A"
-amber        = "#BCA874"
-orange       = "#BE5F11"
-red          = "#AC2C0D"
-copper       = "#803E1D"
+yellow       = "#C0AC78" # base0B
+amber        = "#BCA874" # base0A
+orange       = "#D47A18" # base09
+red          = "#D04428" # base08
+copper       = "#B05F32" # base0E
 
-steel        = "#424D58"
-steel-light  = "#54626E"
+steel        = "#788993" # base0D
+steel-light  = "#82939B" # base0C

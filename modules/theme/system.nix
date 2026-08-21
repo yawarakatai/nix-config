@@ -11,9 +11,9 @@ let
 in
 {
   my.niri.border = {
-    color = stylixColors.base05;
-    inactiveColor = stylixColors.base01;
-    urgentColor = stylixColors.base08;
+    color = lib.mkDefault stylixColors.base05;
+    inactiveColor = lib.mkDefault stylixColors.base01;
+    urgentColor = lib.mkDefault stylixColors.base08;
   };
   my.wallpaper.fallbackColor = lib.mkDefault stylixColors.base00;
 
@@ -21,7 +21,7 @@ in
     enable = true;
     enableReleaseChecks = false;
 
-    base16Scheme = ./discovery.yaml;
+    base16Scheme = ./schemes/discovery.yaml;
 
     polarity = "dark";
 
