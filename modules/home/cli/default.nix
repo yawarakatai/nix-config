@@ -2,6 +2,8 @@
 {
   imports = [
     ./television.nix
+    ./wiremix.nix
+    ./yazi.nix
   ];
 
   programs.bat.enable = true;
@@ -12,6 +14,7 @@
     fd
     eza
     television
+    wiremix
 
     duf
     dust
