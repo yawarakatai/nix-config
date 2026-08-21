@@ -8,6 +8,7 @@
     ../../home/services/ssh-agenix.nix
     ../../home/dev
     ../../home/terminal/ghostty.nix
+    ../../theme/home.nix
   ];
 
   home.packages = with pkgs; [

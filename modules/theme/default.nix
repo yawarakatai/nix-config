@@ -5,7 +5,7 @@ let
 in
 {
   imports = [
-    ./stylix.nix
+    ./system.nix
   ];
 
   options.my.theme = {
