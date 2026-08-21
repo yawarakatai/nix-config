@@ -9,6 +9,9 @@ let
   theme = osConfig.my.theme;
   ui = osConfig.my.ui;
   wallpaper = osConfig.my.wallpaper;
+  inherit (theme) transparency;
+
+  effectiveOpacity = value: if transparency.enable then value else 1.0;
 in
 {
   imports = [
@@ -35,11 +38,11 @@ in
       };
 
       shell = {
-        font_family = lib.mkForce "JetBrainsMono NL Nerd Font";
+        font_family = lib.mkForce theme.fonts.monospace.name;
         niri_overview_type_to_launch_enabled = true;
 
         panel = {
-          transparency_mode = "glass";
+          transparency_mode = if transparency.enable then "glass" else "solid";
           borders = true;
           shadow = true;
           control_center_placement = "attached";
@@ -50,7 +53,7 @@ in
       };
 
       backdrop = {
-        enabled = true;
+        enabled = transparency.enable;
         blur_intensity = 0.55;
         tint_intensity = 0.2;
       };
@@ -60,19 +63,19 @@ in
       };
 
       notification = {
-        background_opacity = lib.mkForce theme.opacity.shellPopups;
+        background_opacity = lib.mkForce (effectiveOpacity theme.opacity.shellPopups);
         layer = "bottom";
       };
 
       osd = {
-        background_opacity = lib.mkForce theme.opacity.shellPopups;
+        background_opacity = lib.mkForce (effectiveOpacity theme.opacity.shellPopups);
         position = "top_right";
       };
 
       bar.main = {
         position = "bottom";
         inherit (ui) scale;
-        background_opacity = theme.opacity.shell;
+        background_opacity = effectiveOpacity theme.opacity.shell;
         radius = theme.rounding;
         margin_edge = 0;
         margin_opposite_edge = 0;

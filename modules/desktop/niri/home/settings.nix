@@ -9,6 +9,7 @@
 let
   outputs = osConfig.my.display.outputs;
   wallpaper = osConfig.my.wallpaper;
+  theme = osConfig.my.theme;
 in
 {
   programs.niri.settings = {
@@ -69,7 +70,11 @@ in
 
     # Layout configuration
     layout = {
-      background-color = if wallpaper.image == null then wallpaper.fallbackColor else "transparent";
+      background-color =
+        if theme.transparency.enable && wallpaper.image != null then
+          "transparent"
+        else
+          wallpaper.fallbackColor;
 
       always-center-single-column = true;
 

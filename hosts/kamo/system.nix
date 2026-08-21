@@ -76,8 +76,8 @@ in
         primary = !edp1.primary;
         width = 3840;
         height = 2160;
-        refresh = 59.951000;
-        scale = 1.5;
+        refresh = 60.0;
+        scale = 1.333;
         vrr = true;
         position = {
           x = 0;
@@ -86,8 +86,8 @@ in
       };
     };
     wallpaper.image = pkgs.fetchurl {
-      url = "https://github.com/dharmx/walls/blob/main/abstract/a_blue_and_orange_background.jpg?raw=true";
-      hash = "sha256-pqjk+zuSAcvTYHF7uPnf+2uIFg4l7Waz6fGzOUVDwFI=";
+      url = "https://w.wallhaven.cc/full/ly/wallhaven-lyje9y.png";
+      hash = "sha256-HfFfdim6S7KLhB2T7YT6b1RawA0tmaPGxk4QF27PB8o=";
     };
     ui.scale = 2.0;
   };

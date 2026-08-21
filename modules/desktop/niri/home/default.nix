@@ -2,7 +2,7 @@ _:
 
 {
   imports = [
-    ./blur.nix
+    # ./blur.nix
     ./binds.nix
     ./clipboard.nix
     ./settings.nix
