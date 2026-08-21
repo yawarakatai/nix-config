@@ -4,15 +4,8 @@
   programs.ghostty = {
     enable = true;
     settings = {
-      font-family = [
-        osConfig.my.theme.fonts.monospace.name
-        osConfig.my.theme.fonts.sansSerif.name
-      ];
-      font-size = 14;
       window-padding-x = osConfig.my.theme.terminal.padding;
       window-padding-y = osConfig.my.theme.terminal.padding;
-      background-opacity =
-        if osConfig.my.theme.transparency.enable then osConfig.my.theme.opacity.terminal else 1.0;
       confirm-close-surface = false;
       gtk-titlebar = true;
       shell-integration = "zsh";

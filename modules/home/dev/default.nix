@@ -1,6 +1,10 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
+  home.packages = with pkgs; [
+    python3
+  ];
+
   imports = [
     ./direnv.nix
     ./firn.nix

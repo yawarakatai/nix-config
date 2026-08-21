@@ -9,8 +9,11 @@
     },
     "separator": ""
   },
-  "logo": { "type": "auto" },
-    "modules": [
+  "logo": {
+    "type": "builtin",
+    "source": "NixOS2"
+  },
+  "modules": [
     {
       "type": "title",
       "key": "who",
@@ -37,7 +40,7 @@
       "type": "packages",
       "key": "pkgs",
       "keyColor": "blue",
-      "format": "{1}"
+      "format": "{all}"
     },
     {
       "type": "shell",
@@ -84,11 +87,6 @@
       "keyColor": "blue"
     },
     "break",
-    {
-      "type": "custom",
-      "key": "color",
-      "keyColor": "blue",
-      "format": "\u001b[33m󰮯 \u001b[32m󰊠 \u001b[34m󰊠 \u001b[31m󰊠 \u001b[36m󰊠 \u001b[35m󰊠 \u001b[37m󰊠 \u001b[97m󰊠"
-    }
+    "colors"
   ]
 }

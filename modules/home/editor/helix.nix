@@ -36,6 +36,9 @@
         bufferline = "multiple";
         line-number = "absolute";
 
+        trim-final-newlines = true;
+        trim-trailing-whitespace = true;
+
         # Clipboard configuration for Wayland
         clipboard-provider = "wayland";
 
@@ -71,9 +74,9 @@
           separator = "|";
 
           mode = {
-            normal = "NOR";
-            insert = "INS";
-            select = "SEL";
+            normal = "NORMAL MODE";
+            insert = "INSERT MODE";
+            select = "SELECT MODE";
           };
         };
 
