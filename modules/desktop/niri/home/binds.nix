@@ -61,8 +61,8 @@ _:
       "Mod+D".action.spawn = sh "noctalia msg panel-toggle control-center home";
       "Mod+Return".action.spawn = sh "exec ghostty --working-directory=\"$HOME\"";
       "Mod+B".action.spawn = [ "zen-beta" ];
-      "Mod+F".action.spawn = [ "nautilus" ];
-      "Mod+A".action.spawn = [ "pavucontrol" ];
+      "Mod+F".action.spawn = sh "exec ghostty --working-directory=\"$HOME\" -e yazi";
+      "Mod+A".action.spawn = sh "exec ghostty --working-directory=\"$HOME\" -e wiremix --tab output";
 
       # --- Screenshot ---
       "Mod+S".action.spawn = [ "screenshot-copy" ];
