@@ -20,6 +20,17 @@
           "XDG_SESSION_TYPE"
         ];
       }
+
+      # Keep a headless Ghostty GTK instance ready for +new-window. This avoids
+      # paying GTK/font initialization cost when opening the first terminal.
+      {
+        argv = [
+          "${pkgs.ghostty}/bin/ghostty"
+          "--gtk-single-instance=true"
+          "--initial-window=false"
+          "--quit-after-last-window-closed=false"
+        ];
+      }
     ];
 
     animations = {

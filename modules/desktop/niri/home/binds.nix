@@ -59,10 +59,11 @@ _:
       # --- Applications ---
       "Mod+Space".action.spawn = sh "noctalia msg panel-toggle launcher";
       "Mod+D".action.spawn = sh "noctalia msg panel-toggle control-center home";
-      "Mod+Return".action.spawn = sh "exec ghostty --working-directory=\"$HOME\"";
+      "Mod+Return".action.spawn = sh "exec ghostty +new-window --working-directory=\"$HOME\"";
       "Mod+B".action.spawn = [ "zen-beta" ];
-      "Mod+F".action.spawn = sh "exec ghostty --working-directory=\"$HOME\" -e yazi";
-      "Mod+A".action.spawn = sh "exec ghostty --working-directory=\"$HOME\" -e wiremix --tab output";
+      "Mod+F".action.spawn = sh "exec ghostty +new-window --working-directory=\"$HOME\" -e yazi";
+      "Mod+A".action.spawn =
+        sh "exec ghostty +new-window --working-directory=\"$HOME\" -e wiremix --tab output";
 
       # --- Screenshot ---
       "Mod+S".action.spawn = [ "screenshot-copy" ];
