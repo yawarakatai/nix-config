@@ -26,17 +26,17 @@
 "string.special.path" = "yellow"
 "string.special.url" = { fg = "yellow", modifiers = ["underlined"] }
 
-"comment" = { fg = "comment", modifiers = ["italic"] }
+"comment" = { fg = "red", modifiers = ["italic"] }
 "comment.line.documentation" = "red"
 "comment.block.documentation" = "red"
 
 "variable" = "text"
 "variable.parameter" = "text"
 "variable.builtin" = "amber"
-"variable.other.member" = "steel"
+"variable.other.member" = "steel-light"
 
 "label" = "red"
-"namespace" = "steel"
+"namespace" = "steel-light"
 
 "punctuation" = "text"
 "punctuation.delimiter" = "yellow"
@@ -89,7 +89,7 @@
 "diagnostic.warning" = { underline = { color = "orange", style = "curl" } }
 "diagnostic.error" = { underline = { color = "red", style = "curl" } }
 "diagnostic.info" = { underline = { color = "steel-light", style = "curl" } }
-"diagnostic.hint" = { underline = { color = "comment", style = "curl" } }
+"diagnostic.hint" = { underline = { color = "subtle", style = "curl" } }
 
 # ─────────────────────────────
 # UI
@@ -100,7 +100,7 @@
 "ui.text.focus" = "bright-text"
 "ui.text.inactive" = "muted"
 
-"ui.linenr" = "comment"
+"ui.linenr" = "muted"
 "ui.linenr.selected" = "amber"
 
 "ui.cursor" = { fg = "background", bg = "muted" }
@@ -137,7 +137,7 @@
 
 # Bottom instrument strip
 "ui.statusline" = { fg = "muted", bg = "surface" }
-"ui.statusline.inactive" = { fg = "comment", bg = "background" }
+"ui.statusline.inactive" = { fg = "subtle", bg = "background" }
 "ui.statusline.normal" = { fg = "background", bg = "header" }
 "ui.statusline.insert" = { fg = "background", bg = "orange" }
 "ui.statusline.select" = { fg = "background", bg = "amber" }
@@ -146,9 +146,9 @@
 
 "ui.highlight" = { bg = "surface" }
 
-"ui.virtual" = "comment"
+"ui.virtual" = "subtle"
 "ui.virtual.ruler" = { bg = "surface" }
-"ui.virtual.whitespace" = "comment"
+"ui.virtual.whitespace" = "subtle"
 "ui.virtual.indent-guide" = "divider"
 "ui.virtual.inlay-hint" = "steel"
 "ui.virtual.jump-label" = { fg = "orange", modifiers = ["bold"] }
@@ -169,9 +169,10 @@ header       = "#BCA874"
 text         = "#DCC78E"
 bright-text  = "#E6D7AC"
 muted        = "#8F8460"
-comment      = "#6C6853"
+subtle       = "#6C6853"
+comment      = "#AC2C0D"
 
-yellow       = "#DCC78E"
+yellow       = "#E0B84A"
 amber        = "#BCA874"
 orange       = "#BE5F11"
 red          = "#AC2C0D"

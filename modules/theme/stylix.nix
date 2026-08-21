@@ -7,8 +7,16 @@
 
 let
   effectiveOpacity = value: if config.my.theme.transparency.enable then value else 1.0;
+  stylixColors = config.lib.stylix.colors.withHashtag;
 in
 {
+  my.theme.border = {
+    color = stylixColors.base05;
+    inactiveColor = stylixColors.base01;
+    urgentColor = stylixColors.base08;
+  };
+  my.wallpaper.fallbackColor = lib.mkDefault stylixColors.base00;
+
   stylix = {
     enable = true;
     enableReleaseChecks = false;
@@ -39,7 +47,7 @@ in
       };
 
       sizes = {
-        terminal = 12;
+        terminal = 14;
         applications = 12;
         desktop = 12;
         popups = 12;
@@ -54,7 +62,7 @@ in
 
     icons = {
       enable = true;
-      package = pkgs.papirus-icon-theme;
+      package = pkgs.papirus-icon-theme.override { color = "brown"; };
       light = "Papirus";
       dark = "Papirus-Dark";
     };
@@ -68,4 +76,18 @@ in
 
     targets.qt.platform = lib.mkForce "qtct";
   };
+
+  home-manager.sharedModules = [
+    {
+      stylix.targets.gtk.extraCss = ''
+        @define-color accent_bg_color ${stylixColors.base0A};
+        @define-color accent_fg_color ${stylixColors.base00};
+        @define-color accent_color ${stylixColors.base0A};
+        @define-color theme_selected_bg_color ${stylixColors.base0A};
+        @define-color theme_selected_fg_color ${stylixColors.base00};
+        @define-color theme_unfocused_selected_bg_color ${stylixColors.base0A};
+        @define-color theme_unfocused_selected_fg_color ${stylixColors.base00};
+      '';
+    }
+  ];
 }

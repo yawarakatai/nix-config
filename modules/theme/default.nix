@@ -102,7 +102,25 @@ in
 
       width = mkOption {
         type = types.int;
-        default = 4;
+        default = 2;
+      };
+
+      color = mkOption {
+        type = types.str;
+        default = "#DCC78E";
+        description = "Color used for active compositor borders.";
+      };
+
+      inactiveColor = mkOption {
+        type = types.str;
+        default = "#1A1812";
+        description = "Color used for inactive compositor borders.";
+      };
+
+      urgentColor = mkOption {
+        type = types.str;
+        default = "#D04428";
+        description = "Color used for urgent compositor borders.";
       };
     };
   };
