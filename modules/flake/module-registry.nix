@@ -2,7 +2,7 @@
 
 {
   flake.modules = {
-    nixos = rec {
+    nixos = {
       core = {
         imports = [
           ../core
@@ -55,76 +55,44 @@
 
       profileBase = {
         imports = [
-          inputs.disko.nixosModules.disko
-          ../../lib/options.nix
-          core
-          ../storage
-          servicesTailscale
-          ../input/keyboard/kanata.nix
+          ../profiles/system/base.nix
         ];
       };
 
       # Headless hosts that only need local administration over SSH.
       profileMinimal = {
         imports = [
-          inputs.disko.nixosModules.disko
-          ../core/boot.nix
-          ../core/locale.nix
-          ../core/networking.nix
-          ../core/nix.nix
-          ../core/packages.nix
-          ../storage/zram.nix
-          servicesOpenSsh
+          ../profiles/system/minimal.nix
         ];
       };
 
       profileSecret = {
         imports = [
-          profileBase
-          inputs.agenix.nixosModules.default
-          inputs.agenix-rekey.nixosModules.default
-          ../security
-          servicesOpenSsh
+          ../profiles/system/secret.nix
         ];
       };
 
       profileDesktop = {
         imports = [
-          profileSecret
-          ../core/i18n.nix
-          desktopWayland
-          themeStylix
-          hardware
-          desktopGreetd
+          ../profiles/system/desktop.nix
         ];
       };
 
       profileDesktopNiri = {
         imports = [
-          profileSecret
-          inputs.niri.nixosModules.niri
-          ../core/i18n.nix
-          desktopWayland
-          themeStylix
-          hardware
-          desktopGreetd
-          desktopNiri
+          ../profiles/system/desktop-niri.nix
         ];
       };
 
       profileLaptop = {
         imports = [
-          profileDesktopNiri
-          ../laptop/power.nix
-          ../laptop/lid.nix
+          ../profiles/system/laptop.nix
         ];
       };
 
       profileServer = {
         imports = [
-          profileSecret
-          ../core/locale.nix
-          ../server
+          ../profiles/system/server.nix
         ];
       };
     };
