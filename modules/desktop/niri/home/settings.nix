@@ -83,6 +83,9 @@ in
       border = {
         enable = osConfig.my.theme.border.enable;
         width = osConfig.my.theme.border.width;
+        active.color = theme.border.color;
+        inactive.color = theme.border.inactiveColor;
+        urgent.color = theme.border.urgentColor;
       };
 
       focus-ring.enable = false;
@@ -121,7 +124,7 @@ in
     };
 
     overview = {
-      backdrop-color = "#0b0f14";
+      backdrop-color = wallpaper.fallbackColor;
       workspace-shadow.enable = true;
     };
 

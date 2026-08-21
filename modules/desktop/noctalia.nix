@@ -28,23 +28,18 @@ in
         key_file = "/run/agenix/noctalia-storage-key";
       };
 
-      theme = {
-        mode = "dark";
-        source = "custom";
-      };
-
       accessibility = {
         ui_scale = ui.scale;
       };
 
       shell = {
-        font_family = lib.mkForce theme.fonts.monospace.name;
+        corner_radius_scale = 0;
         niri_overview_type_to_launch_enabled = true;
 
         panel = {
           transparency_mode = if transparency.enable then "glass" else "solid";
           borders = true;
-          shadow = true;
+          shadow = false;
           control_center_placement = "attached";
           wallpaper_placement = "attached";
           session_placement = "attached";
@@ -62,15 +57,9 @@ in
         default.path = "${wallpaper.image}";
       };
 
-      notification = {
-        background_opacity = lib.mkForce (effectiveOpacity theme.opacity.shellPopups);
-        layer = "bottom";
-      };
+      notification.layer = "bottom";
 
-      osd = {
-        background_opacity = lib.mkForce (effectiveOpacity theme.opacity.shellPopups);
-        position = "top_right";
-      };
+      osd.position = "top_right";
 
       bar.main = {
         position = "bottom";
