@@ -6,6 +6,7 @@
     inputs.stylix.nixosModules.stylix
     ../../core/i18n.nix
     ../../desktop/wayland.nix
+    ../../desktop/noctalia/system.nix
     ../../theme
     ../../hardware/audio.nix
     ../../hardware/bluetooth.nix
