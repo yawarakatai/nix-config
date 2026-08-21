@@ -5,24 +5,27 @@
   ...
 }:
 
+let
+  effectiveOpacity = value: if config.my.theme.transparency.enable then value else 1.0;
+in
 {
   stylix = {
     enable = true;
     enableReleaseChecks = false;
 
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-dark.yaml";
+    base16Scheme = ./discovery.yaml;
 
     polarity = "dark";
 
     fonts = {
       monospace = {
-        package = pkgs.nerd-fonts.jetbrains-mono;
-        name = "JetBrainsMono NL Nerd Font";
+        package = config.my.theme.fonts.monospace.package;
+        name = config.my.theme.fonts.monospace.name;
       };
 
       sansSerif = {
-        package = pkgs.noto-fonts-cjk-sans;
-        name = "Noto Sans CJK JP";
+        package = config.my.theme.fonts.sansSerif.package;
+        name = config.my.theme.fonts.sansSerif.name;
       };
 
       serif = {
@@ -36,7 +39,7 @@
       };
 
       sizes = {
-        terminal = 14;
+        terminal = 12;
         applications = 12;
         desktop = 12;
         popups = 12;
@@ -57,10 +60,10 @@
     };
 
     opacity = {
-      terminal = config.my.theme.opacity.terminal;
-      applications = config.my.theme.opacity.applications;
-      desktop = config.my.theme.opacity.desktop;
-      popups = config.my.theme.opacity.popups;
+      terminal = effectiveOpacity config.my.theme.opacity.terminal;
+      applications = effectiveOpacity config.my.theme.opacity.applications;
+      desktop = effectiveOpacity config.my.theme.opacity.desktop;
+      popups = effectiveOpacity config.my.theme.opacity.popups;
     };
 
     targets.qt.platform = lib.mkForce "qtct";

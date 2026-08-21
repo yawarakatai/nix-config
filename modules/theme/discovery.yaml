@@ -1,0 +1,23 @@
+system: "base16"
+name: "discovery"
+author: "yawarakatai"
+variant: "dark"
+
+palette:
+  base00: "#000000" # background
+  base01: "#11110D" # surface
+  base02: "#534E36" # panel / selection bg
+  base03: "#504C34" # comments / subtle borders
+  base04: "#6C6853" # secondary foreground
+  base05: "#DCC78E" # main foreground
+  base06: "#E6D7AC" # lighter foreground (derived)
+  base07: "#F2E8C8" # brightest foreground (derived)
+
+  base08: "#AC2C0D" # red accent
+  base09: "#BE5F11" # orange accent
+  base0A: "#BCA874" # amber / header beige
+  base0B: "#C0AC78" # muted khaki
+  base0C: "#54626E" # lighter steel blue
+  base0D: "#424D58" # darker slate blue
+  base0E: "#803E1D" # deep copper
+  base0F: "#363125" # dark olive-brown

@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 
 let
   inherit (lib) mkOption types;
@@ -9,14 +9,44 @@ in
   ];
 
   options.my.theme = {
+    fonts = {
+      monospace = {
+        package = mkOption {
+          type = types.package;
+          default = pkgs.nerd-fonts.blex-mono;
+          description = "Package providing the monospace font.";
+        };
+
+        name = mkOption {
+          type = types.str;
+          default = "BlexMono Nerd Font Mono";
+          description = "Font family used for monospace text.";
+        };
+      };
+
+      sansSerif = {
+        package = mkOption {
+          type = types.package;
+          default = pkgs.noto-fonts-cjk-sans;
+          description = "Package providing the sans-serif font.";
+        };
+
+        name = mkOption {
+          type = types.str;
+          default = "Noto Sans CJK JP";
+          description = "Font family used for sans-serif text.";
+        };
+      };
+    };
+
     rounding = mkOption {
       type = types.int;
-      default = 10;
+      default = 0;
     };
 
     gaps = mkOption {
       type = types.int;
-      default = 14;
+      default = 0;
     };
 
     terminal = {
@@ -24,6 +54,12 @@ in
         type = types.int;
         default = 20;
       };
+    };
+
+    transparency.enable = mkOption {
+      type = types.bool;
+      default = false;
+      description = "Whether transparent backgrounds and related effects are enabled.";
     };
 
     opacity = {
@@ -61,12 +97,12 @@ in
     border = {
       enable = mkOption {
         type = types.bool;
-        default = false;
+        default = true;
       };
 
       width = mkOption {
         type = types.int;
-        default = 0;
+        default = 4;
       };
     };
   };
