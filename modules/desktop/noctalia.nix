@@ -64,8 +64,8 @@ in
       bar.main = {
         position = "bottom";
         inherit (ui) scale;
-        background_opacity = effectiveOpacity theme.opacity.shell;
-        radius = theme.rounding;
+        background_opacity = effectiveOpacity 0.65;
+        radius = 0;
         margin_edge = 0;
         margin_opposite_edge = 0;
         shadow = false;

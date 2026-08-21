@@ -10,7 +10,7 @@ let
   stylixColors = config.lib.stylix.colors.withHashtag;
 in
 {
-  my.theme.border = {
+  my.niri.border = {
     color = stylixColors.base05;
     inactiveColor = stylixColors.base01;
     urgentColor = stylixColors.base08;

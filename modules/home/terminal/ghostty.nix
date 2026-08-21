@@ -1,11 +1,11 @@
-{ osConfig, ... }:
+_:
 
 {
   programs.ghostty = {
     enable = true;
     settings = {
-      window-padding-x = osConfig.my.theme.terminal.padding;
-      window-padding-y = osConfig.my.theme.terminal.padding;
+      window-padding-x = 20;
+      window-padding-y = 20;
       confirm-close-surface = false;
       gtk-titlebar = true;
       shell-integration = "zsh";

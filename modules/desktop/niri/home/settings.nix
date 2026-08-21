@@ -10,6 +10,7 @@ let
   outputs = osConfig.my.display.outputs;
   wallpaper = osConfig.my.wallpaper;
   theme = osConfig.my.theme;
+  niri = osConfig.my.niri;
 in
 {
   programs.niri.settings = {
@@ -56,7 +57,7 @@ in
         draw-border-with-background = false;
         geometry-corner-radius =
           let
-            r = osConfig.my.theme.rounding * 1.0;
+            r = niri.rounding * 1.0;
           in
           {
             top-left = r;
@@ -78,14 +79,14 @@ in
 
       always-center-single-column = true;
 
-      gaps = osConfig.my.theme.gaps;
+      gaps = niri.gaps;
 
       border = {
-        enable = osConfig.my.theme.border.enable;
-        width = osConfig.my.theme.border.width;
-        active.color = theme.border.color;
-        inactive.color = theme.border.inactiveColor;
-        urgent.color = theme.border.urgentColor;
+        enable = niri.border.enable;
+        width = niri.border.width;
+        active.color = niri.border.color;
+        inactive.color = niri.border.inactiveColor;
+        urgent.color = niri.border.urgentColor;
       };
 
       focus-ring.enable = false;
