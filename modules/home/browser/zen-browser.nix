@@ -1,4 +1,9 @@
-{ inputs, pkgs, ... }:
+{
+  inputs,
+  osConfig,
+  pkgs,
+  ...
+}:
 
 {
   imports = [
@@ -67,7 +72,7 @@
 
       settings = {
         browser = {
-          tabs.allow_transparent_browser = true;
+          tabs.allow_transparent_browser = osConfig.my.theme.transparency.enable;
 
           download.useDownloadDir = false;
           search.region = "JP";
@@ -120,7 +125,7 @@
           workspaces.continue-where-left-off = true;
           window-sync.enable = true;
           window-sync.sync-only-pinned-tabs = true;
-          widget.linux.transparency = true;
+          widget.linux.transparency = osConfig.my.theme.transparency.enable;
         };
       };
 

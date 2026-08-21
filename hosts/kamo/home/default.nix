@@ -1,10 +1,19 @@
-{ osConfig, self, ... }:
+{
+  osConfig,
+  pkgs,
+  self,
+  ...
+}:
 
 {
   imports = [
     self.modules.homeManager.profiles.desktopNiri
     ../../../modules/home/services/ura.nix
     ../../../modules/home/dev/herdr.nix
+  ];
+
+  home.packages = with pkgs; [
+    pixelorama
   ];
 
   services.swayidle = {

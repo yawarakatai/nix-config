@@ -1,0 +1,181 @@
+# 2001: A Space Odyssey inspired Helix theme
+
+# ─────────────────────────────
+# Syntax
+# ─────────────────────────────
+
+"attribute" = "orange"
+
+"type" = "amber"
+"type.builtin" = "amber"
+"type.enum" = "amber"
+"type.enum.variant" = "orange"
+"type.parameter" = "amber"
+
+"constructor" = "amber"
+"constant" = "yellow"
+"constant.builtin" = "orange"
+"constant.builtin.boolean" = "red"
+"constant.character" = "yellow"
+"constant.character.escape" = "orange"
+"constant.numeric" = "yellow"
+
+"string" = "yellow"
+"string.regexp" = "copper"
+"string.special" = "orange"
+"string.special.path" = "yellow"
+"string.special.url" = { fg = "yellow", modifiers = ["underlined"] }
+
+"comment" = { fg = "comment", modifiers = ["italic"] }
+"comment.line.documentation" = "red"
+"comment.block.documentation" = "red"
+
+"variable" = "text"
+"variable.parameter" = "text"
+"variable.builtin" = "amber"
+"variable.other.member" = "steel"
+
+"label" = "red"
+"namespace" = "steel"
+
+"punctuation" = "text"
+"punctuation.delimiter" = "yellow"
+"punctuation.bracket" = "text"
+"punctuation.special" = "orange"
+
+"keyword" = "orange"
+"keyword.control" = "orange"
+"keyword.control.conditional" = "orange"
+"keyword.control.repeat" = "orange"
+"keyword.control.return" = "red"
+"keyword.control.import" = "orange"
+"keyword.control.exception" = "red"
+"keyword.storage" = "orange"
+"keyword.storage.type" = "amber"
+"keyword.storage.modifier" = "orange"
+"keyword.operator" = "yellow"
+"keyword.function" = "orange"
+
+"operator" = "yellow"
+
+"function" = "yellow"
+"function.method" = "yellow"
+"function.builtin" = "orange"
+"function.macro" = "orange"
+
+"special" = "orange"
+"tag" = "orange"
+
+# Markup
+"markup.heading" = { fg = "amber", modifiers = ["bold"] }
+"markup.bold" = { fg = "text", modifiers = ["bold"] }
+"markup.italic" = { fg = "text", modifiers = ["italic"] }
+"markup.list" = "orange"
+"markup.quote" = "comment"
+"markup.raw" = "yellow"
+"markup.link.url" = { fg = "steel-light", modifiers = ["underlined"] }
+"markup.link.text" = "yellow"
+
+# Diff / diagnostics
+"diff.plus" = "amber"
+"diff.delta" = "orange"
+"diff.minus" = "red"
+
+"warning" = "orange"
+"error" = "red"
+"info" = "steel-light"
+"hint" = "comment"
+
+"diagnostic.warning" = { underline = { color = "orange", style = "curl" } }
+"diagnostic.error" = { underline = { color = "red", style = "curl" } }
+"diagnostic.info" = { underline = { color = "steel-light", style = "curl" } }
+"diagnostic.hint" = { underline = { color = "comment", style = "curl" } }
+
+# ─────────────────────────────
+# UI
+# ─────────────────────────────
+
+"ui.background" = { fg = "text", bg = "background" }
+"ui.text" = "text"
+"ui.text.focus" = "bright-text"
+"ui.text.inactive" = "muted"
+
+"ui.linenr" = "comment"
+"ui.linenr.selected" = "amber"
+
+"ui.cursor" = { fg = "background", bg = "muted" }
+"ui.cursor.primary" = { fg = "background", bg = "text" }
+"ui.cursor.insert" = { fg = "background", bg = "orange" }
+"ui.cursor.select" = { fg = "background", bg = "amber" }
+"ui.cursor.match" = { fg = "background", bg = "panel" }
+
+"ui.selection" = { bg = "selection" }
+"ui.selection.primary" = { bg = "selection" }
+
+"ui.cursorline.primary" = { bg = "surface" }
+"ui.cursorline.secondary" = { bg = "surface" }
+
+"ui.gutter" = { bg = "background" }
+"ui.gutter.selected" = { bg = "surface" }
+
+# Important for panel-divider feeling
+"ui.window" = "divider"
+"ui.background.separator" = "divider"
+
+# Top tab bar imitation
+"ui.bufferline" = { fg = "muted", bg = "background" }
+"ui.bufferline.background" = { bg = "background" }
+"ui.bufferline.active" = { fg = "background", bg = "header" }
+
+# Menus / popups
+"ui.menu" = { fg = "text", bg = "surface" }
+"ui.menu.selected" = { fg = "background", bg = "panel" }
+"ui.menu.scroll" = { fg = "muted", bg = "surface" }
+
+"ui.popup" = { fg = "text", bg = "surface" }
+"ui.popup.info" = { fg = "text", bg = "surface" }
+
+# Bottom instrument strip
+"ui.statusline" = { fg = "muted", bg = "surface" }
+"ui.statusline.inactive" = { fg = "comment", bg = "background" }
+"ui.statusline.normal" = { fg = "background", bg = "header" }
+"ui.statusline.insert" = { fg = "background", bg = "orange" }
+"ui.statusline.select" = { fg = "background", bg = "amber" }
+
+"ui.help" = { fg = "text", bg = "surface" }
+
+"ui.highlight" = { bg = "surface" }
+
+"ui.virtual" = "comment"
+"ui.virtual.ruler" = { bg = "surface" }
+"ui.virtual.whitespace" = "comment"
+"ui.virtual.indent-guide" = "divider"
+"ui.virtual.inlay-hint" = "steel"
+"ui.virtual.jump-label" = { fg = "orange", modifiers = ["bold"] }
+
+# ─────────────────────────────
+# Palette
+# ─────────────────────────────
+
+[palette]
+background   = "#000000"
+surface      = "#11110D"
+selection    = "#1A170F"
+
+divider      = "#534E36"
+panel        = "#6C6853"
+header       = "#BCA874"
+
+text         = "#DCC78E"
+bright-text  = "#E6D7AC"
+muted        = "#8F8460"
+comment      = "#6C6853"
+
+yellow       = "#DCC78E"
+amber        = "#BCA874"
+orange       = "#BE5F11"
+red          = "#AC2C0D"
+copper       = "#803E1D"
+
+steel        = "#424D58"
+steel-light  = "#54626E"

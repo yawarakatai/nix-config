@@ -15,13 +15,15 @@
     prettier # Markdown (and general) formatter
   ];
 
-  # stylix.targets.helix.colors.enable = false;
+  stylix.targets.helix.colors.enable = false;
+
+  xdg.configFile."helix/themes/discovery.toml".source = ./discovery.toml;
 
   programs.helix = {
     enable = true;
 
     settings = {
-      # theme = "ayu_evolve";
+      theme = "discovery";
 
       editor = {
         mouse = true;
@@ -246,16 +248,16 @@
           ];
         }
         {
-          name = "tyfu";
-          scope = "source.tyfu";
-          file-types = [ "fu" ];
+          name = "ugoku";
+          scope = "source.ugoku";
+          file-types = [ "u" ];
           comment-token = "#";
           indent = {
             tab-width = 4;
             unit = "    ";
           };
           language-servers = [
-            "tyfu"
+            "ugoku"
           ];
           auto-format = true;
         }
@@ -295,8 +297,8 @@
           };
         };
 
-        tyfu = {
-          command = "tyfu";
+        ugoku = {
+          command = "ugoku";
           args = [ "lsp" ];
         };
       };
