@@ -28,7 +28,7 @@ in
         if transparency && wallpaper.image != null then "transparent" else wallpaper.fallbackColor;
 
       always-center-single-column = true;
-      gaps = niri.gaps;
+      inherit (niri) gaps;
 
       border = {
         enable = niri.border.enable;
