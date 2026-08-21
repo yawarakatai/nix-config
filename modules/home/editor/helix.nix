@@ -74,9 +74,9 @@
           separator = "|";
 
           mode = {
-            normal = "NORMAL MODE";
-            insert = "INSERT MODE";
-            select = "SELECT MODE";
+            normal = "NORMAL";
+            insert = "INSERT";
+            select = "SELECT";
           };
         };
 
