@@ -3,15 +3,18 @@
 {
   # Bootloader configuration
   boot = {
-    initrd.systemd = {
-      enable = true;
-      contents."/etc/vconsole.conf".text = lib.mkForce "FONT=\n";
+    initrd = {
+      verbose = true;
+      systemd = {
+        enable = true;
+        contents."/etc/vconsole.conf".text = lib.mkForce "FONT=\n";
+      };
     };
+
+    consoleLogLevel = 7;
 
     # Kernel parameters
     kernelParams = [
-      "quiet"
-      "splash"
       "nowatchdog"
       "mitigations=auto"
     ];
