@@ -23,11 +23,6 @@ in
     systemd.enable = true;
 
     settings = {
-      storage = {
-        key_source = "file";
-        key_file = "/run/agenix/noctalia-storage-key";
-      };
-
       accessibility = {
         ui_scale = ui.scale;
       };

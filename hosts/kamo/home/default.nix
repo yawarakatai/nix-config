@@ -16,6 +16,11 @@
     pixelorama
   ];
 
+  programs.noctalia.settings.storage = {
+    key_source = "file";
+    key_file = "/run/agenix/noctalia-storage-key";
+  };
+
   services.swayidle = {
     enable = true;
     timeouts = [
