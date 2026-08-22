@@ -253,7 +253,7 @@
         {
           name = "ugoku";
           scope = "source.ugoku";
-          file-types = [ "u" ];
+          file-types = [ "u_u" ];
           comment-token = "#";
           indent = {
             tab-width = 4;
