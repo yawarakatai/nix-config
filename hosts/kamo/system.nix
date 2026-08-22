@@ -2,15 +2,12 @@
   config,
   lib,
   pkgs,
-  username,
   ...
 }:
 
 let
   edp1 = config.my.display.outputs."eDP-1";
   dp2 = config.my.display.outputs."DP-2";
-
-  niriSession = "${config.programs.niri.package}/bin/niri-session";
 in
 {
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -34,17 +31,6 @@ in
   };
 
   hardware.asus.battery.chargeUpto = 80;
-
-  services.greetd.settings.initial_session = {
-    command = niriSession;
-    user = username;
-  };
-
-  age.secrets.noctalia-storage-key = {
-    rekeyFile = ../../secrets/noctalia-storage-key.age;
-    owner = username;
-    mode = "0400";
-  };
 
   environment.systemPackages = with pkgs; [
     wvkbd

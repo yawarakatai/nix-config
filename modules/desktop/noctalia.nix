@@ -52,9 +52,9 @@ in
         default.path = "${wallpaper.image}";
       };
 
-      notification.layer = "bottom";
-
       osd.position = "top_right";
+
+      lockscreen.lock_before_suspend = false;
 
       bar.main = {
         position = "bottom";
