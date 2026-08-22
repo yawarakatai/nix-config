@@ -98,7 +98,7 @@ in
 
         width = mkOption {
           type = types.int;
-          default = 1;
+          default = 2;
         };
 
         color = mkOption {
