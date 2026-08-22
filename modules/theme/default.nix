@@ -13,13 +13,13 @@ in
       monospace = {
         package = mkOption {
           type = types.package;
-          default = pkgs.nerd-fonts.blex-mono;
+          default = pkgs.nerd-fonts.commit-mono;
           description = "Package providing the monospace font.";
         };
 
         name = mkOption {
           type = types.str;
-          default = "BlexMono Nerd Font Mono";
+          default = "CommitMono Nerd Font Mono";
           description = "Font family used for monospace text.";
         };
       };
