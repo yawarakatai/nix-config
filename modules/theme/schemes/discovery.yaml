@@ -16,7 +16,7 @@ palette:
   base08: "#D04428" # red accent (saturated)
   base09: "#D47A18" # orange accent (golden)
   base0A: "#BCA874" # amber / header beige
-  base0B: "#C0AC78" # muted khaki
+  base0B: "#E0B84A" # clear yellow accent
   base0C: "#82939B" # lighter steel blue
   base0D: "#788993" # darker slate blue
   base0E: "#B05F32" # deep copper

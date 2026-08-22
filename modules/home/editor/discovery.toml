@@ -12,7 +12,7 @@
 "type.enum.variant" = "orange"
 "type.parameter" = "amber"
 
-"constructor" = "amber"
+"constructor" = "yellow"
 "constant" = "yellow"
 "constant.builtin" = "orange"
 "constant.builtin.boolean" = "red"
@@ -172,7 +172,7 @@ muted        = "#8F8460" # base04
 subtle       = "#6F6747" # base03
 comment      = "#D04428" # base08
 
-yellow       = "#C0AC78" # base0B
+yellow       = "#E0B84A" # base0B
 amber        = "#BCA874" # base0A
 orange       = "#D47A18" # base09
 red          = "#D04428" # base08
