@@ -1,8 +1,7 @@
-{ inputs, ... }:
+{ ... }:
 
 {
   imports = [
-    inputs.lanzaboote.nixosModules.lanzaboote
     ../../modules/input/touchpad.nix
     ../../modules/hardware/bluetooth.nix
     ../../modules/laptop/fingerprint.nix
