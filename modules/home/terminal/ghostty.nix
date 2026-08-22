@@ -13,6 +13,10 @@ _:
       copy-on-select = "clipboard";
       window-save-state = "always";
       cursor-style = "bar";
+      font-feature = [
+        "-liga"
+        "-calt"
+      ];
       quick-terminal-position = "bottom";
       quick-terminal-autohide = false;
 
