@@ -4,7 +4,7 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    autosuggestion.enable = false;
+    autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 
     dotDir = config.xdg.configHome;
