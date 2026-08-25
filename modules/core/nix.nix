@@ -35,8 +35,8 @@
     extraOptions = ''
       keep-outputs = true
       keep-derivations = true
-      max-jobs = 2
-      cores = 2
+      max-jobs = auto
+      cores = 0
     '';
   };
 
