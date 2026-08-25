@@ -11,10 +11,10 @@ dead:
     deadnix --fail
 
 eval host:
-    nix eval --raw .#nixosConfigurations.{{host}}.config.system.build.toplevel.drvPath
+    nix eval --raw .#nixosConfigurations.{{ host }}.config.system.build.toplevel.drvPath
 
 build host:
-    nix build .#nixosConfigurations.{{host}}.config.system.build.toplevel
+    nix build .#nixosConfigurations.{{ host }}.config.system.build.toplevel
 
 check:
     just fmt
