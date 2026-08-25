@@ -1,6 +1,26 @@
-_:
+{ pkgs, ... }:
 
+let
+  forceCloseWindow = pkgs.writeShellApplication {
+    name = "force-close-window";
+    runtimeInputs = [
+      pkgs.jq
+      pkgs.libnotify
+      pkgs.niri
+    ];
+    text = ''
+      if ! pid="$(niri msg --json focused-window | jq -er '.pid')"; then
+        notify-send -u low "Force close" "No focused window with a process ID"
+        exit 1
+      fi
+
+      kill -KILL "$pid"
+    '';
+  };
+in
 {
+  home.packages = [ forceCloseWindow ];
+
   programs.niri.settings.binds =
     let
       sh = spawn: [
@@ -58,6 +78,7 @@ _:
 
       # --- Applications ---
       "Mod+Space".action.spawn = sh "noctalia msg panel-toggle launcher";
+      "Mod+V".action.spawn = sh "noctalia msg panel-toggle clipboard";
       "Mod+D".action.spawn = sh "noctalia msg panel-toggle control-center home";
       "Mod+Return".action.spawn = sh "exec ghostty +new-window --working-directory=\"$HOME\"";
       "Mod+B".action.spawn = [ "zen-beta" ];
@@ -83,6 +104,7 @@ _:
       "XF86MonBrightnessDown".action.spawn = sh "brightnessctl set 5%-";
 
       # --- System ---
+      "Mod+Shift+Q".action.spawn = [ "force-close-window" ];
       "Mod+Escape".action.spawn = sh "noctalia msg panel-toggle session";
     };
 }
