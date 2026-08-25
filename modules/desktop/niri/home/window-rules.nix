@@ -80,6 +80,12 @@ _:
       open-floating = true;
     }
 
+    # Keep the Steam client tiled and honor fullscreen only when requested later.
+    {
+      matches = [ { app-id = "^steam$"; } ];
+      open-fullscreen = false;
+    }
+
     # Enable VRR for games and video players (fixes Chromium 60fps bug)
     {
       matches = [
