@@ -23,7 +23,7 @@
     enable = true;
 
     settings = {
-      theme = "discovery";
+      theme = "ayu_evolve";
 
       editor = {
         mouse = true;
@@ -38,6 +38,7 @@
 
         trim-final-newlines = true;
         trim-trailing-whitespace = true;
+        insert-final-newline = true;
 
         # Clipboard configuration for Wayland
         clipboard-provider = "wayland";
@@ -147,6 +148,15 @@
           "L" = "insert_at_line_start";
           "h" = "open_below";
           "H" = "open_above";
+
+          # --- Jump history ---
+          "C-e" = "jump_forward";
+          "C-i" = "jump_backward";
+          "C-o" = "no_op";
+
+          "C-y" = "page_cursor_half_up";
+          "C-u" = "page_cursor_half_down";
+          "C-d" = "no_op";
 
           # --- Common operations ---
           "D" = [
