@@ -9,14 +9,14 @@ palette:
   base02: "#5A543A" # panel / selection bg
   base03: "#6F6747" # comments / subtle borders (lifted)
   base04: "#8F8460" # secondary foreground
-  base05: "#DCC78E" # main foreground
+  base05: "#CBB98A" # main foreground
   base06: "#E6D7AC" # lighter foreground (derived)
   base07: "#F2E8C8" # brightest foreground (derived)
 
   base08: "#D04428" # red accent (saturated)
-  base09: "#D47A18" # orange accent (golden)
+  base09: "#C56F1A" # orange accent (golden)
   base0A: "#BCA874" # amber / header beige
-  base0B: "#E0B84A" # clear yellow accent
+  base0B: "#CDAA4D" # clear yellow accent
   base0C: "#82939B" # lighter steel blue
   base0D: "#788993" # darker slate blue
   base0E: "#B05F32" # deep copper

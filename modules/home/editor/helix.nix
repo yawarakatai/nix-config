@@ -23,7 +23,7 @@
     enable = true;
 
     settings = {
-      theme = "ayu_evolve";
+      theme = "discovery";
 
       editor = {
         mouse = true;
