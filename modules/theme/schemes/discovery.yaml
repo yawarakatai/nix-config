@@ -5,19 +5,19 @@ variant: "dark"
 
 palette:
   base00: "#000000" # background
-  base01: "#1A1812" # surface (slightly lifted)
-  base02: "#5A543A" # panel / selection bg
-  base03: "#6F6747" # comments / subtle borders (lifted)
-  base04: "#8F8460" # secondary foreground
-  base05: "#CBB98A" # main foreground
+  base01: "#12120E" # surface
+  base02: "#554F38" # panel / selection bg
+  base03: "#6A5730" # comments / subtle borders
+  base04: "#887A4F" # secondary foreground
+  base05: "#DDC891" # main foreground
   base06: "#E6D7AC" # lighter foreground (derived)
   base07: "#F2E8C8" # brightest foreground (derived)
 
   base08: "#D04428" # red accent (saturated)
-  base09: "#C56F1A" # orange accent (golden)
+  base09: "#D47A18" # orange accent
   base0A: "#BCA874" # amber / header beige
-  base0B: "#CDAA4D" # clear yellow accent
+  base0B: "#E0B84A" # yellow signal accent
   base0C: "#82939B" # lighter steel blue
-  base0D: "#788993" # darker slate blue
-  base0E: "#B05F32" # deep copper
+  base0D: "#788993" # steel blue
+  base0E: "#D99A2B" # golden amber keyword accent
   base0F: "#363125" # dark olive-brown

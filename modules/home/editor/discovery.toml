@@ -4,7 +4,7 @@
 # Syntax
 # ─────────────────────────────
 
-"attribute" = "text"
+"attribute" = "steel"
 
 "type" = "text"
 "type.builtin" = "text"
@@ -12,7 +12,7 @@
 "type.enum.variant" = "yellow"
 "type.parameter" = "text"
 
-"constructor" = "text"
+"constructor" = "yellow"
 "constant" = "yellow"
 "constant.builtin" = "yellow"
 "constant.builtin.boolean" = "yellow"
@@ -38,25 +38,25 @@
 "label" = "text"
 "namespace" = "text"
 
-"punctuation" = "muted"
-"punctuation.delimiter" = "muted"
+"punctuation" = "text"
+"punctuation.delimiter" = "text"
 "punctuation.bracket" = "text"
-"punctuation.special" = "orange"
+"punctuation.special" = "gold"
 
-"keyword" = "orange"
-"keyword.control" = "orange"
-"keyword.control.conditional" = "orange"
-"keyword.control.repeat" = "orange"
-"keyword.control.return" = "orange"
-"keyword.control.import" = "orange"
-"keyword.control.exception" = "orange"
-"keyword.storage" = "orange"
-"keyword.storage.type" = "orange"
-"keyword.storage.modifier" = "orange"
-"keyword.operator" = "orange"
-"keyword.function" = "orange"
+"keyword" = "gold"
+"keyword.control" = "gold"
+"keyword.control.conditional" = "gold"
+"keyword.control.repeat" = "gold"
+"keyword.control.return" = "gold"
+"keyword.control.import" = "gold"
+"keyword.control.exception" = "gold"
+"keyword.storage" = "gold"
+"keyword.storage.type" = "gold"
+"keyword.storage.modifier" = "gold"
+"keyword.operator" = "gold"
+"keyword.function" = "gold"
 
-"operator" = "muted"
+"operator" = "text"
 
 "function" = "text"
 "function.method" = "text"
@@ -159,24 +159,24 @@
 
 [palette]
 background   = "#000000" # base00
-surface      = "#1A1812" # base01
+surface      = "#12120E" # base01
 selection    = "#363125" # base0F
 
-divider      = "#6F6747" # base03
-panel        = "#5A543A" # base02
+divider      = "#6A5730" # base03
+panel        = "#554F38" # base02
 header       = "#BCA874" # base0A
 
-text         = "#CBB98A" # base05
+text         = "#DDC891" # base05
 bright-text  = "#E6D7AC" # base06
-muted        = "#8F8460" # base04
-subtle       = "#6F6747" # base03
+muted        = "#887A4F" # base04
+subtle       = "#6A5730" # base03
 comment      = "#D04428" # base08
 
-yellow       = "#CDAA4D" # base0B
+yellow       = "#E0B84A" # base0B
 amber        = "#BCA874" # base0A
-orange       = "#C56F1A" # base09
+orange       = "#D47A18" # base09
 red          = "#D04428" # base08
-copper       = "#B05F32" # base0E
+gold         = "#D99A2B" # base0E
 
 steel        = "#788993" # base0D
 steel-light  = "#82939B" # base0C
