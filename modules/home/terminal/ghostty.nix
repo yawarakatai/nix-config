@@ -21,11 +21,21 @@ _:
       quick-terminal-autohide = false;
 
       keybind = [
-        # Tab navigation (Colemak-DH neio, Alt mod)
+        # Tab navigation
         "alt+n=previous_tab"
         "alt+o=next_tab"
         "alt+t=new_tab"
-        "alt+w=new_window"
+
+        # Prompt navigation (Colemak-DH: i = up, e = down)
+        "alt+i=jump_to_prompt:-1"
+        "alt+e=jump_to_prompt:1"
+
+        # Scrollback
+        "alt+y=scroll_page_fractional:-0.5"
+        "alt+u=scroll_page_fractional:0.5"
+
+        # Window
+        "alt+enter=new_window"
         "alt+q=close_surface"
 
         # Splits
@@ -37,19 +47,6 @@ _:
         "alt+shift+e=goto_split:down"
         "alt+shift+i=goto_split:up"
         "alt+shift+o=goto_split:right"
-
-        # Split resize
-        "ctrl+alt+n=resize_split:left,10"
-        "ctrl+alt+e=resize_split:down,10"
-        "ctrl+alt+i=resize_split:up,10"
-        "ctrl+alt+o=resize_split:right,10"
-
-        # Split layout
-        "alt+shift+enter=toggle_split_zoom"
-        "alt+equal=equalize_splits"
-
-        # Quick terminal
-        "alt+space=toggle_quick_terminal"
       ];
     };
   };
