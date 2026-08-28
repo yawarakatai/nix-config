@@ -6,6 +6,22 @@ _:
     enableZshIntegration = true;
     shellWrapperName = "y";
 
+    settings = {
+      opener.swayimg = [
+        {
+          run = ''swayimg "$(dirname "$1")"'';
+          orphan = true;
+          for = "unix";
+        }
+      ];
+      open.prepend_rules = [
+        {
+          mime = "image/*";
+          use = "swayimg";
+        }
+      ];
+    };
+
     # Keep navigation on the same physical positions as the other Colemak-DH
     # configurations in this repository.
     keymap.mgr.prepend_keymap = [
