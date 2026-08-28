@@ -4,19 +4,25 @@
   # Bootloader configuration
   boot = {
     initrd = {
-      verbose = true;
+      verbose = false;
       systemd = {
         enable = true;
         contents."/etc/vconsole.conf".text = lib.mkForce "FONT=\n";
       };
     };
 
-    consoleLogLevel = 7;
+    # Keep routine boot messages from overwriting the greetd TTY.
+    consoleLogLevel = 3;
 
     # Kernel parameters
     kernelParams = [
       "nowatchdog"
       "mitigations=auto"
+      "quiet"
+      "systemd.show_status=false"
+      "rd.systemd.show_status=false"
+      "udev.log_level=3"
+      "rd.udev.log_level=3"
     ];
 
     # Boot loader
