@@ -4,7 +4,7 @@ _:
   programs.yazi = {
     enable = true;
     enableZshIntegration = true;
-    shellWrapperName = "y";
+    shellWrapperName = "yy";
 
     settings = {
       opener.swayimg = [
