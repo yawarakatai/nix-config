@@ -55,8 +55,8 @@
 
     noctalia.url = "github:noctalia-dev/noctalia";
 
-    firn = {
-      url = "github:yawarakatai/firn";
+    plainix = {
+      url = "github:yawarakatai/plainix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

@@ -7,7 +7,7 @@
 
   imports = [
     ./direnv.nix
-    ./firn.nix
+    ./plainix.nix
     ./git.nix
     ./git-identity.nix
     ./lazygit.nix
