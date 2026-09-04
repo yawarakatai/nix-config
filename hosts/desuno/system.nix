@@ -1,7 +1,5 @@
 {
   lib,
-  pkgs,
-  username,
   ...
 }:
 
@@ -10,19 +8,7 @@
     ../../modules/server/minecraft.nix
   ];
 
-  programs.zsh.enable = true;
-
-  users = {
-    mutableUsers = false;
-    users.${username} = {
-      isNormalUser = true;
-      description = username;
-      shell = pkgs.zsh;
-      extraGroups = [ "wheel" ];
-      hashedPassword = "!";
-    };
-    users.root.hashedPassword = "!";
-  };
+  users.mutableUsers = false;
 
   # Keep network routing outside this host until the topology is decided.
   networking.firewall = {

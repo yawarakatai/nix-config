@@ -17,6 +17,7 @@ in
   # Obtain with: cat /etc/ssh/ssh_host_ed25519_key.pub
   hosts = {
     desuwa = readKey ../hosts/desuwa/generated/ssh_host_ed25519_key.pub;
+    desuno = readKey ../hosts/desuno/generated/ssh_host_ed25519_key.pub;
     nanodesu = readKey ../hosts/nanodesu/generated/ssh_host_ed25519_key.pub;
     dane = readKey ../hosts/dane/generated/ssh_host_ed25519_key.pub;
     kamo = readKey ../hosts/kamo/generated/ssh_host_ed25519_key.pub;
