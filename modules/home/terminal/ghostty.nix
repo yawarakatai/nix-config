@@ -25,6 +25,7 @@ _:
         "alt+n=previous_tab"
         "alt+o=next_tab"
         "alt+t=new_tab"
+        "alt+f=start_search"
 
         # Prompt navigation (Colemak-DH: i = up, e = down)
         "alt+i=jump_to_prompt:-1"
