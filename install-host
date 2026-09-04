@@ -29,14 +29,12 @@ What this script does:
   - prepares /tmp/<host>/etc/ssh for nixos-anywhere --extra-files
   - runs agenix rekey
   - stages generated host files and rekeyed secrets for final evaluation
-  - formats the repo
   - evaluates the host
   - optionally runs nixos-anywhere
 
 Options:
   --no-install       Prepare generated files and rekey, but do not run nixos-anywhere
   --no-rekey         Do not run agenix rekey
-  --no-format        Do not run nix fmt
   --force            Skip confirmation prompts except destructive install confirmation
   -h, --help         Show this help
 USAGE
@@ -287,7 +285,6 @@ prepare_extra_files() {
 
 no_install=0
 no_rekey=0
-no_format=0
 force=0
 
 while [[ $# -gt 0 ]]; do
@@ -299,11 +296,6 @@ while [[ $# -gt 0 ]]; do
 
     --no-rekey)
       no_rekey=1
-      shift
-      ;;
-
-    --no-format)
-      no_format=1
       shift
       ;;
 
@@ -435,17 +427,6 @@ if [[ "$no_rekey" != "1" ]]; then
   agenix rekey
 else
   warn "skipping agenix rekey due to --no-rekey"
-fi
-
-# ---------------------------------------------------------------------------
-# Formatting
-# ---------------------------------------------------------------------------
-
-if [[ "$no_format" != "1" ]]; then
-  info "Formatting repository"
-  nix fmt
-else
-  warn "skipping nix fmt due to --no-format"
 fi
 
 info "Staging generated host files"

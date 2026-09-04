@@ -128,7 +128,6 @@ The installer script handles:
 - `hosts/<host>/generated/ssh_host_ed25519_key.pub` generation
 - `/tmp/<host>/etc/ssh` preparation for `nixos-anywhere --extra-files`
 - `agenix rekey`
-- `nix fmt`
 - host evaluation
 - `nixos-anywhere`
 
