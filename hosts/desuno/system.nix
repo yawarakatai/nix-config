@@ -6,6 +6,7 @@
 {
   imports = [
     ../../modules/server/minecraft.nix
+    ../../modules/server/playit.nix
   ];
 
   users.mutableUsers = false;
