@@ -15,6 +15,7 @@
 
   home.packages = with pkgs; [
     pixelorama
+    kicad
   ];
 
   services.swayidle = {
