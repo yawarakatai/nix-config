@@ -28,6 +28,7 @@ What this script does:
   - writes hosts/<host>/generated/ssh_host_ed25519_key.pub
   - prepares /tmp/<host>/etc/ssh for nixos-anywhere --extra-files
   - runs agenix rekey
+  - stages generated host files and rekeyed secrets for final evaluation
   - formats the repo
   - evaluates the host
   - optionally runs nixos-anywhere
@@ -239,6 +240,29 @@ write_host_key_file() {
   echo "public key: $(cat "$file")"
 }
 
+stage_generated_host_public_key() {
+  local host="$1"
+
+  git add -- "hosts/${host}/generated/ssh_host_ed25519_key.pub"
+}
+
+stage_generated_host_files() {
+  local host="$1"
+
+  git add -- \
+    "hosts/${host}/generated/hardware-configuration.nix" \
+    "hosts/${host}/generated/ssh_host_ed25519_key.pub"
+}
+
+stage_rekeyed_secrets() {
+  local host="$1"
+  local dir="secrets/rekeyed/${host}"
+
+  if [[ -d "$dir" ]]; then
+    git add -A -- "$dir"
+  fi
+}
+
 prepare_extra_files() {
   local host="$1"
   local target="$2"
@@ -395,6 +419,9 @@ generate_hardware_config "$host" "$target"
 info "Reading ISO SSH host public key"
 write_host_key_file "$host" "$target"
 
+info "Staging generated host public key"
+stage_generated_host_public_key "$host"
+
 info "Preparing extra-files with ISO SSH host keys"
 extra_dir="$(prepare_extra_files "$host" "$target")"
 echo "prepared: $extra_dir"
@@ -419,6 +446,14 @@ if [[ "$no_format" != "1" ]]; then
   nix fmt
 else
   warn "skipping nix fmt due to --no-format"
+fi
+
+info "Staging generated host files"
+stage_generated_host_files "$host"
+
+if [[ "$no_rekey" != "1" ]]; then
+  info "Staging rekeyed secrets"
+  stage_rekeyed_secrets "$host"
 fi
 
 # ---------------------------------------------------------------------------
