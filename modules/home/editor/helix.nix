@@ -182,12 +182,8 @@
 
           "ret" = "goto_word";
 
-          ";" = [
-            "goto_line_end"
-            ":append-output echo ';'"
-            "collapse_selection"
-            "keep_primary_selection"
-          ];
+          # Repeat the previous f/t/m/[ or ] motion.
+          ";" = "repeat_last_motion";
         };
 
         select = {
@@ -204,6 +200,8 @@
 
           "k" = "extend_search_next";
           "K" = "extend_search_prev";
+
+          ";" = "repeat_last_motion";
         };
       };
     };
