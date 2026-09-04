@@ -48,6 +48,8 @@ in
     nixosConfigurations = {
       desuwa = mkHost "desuwa" nixosModules.profileDesktopNiri { };
 
+      desuno = mkHost "desuno" nixosModules.profileMinimal { };
+
       nanodesu = mkHost "nanodesu" nixosModules.profileLaptop { };
 
       # dane = mkHost "dane" nixosModules.profileMinimal {

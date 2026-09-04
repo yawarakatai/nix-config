@@ -7,6 +7,7 @@ Personal NixOS configuration.
 | Host       | Device        | Arch            | Role                                  |
 | ---------- | ------------- | --------------- | ------------------------------------- |
 | `desuwa`   | Desktop       | `x86_64-linux`  | Main workstation                      |
+| `desuno`   | Former desktop | `x86_64-linux`  | Minecraft server                      |
 | `kamo`     | ROG Ally      | `x86_64-linux`  | Portable / docked development machine |
 | `dane`     | Radxa Rock 5T | `aarch64-linux` | Server / always-on development helper |
 | `nanodesu` | Laptop        | `x86_64-linux`  | Laptop                                |
