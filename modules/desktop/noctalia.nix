@@ -54,6 +54,15 @@ in
 
       osd.position = "top_right";
 
+      control_center.shortcuts = map (type: { inherit type; }) [
+        "wifi"
+        "bluetooth"
+        "audio"
+        "mic_mute"
+        "caffeine"
+        "notification"
+      ];
+
       lockscreen.lock_before_suspend = false;
 
       bar.main = {
