@@ -4,13 +4,13 @@ Personal NixOS configuration.
 
 ## Hosts
 
-| Host       | Device        | Arch            | Role                                  |
-| ---------- | ------------- | --------------- | ------------------------------------- |
-| `desuwa`   | Desktop       | `x86_64-linux`  | Main workstation                      |
-| `desuno`   | Former desktop | `x86_64-linux`  | Minecraft server                      |
-| `kamo`     | ROG Ally      | `x86_64-linux`  | Portable / docked development machine |
-| `dane`     | Radxa Rock 5T | `aarch64-linux` | Server / always-on development helper |
-| `nanodesu` | Laptop        | `x86_64-linux`  | Laptop                                |
+| Host       | Device        | Arch            | Role             |
+| ---------- | ------------- | --------------- | ---------------- |
+| `desuwa`   | Desktop       | `x86_64-linux`  | Main workstation |
+| `desuno`   | Desktop       | `x86_64-linux`  | Minecraft server |
+| `nanodesu` | Laptop        | `x86_64-linux`  | Laptop           |
+| `kamo`     | ROG Ally      | `x86_64-linux`  | Portable machine |
+| `dane`     | Radxa Rock 5T | `aarch64-linux` | Server           |
 
 ## Layout
 
@@ -194,10 +194,6 @@ This avoids a mismatch between:
 ### Root SSH
 
 The normal install flow uses `nixos@<target-ip>`. The script uses `sudo` only for reading the private ISO host key when preparing `--extra-files`.
-
-### Lanzaboote / TPM2
-
-The default install flow does not use lanzaboote or TPM2 unlock setup.
 
 ### Filesystems
 
