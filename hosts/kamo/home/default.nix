@@ -13,6 +13,10 @@
     ../../../modules/home/communication
   ];
 
+  # The Ally touchscreen is physically attached to the internal panel. Without
+  # an explicit mapping, niri maps absolute touch input across all outputs.
+  programs.niri.settings.input.touch.map-to-output = "eDP-1";
+
   home.packages = with pkgs; [
     prismlauncher
     pixelorama
