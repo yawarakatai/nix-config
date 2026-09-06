@@ -113,7 +113,7 @@ let
             button: West
         target_events:
           - keyboard: KeyLeftMeta
-          - keyboard: KeyG
+          - keyboard: KeyM
       - name: LT right click
         source_event:
           gamepad:

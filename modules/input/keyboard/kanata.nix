@@ -5,7 +5,13 @@
     enable = true;
     keyboards = {
       internal = {
-        extraDefCfg = "process-unmapped-keys yes";
+        extraDefCfg = ''
+          process-unmapped-keys yes
+          linux-dev-names-exclude (
+            "InputPlumber Keyboard"
+            "LogiOps Virtual Input"
+          )
+        '';
         config = ''
           (defvar
             tap-timeout   150
