@@ -136,6 +136,9 @@
           "i" = "move_visual_line_up";
           "o" = "move_char_right";
 
+          # Select the current line, then extend upward on repeated presses.
+          "X" = "extend_line_above";
+
           "N" = ":bp";
           "E" = "half_page_down";
           "I" = "half_page_up";
