@@ -1,9 +1,15 @@
-_:
+{ lib, ... }:
 
 {
   programs.ghostty = {
     enable = true;
     settings = {
+      font-family = lib.mkForce [
+        "CommitMono Nerd Font Mono"
+        "Noto Sans Mono CJK JP"
+        "Noto Color Emoji"
+      ];
+
       window-padding-x = 20;
       window-padding-y = 20;
       confirm-close-surface = false;
