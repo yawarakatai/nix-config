@@ -62,7 +62,7 @@ in
 
     icons = {
       enable = true;
-      package = pkgs.papirus-icon-theme.override { color = "brown"; };
+      package = pkgs.papirus-icon-theme;
       light = "Papirus";
       dark = "Papirus-Dark";
     };

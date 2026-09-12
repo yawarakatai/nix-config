@@ -11,6 +11,5 @@
     ../../home/desktop/apps.nix
     ../../home/desktop/input-method.nix
     ../../home/desktop/mime-apps.nix
-    ../../theme/home.nix
   ];
 }
