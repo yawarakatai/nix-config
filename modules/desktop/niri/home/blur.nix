@@ -12,15 +12,15 @@ let
     (plain "blur" [
       (leaf "passes" 5)
       (leaf "offset" 8.0)
-      (leaf "noise" 0.08)
-      (leaf "saturation" 2.0)
+      (leaf "noise" 0.01)
+      (leaf "saturation" 1.05)
     ])
     (plain "window-rule" [
       (plain "background-effect" [
         (leaf "blur" true)
         (leaf "xray" true)
-        (leaf "noise" 0.08)
-        (leaf "saturation" 2.2)
+        (leaf "noise" 0.01)
+        (leaf "saturation" 1.05)
       ])
     ])
     (plain "window-rule" [
@@ -28,8 +28,8 @@ let
       (plain "background-effect" [
         (leaf "blur" true)
         (leaf "xray" false)
-        (leaf "noise" 0.05)
-        (leaf "saturation" 2.4)
+        (leaf "noise" 0.01)
+        (leaf "saturation" 1.05)
       ])
     ])
     (plain "layer-rule" [

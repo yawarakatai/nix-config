@@ -44,6 +44,13 @@ in
   ];
 
   my = {
+    theme.transparency.enable = true;
+
+    niri = {
+      gaps = 12;
+      rounding = 10;
+    };
+
     display.outputs = {
       "eDP-1" = {
         primary = false;

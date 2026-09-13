@@ -8,6 +8,7 @@
 {
   imports = [
     self.modules.homeManager.profiles.desktopNiri
+    ../../../modules/desktop/niri/home/blur.nix
     ../../../modules/home/services/ura.nix
     ../../../modules/home/dev/herdr.nix
     ../../../modules/home/communication
