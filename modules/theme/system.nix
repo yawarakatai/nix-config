@@ -21,7 +21,7 @@ in
     enable = true;
     enableReleaseChecks = false;
 
-    base16Scheme = ./schemes/discovery.yaml;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
 
     polarity = "dark";
 
@@ -47,7 +47,7 @@ in
       };
 
       sizes = {
-        terminal = 14;
+        terminal = 16;
         applications = 12;
         desktop = 12;
         popups = 12;

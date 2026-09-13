@@ -13,13 +13,13 @@ in
       monospace = {
         package = mkOption {
           type = types.package;
-          default = pkgs.nerd-fonts.commit-mono;
+          default = pkgs.nerd-fonts.jetbrains-mono;
           description = "Package providing the monospace font.";
         };
 
         name = mkOption {
           type = types.str;
-          default = "CommitMono Nerd Font Mono";
+          default = "JetBrainsMono Nerd Font";
           description = "Font family used for monospace text.";
         };
       };

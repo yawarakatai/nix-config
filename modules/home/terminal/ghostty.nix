@@ -5,13 +5,14 @@
     enable = true;
     settings = {
       font-family = lib.mkForce [
-        "CommitMono Nerd Font Mono"
+        "JetBrainsMono Nerd Font"
         "Noto Sans Mono CJK JP"
         "Noto Color Emoji"
       ];
 
       window-padding-x = 20;
       window-padding-y = 20;
+      background-opacity = lib.mkForce 0.90;
       confirm-close-surface = false;
       gtk-titlebar = true;
       shell-integration = "zsh";

@@ -17,13 +17,11 @@
 
   stylix.targets.helix.colors.enable = false;
 
-  xdg.configFile."helix/themes/discovery.toml".source = ./discovery.toml;
-
   programs.helix = {
     enable = true;
 
     settings = {
-      theme = "discovery";
+      theme = "tokyonight";
 
       editor = {
         mouse = true;
