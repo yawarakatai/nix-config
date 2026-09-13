@@ -1,10 +1,14 @@
 {
   inputs,
-  osConfig,
+  lib,
   pkgs,
   ...
 }:
 
+let
+  # Keep the transparency settings in place, but do not enable them for Zen.
+  browserTransparencyEnabled = false;
+in
 {
   imports = [
     inputs.zen-browser.homeModules.beta
@@ -46,6 +50,9 @@
 
   programs.zen-browser = {
     enable = true;
+    env = lib.optionalAttrs browserTransparencyEnabled {
+      GTK_CSD = "0";
+    };
     nativeMessagingHosts = [ pkgs.tridactyl-native ];
 
     policies = {
@@ -110,8 +117,15 @@
 
       settings = {
         "browser.download.useDownloadDir" = false;
-        "browser.tabs.allow_transparent_browser" = osConfig.my.theme.transparency.enable;
+        "browser.tabs.allow_transparent_browser" = browserTransparencyEnabled;
+        # Avoid GTK client-side decorations preventing alpha compositing on Wayland/Niri.
+        "browser.tabs.inTitlebar" = 0;
         "browser.tabs.dragDrop.createGroup.enabled" = false;
+        "widget.transparent-windows" = browserTransparencyEnabled;
+        # Zen otherwise paints an opaque system background for inactive windows.
+        "zen.view.grey-out-inactive-windows" = !browserTransparencyEnabled;
+        # Zen's fallback makes WebRender backdrop captures opaque.
+        "gfx.webrender.opaque-backdrop-fallback" = !browserTransparencyEnabled;
 
         # Restore the previous window instead of opening an empty new tab.
         "browser.startup.page" = 3;
@@ -153,7 +167,7 @@
         "zen.workspaces.continue-where-left-off" = true;
         "zen.window-sync.enabled" = true;
         "zen.window-sync.sync-only-pinned-tabs" = true;
-        "zen.widget.linux.transparency" = osConfig.my.theme.transparency.enable;
+        "zen.widget.linux.transparency" = browserTransparencyEnabled;
       };
 
       search = {
