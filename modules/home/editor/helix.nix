@@ -94,6 +94,7 @@
         lsp = {
           display-messages = true;
           display-inlay-hints = true;
+          display-color-swatches = true;
         };
 
         indent-guides = {

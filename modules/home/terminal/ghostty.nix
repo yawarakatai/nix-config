@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ config, lib, ... }:
 
 {
   programs.ghostty = {
@@ -12,7 +12,10 @@
 
       window-padding-x = 20;
       window-padding-y = 20;
-      background-opacity = lib.mkForce 0.90;
+
+      # Keep color experiments in a mutable Ghostty config outside Nix. It is
+      # optional and loaded after Stylix's generated theme.
+      config-file = "?${config.home.homeDirectory}/.config/ghostty/local.conf";
       confirm-close-surface = false;
       gtk-titlebar = true;
       shell-integration = "zsh";
