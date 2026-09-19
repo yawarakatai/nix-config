@@ -428,6 +428,27 @@
         "type": "gitlab"
       }
     },
+    "hanas": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "plainix": "plainix"
+      },
+      "locked": {
+        "lastModified": 1789827524,
+        "narHash": "sha256-JYcxp3MIOAQkyWXlBGJ3UPvLtaQQlBrl15oA761y/NU=",
+        "owner": "yawarakatai",
+        "repo": "hanas",
+        "rev": "82f77036cdcad9e2ff5ae2469f14a3aeb8d80c9c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "yawarakatai",
+        "repo": "hanas",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -808,6 +829,27 @@
     "plainix": {
       "inputs": {
         "nixpkgs": [
+          "hanas",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1788872521,
+        "narHash": "sha256-VsHeCM5VcIJNzQoBUWXPKkz0BSNNhR8w8//aQbf4wto=",
+        "owner": "yawarakatai",
+        "repo": "plainix",
+        "rev": "e5c7aed55936b0217fa1ca2586695551505e53cc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "yawarakatai",
+        "repo": "plainix",
+        "type": "github"
+      }
+    },
+    "plainix_2": {
+      "inputs": {
+        "nixpkgs": [
           "nixpkgs"
         ]
       },
@@ -892,13 +934,14 @@
         "disko": "disko",
         "firefox-addons": "firefox-addons",
         "flake-parts": "flake-parts_2",
+        "hanas": "hanas",
         "home-manager": "home-manager_2",
         "niri": "niri",
         "nixos-hardware": "nixos-hardware",
         "nixos-rock5t": "nixos-rock5t",
         "nixpkgs": "nixpkgs_4",
         "noctalia": "noctalia",
-        "plainix": "plainix",
+        "plainix": "plainix_2",
         "stylix": "stylix",
         "treefmt-nix": "treefmt-nix_2",
         "ura": "ura",

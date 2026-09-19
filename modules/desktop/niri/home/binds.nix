@@ -1,6 +1,12 @@
-{ pkgs, ... }:
+{
+  inputs,
+  pkgs,
+  ...
+}:
 
 let
+  hanas = inputs.hanas.packages.${pkgs.stdenv.hostPlatform.system}.hanas;
+
   forceCloseWindow = pkgs.writeShellApplication {
     name = "force-close-window";
     runtimeInputs = [
@@ -84,6 +90,31 @@ in
       "Mod+F".action.spawn = sh "exec ghostty +new-window --working-directory=\"$HOME\" -e yazi";
       "Mod+A".action.spawn =
         sh "exec ghostty +new-window --working-directory=\"$HOME\" -e wiremix --tab output";
+
+      # --- Text to speech ---
+      "Mod+Shift+R" = {
+        repeat = false;
+        action.spawn = [
+          "${hanas}/bin/hanas"
+          "speak"
+          "--selection"
+        ];
+      };
+      "Mod+Shift+C" = {
+        repeat = false;
+        action.spawn = [
+          "${hanas}/bin/hanas"
+          "speak"
+          "--clipboard"
+        ];
+      };
+      "Mod+Shift+X" = {
+        repeat = false;
+        action.spawn = [
+          "${hanas}/bin/hanas"
+          "stop"
+        ];
+      };
 
       # --- Screenshot ---
       "Mod+S".action.spawn = [ "screenshot-copy" ];

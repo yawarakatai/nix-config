@@ -6,5 +6,6 @@
     ../../desktop/niri/home
     ../../desktop/noctalia.nix
     ../../home/communication
+    ../../home/services/hanas.nix
   ];
 }

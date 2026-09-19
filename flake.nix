@@ -65,6 +65,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hanas = {
+      url = "github:yawarakatai/hanas";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixos-rock5t = {
       url = "github:yawarakatai/nixos-rock5t";
       inputs.nixpkgs.follows = "nixpkgs";
