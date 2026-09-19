@@ -69,8 +69,10 @@ in
         primary = !edp1.primary;
         width = 3840;
         height = 2160;
-        refresh = 60.0;
-        scale = 1.333;
+        refresh = 120.0;
+        customMode = true;
+        maxBpc = 10;
+        scale = 1.0;
         vrr = true;
         position = {
           x = 0;

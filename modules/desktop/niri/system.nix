@@ -44,6 +44,27 @@ in
               description = "Display refresh rate.";
             };
 
+            customMode = mkOption {
+              type = types.bool;
+              default = false;
+              description = "Whether to configure the display mode as a custom mode.";
+            };
+
+            maxBpc = mkOption {
+              type = types.nullOr (
+                types.enum [
+                  6
+                  8
+                  10
+                  12
+                  14
+                  16
+                ]
+              );
+              default = null;
+              description = "Maximum bits per channel used for the display link.";
+            };
+
             scale = mkOption {
               type = types.float;
               default = 1.0;
