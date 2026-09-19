@@ -92,7 +92,7 @@ in
         sh "exec ghostty +new-window --working-directory=\"$HOME\" -e wiremix --tab output";
 
       # --- Text to speech ---
-      "Mod+Shift+R" = {
+      "Mod+R" = {
         repeat = false;
         action.spawn = [
           "${hanas}/bin/hanas"
@@ -100,15 +100,7 @@ in
           "--selection"
         ];
       };
-      "Mod+Shift+C" = {
-        repeat = false;
-        action.spawn = [
-          "${hanas}/bin/hanas"
-          "speak"
-          "--clipboard"
-        ];
-      };
-      "Mod+Shift+X" = {
+      "Mod+Shift+R" = {
         repeat = false;
         action.spawn = [
           "${hanas}/bin/hanas"

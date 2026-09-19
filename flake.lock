@@ -436,11 +436,11 @@
         "plainix": "plainix"
       },
       "locked": {
-        "lastModified": 1789827524,
-        "narHash": "sha256-JYcxp3MIOAQkyWXlBGJ3UPvLtaQQlBrl15oA761y/NU=",
+        "lastModified": 1789847261,
+        "narHash": "sha256-faeEsUeFHfjyO1kxA8zXPI+EhaRyStNGCzsrdnvoXJw=",
         "owner": "yawarakatai",
         "repo": "hanas",
-        "rev": "82f77036cdcad9e2ff5ae2469f14a3aeb8d80c9c",
+        "rev": "a2eb2ad0d3078d120dc907aa5bac856e29787e7f",
         "type": "github"
       },
       "original": {
