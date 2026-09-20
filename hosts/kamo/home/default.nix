@@ -22,16 +22,17 @@
     prismlauncher
     pixelorama
     kicad
+    orca-slicer
   ];
 
-  services.swayidle = {
-    enable = true;
-    timeouts = [
-      {
-        timeout = 300;
-        command = "${osConfig.programs.niri.package}/bin/niri msg action power-off-monitors";
-        resumeCommand = "${osConfig.programs.niri.package}/bin/niri msg action power-on-monitors";
-      }
-    ];
-  };
+  # services.swayidle = {
+  #   enable = true;
+  #   timeouts = [
+  #     {
+  #       timeout = 300;
+  #       command = "${osConfig.programs.niri.package}/bin/niri msg action power-off-monitors";
+  #       resumeCommand = "${osConfig.programs.niri.package}/bin/niri msg action power-on-monitors";
+  #     }
+  #   ];
+  # };
 }
