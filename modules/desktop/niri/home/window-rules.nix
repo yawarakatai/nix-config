@@ -80,10 +80,12 @@ _:
       open-floating = true;
     }
 
-    # Keep the Steam client tiled and honor fullscreen only when requested later.
+    # Steam emulates some menus inside its Xwayland surface. Clipping the
+    # surface to rounded geometry makes those menus disappear or lose input.
     {
       matches = [ { app-id = "^steam$"; } ];
       open-fullscreen = false;
+      clip-to-geometry = false;
     }
 
     # Enable VRR for games and video players (fixes Chromium 60fps bug)
