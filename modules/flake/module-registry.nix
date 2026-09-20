@@ -173,6 +173,12 @@
           ];
         };
 
+        gaming = {
+          imports = [
+            ../profiles/home/gaming.nix
+          ];
+        };
+
         server = {
           imports = [
             ../profiles/home/server.nix

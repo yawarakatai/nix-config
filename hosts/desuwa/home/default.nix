@@ -2,8 +2,6 @@
 
 {
   imports = [
-    self.modules.homeManager.profiles.desktopNiri
-    ../../../modules/home/creative
-    ../../../modules/home/dev/ura.nix
+    self.modules.homeManager.profiles.gaming
   ];
 }

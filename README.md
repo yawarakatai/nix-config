@@ -4,13 +4,13 @@ Personal NixOS configuration.
 
 ## Hosts
 
-| Host       | Device        | Arch            | Role             |
-| ---------- | ------------- | --------------- | ---------------- |
-| `desuwa`   | Desktop       | `x86_64-linux`  | Main workstation |
-| `desuno`   | Desktop       | `x86_64-linux`  | Minecraft server |
-| `nanodesu` | Laptop        | `x86_64-linux`  | Laptop           |
-| `kamo`     | ROG Ally      | `x86_64-linux`  | Portable machine |
-| `dane`     | Radxa Rock 5T | `aarch64-linux` | Server           |
+| Host       | Device                      | Arch            | Role             |
+| ---------- | --------------------------- | --------------- | ---------------- |
+| `desuwa`   | Desktop (RTX 3080, 32 GiB) | `x86_64-linux`  | Gaming machine   |
+| `desuno`   | Desktop                     | `x86_64-linux`  | Minecraft server |
+| `nanodesu` | Laptop                      | `x86_64-linux`  | Laptop           |
+| `kamo`     | ROG Ally                    | `x86_64-linux`  | Portable machine |
+| `dane`     | Radxa Rock 5T               | `aarch64-linux` | Server           |
 
 ## Layout
 
