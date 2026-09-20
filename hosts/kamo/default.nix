@@ -5,5 +5,6 @@
     ./hardware.nix
     ./system.nix
     ./gamepad.nix
+    ../../modules/gaming
   ];
 }
