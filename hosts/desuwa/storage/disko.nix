@@ -1,11 +1,5 @@
 _:
 
-let
-  mountOptions = [
-    "compress=zstd"
-    "noatime"
-  ];
-in
 {
   disko.devices.disk.main = {
     type = "disk";
@@ -32,26 +26,10 @@ in
         root = {
           size = "100%";
           content = {
-            type = "btrfs";
-            extraArgs = [ "-f" ];
-            subvolumes = {
-              "@" = {
-                mountpoint = "/";
-                inherit mountOptions;
-              };
-              "@home" = {
-                mountpoint = "/home";
-                inherit mountOptions;
-              };
-              "@nix" = {
-                mountpoint = "/nix";
-                inherit mountOptions;
-              };
-              "@log" = {
-                mountpoint = "/var/log";
-                inherit mountOptions;
-              };
-            };
+            type = "filesystem";
+            format = "ext4";
+            mountpoint = "/";
+            mountOptions = [ "noatime" ];
           };
         };
       };
