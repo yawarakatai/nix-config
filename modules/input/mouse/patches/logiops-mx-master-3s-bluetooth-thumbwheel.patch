@@ -1,0 +1,25 @@
+--- a/src/logid/backend/hidpp20/features/ThumbWheel.cpp
++++ b/src/logid/backend/hidpp20/features/ThumbWheel.cpp
+@@ -16,6 +16,7 @@
+  *
+  */
+ 
++#include <backend/hidpp20/Device.h>
+ #include <backend/hidpp20/features/ThumbWheel.h>
+ #include <cassert>
+ 
+@@ -58,7 +59,13 @@
+     std::vector<uint8_t> params(2), response;
+     ThumbwheelStatus status{};
+     params[0] = divert;
+-    params[1] = invert;
++
++    // The MX Master 3S reports opposite thumb-wheel polarity over Bluetooth
++    // and Bolt, so keep the configured direction consistent across transports.
++    const bool bluetooth_direction_quirk =
++            _device->rawDevice()->busType() == raw::RawDevice::Bluetooth &&
++            _device->pid() == 0xb034;
++    params[1] = invert != bluetooth_direction_quirk;
+ 
+     response = callFunction(SetReporting, params);
+     status.diverted = response[0];

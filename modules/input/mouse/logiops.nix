@@ -1,7 +1,14 @@
 { pkgs, ... }:
 
+let
+  logiops = pkgs.logiops.overrideAttrs (oldAttrs: {
+    patches = (oldAttrs.patches or [ ]) ++ [
+      ./patches/logiops-mx-master-3s-bluetooth-thumbwheel.patch
+    ];
+  });
+in
 {
-  environment.systemPackages = with pkgs; [ logiops ];
+  environment.systemPackages = [ logiops ];
 
   environment.etc."logid.cfg".source = ./logid.cfg;
 
@@ -12,7 +19,7 @@
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Type = "simple";
-      ExecStart = "${pkgs.logiops}/bin/logid";
+      ExecStart = "${logiops}/bin/logid";
       Restart = "on-failure";
       RestartSec = "5s";
     };
