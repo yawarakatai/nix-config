@@ -9,20 +9,10 @@ let
   inherit (inputs.niri.lib.kdl) leaf plain;
   transparencyEnabled = osConfig.my.theme.transparency.enable;
   transparencyRules = lib.optionals transparencyEnabled [
+    # Keep blur for transient backdrop layers rather than persistent windows.
     (plain "blur" [
-      (leaf "passes" 2)
-      (leaf "offset" 24.0)
-      (leaf "noise" 0.01)
-      (leaf "saturation" 1.05)
-    ])
-    (plain "window-rule" [
-      (leaf "match" { app-id = "^com\\.mitchellh\\.ghostty$"; })
-      (plain "background-effect" [
-        (leaf "blur" true)
-        (leaf "xray" false)
-        (leaf "noise" 0.01)
-        (leaf "saturation" 1.05)
-      ])
+      (leaf "passes" 1)
+      (leaf "offset" 16.0)
     ])
     (plain "layer-rule" [
       (leaf "match" { namespace = "^noctalia-backdrop"; })

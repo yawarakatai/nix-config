@@ -32,7 +32,7 @@ in
         niri_overview_type_to_launch_enabled = true;
 
         panel = {
-          transparency_mode = if transparency.enable then "glass" else "solid";
+          transparency_mode = "solid";
           borders = true;
           shadow = false;
           control_center_placement = "attached";
@@ -44,8 +44,8 @@ in
 
       backdrop = {
         enabled = transparency.enable;
-        blur_intensity = 0.55;
-        tint_intensity = 0.2;
+        blur_intensity = 0.3;
+        tint_intensity = 0.35;
       };
 
       wallpaper = lib.mkIf (wallpaper.image != null) {

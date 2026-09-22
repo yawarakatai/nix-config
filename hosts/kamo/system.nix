@@ -44,11 +44,19 @@ in
   ];
 
   my = {
-    theme.transparency.enable = true;
+    theme = {
+      transparency.enable = true;
+      opacity.terminal = 1.0;
+    };
 
     niri = {
-      gaps = 12;
-      rounding = 10;
+      gaps = 24;
+      rounding = 0;
+      border = {
+        color = "#a9b1d6";
+        inactiveColor = "#16161e";
+        urgentColor = "#ff3f7f";
+      };
     };
 
     display.outputs = {
