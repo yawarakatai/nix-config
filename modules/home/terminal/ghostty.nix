@@ -1,7 +1,15 @@
 { config, lib, ... }:
 
+let
+  scheme = import ../../theme/schemes/cold-rain.nix;
+in
 {
+  # Stylix still controls font and opacity; its Base16 ANSI mapping cannot
+  # represent the distinct bright colors in this Ghostty palette.
+  stylix.targets.ghostty.colors.enable = false;
+
   programs.ghostty = {
+    themes.cold-rain = scheme.ghostty;
     enable = true;
     settings = {
       font-family = lib.mkForce [
@@ -13,8 +21,8 @@
       window-padding-x = 20;
       window-padding-y = 20;
 
-      # Keep color experiments in a mutable Ghostty config outside Nix. It is
-      # optional and loaded after Stylix's generated theme.
+      theme = "cold-rain";
+      # Optional local overrides for further experiments.
       config-file = "?${config.home.homeDirectory}/.config/ghostty/local.conf";
       confirm-close-surface = false;
       gtk-titlebar = true;

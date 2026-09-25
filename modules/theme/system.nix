@@ -9,26 +9,7 @@ let
   effectiveOpacity = value: if config.my.theme.transparency.enable then value else 1.0;
   stylixColors = config.lib.stylix.colors.withHashtag;
 
-  wallpaperScheme = {
-    scheme = "Wireframe Blue";
-    author = "yawarakatai";
-    base00 = "0C0C14";
-    base01 = "12172A";
-    base02 = "1C2C4C";
-    base03 = "4C546C";
-    base04 = "90AEB0";
-    base05 = "B8C7CD";
-    base06 = "C5D9E6";
-    base07 = "EAF7FF";
-    base08 = "D26A91";
-    base09 = "6C708F";
-    base0A = "9DD2D9";
-    base0B = "68A3AE";
-    base0C = "6BD5DB";
-    base0D = "5398D0";
-    base0E = "8291D6";
-    base0F = "4C89B4";
-  };
+  scheme = import ./schemes/cold-rain.nix;
 in
 {
   my.niri.border = {
@@ -42,7 +23,7 @@ in
     enable = true;
     enableReleaseChecks = false;
 
-    base16Scheme = wallpaperScheme;
+    base16Scheme = scheme.base16;
 
     polarity = "dark";
 

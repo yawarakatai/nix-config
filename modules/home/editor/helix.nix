@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
   # Install language servers and tools needed by Helix
@@ -15,13 +15,13 @@
     prettier # Markdown (and general) formatter
   ];
 
-  stylix.targets.helix.colors.enable = false;
-
   programs.helix = {
     enable = true;
 
     settings = {
-      theme = "tokyonight";
+      # Stylix replaces this with a theme generated from Cold Rain on NixOS.
+      # Keep a built-in fallback for the standalone portable Home Manager profile.
+      theme = lib.mkDefault "tokyonight";
 
       editor = {
         mouse = true;

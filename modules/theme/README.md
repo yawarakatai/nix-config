@@ -1,11 +1,15 @@
 # Theme
 
-The Tokyo Night Dark Base16 scheme from `pkgs.base16-schemes` is the canonical
-color palette. Stylix applies it to supported applications, fonts, cursors, and
-icons.
+`schemes/cold-rain.nix` is the canonical Cold Rain palette, based on the
+Ghostty colors. It contains the full Ghostty ANSI normal/bright palette and a Base16
+mapping for Stylix. Base16 has fewer slots than the Ghostty palette, so some
+bright ANSI colors are specific to Ghostty.
 
-Helix opts out of Stylix color generation and uses its built-in `tokyonight`
-theme.
+Stylix applies the Base16 colors to supported applications and generates the
+Helix theme on NixOS. Ghostty uses the exact palette from that file through its
+`cold-rain` theme, while Stylix still controls its font and opacity.
+The standalone portable Home Manager profile uses Helix's built-in `tokyonight`
+theme because it does not import Stylix.
 
 Compositor layout and shell behavior belong to their respective modules rather
 than this directory.
