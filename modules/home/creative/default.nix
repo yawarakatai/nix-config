@@ -5,6 +5,8 @@
     # # Game Development
     godot
 
+    blender
+
     pixelorama
 
     # # 3D modeling
