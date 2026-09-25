@@ -11,8 +11,8 @@ in
       defaultModel = "gpt-5.6-luna";
       defaultThinkingLevel = "xhigh";
       enabledModels = [
-        "openai-codex/gpt-5.6-luna"
-        "openai-codex/gpt-5.6-sol"
+        "openai-codex/gpt-6-luna"
+        "openai-codex/gpt-6-sol"
       ];
     };
   };
