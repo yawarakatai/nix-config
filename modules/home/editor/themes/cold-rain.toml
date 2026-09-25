@@ -1,0 +1,104 @@
+# A cyan-forward theme for Helix, independent of Stylix/Base16.
+# Red is reserved for errors and removed lines.
+
+"ui.background" = { bg = "background" }
+"ui.text" = "foreground"
+"ui.text.focus" = { fg = "foreground", bg = "selection" }
+"ui.selection" = { bg = "selection" }
+"ui.selection.primary" = { bg = "selection_primary" }
+"ui.cursor" = { fg = "background", bg = "cyan" }
+"ui.cursor.primary" = { fg = "background", bg = "bright_cyan" }
+"ui.cursor.match" = { fg = "bright_cyan", modifiers = ["bold"] }
+"ui.cursorline.primary" = { bg = "surface" }
+"ui.highlight" = { bg = "selection" }
+"ui.linenr" = "muted"
+"ui.linenr.selected" = { fg = "bright_cyan", modifiers = ["bold"] }
+"ui.gutter" = { bg = "background" }
+"ui.virtual" = "muted"
+"ui.virtual.indent-guide" = "guide"
+"ui.virtual.inlay-hint" = "muted"
+"ui.virtual.jump-label" = { fg = "bright_cyan", modifiers = ["bold"] }
+"ui.statusline" = { fg = "foreground", bg = "panel" }
+"ui.statusline.inactive" = { fg = "muted", bg = "panel" }
+"ui.statusline.normal" = { fg = "background", bg = "cyan", modifiers = ["bold"] }
+"ui.statusline.insert" = { fg = "background", bg = "teal", modifiers = ["bold"] }
+"ui.statusline.select" = { fg = "background", bg = "blue", modifiers = ["bold"] }
+"ui.bufferline" = { fg = "muted", bg = "panel" }
+"ui.bufferline.active" = { fg = "bright_cyan", bg = "surface" }
+"ui.popup" = { fg = "foreground", bg = "panel" }
+"ui.help" = { fg = "foreground", bg = "panel" }
+"ui.menu" = { fg = "foreground", bg = "panel" }
+"ui.menu.selected" = { fg = "bright_cyan", bg = "selection", modifiers = ["bold"] }
+"ui.window" = "guide"
+
+"comment" = { fg = "muted", modifiers = ["italic"] }
+"variable" = "foreground"
+"variable.builtin" = "bright_cyan"
+"variable.parameter" = "foreground"
+"variable.other.member" = "foreground"
+"constant" = "ice"
+"constant.numeric" = "gold"
+"constant.character.escape" = "bright_cyan"
+"string" = "mint"
+"string.special" = "teal"
+"type" = "violet"
+"type.builtin" = "violet"
+"constructor" = "violet"
+"function" = "cyan"
+"function.builtin" = "bright_cyan"
+"function.macro" = "blue"
+"keyword" = "blue"
+"keyword.control" = "blue"
+"keyword.directive" = "slate"
+"operator" = "muted"
+"punctuation" = "muted"
+"punctuation.bracket" = "muted"
+"attribute" = "teal"
+"namespace" = "blue"
+"tag" = "cyan"
+"label" = "teal"
+"special" = "bright_cyan"
+
+"markup.heading" = { fg = "bright_cyan", modifiers = ["bold"] }
+"markup.heading.marker" = "muted"
+"markup.list" = "cyan"
+"markup.bold" = { modifiers = ["bold"] }
+"markup.italic" = { modifiers = ["italic"] }
+"markup.link.text" = "cyan"
+"markup.link.url" = "blue"
+"markup.quote" = "ice"
+"markup.raw" = "mint"
+
+"diff.plus" = "mint"
+"diff.delta" = "gold"
+"diff.minus" = "red"
+"error" = "red"
+"warning" = "gold"
+"info" = "blue"
+"hint" = "teal"
+"diagnostic.error" = { underline = { color = "red", style = "curl" } }
+"diagnostic.warning" = { underline = { color = "gold", style = "curl" } }
+"diagnostic.info" = { underline = { color = "blue", style = "curl" } }
+"diagnostic.hint" = { underline = { color = "teal", style = "curl" } }
+"diagnostic.unnecessary" = { modifiers = ["dim"] }
+"diagnostic.deprecated" = { modifiers = ["crossed_out"] }
+
+[palette]
+background = "#0c0c0f"
+panel = "#161e28"
+surface = "#1d2a34"
+selection = "#27404c"
+selection_primary = "#325361"
+guide = "#3b5261"
+muted = "#8195a4"
+foreground = "#cfdfeb"
+ice = "#b2d4e4"
+cyan = "#82cddd"
+bright_cyan = "#ade8ee"
+teal = "#80c5c2"
+blue = "#93b9e2"
+violet = "#bea7d7"
+slate = "#9aaabc"
+mint = "#b0d1a5"
+gold = "#dec796"
+red = "#d69aa6"
