@@ -1,7 +1,6 @@
 _:
 
 {
-  # Blur is experimental and remains opt-in via ./blur.nix.
   imports = [
     ./binds.nix
     ./clipboard.nix

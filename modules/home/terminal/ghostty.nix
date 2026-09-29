@@ -4,8 +4,8 @@ let
   scheme = import ../../theme/schemes/cold-rain.nix;
 in
 {
-  # Stylix still controls font and opacity; its Base16 ANSI mapping cannot
-  # represent the distinct bright colors in this Ghostty palette.
+  # Stylix still controls the font; its Base16 ANSI mapping cannot represent
+  # the distinct bright colors in this Ghostty palette.
   stylix.targets.ghostty.colors.enable = false;
 
   programs.ghostty = {

@@ -7,7 +7,9 @@ bright ANSI colors are specific to Ghostty.
 
 Stylix applies the Base16 colors to supported applications and generates the
 Helix theme on NixOS. Ghostty uses the exact palette from that file through its
-`cold-rain` theme, while Stylix still controls its font and opacity.
+`cold-rain` theme, while Stylix still controls its font. Desktop backgrounds and
+application windows are opaque; Noctalia manages the wallpaper.
+
 The standalone portable Home Manager profile uses Helix's built-in `tokyonight`
 theme because it does not import Stylix.
 

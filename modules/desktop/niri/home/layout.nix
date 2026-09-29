@@ -2,7 +2,6 @@
 
 let
   inherit (osConfig.my) niri wallpaper;
-  transparency = osConfig.my.theme.transparency.enable;
 in
 {
   programs.niri.settings = {
@@ -24,8 +23,7 @@ in
     ];
 
     layout = {
-      background-color =
-        if transparency && wallpaper.image != null then "transparent" else wallpaper.fallbackColor;
+      background-color = wallpaper.fallbackColor;
 
       always-center-single-column = true;
       inherit (niri) gaps;

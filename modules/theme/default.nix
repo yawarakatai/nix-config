@@ -38,33 +38,5 @@ in
         };
       };
     };
-
-    transparency.enable = mkOption {
-      type = types.bool;
-      default = false;
-      description = "Whether transparent backgrounds and related effects are enabled.";
-    };
-
-    opacity = {
-      terminal = mkOption {
-        type = types.float;
-        default = 0.85;
-      };
-
-      applications = mkOption {
-        type = types.float;
-        default = 1.0;
-      };
-
-      desktop = mkOption {
-        type = types.float;
-        default = 1.0;
-      };
-
-      popups = mkOption {
-        type = types.float;
-        default = 0.90;
-      };
-    };
   };
 }

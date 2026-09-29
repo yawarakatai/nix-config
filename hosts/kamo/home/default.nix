@@ -1,4 +1,6 @@
 {
+  inputs,
+  lib,
   self,
   ...
 }:
@@ -6,13 +8,24 @@
 {
   imports = [
     self.modules.homeManager.profiles.desktopNiri
-    ../../../modules/desktop/niri/home/blur.nix
     ../../../modules/home/services/ura.nix
     ../../../modules/home/dev/herdr.nix
     ../../../modules/home/communication
     ../../../modules/home/creative
     ../../../modules/home/creative/obs-studio.nix
   ];
+
+  programs.niri = {
+    config = lib.mkOptionDefault (
+      lib.mkAfter [
+        (inputs.niri.lib.kdl.leaf "include" [
+          { optional = true; }
+          "noctalia.kdl"
+        ])
+      ]
+    );
+    settings.debug.honor-xdg-activation-with-invalid-serial = [ ];
+  };
 
   # The Ally touchscreen is physically attached to the internal panel. Without
   # an explicit mapping, niri maps absolute touch input across all outputs.

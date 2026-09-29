@@ -44,11 +44,6 @@ in
   ];
 
   my = {
-    theme = {
-      transparency.enable = true;
-      opacity.terminal = 1.0;
-    };
-
     niri = {
       gaps = 24;
       rounding = 0;

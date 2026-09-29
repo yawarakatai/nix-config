@@ -6,7 +6,6 @@
 }:
 
 let
-  effectiveOpacity = value: if config.my.theme.transparency.enable then value else 1.0;
   stylixColors = config.lib.stylix.colors.withHashtag;
 
   scheme = import ./schemes/cold-rain.nix;
@@ -67,13 +66,6 @@ in
       package = pkgs.papirus-icon-theme;
       light = "Papirus";
       dark = "Papirus-Dark";
-    };
-
-    opacity = {
-      terminal = effectiveOpacity config.my.theme.opacity.terminal;
-      applications = effectiveOpacity config.my.theme.opacity.applications;
-      desktop = effectiveOpacity config.my.theme.opacity.desktop;
-      popups = effectiveOpacity config.my.theme.opacity.popups;
     };
 
     targets.qt.platform = lib.mkForce "qtct";

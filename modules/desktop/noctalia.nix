@@ -6,12 +6,8 @@
 }:
 
 let
-  theme = osConfig.my.theme;
   ui = osConfig.my.ui;
   wallpaper = osConfig.my.wallpaper;
-  inherit (theme) transparency;
-
-  effectiveOpacity = value: if transparency.enable then value else 1.0;
 in
 {
   imports = [
@@ -42,11 +38,7 @@ in
         };
       };
 
-      backdrop = {
-        enabled = transparency.enable;
-        blur_intensity = 0.3;
-        tint_intensity = 0.35;
-      };
+      backdrop.enabled = false;
 
       wallpaper = lib.mkIf (wallpaper.image != null) {
         default.path = "${wallpaper.image}";
@@ -68,7 +60,7 @@ in
       bar.main = {
         position = "bottom";
         inherit (ui) scale;
-        background_opacity = effectiveOpacity 0.65;
+        background_opacity = 1.0;
         radius = 0;
         margin_edge = 0;
         margin_opposite_edge = 0;
