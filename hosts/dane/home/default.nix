@@ -2,6 +2,6 @@
 
 {
   imports = [
-    self.modules.homeManager.profiles.minimal
+    self.modules.homeManager.profiles.default
   ];
 }

@@ -46,6 +46,11 @@ secrets/
 
 Host-specific machine data should live under `hosts/<hostname>/`.
 
+Home Manager uses two NixOS-host profiles: `modules/profiles/home/default.nix`
+contains shared basics, and `desktop.nix` adds desktop, development, and SSH
+features. Host-only additions live in `hosts/<hostname>/home/default.nix`.
+The standalone `portable` Home Manager configuration has its own entry point.
+
 - `storage/disko.nix` contains the host's stable `/dev/disk/by-id/...` install disk layout.
 - `generated/hardware-configuration.nix` is generated from the NixOS ISO environment.
 - `generated/ssh_host_ed25519_key.pub` is the target host's SSH public host key used by agenix.

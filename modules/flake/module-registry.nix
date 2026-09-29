@@ -149,13 +149,7 @@
         };
 
       profiles = {
-        minimal = {
-          imports = [
-            ../profiles/home/minimal.nix
-          ];
-        };
-
-        base = {
+        default = {
           imports = [
             ../profiles/home/default.nix
           ];
@@ -164,24 +158,6 @@
         desktop = {
           imports = [
             ../profiles/home/desktop.nix
-          ];
-        };
-
-        desktopNiri = {
-          imports = [
-            ../profiles/home/desktop-niri.nix
-          ];
-        };
-
-        gaming = {
-          imports = [
-            ../profiles/home/gaming.nix
-          ];
-        };
-
-        server = {
-          imports = [
-            ../profiles/home/server.nix
           ];
         };
       };

@@ -7,10 +7,10 @@
 
 {
   imports = [
-    self.modules.homeManager.profiles.desktopNiri
+    self.modules.homeManager.profiles.desktop
+    ../../../modules/home/services/hanas.nix
     ../../../modules/home/services/ura.nix
     ../../../modules/home/dev/herdr.nix
-    ../../../modules/home/communication
     ../../../modules/home/creative
     ../../../modules/home/creative/obs-studio.nix
   ];

@@ -2,7 +2,6 @@
 
 {
   imports = [
-    self.modules.homeManager.profiles.gaming
-    ../../../modules/home/dev/pi.nix
+    self.modules.homeManager.profiles.desktop
   ];
 }

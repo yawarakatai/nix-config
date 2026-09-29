@@ -50,7 +50,9 @@ This repository is a personal NixOS/Home Manager configuration. It uses flake-pa
 - Development tools: `modules/home/dev/default.nix`
 - Shell/zsh/starship: `modules/home/shell/`
 - Helix: `modules/home/editor/helix.nix`
-- Desktop profile aggregation: `modules/profiles/home/desktop*.nix`
+- Home Manager shared basics: `modules/profiles/home/default.nix`
+- Home Manager desktop aggregation (including development and SSH): `modules/profiles/home/desktop.nix`
+- Host-only Home Manager additions: `hosts/<host>/home/default.nix`
 - Flake module registry: `modules/flake/module-registry.nix`
 - Host import glue: `hosts/<host>/default.nix`
 - Host-specific system, display, and wallpaper settings: `hosts/<host>/system.nix`
