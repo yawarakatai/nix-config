@@ -45,9 +45,10 @@ in
 
   my = {
     niri = {
-      gaps = 24;
+      gaps = 0;
       rounding = 0;
       border = {
+        width = 1;
         color = "#a9b1d6";
         inactiveColor = "#16161e";
         urgentColor = "#ff3f7f";
@@ -75,7 +76,7 @@ in
         refresh = 120.0;
         customMode = true;
         maxBpc = 10;
-        scale = 1.0;
+        scale = 1.5;
         vrr = true;
         position = {
           x = 0;
