@@ -11,6 +11,7 @@
     ../../../modules/home/dev/herdr.nix
     ../../../modules/home/communication
     ../../../modules/home/creative
+    ../../../modules/home/creative/obs-studio.nix
   ];
 
   # The Ally touchscreen is physically attached to the internal panel. Without
