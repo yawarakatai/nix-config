@@ -17,8 +17,8 @@
       };
     };
     wallpaper.image = pkgs.fetchurl {
-      url = "https://w.wallhaven.cc/full/e8/wallhaven-e8vxwk.jpg";
-      hash = "sha256-bPwkyksfXPUK4Ov8wmffpP1xYXwhXDfv5bg6N/0FsBA=";
+      url = "https://w.wallhaven.cc/full/d8/wallhaven-d8633m.jpg";
+      hash = "sha256-hL++++skqVRIPq9Sa4D2RjCaeuHgzB/Oqdg+3AkA/TA=";
     };
     ui.scale = 2.0;
   };
