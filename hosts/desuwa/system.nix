@@ -17,9 +17,9 @@
       };
     };
     wallpaper.image = pkgs.fetchurl {
-      url = "https://github.com/dharmx/walls/blob/main/abstract/a_blue_and_orange_background.jpg?raw=true";
-      hash = "sha256-pqjk+zuSAcvTYHF7uPnf+2uIFg4l7Waz6fGzOUVDwFI=";
+      url = "https://w.wallhaven.cc/full/e8/wallhaven-e8vxwk.jpg";
+      hash = "sha256-bPwkyksfXPUK4Ov8wmffpP1xYXwhXDfv5bg6N/0FsBA=";
     };
-    ui.scale = 1.25;
+    ui.scale = 2.0;
   };
 }
