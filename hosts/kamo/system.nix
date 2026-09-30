@@ -28,6 +28,16 @@ in
     upower.enable = true;
     fwupd.enable = true;
 
+    # InputPlumber grabs the Ally's N-KEY devices; Kanata must not retry them
+    # whenever the Bluetooth keyboard reconnects, or it can exit with EBUSY.
+    kanata.keyboards.internal.extraDefCfg = lib.mkForce ''
+      process-unmapped-keys yes
+      linux-dev-names-exclude (
+        "InputPlumber Keyboard"
+        "LogiOps Virtual Input"
+        "ASUSTeK Computer Inc. N-KEY Device"
+      )
+    '';
   };
 
   hardware.asus.battery.chargeUpto = 80;
