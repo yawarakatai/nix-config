@@ -140,7 +140,7 @@
         "permissions.default.camera" = 2;
         "permissions.default.desktop-notification" = 2;
         "permissions.default.geo" = 2;
-        "permissions.default.microphone" = 2;
+        "permissions.default.microphone" = 0;
         "permissions.default.xr" = 2;
 
         "places.history.enabled" = false;
