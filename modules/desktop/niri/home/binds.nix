@@ -56,8 +56,8 @@ in
       "Mod+Shift+O".action.move-column-right = [ ];
       "Mod+Shift+E".action.move-window-down = [ ];
       "Mod+Shift+I".action.move-window-up = [ ];
-      "Mod+Comma".action.move-column-to-first = [ ];
-      "Mod+Period".action.move-column-to-last = [ ];
+      "Mod+Comma".action.swap-window-left = [ ];
+      "Mod+Period".action.swap-window-right = [ ];
 
       # --- Workspaces ---
       "Mod+1".action.focus-workspace = 1;
@@ -78,7 +78,7 @@ in
       "Mod+Shift+Y".action.move-column-to-workspace-up = [ ];
 
       # --- Layout ---
-      "Mod+T".action.switch-preset-column-width = [ ];
+      "Mod+W".action.switch-preset-column-width = [ ];
       "Mod+M".action.maximize-column = [ ];
 
       # --- Applications ---
@@ -87,7 +87,8 @@ in
       "Mod+D".action.spawn = sh "noctalia msg panel-toggle control-center home";
       "Mod+Return".action.spawn = sh "exec ghostty +new-window --working-directory=\"$HOME\"";
       "Mod+B".action.spawn = [ "zen-beta" ];
-      "Mod+F".action.spawn = sh "exec ghostty +new-window --working-directory=\"$HOME\" -e yazi";
+      "Mod+H".action.spawn = [ "nautilus" ];
+      "Mod+F".action.toggle-window-floating = [ ];
       "Mod+A".action.spawn =
         sh "exec ghostty +new-window --working-directory=\"$HOME\" -e wiremix --tab output";
 
