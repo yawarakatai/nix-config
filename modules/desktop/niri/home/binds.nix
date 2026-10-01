@@ -58,6 +58,7 @@ in
       "Mod+Shift+I".action.move-window-up = [ ];
       "Mod+Comma".action.swap-window-left = [ ];
       "Mod+Period".action.swap-window-right = [ ];
+      "Mod+F".action.toggle-window-floating = [ ];
 
       # --- Workspaces ---
       "Mod+1".action.focus-workspace = 1;
@@ -83,14 +84,9 @@ in
 
       # --- Applications ---
       "Mod+Space".action.spawn = sh "noctalia msg panel-toggle launcher";
-      "Mod+V".action.spawn = sh "noctalia msg panel-toggle clipboard";
-      "Mod+D".action.spawn = sh "noctalia msg panel-toggle control-center home";
       "Mod+Return".action.spawn = sh "exec ghostty +new-window --working-directory=\"$HOME\"";
       "Mod+B".action.spawn = [ "zen-beta" ];
       "Mod+H".action.spawn = [ "nautilus" ];
-      "Mod+F".action.toggle-window-floating = [ ];
-      "Mod+A".action.spawn =
-        sh "exec ghostty +new-window --working-directory=\"$HOME\" -e wiremix --tab output";
 
       # --- Text to speech ---
       "Mod+R" = {
