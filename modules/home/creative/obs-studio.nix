@@ -20,7 +20,7 @@ let
     RecType=Standard
     RecFilePath=${recordingDir}
     RecFormat2=mkv
-    RecEncoder=ffmpeg_vaapi
+    RecEncoder=ffmpeg_vaapi_tex
     RecAudioEncoder=ffmpeg_aac
     Track1Bitrate=320
 
