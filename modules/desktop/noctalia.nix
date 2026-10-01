@@ -1,5 +1,4 @@
 {
-  inputs,
   lib,
   osConfig,
   ...
@@ -10,10 +9,6 @@ let
   wallpaper = osConfig.my.wallpaper;
 in
 {
-  imports = [
-    inputs.noctalia.homeModules.default
-  ];
-
   programs.noctalia = {
     enable = true;
     systemd.enable = true;
