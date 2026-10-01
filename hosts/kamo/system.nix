@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  username,
   ...
 }:
 
@@ -10,6 +11,12 @@ let
   dp2 = config.my.display.outputs."DP-2";
 in
 {
+  age.secrets.obs-websocket = {
+    rekeyFile = ../../secrets/obs-websocket.age;
+    owner = username;
+    mode = "0400";
+  };
+
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   boot.tmp.useTmpfs = lib.mkForce false;
@@ -86,7 +93,7 @@ in
         refresh = 120.0;
         customMode = true;
         maxBpc = 10;
-        scale = 1.5;
+        scale = 1.0;
         vrr = true;
         position = {
           x = 0;
