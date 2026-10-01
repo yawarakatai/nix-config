@@ -5,7 +5,7 @@ fmt:
     nix fmt
 
 lint:
-    statix check
+    statix check -i 'hosts/*/generated/hardware-configuration.nix'
 
 dead:
     deadnix --fail
