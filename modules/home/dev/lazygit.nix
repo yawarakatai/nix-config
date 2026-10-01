@@ -59,11 +59,11 @@ _:
           optionMenu = "?";
           optionMenu-alt1 = "<c-w>";
           select = "<space>";
-          goInto = "<enter>";
+          goInto = "<c-g>";
           confirm = "<enter>";
           remove = "d";
           new = "a";
-          edit = "w";
+          edit = "<enter>";
           openFile = "<disabled>";
           scrollUpMain = "<pgup>";
           scrollDownMain = "<pgdown>";

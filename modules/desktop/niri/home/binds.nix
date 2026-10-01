@@ -1,12 +1,9 @@
 {
-  inputs,
   pkgs,
   ...
 }:
 
 let
-  hanas = inputs.hanas.packages.${pkgs.stdenv.hostPlatform.system}.hanas;
-
   forceCloseWindow = pkgs.writeShellApplication {
     name = "force-close-window";
     runtimeInputs = [
@@ -84,26 +81,10 @@ in
 
       # --- Applications ---
       "Mod+Space".action.spawn = sh "noctalia msg panel-toggle launcher";
+      "Mod+D".action.spawn = sh "noctalia msg panel-toggle control-center";
       "Mod+Return".action.spawn = sh "exec ghostty +new-window --working-directory=\"$HOME\"";
       "Mod+B".action.spawn = [ "zen-beta" ];
       "Mod+H".action.spawn = [ "nautilus" ];
-
-      # --- Text to speech ---
-      "Mod+R" = {
-        repeat = false;
-        action.spawn = [
-          "${hanas}/bin/hanas"
-          "speak"
-          "--selection"
-        ];
-      };
-      "Mod+Shift+R" = {
-        repeat = false;
-        action.spawn = [
-          "${hanas}/bin/hanas"
-          "stop"
-        ];
-      };
 
       # --- Screenshot ---
       "Mod+S".action.spawn = [ "screenshot-copy" ];

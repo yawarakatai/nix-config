@@ -24,12 +24,7 @@
         ])
       ]
     );
-    settings.debug.honor-xdg-activation-with-invalid-serial = [ ];
   };
-
-  # The Ally touchscreen is physically attached to the internal panel. Without
-  # an explicit mapping, niri maps absolute touch input across all outputs.
-  programs.niri.settings.input.touch.map-to-output = "eDP-1";
 
   # services.swayidle = {
   #   enable = true;
