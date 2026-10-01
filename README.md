@@ -186,6 +186,23 @@ Example:
 
 ## Notes
 
+### Agenix-rekey secrets
+
+For secrets used by a host, set `age.secrets.<name>.rekeyFile` to the
+master-encrypted source in `secrets/`, as the existing modules do. Do not point
+`age.secrets.<name>.file` at that source: `file` bypasses agenix-rekey, so the
+host may fail activation with
+`age: error: no identity matched any of the recipients` even if the NixOS build
+succeeds.
+
+After creating or changing a source secret, track the encrypted source file so
+the flake can see it, then run `nix develop -c agenix rekey` (a YubiKey touch may
+be required). Track the generated `secrets/rekeyed/<host>/*-<name>.age` file too
+before building or switching. Never add plaintext to Git. If rekeying has not
+been done, evaluation will report that the rekeyed secret is missing.
+Applications should read `config.age.secrets.<name>.path` at runtime, not the
+source ciphertext.
+
 ### SSH host keys
 
 The SSH host public key is used for agenix secrets. The same ISO host key is also preserved into the installed system through `nixos-anywhere --extra-files`.
