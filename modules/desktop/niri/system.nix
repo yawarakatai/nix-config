@@ -7,6 +7,17 @@
 
 let
   inherit (lib) mkOption types;
+
+  system = pkgs.stdenv.hostPlatform.system;
+  niriPkgs = pkgs.extend (
+    final: prev:
+    (inputs.niri.overlays.niri final prev)
+    // {
+      # This pinned niri still needs libdisplay-info 0.2, which newer nixpkgs removed.
+      libdisplay-info_0_2 =
+        inputs.niri.inputs.nixpkgs-stable.legacyPackages.${system}.libdisplay-info_0_2;
+    }
+  );
 in
 {
   options.my = {
@@ -146,7 +157,7 @@ in
   config = {
     programs.niri = {
       enable = true;
-      package = inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.niri-unstable;
+      package = niriPkgs.niri-unstable;
     };
 
     programs.xwayland.enable = true;
