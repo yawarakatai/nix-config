@@ -9,10 +9,10 @@ in
     settings = {
       defaultProvider = "openai-codex";
       defaultModel = "gpt-5.6-luna";
-      defaultThinkingLevel = "xhigh";
+      defaultThinkingLevel = "low";
       enabledModels = [
         "openai-codex/gpt-6-luna"
-        "openai-codex/gpt-6-sol"
+        "openai-codex/gpt-6.1-sol"
       ];
     };
   };
