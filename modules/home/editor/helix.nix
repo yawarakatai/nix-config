@@ -266,17 +266,21 @@ lib.mkMerge [
             ];
           }
           {
-            name = "ugoku";
-            scope = "source.ugoku";
-            file-types = [ "u_u" ];
+            name = "fo";
+            scope = "source.fo";
+            file-types = [ "fo" ];
             comment-token = "#";
             indent = {
-              tab-width = 4;
-              unit = "    ";
+              tab-width = 2;
+              unit = "  ";
             };
             language-servers = [
-              "ugoku"
+              "fo"
             ];
+            formatter = {
+              command = "fo";
+              args = [ "fmt" ];
+            };
             auto-format = true;
           }
         ];
@@ -315,8 +319,8 @@ lib.mkMerge [
             };
           };
 
-          ugoku = {
-            command = "ugoku";
+          fo = {
+            command = "fo";
             args = [ "lsp" ];
           };
         };
