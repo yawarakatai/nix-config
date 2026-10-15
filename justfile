@@ -8,7 +8,7 @@ lint:
     statix check -i 'hosts/*/generated/hardware-configuration.nix'
 
 dead:
-    deadnix --fail
+    deadnix --fail --exclude hosts/*/generated/hardware-configuration.nix
 
 eval host:
     nix eval --raw .#nixosConfigurations.{{ host }}.config.system.build.toplevel.drvPath
