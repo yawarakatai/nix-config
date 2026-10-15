@@ -266,19 +266,19 @@ lib.mkMerge [
             ];
           }
           {
-            name = "fo";
+            name = "vu";
             scope = "source.fo";
-            file-types = [ "fo" ];
+            file-types = [ "vu" ];
             comment-token = "#";
             indent = {
               tab-width = 2;
               unit = "  ";
             };
             language-servers = [
-              "fo"
+              "vu"
             ];
             formatter = {
-              command = "fo";
+              command = "vu";
               args = [ "fmt" ];
             };
             auto-format = true;
@@ -319,8 +319,8 @@ lib.mkMerge [
             };
           };
 
-          fo = {
-            command = "fo";
+          vu = {
+            command = "vu";
             args = [ "lsp" ];
           };
         };
