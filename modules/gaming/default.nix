@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+_: {
   imports = [
     ./steam.nix
   ];
@@ -13,11 +11,4 @@
       capSysNice = true;
     };
   };
-
-  environment.systemPackages = with pkgs; [
-    heroic
-    mangohud
-    protonplus
-    protontricks
-  ];
 }
