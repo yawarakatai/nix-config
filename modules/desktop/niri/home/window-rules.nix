@@ -18,6 +18,14 @@ _:
       };
     }
 
+    # Nautilus opens centered by default when floating.
+    {
+      matches = [ { app-id = "^org\\.gnome\\.Nautilus$"; } ];
+      open-floating = true;
+      default-column-width.proportion = 0.5;
+      default-window-height.proportion = 0.5;
+    }
+
     # Fcitx5 Config
     {
       matches = [ { app-id = "org.fcitx.fcitx5-config-qt"; } ];
