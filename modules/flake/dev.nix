@@ -24,7 +24,10 @@ _:
 
       treefmt = {
         projectRootFile = "flake.nix";
-        programs.nixfmt.enable = true;
+        programs.nixfmt = {
+          enable = true;
+          excludes = [ "hosts/*/generated/hardware-configuration.nix" ];
+        };
       };
     };
 }

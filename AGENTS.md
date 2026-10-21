@@ -84,6 +84,10 @@ Do not modify these unless explicitly requested:
 
 ## Validation
 
+`just check` is read-only: formatting is validated by the flake's treefmt check.
+Run `nix fmt` explicitly when formatting fixes are needed. Generated hardware
+configurations are excluded from formatting, lint, and dead-code checks.
+
 After normal Nix refactors, prefer:
 
 ```bash

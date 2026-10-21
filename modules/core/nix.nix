@@ -7,7 +7,8 @@
         "nix-command"
         "flakes"
       ];
-      auto-optimise-store = true;
+      # Deduplicate on the weekly timer instead of adding I/O to every store import.
+      auto-optimise-store = false;
       trusted-users = [
         "root"
         username

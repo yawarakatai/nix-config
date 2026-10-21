@@ -16,8 +16,8 @@ eval host:
 build host:
     nix build .#nixosConfigurations.{{ host }}.config.system.build.toplevel
 
+# treefmt is checked by nix flake check; validation must not rewrite sources.
 check:
-    just fmt
     just lint
     just dead
     nix flake check --all-systems

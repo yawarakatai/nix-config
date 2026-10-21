@@ -2,6 +2,10 @@
 
 {
   services.gvfs.enable = true;
+
+  # Home Manager owns SSH authentication; keep GNOME Keyring for application secrets.
+  services.gnome.gcr-ssh-agent.enable = false;
+
   programs.dconf.enable = true;
 
   environment.sessionVariables = {

@@ -87,7 +87,7 @@ just lint
 # Dead-code check
 just dead
 
-# Full check
+# Full check (including formatting; does not rewrite files)
 just check
 
 # Evaluate one host
@@ -99,6 +99,17 @@ just build kamo
 # Switch the current machine
 nh os switch
 ```
+
+## Maintenance and process ownership
+
+- Nix store deduplication runs on the weekly `nix-optimise` timer, not on every
+  store import. Identical files can temporarily use more space until the timer runs.
+- Desktop SSH authentication uses Home Manager's `ssh-agent`. The GCR SSH agent
+  is disabled to avoid a second agent; GNOME Keyring remains available for
+  application secrets.
+- `just check` uses the flake's treefmt check to validate formatting without
+  changing source files. Run `just fmt` explicitly to fix formatting. Generated
+  hardware configurations are excluded from formatting, lint, and dead-code checks.
 
 ## Install a host
 
