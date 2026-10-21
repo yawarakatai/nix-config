@@ -1,8 +1,10 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 
 {
   # Bootloader configuration
   boot = {
+    kernelPackages = pkgs.linuxPackages_latest;
+
     initrd = {
       verbose = false;
       systemd = {

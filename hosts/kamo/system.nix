@@ -17,8 +17,6 @@ in
     mode = "0400";
   };
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
   boot.tmp.useTmpfs = lib.mkForce false;
 
   zramSwap = {
