@@ -11,7 +11,7 @@
 
   programs.home-manager.enable = true;
 
-  targets.genericLinux.enable = {
+  targets.genericLinux = {
     enable = true;
     gpu.enable = false;
   };

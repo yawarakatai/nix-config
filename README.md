@@ -49,7 +49,8 @@ Host-specific machine data should live under `hosts/<hostname>/`.
 Home Manager uses two NixOS-host profiles: `modules/profiles/home/default.nix`
 contains shared basics, and `desktop.nix` adds desktop, development, and SSH
 features. Host-only additions live in `hosts/<hostname>/home/default.nix`.
-The standalone `portable` Home Manager configuration has its own entry point.
+The standalone `portable` Home Manager configuration supports non-NixOS Linux
+accounts; see [PORTABLE.md](PORTABLE.md) for installation and account overrides.
 
 - `storage/disko.nix` contains the host's stable `/dev/disk/by-id/...` install disk layout.
 - `generated/hardware-configuration.nix` is generated from the NixOS ISO environment.
@@ -93,6 +94,10 @@ just check
 # Evaluate one host
 just eval kamo
 
+# Evaluate standalone Home Manager configurations (no package builds)
+just eval-home portable
+just eval-homes
+
 # Build one host
 just build kamo
 
@@ -112,9 +117,12 @@ nh os switch
   avoid doing it twice, while retaining completion paths. Hosts without those
   Home Manager features keep the NixOS defaults. User-facing shell settings
   live in `modules/home/shell/`.
-- `just check` uses the flake's treefmt check to validate formatting without
-  changing source files. Run `just fmt` explicitly to fix formatting. Generated
-  hardware configurations are excluded from formatting, lint, and dead-code checks.
+- `just check` evaluates all standalone Home Manager activation derivations as
+  well as running the flake checks. This catches errors in `homeConfigurations`
+  without building their packages. Formatting is validated by the flake's treefmt
+  check without changing source files; run `just fmt` explicitly to fix it.
+  Generated hardware configurations are excluded from formatting, lint, and
+  dead-code checks.
 
 ## Install a host
 

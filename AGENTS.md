@@ -55,6 +55,7 @@ This repository is a personal NixOS/Home Manager configuration. It uses flake-pa
 - Home Manager shared basics: `modules/profiles/home/default.nix`
 - Home Manager desktop aggregation (including development and SSH): `modules/profiles/home/desktop.nix`
 - Host-only Home Manager additions: `hosts/<host>/home/default.nix`
+- Standalone portable account parameters: `modules/flake/home.nix`; installation: `PORTABLE.md`
 - Flake module registry: `modules/flake/module-registry.nix`
 - Host import glue: `hosts/<host>/default.nix`
 - Host-specific system, display, and wallpaper settings: `hosts/<host>/system.nix`
@@ -89,6 +90,11 @@ Do not modify these unless explicitly requested:
 `just check` is read-only: formatting is validated by the flake's treefmt check.
 Run `nix fmt` explicitly when formatting fixes are needed. Generated hardware
 configurations are excluded from formatting, lint, and dead-code checks.
+`just check` also runs `just eval-homes` to evaluate every standalone Home Manager
+activation derivation without building its packages. `just eval-home <name>`
+evaluates one output. These checks use pure evaluation and the default account;
+portable account overrides (`PORTABLE_USERNAME`, `PORTABLE_HOME`) require
+`--impure` and should also be tested when changing `modules/flake/home.nix`.
 
 After normal Nix refactors, prefer:
 
@@ -108,6 +114,7 @@ Equivalent manual commands for environments without `just`:
 ```bash
 nix fmt
 nix flake check
+nix eval --json .#homeConfigurations --apply 'homes: builtins.mapAttrs (_: home: home.activationPackage.drvPath) homes'
 nix eval --raw .#nixosConfigurations.desuwa.config.system.build.toplevel.drvPath
 nix eval --raw .#nixosConfigurations.nanodesu.config.system.build.toplevel.drvPath
 nix eval --raw .#nixosConfigurations.dane.config.system.build.toplevel.drvPath

@@ -5,7 +5,11 @@
 }:
 
 let
-  username = "yawarakatai";
+  # Explicit overrides require --impure; pure evaluation keeps reproducible defaults.
+  portableUsername = builtins.getEnv "PORTABLE_USERNAME";
+  portableHome = builtins.getEnv "PORTABLE_HOME";
+  username = if portableUsername == "" then "yawarakatai" else portableUsername;
+  homeDirectory = if portableHome == "" then "/home/${username}" else portableHome;
 
   mkPortableHome =
     system:
@@ -23,8 +27,7 @@ let
         ../profiles/home/portable.nix
         {
           home = {
-            inherit username;
-            homeDirectory = "/home/${username}";
+            inherit username homeDirectory;
             stateVersion = "25.05";
             enableNixpkgsReleaseCheck = false;
           };
