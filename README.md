@@ -107,6 +107,11 @@ nh os switch
 - Desktop SSH authentication uses Home Manager's `ssh-agent`. The GCR SSH agent
   is disabled to avoid a second agent; GNOME Keyring remains available for
   application secrets.
+- Where Home Manager manages Zsh and Starship, it owns their initialization.
+  `modules/core/users.nix` disables the corresponding global initialization to
+  avoid doing it twice, while retaining completion paths. Hosts without those
+  Home Manager features keep the NixOS defaults. User-facing shell settings
+  live in `modules/home/shell/`.
 - `just check` uses the flake's treefmt check to validate formatting without
   changing source files. Run `just fmt` explicitly to fix formatting. Generated
   hardware configurations are excluded from formatting, lint, and dead-code checks.

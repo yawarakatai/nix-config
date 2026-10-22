@@ -8,8 +8,16 @@
   ...
 }:
 
+let
+  homePrograms = config.home-manager.users.${username}.programs or { };
+in
 {
-  programs.zsh.enable = true;
+  programs.zsh = {
+    enable = true;
+    # Avoid duplicate initialization only when Home Manager owns it.
+    enableGlobalCompInit = lib.mkIf (homePrograms.zsh.enable or false) false;
+    promptInit = lib.mkIf (homePrograms.starship.enable or false) "";
+  };
 
   users = {
     mutableUsers = false;

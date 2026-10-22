@@ -37,6 +37,7 @@ This repository is a personal NixOS/Home Manager configuration. It uses flake-pa
 - Do not add `stylix.image`.
 - Niri owns compositor behavior, keybindings, window rules, and output defaults.
 - wlr-randr wrappers are used for emergency display changes.
+- When Home Manager manages Zsh or Starship, avoid the corresponding duplicate NixOS initialization. Hosts without those Home Manager features retain the NixOS defaults.
 
 ## Where to edit
 
@@ -49,6 +50,7 @@ This repository is a personal NixOS/Home Manager configuration. It uses flake-pa
 - CLI tools: `modules/home/cli/default.nix`
 - Development tools: `modules/home/dev/default.nix`
 - Shell/zsh/starship: `modules/home/shell/`
+- NixOS login shell and global initialization: `modules/core/users.nix`
 - Helix: `modules/home/editor/helix.nix`
 - Home Manager shared basics: `modules/profiles/home/default.nix`
 - Home Manager desktop aggregation (including development and SSH): `modules/profiles/home/desktop.nix`
