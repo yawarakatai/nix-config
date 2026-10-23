@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  config,
+  pkgs,
+  username,
+  ...
+}:
 
 {
   # Steam Frame's 6 GHz adapter needs the local regulatory domain.
@@ -19,6 +24,30 @@
       ExecStart = "${pkgs.networkmanager}/bin/nmcli radio wifi on";
     };
   };
+
+  services.samba = {
+    enable = true;
+    settings = {
+      global = {
+        "server min protocol" = "SMB2_02";
+        "map to guest" = "Never";
+        "hosts allow" = "127.0.0.1 10.0.0.0/8 172.16.0.0/12 192.168.0.0/16";
+        "hosts deny" = "ALL";
+      };
+      video = {
+        path = "${config.users.users.${username}.home}/video";
+        "read only" = "yes";
+        "guest ok" = "no";
+        "valid users" = username;
+      };
+    };
+  };
+
+  # Direct SMB connections do not need the legacy NetBIOS ports.
+  networking.firewall.allowedTCPPorts = [ 445 ];
+  systemd.tmpfiles.rules = [
+    "d ${config.users.users.${username}.home}/video 0700 ${username} users -"
+  ];
 
   services.kanata.keyboards.internal.devices = [
     "/dev/input/by-id/usb-CX_2.4G_Wireless_Receiver-event-kbd"
