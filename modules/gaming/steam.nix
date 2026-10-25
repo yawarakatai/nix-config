@@ -3,6 +3,7 @@
 {
   environment.systemPackages = with pkgs; [
     mangohud
+    bs-manager
   ];
 
   programs.steam = {

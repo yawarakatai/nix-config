@@ -2,8 +2,9 @@
 
 {
   home.packages = with pkgs; [
-    firefox
+    firefox-devedition
     parabolic
+    bottles
   ];
 
   imports = [
