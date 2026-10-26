@@ -2,19 +2,6 @@
 {
   imports = [ ./locale.nix ];
 
-  nixpkgs.overlays = [
-    (_final: prev: {
-      mozc = prev.mozc.overrideAttrs (old: {
-        # Qt 6.12 uic rejects the leading global namespace qualifier.
-        # Remove this workaround once nixpkgs includes the upstream fix.
-        postPatch = (old.postPatch or "") + ''
-          substituteInPlace src/gui/dictionary_tool/dictionary_tool.ui \
-            --replace-fail '::mozc::gui::DictionaryContentTableWidget' 'mozc::gui::DictionaryContentTableWidget'
-        '';
-      });
-    })
-  ];
-
   i18n = {
     extraLocaleSettings = {
       LC_ADDRESS = "en_US.UTF-8";
