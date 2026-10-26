@@ -1,17 +1,9 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   # Bootloader configuration
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
-
-    initrd = {
-      verbose = false;
-      systemd = {
-        enable = true;
-        contents."/etc/vconsole.conf".text = lib.mkForce "FONT=\n";
-      };
-    };
 
     # Keep routine boot messages from overwriting the greetd TTY.
     consoleLogLevel = 3;
