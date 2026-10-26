@@ -45,6 +45,7 @@
 
   # Direct SMB connections do not need the legacy NetBIOS ports.
   networking.firewall.allowedTCPPorts = [ 445 ];
+  networking.firewall.allowedUDPPorts = [ 11112 ];
   systemd.tmpfiles.rules = [
     "d ${config.users.users.${username}.home}/video 0700 ${username} users -"
   ];
