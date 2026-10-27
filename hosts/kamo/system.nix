@@ -7,7 +7,7 @@
 }:
 
 let
-  edp1 = config.my.display.outputs."eDP-1";
+  dp2 = config.my.display.outputs."DP-2";
 in
 {
   age.secrets.noctalia-storage-key = {
@@ -87,7 +87,7 @@ in
         primary = true;
         width = 1920;
         height = 1080;
-        refresh = 59.999;
+        refresh = 120.0;
         scale = 1.0;
         vrr = true;
         position = {
@@ -106,8 +106,8 @@ in
         scale = 1.0;
         vrr = true;
         position = {
-          x = builtins.floor (edp1.width / edp1.scale);
-          y = 0;
+          x = 0;
+          y = -(builtins.floor (dp2.height / dp2.scale));
         };
       };
     };
