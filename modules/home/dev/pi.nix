@@ -8,11 +8,10 @@ in
     enable = true;
     settings = {
       defaultProvider = "openai-codex";
-      defaultModel = "gpt-5.6-luna";
       defaultThinkingLevel = "low";
       enabledModels = [
-        "openai-codex/gpt-6-luna"
-        "openai-codex/gpt-6.1-sol"
+        "gpt-6-luna"
+        "gpt-6.1-sol"
       ];
     };
   };
