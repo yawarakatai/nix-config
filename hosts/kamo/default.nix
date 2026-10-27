@@ -4,6 +4,6 @@
     ./generated/hardware-configuration.nix
     ./hardware.nix
     ./system.nix
-    ./gamepad.nix
+    ../../modules/gaming/jovian.nix
   ];
 }

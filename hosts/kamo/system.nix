@@ -28,13 +28,23 @@ in
 
   hardware.enableRedistributableFirmware = true;
 
+  jovian.steam.desktopSession = "niri";
+
   services = {
+    # Jovian owns SDDM autologin and the game/desktop session handoff on this host.
+    greetd.enable = lib.mkForce false;
+
     power-profiles-daemon.enable = true;
-    upower.enable = true;
+    upower = {
+      enable = true;
+      # Keep low-battery protection active in Niri too, not just in Steam's UI.
+      criticalPowerAction = lib.mkForce "HybridSleep";
+      allowRiskyCriticalPowerAction = lib.mkForce false;
+    };
     fwupd.enable = true;
 
-    # InputPlumber grabs the Ally's N-KEY devices; Kanata must not retry them
-    # whenever the Bluetooth keyboard reconnects, or it can exit with EBUSY.
+    # Jovian's InputPlumber owns the Ally's control devices; keep Kanata
+    # away from them and its virtual keyboard when an external keyboard reconnects.
     kanata.keyboards.internal.extraDefCfg = lib.mkForce ''
       process-unmapped-keys yes
       linux-dev-names-exclude (

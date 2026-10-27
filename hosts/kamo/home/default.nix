@@ -9,9 +9,11 @@
   imports = [
     self.modules.homeManager.profiles.desktop
     ../../../modules/home/services/ura.nix
-    ../../../modules/home/creative
-    ../../../modules/home/creative/obs-studio.nix
   ];
+
+  # Gaming Mode also starts graphical-session.target; keep the desktop shell
+  # and other Home Manager Wayland services attached only to Niri.
+  wayland.systemd.target = "niri.service";
 
   programs.niri = {
     config = lib.mkOptionDefault (
