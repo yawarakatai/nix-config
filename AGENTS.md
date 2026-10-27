@@ -12,7 +12,7 @@ This repository is a personal NixOS/Home Manager configuration. It uses flake-pa
 - `modules/home/` contains Home Manager feature implementations.
 - `modules/desktop/` contains desktop/session/compositor/shell modules.
 - `hosts/` contains host-specific configuration and hardware facts.
-- `secrets/` contains age/agenix secrets and must be treated as high-risk.
+- `secrets/` contains encrypted age/agenix files; secret handling and recipient changes are high-risk.
 
 ## Design rules
 
@@ -68,7 +68,7 @@ This repository is a personal NixOS/Home Manager configuration. It uses flake-pa
 
 ## High-risk areas
 
-Do not modify these unless explicitly requested:
+Modify these only within explicitly authorized task scope, including required artifacts from an authorized host installation/reinstallation or secret-provisioning task:
 
 - `secrets/`
 - agenix or agenix-rekey configuration
@@ -84,7 +84,8 @@ Do not modify these unless explicitly requested:
 - For multi-step refactors, work in small validated phases and ask whether to create a checkpoint commit after each phase.
 - At the end of a task, show the final worktree status, summarize changed files, and suggest an English conventional commit message.
 - Do not create commits unless explicitly requested, or unless the user explicitly opted into auto-committing for the current task/session.
-- Never commit unrelated changes, unvalidated changes, secrets, or high-risk configuration changes.
+- Never commit unrelated or unvalidated changes, plaintext secrets, or private keys. Do not expose decrypted secret values in logs or responses.
+- Encrypted `.age` files, SSH public keys, and generated hardware configurations are versioned artifacts, not automatically excluded from commits. Changes in high-risk areas may be committed when within the authorized task scope, reviewed, and validated. A commit request does not authorize unrelated changes in those areas.
 - Do not update `flake.lock` unless explicitly requested.
 
 ## Validation
@@ -129,5 +130,5 @@ If validation cannot be run, report the exact command that was skipped and why.
 
 ## Documentation
 
-- Update `AGENTS.md` or repository docs when changing architecture, validation commands, ownership boundaries, important edit locations, or refactor policy.
+- Document lasting architecture, validation commands, ownership, edit locations, refactor policy, and user workflows. Prefer updating existing text; omit task history, temporary blockers, and implementation details already clear from code.
 - Summarize moved files, updated imports, and behavior changes after each task.
