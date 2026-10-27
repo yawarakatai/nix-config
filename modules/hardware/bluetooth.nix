@@ -7,7 +7,6 @@ _:
     powerOnBoot = true;
     settings = {
       General = {
-        Enable = "Source,Sink,Media,Socket";
         Experimental = true; # Enable experimental features like battery level
       };
     };

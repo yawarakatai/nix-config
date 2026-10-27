@@ -22,6 +22,9 @@
             config.jovian.steam.autoStart && config.jovian.steam.desktopSession == "niri"
           ) "Kamo must boot into Gaming Mode and switch to Niri.";
           assert lib.assertMsg (
+            config.hardware.bluetooth.enable && !(config.hardware.bluetooth.settings.General ? Enable)
+          ) "Bluetooth must stay enabled without the unsupported BlueZ General.Enable setting.";
+          assert lib.assertMsg (
             config.jovian.hardware.has.amd.gpu
             && config.jovian.hardware.amd.gpu.enableBacklightControl
             && lib.hasInfix "/sys/class/backlight/%k/brightness" config.services.udev.extraRules
