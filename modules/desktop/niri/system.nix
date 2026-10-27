@@ -34,7 +34,7 @@ in
             primary = mkOption {
               type = types.bool;
               default = false;
-              description = "Whether this is the preferred primary output.";
+              description = "Whether this output receives focus when Niri starts.";
             };
 
             width = mkOption {

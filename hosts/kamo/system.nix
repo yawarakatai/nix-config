@@ -8,7 +8,6 @@
 
 let
   edp1 = config.my.display.outputs."eDP-1";
-  dp2 = config.my.display.outputs."DP-2";
 in
 {
   age.secrets.obs-websocket = {
@@ -55,7 +54,10 @@ in
     '';
   };
 
-  hardware.asus.battery.chargeUpto = 80;
+  # SteamOS Manager supports the Ally's charge limit. Do not reset UI changes
+  # to a fixed threshold on boot/resume or expose a second charge-limit tool.
+  systemd.services.battery-charge-threshold.enable = false;
+  hardware.asus.battery.enableChargeUptoScript = false;
 
   environment.systemPackages = with pkgs; [
     wvkbd
@@ -82,20 +84,20 @@ in
 
     display.outputs = {
       "eDP-1" = {
-        primary = false;
+        primary = true;
         width = 1920;
         height = 1080;
         refresh = 59.999;
         scale = 1.0;
         vrr = true;
         position = {
-          x = builtins.floor ((dp2.width / dp2.scale - edp1.width / edp1.scale) / 2);
-          y = builtins.floor (dp2.height / dp2.scale);
+          x = 0;
+          y = 0;
         };
       };
       "DP-2" = {
-        enable = !edp1.primary;
-        primary = !edp1.primary;
+        enable = true;
+        primary = false;
         width = 3840;
         height = 2160;
         refresh = 120.0;
@@ -104,7 +106,7 @@ in
         scale = 1.0;
         vrr = true;
         position = {
-          x = 0;
+          x = builtins.floor (edp1.width / edp1.scale);
           y = 0;
         };
       };

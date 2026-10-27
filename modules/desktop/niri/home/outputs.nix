@@ -33,6 +33,7 @@ let
               modeString output
           ))
           (lib.optional (output.maxBpc != null) (leaf "max-bpc" output.maxBpc))
+          (lib.optional output.primary (flag "focus-at-startup"))
           (leaf "scale" output.scale)
           (leaf "position" output.position)
           (leaf "transform" (transformString output.transform))
@@ -44,6 +45,7 @@ in
   programs.niri = {
     settings.outputs = lib.mapAttrs (_name: output: {
       inherit (output) enable;
+      focus-at-startup = output.primary;
       mode = {
         inherit (output) width height refresh;
       };
