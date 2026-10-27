@@ -22,6 +22,14 @@ in
         corner_radius_scale = 0;
         niri_overview_type_to_launch_enabled = true;
 
+        launcher = {
+          layout = "simple";
+          categories = false;
+          compact = true;
+          show_settings_button = false;
+          show_session_button = false;
+        };
+
         panel = {
           transparency_mode = "solid";
           borders = true;
@@ -76,7 +84,7 @@ in
           "brightness"
           "battery"
         ];
-        dead_zone.command = "noctalia msg panel-toggle control-center home";
+        dead_zone.actions.left = "noctalia msg panel-toggle control-center home";
       };
     };
   };
