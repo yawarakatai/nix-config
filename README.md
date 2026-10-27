@@ -105,6 +105,19 @@ just build kamo
 nh os switch
 ```
 
+## Kamo sessions
+
+`kamo` automatically logs into Jovian Gaming Mode for Steam Remote Play.
+
+- Steam's **Switch to Desktop** opens Niri; logging out (`Mod+Escape`) returns
+  to Gaming Mode.
+- Both sessions prefer the internal `eDP-1` display; external displays remain
+  available. Niri places the external display to the right of the internal panel.
+- Set the charging limit in Steam's UI; no boot/resume service forces it to 80%.
+
+Both modes share the same account and files. Autologin bypasses login-password
+entry. Keep long-running agents in tmux or on another host to survive logout.
+
 ## Maintenance and process ownership
 
 - Nix store deduplication runs on the weekly `nix-optimise` timer, not on every

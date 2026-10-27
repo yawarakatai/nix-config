@@ -38,6 +38,7 @@ This repository is a personal NixOS/Home Manager configuration. It uses flake-pa
 - Niri owns compositor behavior, keybindings, window rules, and output defaults.
 - wlr-randr wrappers are used for emergency display changes.
 - When Home Manager manages Zsh or Starship, avoid the corresponding duplicate NixOS initialization. Hosts without those Home Manager features retain the NixOS defaults.
+- On `kamo`, Jovian owns Gaming Mode, SDDM, input integration, and charging limits; Niri is the development desktop.
 
 ## Where to edit
 
@@ -55,6 +56,7 @@ This repository is a personal NixOS/Home Manager configuration. It uses flake-pa
 - Home Manager shared basics: `modules/profiles/home/default.nix`
 - Home Manager desktop aggregation (including development and SSH): `modules/profiles/home/desktop.nix`
 - Host-only Home Manager additions: `hosts/<host>/home/default.nix`
+- Kamo gaming/session integration: `modules/gaming/jovian.nix`; host exceptions: `hosts/kamo/`
 - Standalone portable account parameters: `modules/flake/home.nix`; installation: `PORTABLE.md`
 - Flake module registry: `modules/flake/module-registry.nix`
 - Host import glue: `hosts/<host>/default.nix`
