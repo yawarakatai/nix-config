@@ -114,6 +114,8 @@ nh os switch
 - Both sessions prefer the internal `eDP-1` display; external displays remain
   available. Niri places the external display to the right of the internal panel.
 - Set the charging limit in Steam's UI; no boot/resume service forces it to 80%.
+- Noctalia uses an agenix storage key because autologin cannot unlock the login
+  keyring. Changing this key does not migrate existing encrypted history.
 
 Both modes share the same account and files. Autologin bypasses login-password
 entry. Keep long-running agents in tmux or on another host to survive logout.

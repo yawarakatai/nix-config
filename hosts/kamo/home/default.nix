@@ -1,6 +1,7 @@
 {
   inputs,
   lib,
+  osConfig,
   self,
   ...
 }:
@@ -14,6 +15,12 @@
   # Gaming Mode also starts graphical-session.target; keep the desktop shell
   # and other Home Manager Wayland services attached only to Niri.
   wayland.systemd.target = "niri.service";
+
+  # Autologin cannot unlock the login keyring with a password.
+  programs.noctalia.settings.storage = {
+    key_source = "file";
+    key_file = osConfig.age.secrets.noctalia-storage-key.path;
+  };
 
   programs.niri = {
     config = lib.mkOptionDefault (

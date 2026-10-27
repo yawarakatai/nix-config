@@ -15,6 +15,8 @@
             host = self.nixosConfigurations.kamo;
             inherit (host) config;
             home = config.home-manager.users.${config.jovian.steam.user};
+            secret = config.age.secrets.noctalia-storage-key;
+            storage = home.programs.noctalia.settings.storage;
           in
           assert lib.assertMsg (
             config.jovian.steam.autoStart && config.jovian.steam.desktopSession == "niri"
@@ -28,6 +30,12 @@
             !config.systemd.services.battery-charge-threshold.enable
             && !config.hardware.asus.battery.enableChargeUptoScript
           ) "The ASUS charge-limit writer must not override Steam UI changes.";
+          assert lib.assertMsg (
+            storage.key_source == "file"
+            && storage.key_file == secret.path
+            && secret.owner == config.jovian.steam.user
+            && secret.mode == "0400"
+          ) "Noctalia must use the host's private storage key instead of the login keyring.";
           assert lib.assertMsg (
             home.systemd.user.services.noctalia.Install.WantedBy == [ "niri.service" ]
           ) "Noctalia must remain attached only to Niri.";

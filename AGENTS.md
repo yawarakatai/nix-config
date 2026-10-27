@@ -38,7 +38,7 @@ This repository is a personal NixOS/Home Manager configuration. It uses flake-pa
 - Niri owns compositor behavior, keybindings, window rules, and output defaults.
 - wlr-randr wrappers are used for emergency display changes.
 - When Home Manager manages Zsh or Starship, avoid the corresponding duplicate NixOS initialization. Hosts without those Home Manager features retain the NixOS defaults.
-- On `kamo`, Jovian owns Gaming Mode, SDDM, input integration, and charging limits; Niri is the development desktop.
+- On `kamo`, Jovian owns Gaming Mode, SDDM, input integration, and charging limits; Niri is the development desktop. Noctalia's agenix storage key is host-specific because of autologin.
 
 ## Where to edit
 

@@ -10,8 +10,8 @@ let
   edp1 = config.my.display.outputs."eDP-1";
 in
 {
-  age.secrets.obs-websocket = {
-    rekeyFile = ../../secrets/obs-websocket.age;
+  age.secrets.noctalia-storage-key = {
+    rekeyFile = ../../secrets/noctalia-storage-key.age;
     owner = username;
     mode = "0400";
   };
