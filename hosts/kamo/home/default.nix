@@ -16,6 +16,10 @@
   # and other Home Manager Wayland services attached only to Niri.
   wayland.systemd.target = "niri.service";
 
+  # Quick desktop switches count as short sessions; the vendor repair then
+  # overlays an old Steam bootstrap onto the self-updated client.
+  xdg.configFile."inhibit-short-session-tracker".text = "";
+
   # Autologin cannot unlock the login keyring with a password.
   programs.noctalia.settings.storage = {
     key_source = "file";

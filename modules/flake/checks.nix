@@ -22,6 +22,10 @@
             config.jovian.steam.autoStart && config.jovian.steam.desktopSession == "niri"
           ) "Kamo must boot into Gaming Mode and switch to Niri.";
           assert lib.assertMsg (
+            home.xdg.configFile."inhibit-short-session-tracker".enable
+            && home.xdg.configFile."inhibit-short-session-tracker".text == ""
+          ) "Quick desktop switches must not trigger Steam's old bootstrap repair on Kamo.";
+          assert lib.assertMsg (
             config.hardware.bluetooth.enable && !(config.hardware.bluetooth.settings.General ? Enable)
           ) "Bluetooth must stay enabled without the unsupported BlueZ General.Enable setting.";
           assert lib.assertMsg (
