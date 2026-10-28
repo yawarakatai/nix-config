@@ -262,6 +262,4 @@ Use the host's `storage/disko.nix`. Shared disko helpers are intentionally avoid
 
 ### Kernel
 
-Do not set `linuxPackages_latest` globally by default.
-
-Prefer hardware-specific modules first. For example, `nixos-hardware.nixosModules.asus-ally-rc71l` should be used for `kamo`. Add an explicit `boot.kernelPackages = pkgs.linuxPackages_latest;` only for hosts that actually need newer kernel behavior.
+All hosts use `pkgs.linuxPackages_latest`, selected in `modules/core/boot.nix`.

@@ -14,17 +14,18 @@ _:
 
         # CPU
         CPU_SCALING_GOVERNOR_ON_AC = "performance";
-        CPU_SCALING_GOVERNOR_ON_BAT = "performance";
+        # intel_pstate's powersave governor allows EPP to balance responsiveness and power.
+        CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
         CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-        CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+        CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_performance";
         CPU_BOOST_ON_AC = 1;
         CPU_BOOST_ON_BAT = 1;
         CPU_MAX_PERF_ON_AC = 100;
-        CPU_MAX_PERF_ON_BAT = 80;
+        CPU_MAX_PERF_ON_BAT = 100;
 
         # Platform
         PLATFORM_PROFILE_ON_AC = "performance";
-        PLATFORM_PROFILE_ON_BAT = "low-power";
+        PLATFORM_PROFILE_ON_BAT = "balanced";
         NMI_WATCHDOG = 0;
 
         # PCIe

@@ -10,6 +10,64 @@
     }:
     {
       checks = lib.optionalAttrs (system == "x86_64-linux") {
+        nanodesu-laptop =
+          let
+            host = self.nixosConfigurations.nanodesu;
+            inherit (host) config;
+            home = config.home-manager.users.yawarakatai;
+            power = config.services.tlp.settings;
+            btrfsConfig =
+              (host.extendModules {
+                modules = [
+                  { fileSystems."/".fsType = lib.mkForce "btrfs"; }
+                ];
+              }).config;
+          in
+          assert lib.assertMsg (
+            config.fileSystems."/".fsType == "ext4"
+            && !config.services.btrfs.autoScrub.enable
+            && config.services.fstrim.enable
+            && config.zramSwap.enable
+            && config.swapDevices == [ ]
+            && btrfsConfig.services.btrfs.autoScrub.enable
+          ) "Nanodesu needs ext4, trim and zram; root scrub must be limited to Btrfs.";
+          assert lib.assertMsg (
+            config.services.tlp.enable
+            && !config.services.power-profiles-daemon.enable
+            && power.CPU_SCALING_GOVERNOR_ON_AC == "performance"
+            && power.CPU_SCALING_GOVERNOR_ON_BAT == "powersave"
+            && power.CPU_ENERGY_PERF_POLICY_ON_BAT == "balance_performance"
+            && power.CPU_MAX_PERF_ON_BAT == 100
+            && power.CPU_BOOST_ON_BAT == 1
+            && power.PLATFORM_PROFILE_ON_BAT == "balanced"
+          ) "Nanodesu must allow responsive battery operation with Intel P-state and EPP.";
+          assert lib.assertMsg (
+            config.services.pipewire.enable
+            && !config.services.pipewire.audio.enable
+            && !config.services.pipewire.alsa.enable
+            && !config.services.pipewire.pulse.enable
+            && !config.services.pipewire.jack.enable
+            && !config.hardware.bluetooth.enable
+            && !config.services.blueman.enable
+          ) "Nanodesu needs screen-sharing PipeWire without desktop audio or Bluetooth services.";
+          assert lib.assertMsg (
+            !(lib.elem "uvcvideo" config.boot.kernelModules)
+            && !(lib.elem "intel_ipu6.dyndbg=+p" config.boot.kernelParams)
+            && !(lib.elem "snd_intel_dspcfg.dsp_driver=1" config.boot.kernelParams)
+            && config.hardware.enableRedistributableFirmware
+          ) "Nanodesu must drop webcam/audio workarounds without removing redistributable firmware.";
+          assert lib.assertMsg (
+            !config.services.libinput.enable
+            && home.programs.niri.settings.input.touchpad.dwt
+            && home.programs.niri.settings.input.touchpad.middle-emulation
+            && home.programs.niri.settings.input.touchpad.scroll-method == "two-finger"
+            && home.programs.niri.settings.input.touchpad.accel-profile == "adaptive"
+            && home.programs.niri.settings.input.touchpad.accel-speed == 1.0
+          ) "Niri must own Nanodesu's touchpad settings and retain its existing pointer speed.";
+          pkgs.runCommand "nanodesu-laptop-check" { } ''
+            touch "$out"
+          '';
+
         kamo-handheld =
           let
             host = self.nixosConfigurations.kamo;
