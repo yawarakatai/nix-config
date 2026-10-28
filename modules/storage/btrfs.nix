@@ -1,9 +1,9 @@
 # Btrfs optimization and SSD maintenance
-_:
+{ config, ... }:
 
 {
   services.btrfs.autoScrub = {
-    enable = true;
+    enable = config.fileSystems."/".fsType == "btrfs";
     interval = "monthly";
     fileSystems = [ "/" ];
   };

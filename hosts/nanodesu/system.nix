@@ -1,12 +1,4 @@
 {
-  boot.kernelParams = [ "snd_intel_dspcfg.dsp_driver=1" ];
-
-  services.logind.settings.Login = {
-    HandleLidSwitch = "suspend";
-    HandleLidSwitchDocked = "suspend";
-    HandleLidSwitchExternalPower = "suspend";
-  };
-
   my = {
     display.outputs = {
       "eDP-1" = {
