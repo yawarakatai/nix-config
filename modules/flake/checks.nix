@@ -92,9 +92,10 @@
             && lib.hasInfix "/sys/class/backlight/%k/brightness" config.services.udev.extraRules
           ) "Kamo needs Jovian's AMD backlight access rule for Steam brightness control.";
           assert lib.assertMsg (
-            !config.systemd.services.battery-charge-threshold.enable
+            config.systemd.services.battery-charge-threshold.enable
+            && config.hardware.asus.battery.chargeUpto == 80
             && !config.hardware.asus.battery.enableChargeUptoScript
-          ) "The ASUS charge-limit writer must not override Steam UI changes.";
+          ) "Kamo needs a persistent 80% charge limit for docked use.";
           assert lib.assertMsg (
             storage.key_source == "file"
             && storage.key_file == secret.path

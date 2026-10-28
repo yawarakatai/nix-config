@@ -54,10 +54,12 @@ in
     '';
   };
 
-  # SteamOS Manager supports the Ally's charge limit. Do not reset UI changes
-  # to a fixed threshold on boot/resume or expose a second charge-limit tool.
-  systemd.services.battery-charge-threshold.enable = false;
-  hardware.asus.battery.enableChargeUptoScript = false;
+  # Keep a persistent limit for docked use without relying on Steam's UI.
+  # The ASUS module reapplies it on boot and resume.
+  hardware.asus.battery = {
+    chargeUpto = 80;
+    enableChargeUptoScript = false;
+  };
 
   environment.systemPackages = with pkgs; [
     wvkbd

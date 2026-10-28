@@ -27,6 +27,9 @@
   };
 
   programs.niri = {
+    # The touchscreen is attached to the internal panel, not external outputs.
+    settings.input.touch.map-to-output = "eDP-1";
+
     config = lib.mkOptionDefault (
       lib.mkAfter [
         (inputs.niri.lib.kdl.leaf "include" [
