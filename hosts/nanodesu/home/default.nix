@@ -5,6 +5,8 @@
     ../../../modules/profiles/home/desktop.nix
   ];
 
+  programs.noctalia.settings.wallpaper.enabled = false;
+
   programs.niri.settings.input.touchpad = {
     dwt = true;
     middle-emulation = true;

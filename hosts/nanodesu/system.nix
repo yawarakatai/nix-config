@@ -10,6 +10,7 @@
         vrr = false;
       };
     };
-    ui.scale = 1.0;
+    ui.scale = 1.5;
+    wallpaper.fallbackColor = "#000000";
   };
 }
