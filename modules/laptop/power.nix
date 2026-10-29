@@ -10,7 +10,7 @@ _:
       settings = {
         # Battery thresholds
         START_CHARGE_THRESH_BAT0 = 80;
-        STOP_CHARGE_THRESH_BAT0 = 95;
+        STOP_CHARGE_THRESH_BAT0 = 90;
 
         # CPU
         CPU_SCALING_GOVERNOR_ON_AC = "performance";
