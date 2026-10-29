@@ -68,6 +68,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    den = {
+      url = "github:yawarakatai/den";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.plainix.follows = "plainix";
+    };
+
     ura = {
       url = "github:yawarakatai/ura";
       inputs.nixpkgs.follows = "nixpkgs";

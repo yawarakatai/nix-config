@@ -4,6 +4,7 @@
     ./generated/hardware-configuration.nix
     ./hardware.nix
     ./system.nix
+    ../../modules/laptop/den.nix
     ../../modules/gaming/jovian.nix
   ];
 }

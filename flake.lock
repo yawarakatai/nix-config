@@ -113,6 +113,29 @@
         "type": "github"
       }
     },
+    "den": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "plainix": [
+          "plainix"
+        ]
+      },
+      "locked": {
+        "lastModified": 1793281692,
+        "narHash": "sha256-kuevELV+0mSV4Jw73SCOkl8N6jeUD52PptM7QugKe0Q=",
+        "owner": "yawarakatai",
+        "repo": "den",
+        "rev": "e4a6b974a1c03ee0982519ae0ecbb1b8b36984f5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "yawarakatai",
+        "repo": "den",
+        "type": "github"
+      }
+    },
     "devshell": {
       "inputs": {
         "nixpkgs": [
@@ -889,6 +912,7 @@
       "inputs": {
         "agenix": "agenix",
         "agenix-rekey": "agenix-rekey",
+        "den": "den",
         "disko": "disko",
         "firefox-addons": "firefox-addons",
         "flake-parts": "flake-parts_2",
