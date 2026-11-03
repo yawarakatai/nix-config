@@ -97,6 +97,12 @@
             && !config.hardware.asus.battery.enableChargeUptoScript
           ) "Kamo needs a persistent 80% charge limit for docked use.";
           assert lib.assertMsg (
+            config.services.inputplumber.enable
+            && lib.elem "bmi323_i2c" config.boot.blacklistedKernelModules
+            && !(lib.elem "bmi323_i2c" config.boot.kernelModules)
+            && !(lib.elem "bmi323_i2c" config.boot.initrd.kernelModules)
+          ) "Kamo must keep InputPlumber enabled without loading the unused BMI323 IMU driver.";
+          assert lib.assertMsg (
             storage.key_source == "file"
             && storage.key_file == secret.path
             && secret.owner == config.jovian.steam.user
