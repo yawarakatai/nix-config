@@ -11,7 +11,7 @@
     ./git.nix
     ./git-identity.nix
     ./lazygit.nix
-    ./codex.nix
     ./pi.nix
+    ./claude-code.nix
   ];
 }
