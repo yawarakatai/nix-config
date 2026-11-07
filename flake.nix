@@ -12,6 +12,8 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # Updated separately so YouTube-driven yt-dlp fixes do not rebuild ura.
+    nixpkgs-ytdlp.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
     disko.url = "github:nix-community/disko";

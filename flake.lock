@@ -727,6 +727,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-ytdlp": {
+      "locked": {
+        "lastModified": 1793726008,
+        "narHash": "sha256-jQp1wKvbwWdLBASTXkSi/VYmDJ5AbBi1WvcMt9HWJC8=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "1d060086d60cb76a40cf37109f979d88a5bd6396",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1789546076,
@@ -922,6 +938,7 @@
         "nixos-hardware": "nixos-hardware",
         "nixos-rock5t": "nixos-rock5t",
         "nixpkgs": "nixpkgs_3",
+        "nixpkgs-ytdlp": "nixpkgs-ytdlp",
         "noctalia": "noctalia",
         "plainix": "plainix",
         "stylix": "stylix",
@@ -1123,11 +1140,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793797087,
-        "narHash": "sha256-eL92OSWpiNqmmD4JFyhf5Sxg3g6rm6l+ak7vA1/YBOA=",
+        "lastModified": 1794034156,
+        "narHash": "sha256-o3sbQ2vrwVTVFU+W0WZvtQKpFi8DfkXNstK8RENRT9g=",
         "owner": "yawarakatai",
         "repo": "ura",
-        "rev": "6873f9d759c1c5f314cce7ce8e33adfc5c4a12b4",
+        "rev": "c0eca8ec27b1c630733682637ee28b2dc9164c9b",
         "type": "github"
       },
       "original": {
