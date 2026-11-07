@@ -1,43 +1,30 @@
 ''
   # Global Agent Instructions
 
-  ## General
+  ## Environment
 
-  - Keep changes scoped to the user's request.
-  - Understand relevant existing code and design before editing.
-  - Prefer small, focused changes over unnecessary rewrites.
-  - Follow the project's existing tools, conventions, and architecture.
+  - The machine runs NixOS; most tools are not installed globally.
+  - If a project tool is missing, use `direnv exec . <cmd>` when `.envrc` exists, otherwise `nix develop -c <cmd>`.
+  - For one-off tools, use `nix shell nixpkgs#<pkg> -c <cmd>` instead of global or imperative installs (`pip install`, `npm -g`, `cargo install`).
 
-  ## Dependencies
+  ## Code
 
-  - Prefer existing dependencies and the standard library when practical.
-  - Do not add, replace, or major-upgrade dependencies unless necessary for the task or explicitly requested.
-  - Do not update lockfiles unnecessarily.
-
-  ## Quality
-
-  - Follow YAGNI and KISS: implement only what is needed, using the simplest design that satisfies the current requirements.
-  - Prefer a little duplication over premature or incorrect abstraction.
+  - Less is more: prefer the smallest change that works; removing code is welcome.
+  - Delete dead or superseded code instead of commenting it out or keeping compatibility shims; history preserves it.
+  - Follow YAGNI and KISS; prefer a little duplication over premature abstraction.
+  - Prefer existing dependencies and the standard library; each new dependency needs a clear reason. Do not major-upgrade dependencies or update lockfiles unless the task needs it.
   - Handle recoverable errors explicitly rather than panicking.
-  - Comments should explain why, not what.
+  - Comments explain why, not what.
 
-  ## Git / Commits
+  ## Git
 
-  - Use Conventional Commits (`feat: ...`, `fix: ...`, etc.) with concise English descriptions.
-  - Commit completed task changes after required validation passes, unless the user asks otherwise.
-  - Include only current-task changes; ask if validation is incomplete or pre-existing changes cannot be safely separated.
-  - Never commit plaintext secrets or private keys. Do not push or rewrite existing commits unless explicitly requested.
-  - Report the commit hash and a brief summary.
-
-  ## Validation
-
-  - Add or update tests when behavior changes warrant them.
-  - Run relevant tests, linters, and formatters after changes.
-  - If validation cannot be run, report what was skipped and why.
+  - Before editing, commit any existing uncommitted changes as-is, so your work sits on top of them.
+  - After validation passes, commit the task as one Conventional Commit in English.
+  - Do not push or rewrite history unless asked.
 
   ## Safety
 
-  - Do not perform destructive, privileged, secret-related, or workspace-external actions unless explicitly requested.
-  - Do not overwrite, revert, reformat, or move unrelated user changes.
-
+  - Never overwrite, revert, or reformat unrelated user changes.
+  - Never commit or print plaintext secrets or private keys.
+  - Ask before destructive or privileged actions.
 ''

@@ -79,11 +79,9 @@ Modify these only within explicitly authorized task scope, including required ar
 
 ## Git / Change management
 
-- At the start of a task, inspect `git status --short`.
-- If there are existing uncommitted changes, distinguish user changes from agent changes and do not overwrite or mix unrelated changes.
 - For multi-step refactors, work in small validated phases and commit each completed phase after validation passes.
 - At the end of a task, show the final worktree status and summarize changed files.
-- Never commit unrelated or unvalidated changes, plaintext secrets, or private keys. Do not expose decrypted secret values in logs or responses.
+- Never commit unvalidated task changes, plaintext secrets, or private keys. Do not expose decrypted secret values in logs or responses.
 - Encrypted `.age` files, SSH public keys, and generated hardware configurations are versioned artifacts, not automatically excluded from commits. Changes in high-risk areas may be committed when within the authorized task scope, reviewed, and validated. A commit request does not authorize unrelated changes in those areas.
 - Do not update `flake.lock` unless explicitly requested.
 
