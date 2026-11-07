@@ -5,6 +5,7 @@
     firefox-devedition
     parabolic
     bottles
+    orca-slicer
   ];
 
   imports = [
