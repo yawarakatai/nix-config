@@ -24,6 +24,14 @@
 
       merge.conflictstyle = "diff3";
       diff.colorMoved = "default";
+
+      # GitHub SSH keys are FIDO keys that need a touch per connection, so
+      # reads (including lazygit auto-fetch) use HTTPS and only pushes use SSH.
+      url."https://github.com/".insteadOf = "git@github.com:";
+      url."git@github.com:".pushInsteadOf = [
+        "git@github.com:"
+        "https://github.com/"
+      ];
     };
   };
 }
