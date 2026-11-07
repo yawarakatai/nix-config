@@ -31,4 +31,9 @@ in
     (builtins.attrValues keys.yubikey)
     ++ (builtins.attrValues keys.hosts)
     ++ (builtins.attrValues keys.master);
+
+  "github-token-ro.age".publicKeys =
+    (builtins.attrValues keys.yubikey)
+    ++ (builtins.attrValues keys.hosts)
+    ++ (builtins.attrValues keys.master);
 }

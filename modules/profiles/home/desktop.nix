@@ -6,6 +6,7 @@
     ../../home/dev
     ../../home/services/ssh-client.nix
     ../../home/services/ssh-agenix.nix
+    ../../home/services/gh-agenix.nix
     ../../home/services/ssh-agent.nix
     ../../home/services/syncthing.nix
     ../../home/browser/zen-browser.nix

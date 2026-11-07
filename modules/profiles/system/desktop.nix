@@ -3,6 +3,7 @@
 {
   imports = [
     ./secret.nix
+    ../../security/github-token.nix
     inputs.stylix.nixosModules.stylix
     ../../core/i18n.nix
     ../../desktop/wayland.nix
