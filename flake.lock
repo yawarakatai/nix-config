@@ -1140,11 +1140,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1794034156,
-        "narHash": "sha256-o3sbQ2vrwVTVFU+W0WZvtQKpFi8DfkXNstK8RENRT9g=",
+        "lastModified": 1794142819,
+        "narHash": "sha256-G5epSvE7H/LogLWOsNG1/5XmGXBzqlWKyi/rY34D9ss=",
         "owner": "yawarakatai",
         "repo": "ura",
-        "rev": "c0eca8ec27b1c630733682637ee28b2dc9164c9b",
+        "rev": "63c23595e27e73a2a9b6e800ad0f85850dea05ea",
         "type": "github"
       },
       "original": {
