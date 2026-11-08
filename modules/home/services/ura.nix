@@ -10,6 +10,8 @@
 
     bind = "0.0.0.0:8765";
 
+    defaultLoop = true;
+
     logLevel = "ura=info";
 
     ytDlpPackage = inputs.nixpkgs-ytdlp.legacyPackages.${pkgs.stdenv.hostPlatform.system}.yt-dlp;
