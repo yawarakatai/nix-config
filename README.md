@@ -7,10 +7,9 @@ Personal NixOS configuration.
 | Host       | Device                      | Arch            | Role             |
 | ---------- | --------------------------- | --------------- | ---------------- |
 | `desuwa`   | Desktop (RTX 3080, 32 GiB) | `x86_64-linux`  | Gaming machine   |
-| `desuno`   | Desktop                     | `x86_64-linux`  | Minecraft server |
+| `desuno`   | Desktop                     | `x86_64-linux`  | Headless host    |
 | `nanodesu` | Laptop                      | `x86_64-linux`  | Laptop           |
 | `kamo`     | ROG Ally                    | `x86_64-linux`  | Portable machine |
-| `dane`     | Radxa Rock 5T               | `aarch64-linux` | Server           |
 
 ## Layout
 

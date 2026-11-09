@@ -89,12 +89,6 @@
           ../profiles/system/laptop.nix
         ];
       };
-
-      profileServer = {
-        imports = [
-          ../profiles/system/server.nix
-        ];
-      };
     };
 
     homeManager = rec {

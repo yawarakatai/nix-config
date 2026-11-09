@@ -163,45 +163,6 @@
         force = true;
         default = "ddg";
         privateDefault = "ddg";
-        engines = {
-          selfhost = {
-            name = "Selfhost";
-            urls = [
-              { template = "https://{searchTerms}.yawarakatai.com"; }
-            ];
-            definedAliases = [ "@s" ];
-          };
-          vault = {
-            name = "Vaultwarden";
-            urls = [ { template = "https://vault.yawarakatai.com"; } ];
-            definedAliases = [ "@vault" ];
-          };
-          git = {
-            name = "Forgejo";
-            urls = [ { template = "https://git.yawarakatai.com"; } ];
-            definedAliases = [ "@git" ];
-          };
-          file = {
-            name = "FileBrowser";
-            urls = [ { template = "https://file.yawarakatai.com"; } ];
-            definedAliases = [ "@file" ];
-          };
-          navidrome = {
-            name = "Navidrome";
-            urls = [ { template = "https://navidrome.yawarakatai.com"; } ];
-            definedAliases = [ "@navi" ];
-          };
-          kavita = {
-            name = "Kavita";
-            urls = [ { template = "https://kavita.yawarakatai.com"; } ];
-            definedAliases = [ "@kavita" ];
-          };
-          home = {
-            name = "Home Dashboard";
-            urls = [ { template = "https://home.yawarakatai.com"; } ];
-            definedAliases = [ "@home" ];
-          };
-        };
       };
     };
   };

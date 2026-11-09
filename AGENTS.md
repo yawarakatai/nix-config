@@ -6,7 +6,7 @@ Personal NixOS/Home Manager configuration built on flake-parts, being refactored
 
 - `modules/flake/`: flake-parts entry modules. `module-registry.nix` only publishes stable NixOS/Home Manager module names; it owns no feature implementation.
 - `modules/profiles/`: aggregators only. Import feature modules directly instead of reaching back through `self.modules`.
-- `modules/home/`, `modules/desktop/`, `modules/server/`: feature implementations.
+- `modules/home/`, `modules/desktop/`: feature implementations.
 - `hosts/<host>/`: host-specific facts and exceptions only (`default.nix` import glue, `system.nix`, `hardware.nix`, `home/`, `storage/`, `generated/`).
 - `secrets/`: encrypted age/agenix files.
 
@@ -39,7 +39,6 @@ Modify only when the task explicitly covers them (for example host installation 
 - `secrets/`, agenix and agenix-rekey configuration
 - disk layout (`hosts/<host>/storage/disko.nix`), LUKS, Secure Boot, TPM
 - `hosts/<host>/generated/`
-- production server service data paths
 
 Encrypted `.age` files, SSH public keys, and generated hardware configurations are versioned artifacts and may be committed. Never expose decrypted secret values.
 
@@ -47,7 +46,6 @@ Encrypted `.age` files, SSH public keys, and generated hardware configurations a
 
 - Always: `just check` (read-only; treefmt is checked, not applied). Run `nix fmt` to fix formatting.
 - Desktop or system changes: also `just build desuwa`.
-- Server-only changes: also `just eval dane`.
 - Changes to `modules/flake/home.nix`: also evaluate with `PORTABLE_USERNAME`/`PORTABLE_HOME` overrides (requires `--impure`).
 
 ## Documentation

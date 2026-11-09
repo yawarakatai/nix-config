@@ -85,11 +85,6 @@
       url = "github:yawarakatai/ura";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    nixos-rock5t = {
-      url = "github:yawarakatai/nixos-rock5t";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =

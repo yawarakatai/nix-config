@@ -37,13 +37,6 @@ in
           identityAgent = "none";
         };
 
-        "dane" = {
-          hostname = "dane.yawarakatai.com";
-          identityFile = identities;
-          identitiesOnly = true;
-          identityAgent = "none";
-        };
-
         "kamo" = {
           hostname = "kamo.yawarakatai.com";
           identityFile = identities;

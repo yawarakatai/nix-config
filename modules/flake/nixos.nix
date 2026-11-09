@@ -54,10 +54,6 @@ in
 
       nanodesu = mkHost "nanodesu" nixosModules.profileLaptop { };
 
-      # dane = mkHost "dane" nixosModules.profileMinimal {
-      #   system = "aarch64-linux";
-      # };
-
       kamo = mkHost "kamo" nixosModules.profileDesktopNiri { };
     };
 
