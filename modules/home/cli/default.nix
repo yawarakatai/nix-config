@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
+    ./comma.nix
     ./television.nix
     ./wiremix.nix
     ./yazi.nix
