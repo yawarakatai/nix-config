@@ -21,6 +21,8 @@
   - Before editing, commit any existing uncommitted changes as-is, so your work sits on top of them.
   - After validation passes, commit the task as one Conventional Commit in English.
   - Do not push or rewrite history unless asked.
+  - `gh` is read-only: for writes such as PRs or comments, give the user the command instead of seeking other credentials.
+  - `git push` needs a physical FIDO key touch with no visible prompt: warn the user first, and never retry or change remote URLs.
 
   ## Safety
 
