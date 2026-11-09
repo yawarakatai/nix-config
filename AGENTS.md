@@ -17,6 +17,7 @@ Non-obvious edit locations:
 - Home Manager desktop aggregation, including development and SSH: `modules/profiles/home/desktop.nix`.
 - Standalone portable account parameters: `modules/flake/home.nix`; installation: `PORTABLE.md`.
 - Kamo gaming/session integration: `modules/gaming/jovian.nix`.
+- Desuwa's screen-recording account: `modules/desktop/recording-user.nix`; its Home Manager profile: `modules/profiles/home/recording.nix`.
 
 ## Design rules
 

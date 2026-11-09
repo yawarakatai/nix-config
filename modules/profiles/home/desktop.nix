@@ -3,6 +3,7 @@
 {
   imports = [
     ./default.nix
+    ../../home/nix-config.nix
     ../../home/dev
     ../../home/services/ssh-client.nix
     ../../home/services/ssh-agenix.nix

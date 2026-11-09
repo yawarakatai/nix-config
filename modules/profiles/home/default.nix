@@ -1,6 +1,5 @@
 {
   config,
-  username,
   ...
 }:
 
@@ -9,12 +8,9 @@
     ../../home/cli
     ../../home/editor/helix.nix
     ../../home/shell
-    ../../home/nix-config.nix
   ];
 
   home = {
-    inherit username;
-    homeDirectory = "/home/${username}";
     stateVersion = "25.05";
     enableNixpkgsReleaseCheck = false;
   };
