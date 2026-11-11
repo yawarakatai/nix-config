@@ -268,20 +268,20 @@ lib.mkMerge [
           {
             name = "vu";
             scope = "source.fo";
+            injection-regex = "vu";
             file-types = [ "vu" ];
             comment-token = "#";
             indent = {
-              tab-width = 2;
-              unit = "  ";
+              tab-width = 4;
+              unit = "    ";
             };
-            language-servers = [
-              "vu"
-            ];
             formatter = {
               command = "vu";
               args = [ "fmt" ];
             };
-            auto-format = true;
+            language-servers = [
+              "vu"
+            ];
           }
         ];
 
