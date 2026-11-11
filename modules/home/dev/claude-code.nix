@@ -1,3 +1,5 @@
+{ lib, pkgs, ... }:
+
 let
   agentInstructions = import ./agent-instructions.nix;
 in
@@ -5,6 +7,7 @@ in
   programs.claude-code = {
     enable = true;
     context = agentInstructions;
+    mcpServers.nixos.command = lib.getExe pkgs.mcp-nixos;
 
     # Claude Code rewrites settings.json itself (theme, /config changes), so
     # declared values are merged into a writable file instead of a store symlink.
@@ -37,6 +40,9 @@ in
           "Read(~/.ssh/id_*)"
           "Read(**/.env)"
           "Read(**/.env.*)"
+
+          # Comes from the claude.ai account, so there is no local config to remove.
+          "mcp__claude_ai_Claude_Docs"
         ];
       };
     };
