@@ -32,6 +32,7 @@ in
         "audio"
         "plugdev"
         "input"
+        "dialout"
       ]
       ++ lib.optional config.virtualisation.docker.enable "docker";
       hashedPasswordFile = config.age.secrets.user-password.path;
