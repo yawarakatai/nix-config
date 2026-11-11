@@ -8,6 +8,10 @@ in
     enable = true;
     context = agentInstructions;
     mcpServers.nixos.command = lib.getExe pkgs.mcp-nixos;
+    lspServers.nix = {
+      command = lib.getExe pkgs.nixd;
+      extensionToLanguage.".nix" = "nix";
+    };
 
     # Claude Code rewrites settings.json itself (theme, /config changes), so
     # declared values are merged into a writable file instead of a store symlink.
