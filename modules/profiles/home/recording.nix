@@ -1,10 +1,13 @@
 { pkgs, ... }:
 
 {
-  # Keep accounts, credentials, and personal sync out of recorded sessions.
+  # Keep secrets, personal sync, and messaging out of recorded sessions; the
+  # public Git identity is fine.
   imports = [
     ./default.nix
     ../../home/dev
+    ../../home/dev/agents.nix
+    ../../home/dev/git-identity.nix
     ../../home/browser/zen-browser.nix
     ../../home/terminal/ghostty.nix
     ../../home/desktop/apps.nix

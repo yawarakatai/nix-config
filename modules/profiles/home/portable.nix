@@ -6,6 +6,8 @@
     ../../home/editor/helix.nix
     ../../home/shell
     ../../home/dev
+    ../../home/dev/agents.nix
+    ../../home/dev/git-identity.nix
     ../../home/services/ssh-client.nix
   ];
 
