@@ -3,7 +3,6 @@
   imports = [
     ./comma.nix
     ./television.nix
-    ./wiremix.nix
     ./yazi.nix
   ];
 
@@ -15,7 +14,6 @@
     fd
     eza
     television
-    wiremix
 
     duf
     dust
