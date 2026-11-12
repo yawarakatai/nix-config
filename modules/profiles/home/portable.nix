@@ -4,14 +4,13 @@
   imports = [
     ../../home/cli
     ../../home/editor/helix.nix
-    ../../home/shell
     ../../home/dev
-    ../../home/dev/agents.nix
-    ../../home/dev/git-identity.nix
-    ../../home/services/ssh-client.nix
   ];
 
   programs.home-manager.enable = true;
+
+  # Home Manager's Bash files load the session variables below on non-NixOS hosts.
+  programs.bash.enable = true;
 
   targets.genericLinux = {
     enable = true;
