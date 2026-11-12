@@ -10,14 +10,12 @@ lib.mkMerge [
     # Install language servers and tools needed by Helix
     home.packages = with pkgs; [
       # === LSP Servers ===
-      nixd # Nix LSP
       taplo # TOML LSP and formatter
       yaml-language-server # YAML LSP
       marksman # Markdown LSP
       vscode-json-languageserver # JSON LSP
 
       # === Formatters ===
-      nixfmt
       prettier # Markdown (and general) formatter
     ];
 
