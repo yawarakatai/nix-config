@@ -6,6 +6,7 @@
 {
   imports = [
     ../../home/cli
+    ../../home/dev/nix.nix
     ../../home/editor/helix.nix
     ../../home/shell
   ];

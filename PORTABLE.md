@@ -1,9 +1,11 @@
 # Portable development environment
 
-The standalone Home Manager configuration installs CLI tools, Zsh, Starship,
-Helix, Git, Lazygit, direnv, Python, Plainix, Codex, and pi on non-NixOS Linux.
-It does not install the NixOS desktop, Niri, hardware configuration, or system
-services, and it does not change your login shell.
+The standalone Home Manager configuration installs CLI tools, Helix, Nix tools
+(nixd, nixfmt, comma), Git, Lazygit, direnv, Python, and Plainix on non-NixOS
+Linux, and manages Bash so these tools' session variables are loaded. Optional
+features add more; see below. It does not install the NixOS desktop, Niri,
+hardware configuration, or system services, and it does not change your login
+shell.
 
 Two outputs are available. Check your architecture with `uname -m`:
 
@@ -19,10 +21,11 @@ these tools. If installation requires administrator access, ask the administrato
 do not bypass device restrictions. Apply Home Manager only to your own account,
 never with `sudo`.
 
-This is still a personal configuration: it includes yawarakatai's Git identity
-and SSH host settings. Review them before applying, along with any existing
-shell, Git, and SSH configuration. Private SSH keys and API credentials are not
-installed by this profile.
+This is still a personal configuration: the optional `git-identity` and `ssh`
+features add yawarakatai's Git identity and SSH host settings. Review them
+before applying. Existing `~/.bashrc` and `~/.profile` are replaced (and backed
+up), so also review any existing shell, Git, and SSH configuration. Private SSH
+keys and API credentials are not installed by this profile.
 
 ## Install Nix
 
@@ -71,6 +74,25 @@ accounts. Without overrides, the username defaults to `yawarakatai` and the home
 directory to `/home/<username>`. Pure evaluation ignores the environment and uses
 `yawarakatai` and `/home/yawarakatai`, so repository checks remain reproducible.
 
+Optional features are off by default. Select them with a comma-separated list,
+also read only with `--impure`:
+
+```bash
+export PORTABLE_FEATURES="shell,ghostty,ssh"
+```
+
+- `shell`: Zsh and Starship. Because the login shell stays unchanged, an
+  interactive top-level Bash starts Zsh in its place; running `bash` from there
+  stays in Bash.
+- `agents`: Claude Code and pi.
+- `git-identity`: yawarakatai's Git name and email.
+- `ghostty`: the Ghostty configuration and its fonts. Install Ghostty itself from
+  your distribution, because a Nix-built Ghostty cannot find the host's GPU
+  drivers.
+- `ssh`: yawarakatai's SSH host settings and public keys.
+
+Set the same list on every update; features omitted later are removed.
+
 ## Install from a local checkout
 
 ```bash
@@ -104,12 +126,13 @@ that backup already exists, resolve the conflict manually rather than overwritin
 it. Keep backups until you are satisfied with the new configuration.
 
 Home Manager is now installed in your profile. Reopen your terminal to refresh
-the environment, then run `zsh` if you want to use the configured shell. The
-system's default login shell is not changed automatically.
+the environment; with the `shell` feature it opens in Zsh. The system's default
+login shell is not changed.
 
 ### Updates
 
-Set the account variables again in each new shell before updating:
+Set the account variables, and `PORTABLE_FEATURES` if used, again in each new
+shell before updating:
 
 ```bash
 cd ~/.config/nix-config

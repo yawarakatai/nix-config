@@ -5,6 +5,8 @@
     ./default.nix
     ../../home/nix-config.nix
     ../../home/dev
+    ../../home/dev/agents.nix
+    ../../home/dev/git-identity.nix
     ../../home/services/ssh-client.nix
     ../../home/services/ssh-agenix.nix
     ../../home/services/gh-agenix.nix

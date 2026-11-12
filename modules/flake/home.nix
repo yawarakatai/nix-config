@@ -1,5 +1,6 @@
 {
   inputs,
+  lib,
   self,
   ...
 }:
@@ -10,6 +11,22 @@ let
   portableHome = builtins.getEnv "PORTABLE_HOME";
   username = if portableUsername == "" then "yawarakatai" else portableUsername;
   homeDirectory = if portableHome == "" then "/home/${username}" else portableHome;
+
+  # Optional aspects layered on the minimal profile, e.g. PORTABLE_FEATURES=ghostty,ssh.
+  portableFeatures = {
+    ghostty = ../home/terminal/ghostty-portable.nix;
+    ssh = ../home/services/ssh-client.nix;
+    shell = ../home/shell/portable.nix;
+    agents = ../home/dev/agents.nix;
+    git-identity = ../home/dev/git-identity.nix;
+  };
+  selectedFeatures = lib.filter (name: name != "") (
+    lib.splitString "," (builtins.getEnv "PORTABLE_FEATURES")
+  );
+  featureModule =
+    name:
+    portableFeatures.${name}
+      or (throw "Unknown PORTABLE_FEATURES entry '${name}'; available: ${lib.concatStringsSep ", " (lib.attrNames portableFeatures)}");
 
   mkPortableHome =
     system:
@@ -32,7 +49,8 @@ let
             enableNixpkgsReleaseCheck = false;
           };
         }
-      ];
+      ]
+      ++ map featureModule selectedFeatures;
     };
 in
 {
