@@ -8,6 +8,7 @@ Personal NixOS configuration.
 | ---------- | --------------------------- | --------------- | ---------------- |
 | `desuwa`   | Desktop (RTX 3080, 32 GiB) | `x86_64-linux`  | Gaming machine   |
 | `desuno`   | Desktop                     | `x86_64-linux`  | Headless host    |
+| `dane`     | ROCK 5T (24 GiB)            | `aarch64-linux` | Headless host    |
 | `nanodesu` | Laptop                      | `x86_64-linux`  | Laptop           |
 | `kamo`     | ROG Ally                    | `x86_64-linux`  | Portable machine |
 

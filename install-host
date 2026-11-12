@@ -489,8 +489,16 @@ read -r -p "Type '${host}' to start nixos-anywhere: " typed
 
 info "Running nixos-anywhere"
 
+# A host of another architecture cannot be built here; build it on the target.
+build_on=()
+host_system="$(nix eval --raw ".#nixosConfigurations.${host}.config.nixpkgs.hostPlatform.system")"
+if [[ "$host_system" != "$(nix eval --raw --impure --expr builtins.currentSystem)" ]]; then
+  build_on=(--build-on remote)
+fi
+
 nix run github:nix-community/nixos-anywhere -- \
   --flake ".#${host}" \
+  "${build_on[@]}" \
   --extra-files "$extra_dir" \
   -i "$ssh_key" \
   --ssh-option "IdentitiesOnly=yes" \

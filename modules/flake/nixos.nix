@@ -52,6 +52,11 @@ in
         extraModules = [ nixosModules.profileSecret ];
       };
 
+      dane = mkHost "dane" nixosModules.profileMinimal {
+        system = "aarch64-linux";
+        extraModules = [ nixosModules.profileSecret ];
+      };
+
       nanodesu = mkHost "nanodesu" nixosModules.profileLaptop { };
 
       kamo = mkHost "kamo" nixosModules.profileDesktopNiri { };
