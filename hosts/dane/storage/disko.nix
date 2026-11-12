@@ -3,7 +3,7 @@ _:
 {
   disko.devices.disk.main = {
     type = "disk";
-    device = "/dev/disk/by-id/nvme-BC711_NVMe_SK_hynix_256GB_CDA3N81581070463W";
+    device = "/dev/disk/by-id/nvme-BC711_NVMe_SK_hynix_256GB____CDA3N81581070463W";
     content = {
       type = "gpt";
       partitions = {
