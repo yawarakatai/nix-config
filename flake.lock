@@ -123,11 +123,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793281692,
-        "narHash": "sha256-kuevELV+0mSV4Jw73SCOkl8N6jeUD52PptM7QugKe0Q=",
+        "lastModified": 1794485017,
+        "narHash": "sha256-AeQS54S5nbF77shOxb3sjgUWR/YSf1n6CqYy7e89Cuk=",
         "owner": "yawarakatai",
         "repo": "den",
-        "rev": "e4a6b974a1c03ee0982519ae0ecbb1b8b36984f5",
+        "rev": "5143fdefb10e25236485dddb5649ea7096e4cd08",
         "type": "github"
       },
       "original": {
