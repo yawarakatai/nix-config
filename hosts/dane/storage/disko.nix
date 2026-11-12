@@ -35,4 +35,21 @@ _:
       };
     };
   };
+
+  disko.devices.disk.storage = {
+    type = "disk";
+    device = "/dev/disk/by-id/nvme-WD_BLACK_SN770_1TB_22134E800783";
+    content = {
+      type = "gpt";
+      partitions.storage = {
+        size = "100%";
+        content = {
+          type = "filesystem";
+          format = "ext4";
+          mountpoint = "/storage";
+          mountOptions = [ "noatime" ];
+        };
+      };
+    };
+  };
 }
