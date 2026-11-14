@@ -2,17 +2,9 @@
 result
 result-*
 
-# Hardware configuration (machine-specific, generated under hosts/*/generated)
-# Uncomment if you want to regenerate on each machine:
-# hosts/*/generated/hardware-configuration.nix
-
 # Secrets - NEVER commit unencrypted secrets
 secrets/*.key
 secrets/*.pem
-!secrets/README.md
-
-# Age/sops private keys - NEVER commit these!
-!.gitignore
 
 # Editor files
 .vscode/
@@ -29,5 +21,5 @@ Thumbs.db
 *.bak
 *.backup
 
-# diernv files
+# direnv files
 .direnv
