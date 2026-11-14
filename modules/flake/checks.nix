@@ -233,18 +233,20 @@
             };
 
             router =
-              { config, lib, ... }:
+              { config, ... }:
               {
                 imports = [
                   ../core/networking.nix
                   ../services/router.nix
-                  ../../hosts/dane/system.nix
                 ];
                 virtualisation.interfaces = {
                   ${config.my.router.wan}.vlan = 1;
                   ${config.my.router.lan}.vlan = 2;
                 };
-                my.router.aftr = lib.mkForce "2001:db8::1";
+                # Dane's real interface facts, with the simulated AFTR in place of the ISP's.
+                my.router = self.nixosConfigurations.dane.config.my.router // {
+                  aftr = "2001:db8::1";
+                };
                 services.openssh.enable = true;
                 environment.systemPackages = [ pkgs.curl ];
                 systemd.network.networks = {
