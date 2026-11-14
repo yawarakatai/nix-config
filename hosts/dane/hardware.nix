@@ -22,6 +22,12 @@
     ];
   };
 
+  # The blue status LED blinks a bright heartbeat; it is a GPIO LED, so it can only be switched off, not dimmed.
+  # The green power LED is wired to the supply and cannot be controlled.
+  services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="leds", KERNEL=="blue:status", ATTR{trigger}="none", ATTR{brightness}="0"
+  '';
+
   # Reboot through the SoC's DesignWare watchdog if the system hangs.
   systemd.settings.Manager.RuntimeWatchdogSec = "30s";
 }
