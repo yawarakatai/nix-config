@@ -149,7 +149,7 @@ Before running the installer, review `hosts/<host>/storage/disko.nix` and make s
 From this repository:
 
 ```bash
-./install-host kamo nixos@192.168.0.99
+nix run .#install-host -- kamo nixos@192.168.0.99
 ```
 
 The installer script handles:

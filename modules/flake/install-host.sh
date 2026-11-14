@@ -1,14 +1,11 @@
-#!/usr/bin/env bash
-set -euo pipefail
-
 usage() {
   cat <<'USAGE'
 Usage:
-  install-host [options] <host> <target>
+  nix run .#install-host -- [options] <host> <target>
 
 Examples:
-  install-host kamo nixos@192.168.0.99
-  install-host --no-install kamo nixos@192.168.0.99
+  nix run .#install-host -- kamo nixos@192.168.0.99
+  nix run .#install-host -- --no-install kamo nixos@192.168.0.99
 
 Target requirements:
   - Booted into the official NixOS ISO
@@ -52,10 +49,6 @@ info() {
 
 warn() {
   echo "warning: $*" >&2
-}
-
-require_cmd() {
-  command -v "$1" >/dev/null 2>&1 || die "missing command: $1"
 }
 
 confirm() {
@@ -353,17 +346,6 @@ target="${2:-}"
 [[ -f "hosts/$host/storage/disko.nix" ]] ||
   die "hosts/$host/storage/disko.nix does not exist"
 
-require_cmd ssh
-require_cmd ssh-keygen
-require_cmd tar
-require_cmd nix
-require_cmd chmod
-require_cmd date
-
-if [[ "$no_rekey" != "1" ]]; then
-  require_cmd agenix
-fi
-
 info "Install target"
 echo "Host:   $host"
 echo "Target: $target"
@@ -496,7 +478,7 @@ if [[ "$host_system" != "$(nix eval --raw --impure --expr builtins.currentSystem
   build_on=(--build-on remote)
 fi
 
-nix run github:nix-community/nixos-anywhere -- \
+nixos-anywhere \
   --flake ".#${host}" \
   "${build_on[@]}" \
   --extra-files "$extra_dir" \

@@ -99,6 +99,7 @@
         ./modules/flake/dev.nix
         ./modules/flake/checks.nix
         ./modules/flake/home.nix
+        ./modules/flake/install-host.nix
         ./modules/flake/nixos.nix
       ];
       systems = [
