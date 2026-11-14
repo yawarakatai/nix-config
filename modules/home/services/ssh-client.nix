@@ -46,7 +46,16 @@ in
 
       settings =
         # The alias pins each host's key even when DHCP changes its address.
-        lib.mapAttrs (host: _: yubikey // { hostKeyAlias = host; }) installedHosts // {
+        lib.mapAttrs (
+          host: _:
+          yubikey
+          // {
+            hostKeyAlias = host;
+          }
+          # dane is the router, so its LAN address is fixed.
+          // lib.optionalAttrs (host == "dane") { hostname = "192.168.1.1"; }
+        ) installedHosts
+        // {
           "*" = {
             setEnv = "TERM=xterm-256color";
             userKnownHostsFile = "~/.ssh/known_hosts ~/.ssh/known_hosts_managed";
