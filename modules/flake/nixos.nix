@@ -4,7 +4,7 @@
   ...
 }:
 let
-  inherit (inputs.nixpkgs.lib) nixosSystem;
+  inherit (inputs.nixpkgs.lib) filterAttrs nixosSystem;
   nixosModules = self.modules.nixos;
 
   mkHost =
@@ -48,11 +48,7 @@ in
     nixosConfigurations = {
       desuwa = mkHost "desuwa" nixosModules.profileDesktopNiri { };
 
-      desuno = mkHost "desuno" nixosModules.profileMinimal {
-        extraModules = [ nixosModules.profileSecret ];
-      };
-
-      dane = mkHost "dane" nixosModules.profileMinimal {
+      dayo = mkHost "dayo" nixosModules.profileMinimal {
         system = "aarch64-linux";
         extraModules = [ nixosModules.profileSecret ];
       };
@@ -64,7 +60,10 @@ in
 
     agenix-rekey = inputs.agenix-rekey.configure {
       userFlake = self;
-      inherit (self) nixosConfigurations;
+      # Hosts get their key from install-host, which rekeys them once it exists.
+      nixosConfigurations = filterAttrs (
+        host: _: builtins.pathExists ../../hosts/${host}/generated/ssh_host_ed25519_key.pub
+      ) self.nixosConfigurations;
     };
   };
 }

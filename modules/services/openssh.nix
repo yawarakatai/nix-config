@@ -9,6 +9,8 @@ in
       PermitRootLogin = "no";
       PasswordAuthentication = false;
       KbdInteractiveAuthentication = false;
+      # FIDO keys must prove a PIN was entered; this has no effect on non-FIDO keys such as backup clients' host keys.
+      PubkeyAuthOptions = "verify-required";
     };
   };
 
