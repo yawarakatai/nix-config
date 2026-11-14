@@ -3,7 +3,7 @@
 {
   imports = [
     ./secret.nix
-    ../../security/github-token.nix
+    ../../github/system.nix
     ../../security/yubikey.nix
     ../../ssh/system.nix
     inputs.stylix.nixosModules.stylix

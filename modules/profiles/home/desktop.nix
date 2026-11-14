@@ -8,7 +8,7 @@
     ../../home/dev/agents.nix
     ../../home/dev/git-identity.nix
     ../../ssh/home.nix
-    ../../home/services/gh-agenix.nix
+    ../../github/home.nix
     ../../home/services/syncthing.nix
     ../../home/browser/zen-browser.nix
     ../../home/terminal/ghostty.nix

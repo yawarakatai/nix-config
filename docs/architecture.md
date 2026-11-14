@@ -24,7 +24,8 @@ modules/
   desktop/                 # Wayland desktop: Niri, Noctalia, greetd
   gaming/                  # Steam and Jovian
   hardware/ input/ laptop/ # device support
-  security/                # agenix, YubiKeys, tokens
+  github/                  # gh with a read-only token delivered by agenix (system.nix + home.nix)
+  security/                # agenix and YubiKey support
   services/                # system services, including dayo's router and backup server
   ssh/                     # sshd, client and known hosts, desktop YubiKey identities (system.nix + home.nix)
   storage/                 # Btrfs and zram
