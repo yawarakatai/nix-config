@@ -10,10 +10,13 @@ covered in [docs/security.md](../../docs/security.md#dayo).
   DS-Lite B4 works per line: testing `dayo` behind another DS-Lite router
   stalls IPv4.
 - **DNS:** `dayo` resolves through Cloudflare, then Quad9 if Cloudflare fails,
-  over native IPv6 with DNSSEC validation, so DNS keeps working if the tunnel
-  fails. It ignores the NGN's resolvers, which strip DNSSEC signatures and make
-  validation fail; only they resolve the AFTR's name, whose address is pinned
-  instead.
+  over DNS over TLS on native IPv6 with DNSSEC validation, so DNS keeps working
+  if the tunnel fails. It ignores the NGN's resolvers, which strip DNSSEC
+  signatures and make validation fail; only they resolve the AFTR's name, whose
+  address is pinned instead. If no upstream answers over TLS, nothing resolves:
+  SSH to `192.168.1.1` still works, so roll back from there.
+- **Time:** TLS certificate checks need a correct clock, so time sync starts
+  from NICT's IPv6 addresses and needs no DNS.
 - **Radio:** the onboard RTL8852BE Wi-Fi has no Japanese radio certification,
   so its drivers are blacklisted.
 

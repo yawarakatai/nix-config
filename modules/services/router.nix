@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  options,
+  ...
+}:
 
 let
   inherit (lib) mkOption types;
@@ -65,6 +70,14 @@ in
           }
         '';
       };
+
+      # DNS over TLS checks certificates against the clock, so syncing the clock
+      # must not need DNS: ntp.nict.jp's addresses come first.
+      timeServers = [
+        "2001:df0:232:eea0::fff3"
+        "2001:df0:232:eea0::fff4"
+      ]
+      ++ options.networking.timeServers.default;
     };
 
     services.openssh = {
@@ -82,12 +95,15 @@ in
       # The NGN's resolvers strip DNSSEC signatures, so validation fails on them.
       # These validate and are reached over native IPv6, independent of the tunnel.
       # resolved moves down the list only on failure: Cloudflare first, then Quad9.
+      # TLS, verified against the name after "#", keeps the path from reading or
+      # forging answers; DNSSEC alone can be downgraded on path.
       DNS = [
-        "2606:4700:4700::1111"
-        "2606:4700:4700::1001"
-        "2620:fe::fe"
-        "2620:fe::9"
+        "2606:4700:4700::1111#cloudflare-dns.com"
+        "2606:4700:4700::1001#cloudflare-dns.com"
+        "2620:fe::fe#dns.quad9.net"
+        "2620:fe::9#dns.quad9.net"
       ];
+      DNSOverTLS = true;
     };
 
     systemd.network = {
