@@ -89,7 +89,10 @@ export PORTABLE_FEATURES="shell,ghostty,ssh"
 - `ghostty`: the Ghostty configuration and its fonts. Install Ghostty itself from
   your distribution, because a Nix-built Ghostty cannot find the host's GPU
   drivers.
-- `ssh`: yawarakatai's SSH host settings and public keys.
+- `ssh`: yawarakatai's SSH host settings, public keys, and pinned host keys.
+  The YubiKey key handles are resident on each key; export them once with
+  `cd ~/.ssh && ssh-keygen -K` (PIN required) and rename the
+  `id_ed25519_sk_rk_nix-config` file to `yubikey_5` or `yubikey_5c`.
 
 Set the same list on every update; features omitted later are removed.
 

@@ -4,8 +4,8 @@ in
 {
   # YubiKey SSH keys (for SSH client authentication)
   ssh = {
-    yubikey-5 = "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIKoUC9mEqLf9q8geELb89t8I9P+0JBD2fvm51+jwNuu3AAAABHNzaDo= yubikey-5";
-    yubikey-5c = "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIFwdOpc6zvMiZ0zC/NqC2mzEn0B5hdRz1jD2V76vsclLAAAABHNzaDo= yubikey-5c";
+    yubikey-5 = "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIKo0I6267iVhv4piUE1dvLbz8/j63sUU0nu8fFLdRX40AAAADnNzaDpuaXgtY29uZmln yubikey-5";
+    yubikey-5c = "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIA4bVQFlkXgArKYPxuQtaXxFA8ZX8rLMk+LexGgbwBJ/AAAADnNzaDpuaXgtY29uZmln yubikey-5c";
   };
 
   # Host SSH keys (for agenix-rekey rekeying)
