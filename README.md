@@ -1,13 +1,14 @@
 # nix-config
 
-Personal NixOS configuration.
+Personal NixOS configuration. Security decisions and procedures are in
+[SECURITY.md](SECURITY.md).
 
 ## Hosts
 
 | Host       | Device                      | Arch            | Role             |
 | ---------- | --------------------------- | --------------- | ---------------- |
 | `desuwa`   | Desktop (RTX 3080, 32 GiB) | `x86_64-linux`  | Gaming machine   |
-| `dane`     | ROCK 5T (24 GiB)            | `aarch64-linux` | Headless host    |
+| `dane`     | ROCK 5T (24 GiB)            | `aarch64-linux` | Router, backups  |
 | `nanodesu` | Laptop                      | `x86_64-linux`  | Laptop           |
 | `kamo`     | ROG Ally                    | `x86_64-linux`  | Portable machine |
 
@@ -64,6 +65,7 @@ Private SSH host keys are never committed. They are copied temporarily to `/tmp/
 | Host-specific boot, services, display, wallpaper, or package settings | `hosts/<host>/system.nix`                    |
 | Host-specific hardware modules and device quirks                      | `hosts/<host>/hardware.nix`                  |
 | Host install disk layout                                              | `hosts/<host>/storage/disko.nix`             |
+| Router line facts and backup quotas on `dane`                         | `hosts/dane/system.nix`                      |
 | Generated hardware facts or SSH host public key                       | `hosts/<host>/generated/` via `install-host` |
 | Home Manager host-only additions                                      | `hosts/<host>/home/default.nix`              |
 | Reusable NixOS or Home Manager features                               | `modules/`                                   |
@@ -189,8 +191,10 @@ let
   readKey = path: builtins.replaceStrings [ "\n" ] [ "" ] (builtins.readFile path);
 in
 {
-  users = {
-    yawarakatai = "ssh-ed25519 ...";
+  # YubiKey SSH public keys
+  ssh = {
+    yubikey-5 = "sk-ssh-ed25519@openssh.com ...";
+    yubikey-5c = "sk-ssh-ed25519@openssh.com ...";
   };
 
   hosts = {
@@ -235,12 +239,13 @@ host may fail activation with
 succeeds.
 
 After creating or changing a source secret, track the encrypted source file so
-the flake can see it, then run `nix develop -c agenix rekey` (a YubiKey touch may
-be required). Track the generated `secrets/rekeyed/<host>/*-<name>.age` file too
+the flake can see it, then run `nix develop -c agenix rekey` (each decryption needs a
+YubiKey PIN and touch). Track the generated `secrets/rekeyed/<host>/*-<name>.age` file too
 before building or switching. Never add plaintext to Git. If rekeying has not
 been done, evaluation will report that the rekeyed secret is missing.
 Applications should read `config.age.secrets.<name>.path` at runtime, not the
-source ciphertext.
+source ciphertext. [SECURITY.md](SECURITY.md) covers replacing values and
+master keys.
 
 ### SSH host keys
 
@@ -262,4 +267,5 @@ Use the host's `storage/disko.nix`. Shared disko helpers are intentionally avoid
 
 ### Kernel
 
-All hosts use `pkgs.linuxPackages_latest`, selected in `modules/core/boot.nix`.
+Hosts use `pkgs.linuxPackages_latest`, selected in `modules/core/boot.nix`.
+`dane` overrides it with the LTS kernel in `hosts/dane/hardware.nix`.

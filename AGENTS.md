@@ -17,6 +17,8 @@ Non-obvious edit locations:
 - Home Manager desktop aggregation, including development and SSH: `modules/profiles/home/desktop.nix`.
 - Standalone portable account parameters: `modules/flake/home.nix`; installation: `PORTABLE.md`.
 - Kamo gaming/session integration: `modules/gaming/jovian.nix`.
+- Dane's router and backup server: `modules/services/router.nix` and `modules/services/backup-server.nix`; line facts and quotas in `hosts/dane/system.nix`.
+- Security model and procedures: `SECURITY.md`; update it when changing secrets, SSH, YubiKey use, or `dane`'s exposure.
 - Desuwa's screen-recording account: `modules/desktop/recording-user.nix`; its Home Manager profile: `modules/profiles/home/recording.nix`.
 
 ## Design rules
@@ -31,6 +33,7 @@ Non-obvious edit locations:
 - Noctalia owns wallpaper. Stylix owns colors, fonts, cursor, and application theming only; do not add `stylix.image`.
 - Niri owns compositor behavior, keybindings, window rules, and output defaults. wlr-randr wrappers are for emergency display changes.
 - When Home Manager manages Zsh or Starship, skip the duplicate NixOS initialization; hosts without those features keep the NixOS defaults.
+- On `dane`, systemd-networkd and nftables own networking; NetworkManager comes only from the desktop profile.
 - On `kamo`, Jovian owns Gaming Mode, SDDM, input integration, and charging limits; Niri is the development desktop. Noctalia's agenix storage key is host-specific because of autologin.
 
 ## High-risk areas
