@@ -5,7 +5,7 @@
     ./secret.nix
     ../../security/github-token.nix
     ../../security/yubikey.nix
-    ../../security/yubikey-ssh-keys.nix
+    ../../ssh/system.nix
     inputs.stylix.nixosModules.stylix
     ../../core/i18n.nix
     ../../desktop/wayland.nix

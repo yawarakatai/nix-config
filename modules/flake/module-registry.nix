@@ -17,7 +17,7 @@
 
       servicesOpenSsh = {
         imports = [
-          ../services/openssh.nix
+          ../ssh/server.nix
         ];
       };
 

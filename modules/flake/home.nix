@@ -15,7 +15,7 @@ let
   # Optional aspects layered on the minimal profile, e.g. PORTABLE_FEATURES=ghostty,ssh.
   portableFeatures = {
     ghostty = ../home/terminal/ghostty-portable.nix;
-    ssh = ../home/services/ssh-client.nix;
+    ssh = ../ssh/client.nix;
     shell = ../home/shell/portable.nix;
     agents = ../home/dev/agents.nix;
     git-identity = ../home/dev/git-identity.nix;

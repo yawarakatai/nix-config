@@ -26,6 +26,7 @@ modules/
   hardware/ input/ laptop/ # device support
   security/                # agenix, YubiKeys, tokens
   services/                # system services, including dayo's router and backup server
+  ssh/                     # sshd, client and known hosts, desktop YubiKey identities (system.nix + home.nix)
   storage/                 # Btrfs and zram
   theme/                   # palette and Stylix (see its README)
   home/                    # Home Manager features

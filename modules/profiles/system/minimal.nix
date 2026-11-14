@@ -9,6 +9,6 @@
     ../../core/nix.nix
     ../../core/packages.nix
     ../../storage/zram.nix
-    ../../services/openssh.nix
+    ../../ssh/server.nix
   ];
 }

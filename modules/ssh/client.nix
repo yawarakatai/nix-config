@@ -4,12 +4,12 @@
   ...
 }:
 let
-  keys = import ../../../secrets/keys.nix;
+  keys = import ../../secrets/keys.nix;
   identities = config.my.ssh.identityFiles;
 
   # install-host creates each host key; hosts not installed yet are skipped.
   installedHosts = lib.filterAttrs (
-    host: _: builtins.pathExists ../../../hosts/${host}/generated/ssh_host_ed25519_key.pub
+    host: _: builtins.pathExists ../../hosts/${host}/generated/ssh_host_ed25519_key.pub
   ) keys.hosts;
 
   # From https://api.github.com/meta, so the first connection cannot be intercepted.

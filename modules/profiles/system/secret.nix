@@ -2,6 +2,6 @@
   imports = [
     ./base.nix
     ../../security/agenix.nix
-    ../../services/openssh.nix
+    ../../ssh/server.nix
   ];
 }
