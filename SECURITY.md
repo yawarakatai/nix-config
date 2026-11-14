@@ -122,7 +122,7 @@ re-encrypting alone protects only future values.
   baud, 3.3 V). Do not leave a USB serial adapter wired but unpowered: noise on
   RX can stop the boot menu countdown.
 - **Updates:** no unattended upgrades. Periodically run `nix flake update`,
-  review `git diff flake.lock`, run `just check` (which includes the VM test),
+  review `git diff flake.lock`, run `nix flake check --all-systems` (which includes the VM test),
   deploy, and roll back to the previous generation if routing breaks. Keep the
   previous router available as a fallback.
 - **Backups:** each client has an append-only borg repository under

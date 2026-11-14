@@ -167,11 +167,9 @@ home-manager switch --impure -b portable-backup \
 
 ## Repository validation
 
-`nix develop -c just eval-home portable` evaluates one activation derivation.
-`nix develop -c just eval-homes` evaluates every standalone Home Manager output,
-including ARM64, without building their packages. `just check` includes this
-validation. These commands use pure evaluation and the reproducible default
-account, not the account overrides.
+`nix flake check` evaluates every standalone Home Manager output, including
+ARM64, without building their packages. It uses pure evaluation and the
+reproducible default account, not the account overrides.
 
 ## WSL notes
 

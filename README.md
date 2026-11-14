@@ -82,24 +82,11 @@ Wallpaper is configured with `my.wallpaper.image` and is shared across all displ
 # Format
 nix fmt
 
-# Lint
-just lint
-
-# Dead-code check
-just dead
-
-# Full check (including formatting; does not rewrite files)
-just check
-
-# Evaluate one host
-just eval kamo
-
-# Evaluate standalone Home Manager configurations (no package builds)
-just eval-home portable
-just eval-homes
+# Full check: lint, dead code, formatting, Home Manager evaluation, VM tests
+nix flake check --all-systems
 
 # Build one host
-just build kamo
+nh os build -H kamo
 
 # Switch the current machine
 nh os switch
@@ -135,12 +122,10 @@ entry. Keep long-running agents in tmux or on another host to survive logout.
   avoid doing it twice, while retaining completion paths. Hosts without those
   Home Manager features keep the NixOS defaults. User-facing shell settings
   live in `modules/home/shell/`.
-- `just check` evaluates all standalone Home Manager activation derivations as
-  well as running the flake checks. This catches errors in `homeConfigurations`
-  without building their packages. Formatting is validated by the flake's treefmt
-  check without changing source files; run `just fmt` explicitly to fix it.
-  Generated hardware configurations are excluded from formatting, lint, and
-  dead-code checks.
+- `nix flake check` evaluates all standalone Home Manager activation derivations
+  without building their packages. Formatting is validated by the treefmt check
+  without changing source files; run `nix fmt` to fix it. Generated hardware
+  configurations are excluded from formatting, lint, and dead-code checks.
 
 ## Install a host
 

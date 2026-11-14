@@ -32,8 +32,6 @@ in
           "Bash(nix flake check:*)"
           "Bash(nix fmt:*)"
           "Bash(nix build:*)"
-          "Bash(nix develop -c just check)"
-          "Bash(just check)"
         ];
 
         # Command blocklists are easy to bypass and the YubiKey already guards

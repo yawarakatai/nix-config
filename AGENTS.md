@@ -48,8 +48,8 @@ Encrypted `.age` files, SSH public keys, and generated hardware configurations a
 
 ## Validation
 
-- Always: `just check` (read-only; treefmt is checked, not applied). Run `nix fmt` to fix formatting.
-- Desktop or system changes: also `just build desuwa`.
+- Always: `nix flake check --all-systems` (read-only; treefmt is checked, not applied). Run `nix fmt` to fix formatting.
+- Desktop or system changes: also `nh os build -H desuwa`.
 - Changes to `modules/flake/home.nix`: also evaluate with `PORTABLE_USERNAME`/`PORTABLE_HOME` overrides (requires `--impure`).
 
 ## Documentation
