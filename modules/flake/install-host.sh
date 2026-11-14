@@ -23,7 +23,8 @@ What this script does:
   - shows remote disk IDs for comparison with hosts/<host>/storage/disko.nix
   - writes hosts/<host>/generated/hardware-configuration.nix
   - writes hosts/<host>/generated/ssh_host_ed25519_key.pub
-  - prepares /tmp/<host>/etc/ssh for nixos-anywhere --extra-files
+  - places the ISO SSH host key under /tmp/<host> at the host's configured key path
+    for nixos-anywhere --extra-files
   - runs agenix rekey
   - stages generated host files and rekeyed secrets for final evaluation
   - evaluates the host
@@ -253,16 +254,21 @@ prepare_extra_files() {
   local host="$1"
   local target="$2"
   local extra_dir="/tmp/${host}"
+  local key
+
+  # A host with a tmpfs root keeps its key on persistent storage, not in /etc/ssh.
+  key="${extra_dir}$(nix eval --raw ".#nixosConfigurations.${host}.config.services.openssh.hostKeys" \
+    --apply 'keys: (builtins.head (builtins.filter (k: k.type == "ed25519") keys)).path')" ||
+    die "could not read the ed25519 host key path of ${host}"
 
   rm -rf "$extra_dir"
-  mkdir -p "$extra_dir/etc/ssh"
+  # nixos-anywhere copies these directories' modes onto the target's / and /nix.
+  # This runs in a command substitution, so the umask stays local.
+  umask 022
+  mkdir -p "$(dirname "$key")"
 
-  remote_ssh "$target" \
-    'sudo tar -C /etc/ssh -cf - ssh_host_ed25519_key ssh_host_ed25519_key.pub' \
-    | tar -C "$extra_dir/etc/ssh" -xf -
-
-  chmod 600 "$extra_dir/etc/ssh/ssh_host_ed25519_key"
-  chmod 644 "$extra_dir/etc/ssh/ssh_host_ed25519_key.pub"
+  (umask 077 && remote_ssh "$target" 'sudo cat /etc/ssh/ssh_host_ed25519_key' >"$key")
+  remote_ssh "$target" 'cat /etc/ssh/ssh_host_ed25519_key.pub' >"${key}.pub"
 
   echo "$extra_dir"
 }

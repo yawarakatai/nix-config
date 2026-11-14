@@ -1,4 +1,4 @@
-{ self, ... }:
+{ inputs, self, ... }:
 
 {
   perSystem =
@@ -199,6 +199,62 @@
                 router.wait_for_unit("wan-up.service")
                 isp.wait_until_succeeds("ping -c1 -W2 2001:db8::2", timeout=60)
                 client.wait_until_succeeds("curl -sf --max-time 3 http://203.0.113.1:8000/", timeout=60)
+          '';
+        };
+
+        # Reboots a tmpfs root: only the preserved state may come back.
+        ephemeral-root = pkgs.testers.runNixOSTest {
+          name = "ephemeral-root";
+          node.specialArgs = { inherit inputs; };
+
+          nodes.machine = {
+            imports = [ ../storage/ephemeral-root.nix ];
+            services.openssh.enable = true;
+            virtualisation = {
+              # As on dayo, / is a tmpfs; a disk stands in for /nix.
+              diskImage = null;
+              emptyDiskImages = [
+                {
+                  size = 64;
+                  driveConfig.deviceExtraOpts.serial = "persist";
+                }
+              ];
+              fileSystems."/nix/persist" = {
+                device = "/dev/disk/by-id/virtio-persist";
+                fsType = "ext4";
+                neededForBoot = true;
+                autoFormat = true;
+              };
+            };
+          };
+
+          testScript = ''
+            machine.start(allow_reboot=True)
+            machine.wait_for_unit("multi-user.target")
+            machine.wait_for_unit("sshd.service")
+
+            with subtest("The first boot commits its machine ID"):
+                machine.succeed("test -L /etc/machine-id")
+                machine.fail("grep -qx uninitialized /nix/persist/etc/machine-id")
+
+            machine_id = machine.succeed("cat /etc/machine-id")
+            host_key = machine.succeed("cat /nix/persist/etc/ssh/ssh_host_ed25519_key.pub")
+            kept = ["/var/lib/nixos/kept", "/var/lib/systemd/kept", "/var/log/kept"]
+            lost = ["/etc/lost", "/root/lost", "/home/alice/lost", "/var/lib/lost"]
+            machine.succeed("mkdir -p /home/alice", *[f"touch {path}" for path in kept + lost])
+
+            machine.reboot()
+            machine.wait_for_unit("multi-user.target")
+            machine.wait_for_unit("sshd.service")
+
+            with subtest("Preserved state survives"):
+                t.assertEqual(machine_id, machine.succeed("cat /etc/machine-id"))
+                t.assertEqual(host_key, machine.succeed("cat /nix/persist/etc/ssh/ssh_host_ed25519_key.pub"))
+                machine.succeed("journalctl -b -1 -q -n 1", *[f"test -e {path}" for path in kept])
+
+            with subtest("Everything else is gone"):
+                for path in lost:
+                    machine.fail(f"test -e {path}")
           '';
         };
       };

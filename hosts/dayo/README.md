@@ -32,6 +32,14 @@ firewall fails to load, the WAN stays down and the LAN stays up: SSH to
 `192.168.1.1`, fix it, and `sudo systemctl start nftables`, which brings the
 WAN back.
 
+## Storage
+
+`/` is a tmpfs, so everything outside `/nix`, home directories included, is
+lost at every reboot. `/nix` on the BC711 holds the store and `/nix/persist`,
+which keeps only the state listed in `modules/storage/ephemeral-root.nix`, such
+as the SSH host key that agenix decrypts with. A file edited by hand lasts until
+the next reboot; declare the change instead.
+
 ## Updates and deployment
 
 There are no unattended upgrades. Periodically run `nix flake update`, review
@@ -39,8 +47,8 @@ There are no unattended upgrades. Periodically run `nix flake update`, review
 router VM test), deploy, and roll back to the previous generation if routing
 breaks. Keep the previous router available as a fallback.
 
-Build on `dayo` itself, because only `root` is a trusted Nix user: either
-`nh os switch` there, or from another host:
+Build on `dayo` itself, because only `root` is a trusted Nix user, but deploy
+from another host, since a checkout on `dayo` is lost at reboot:
 
 ```bash
 nixos-rebuild switch --flake .#dayo --target-host dayo --build-host dayo --ask-sudo-password

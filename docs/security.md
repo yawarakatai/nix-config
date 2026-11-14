@@ -140,6 +140,10 @@ Noctalia starts, so copied passwords do not persist across sessions.
   a YubiKey recovers it from Git if the client is lost. `borg compact` also
   applies deletions a compromised client requested, so check the archive list
   from a client before running it.
+- **Ephemeral root:** `/` is a tmpfs, so anything planted outside `/nix`, such
+  as in a home directory or `/etc`, is gone after a reboot. A root foothold can
+  still persist through `/nix`, `/boot` (there is no Secure Boot), or the state
+  kept in `/nix/persist`.
 - **Disk encryption:** none. An unattended router cannot unlock a disk at boot
   and the board has no TPM. Physical theft exposes `dayo`'s host key and
   therefore only `dayo`'s own secrets.

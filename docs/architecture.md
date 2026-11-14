@@ -29,7 +29,7 @@ modules/
   services/                # system services, including dayo's router and backup server
   ssh/                     # sshd, client and known hosts, desktop YubiKey identities (system.nix + home.nix)
   syncthing/               # Syncthing peers (home.nix) and firewall (system.nix)
-  storage/                 # Btrfs and zram
+  storage/                 # Btrfs, zram, and the state a tmpfs root preserves
   theme/                   # palette and Stylix (see its README)
   home/                    # Home Manager features
 secrets/                   # encrypted sources, master identities, keys.nix, rekeyed/<host>/
@@ -85,6 +85,7 @@ configuration for non-NixOS Linux (see [portable.md](portable.md)).
 | `kamo` gaming and session integration                    | `modules/gaming/jovian.nix`                              |
 | `dayo`'s router and backup server                        | `modules/services/router.nix`, `backup-server.nix`       |
 | `dayo`'s line facts and backup quotas                    | `hosts/dayo/system.nix`                                  |
+| State that survives reboots on `dayo`'s tmpfs root       | `modules/storage/ephemeral-root.nix`                     |
 | Backup clients (not imported yet)                        | `modules/services/backup-client.nix`                     |
 | Evaluated host invariants (nix-unit)                     | `modules/flake/tests.nix`                                |
 | Checks that build or boot something, such as VM tests    | `modules/flake/checks.nix`                               |

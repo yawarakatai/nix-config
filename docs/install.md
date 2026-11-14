@@ -39,12 +39,14 @@ target only to read the ISO's private host key.
 ## SSH host keys
 
 The ISO's SSH host key becomes the installed system's host key: the installer
-copies it to `/tmp/<host>/etc/ssh` for `nixos-anywhere --extra-files`. This
-keeps three things in agreement:
+places it under `/tmp/<host>` at the host's ed25519 path in
+`services.openssh.hostKeys` for `nixos-anywhere --extra-files`. This keeps
+three things in agreement:
 
 1. `hosts/<host>/generated/ssh_host_ed25519_key.pub`
 2. the agenix recipients of `secrets/rekeyed/<host>/`
-3. the installed `/etc/ssh/ssh_host_ed25519_key`
+3. the installed private key: `/etc/ssh/ssh_host_ed25519_key`, or under
+   `/nix/persist` on a host whose root is a tmpfs (`dayo`)
 
 Private host keys are never committed. `secrets/keys.nix` reads each host's
 public key from `generated/`, so reinstalling needs no edit there; a new host

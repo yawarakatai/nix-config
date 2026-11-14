@@ -12,7 +12,6 @@ _:
           runtimeInputs = [
             pkgs.coreutils
             pkgs.git
-            pkgs.gnutar
             pkgs.openssh
             pkgs.nixos-anywhere
             inputs'.agenix-rekey.packages.default

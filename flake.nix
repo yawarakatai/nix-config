@@ -6,6 +6,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
     disko.url = "github:nix-community/disko";
+    preservation.url = "github:nix-community/preservation";
     flake-parts.url = "github:hercules-ci/flake-parts";
     treefmt-nix.url = "github:numtide/treefmt-nix";
 

@@ -314,6 +314,18 @@ in
             requiresMounts = lib.mapAttrs (_: _: "/srv/backup") repos;
           };
         };
+
+        # A host key on the tmpfs root would be replaced at boot and leave every secret undecryptable.
+        "test keeps its agenix identity off the tmpfs root" = {
+          expr = {
+            root = config.fileSystems."/".fsType;
+            identities = map (lib.hasPrefix "/nix/persist/") config.age.identityPaths;
+          };
+          expected = {
+            root = "tmpfs";
+            identities = [ true ];
+          };
+        };
       };
 
     # Trusted users can take over root through the store.
