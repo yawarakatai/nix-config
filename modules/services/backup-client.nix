@@ -32,6 +32,7 @@ in
       "/home/*/.cache"
       "/home/*/.local/share/Steam"
       "/home/*/.local/share/Trash"
+      "/home/*/.local/state/noctalia/clipboard"
     ];
     compression = "auto,zstd";
     startAt = "daily";

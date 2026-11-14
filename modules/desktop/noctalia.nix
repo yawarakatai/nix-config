@@ -1,6 +1,7 @@
 {
   lib,
   osConfig,
+  pkgs,
   ...
 }:
 
@@ -88,4 +89,9 @@ in
       };
     };
   };
+
+  # Copied passwords must not outlive the session; Noctalia has no setting to keep
+  # clipboard history in memory only. Wiping before start also covers crashes.
+  systemd.user.services.noctalia.Service.ExecStartPre =
+    "${pkgs.coreutils}/bin/rm -rf %S/noctalia/clipboard";
 }
