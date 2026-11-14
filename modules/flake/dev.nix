@@ -15,6 +15,7 @@
           nixfmt
           statix
           deadnix
+          nix-unit
 
           inputs'.agenix-rekey.packages.default
           pkgs.age-plugin-fido2-hmac
