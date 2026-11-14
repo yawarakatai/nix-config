@@ -43,7 +43,7 @@ echo "Evaluating working tree..." >&2
 new=$(drv_paths "git+file://$root" | jq -s add)
 
 status=0
-while IFS=$'\t' read -r name a b; do
+while IFS='|' read -r name a b; do
   if [ "$a" = "$b" ]; then
     echo "same     $name"
   elif [ -z "$a" ]; then
@@ -58,6 +58,6 @@ while IFS=$'\t' read -r name a b; do
     status=1
   fi
 done < <(jq -rn --argjson old "$old" --argjson new "$new" '
-  ($old + $new | keys[]) as $k | [$k, $old[$k] // "", $new[$k] // ""] | @tsv')
+  ($old + $new | keys[]) as $k | [$k, $old[$k] // "", $new[$k] // ""] | join("|")')
 
 exit "$status"
