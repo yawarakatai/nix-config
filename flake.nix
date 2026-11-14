@@ -96,10 +96,9 @@
       imports = [
         inputs.treefmt-nix.flakeModule
         ./modules/flake/dev.nix
-        ./modules/flake/diff-config.nix
+        ./modules/flake/packages.nix
         ./modules/flake/checks.nix
         ./modules/flake/home.nix
-        ./modules/flake/install-host.nix
         ./modules/flake/nixos.nix
         ./modules/flake/tests.nix
       ];

@@ -9,7 +9,30 @@
       ...
     }:
     {
-      checks = lib.optionalAttrs (system == "x86_64-linux") {
+      checks = {
+        lint =
+          pkgs.runCommand "lint"
+            {
+              nativeBuildInputs = [
+                pkgs.statix
+                pkgs.deadnix
+              ];
+            }
+            ''
+              cd ${self}
+              statix check -i 'hosts/*/generated/hardware-configuration.nix'
+              deadnix --fail --exclude hosts/*/generated/hardware-configuration.nix
+              touch $out
+            '';
+
+        # Instantiating drvPaths catches evaluation errors without building every Home Manager package.
+        home-configurations = pkgs.writeText "home-configurations" (
+          lib.concatMapStringsSep "\n" (
+            home: builtins.unsafeDiscardStringContext home.activationPackage.drvPath
+          ) (lib.attrValues self.homeConfigurations)
+        );
+      }
+      // lib.optionalAttrs (system == "x86_64-linux") {
         # Reads a built file, so it cannot be a nix-unit test.
         kamo-gamescope-internal-panel = pkgs.runCommand "kamo-gamescope-internal-panel" { } ''
           ${pkgs.gnugrep}/bin/grep -F -- "-O eDP-1,'*'" \
