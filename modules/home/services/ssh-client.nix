@@ -52,8 +52,8 @@ in
           // {
             hostKeyAlias = host;
           }
-          # dane is the router, so its LAN address is fixed.
-          // lib.optionalAttrs (host == "dane") { hostname = "192.168.1.1"; }
+          # dayo is the router, so its LAN address is fixed.
+          // lib.optionalAttrs (host == "dayo") { hostname = "192.168.1.1"; }
         ) installedHosts
         // {
           "*" = {

@@ -122,9 +122,9 @@
             touch "$out"
           '';
 
-        dane-router-firewall =
+        dayo-router-firewall =
           let
-            inherit (self.nixosConfigurations.dane) config;
+            inherit (self.nixosConfigurations.dayo) config;
             fw = config.networking.firewall;
           in
           assert lib.assertMsg (
@@ -137,14 +137,14 @@
             && fw.extraInputRules == ""
             && config.networking.nat.forwardPorts == [ ]
             && config.networking.nat.dmzHost == null
-          ) "Dane may only open router services on its LAN interface.";
+          ) "Dayo may only open router services on its LAN interface.";
           assert lib.assertMsg (lib.all (m: lib.elem m config.boot.blacklistedKernelModules) [
             "rtw89_8852be"
             "rtw89_8852b"
             "rtw89_pci"
             "rtw89_core"
-          ]) "Dane's onboard Wi-Fi lacks Japanese radio certification and must never load.";
-          pkgs.runCommand "dane-router-firewall-check" { } ''
+          ]) "Dayo's onboard Wi-Fi lacks Japanese radio certification and must never load.";
+          pkgs.runCommand "dayo-router-firewall-check" { } ''
             touch "$out"
           '';
 
@@ -156,9 +156,9 @@
             touch "$out"
           '';
 
-        dane-backup =
+        dayo-backup =
           let
-            inherit (self.nixosConfigurations.dane) config;
+            inherit (self.nixosConfigurations.dayo) config;
             repos = config.services.borgbackup.repos;
           in
           assert lib.assertMsg (
@@ -174,13 +174,13 @@
               config.systemd.services."borgbackup-repo-${name}".unitConfig.RequiresMountsFor == "/srv/backup"
             ) (lib.attrNames repos)
           ) "The router must boot without the backup disk and never back up onto its root disk.";
-          pkgs.runCommand "dane-backup-check" { } ''
+          pkgs.runCommand "dayo-backup-check" { } ''
             touch "$out"
           '';
 
-        # Simulates the NGN and the DS-Lite AFTR so dane's router rules can be probed from both sides.
-        dane-router = pkgs.testers.runNixOSTest {
-          name = "dane-router";
+        # Simulates the NGN and the DS-Lite AFTR so dayo's router rules can be probed from both sides.
+        dayo-router = pkgs.testers.runNixOSTest {
+          name = "dayo-router";
 
           nodes = {
             isp = {
@@ -251,8 +251,8 @@
                   ${config.my.router.wan}.vlan = 1;
                   ${config.my.router.lan}.vlan = 2;
                 };
-                # Dane's real interface facts, with the simulated AFTR in place of the ISP's.
-                my.router = self.nixosConfigurations.dane.config.my.router // {
+                # Dayo's real interface facts, with the simulated AFTR in place of the ISP's.
+                my.router = self.nixosConfigurations.dayo.config.my.router // {
                   aftr = "2001:db8::1";
                 };
                 services.openssh.enable = true;

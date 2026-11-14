@@ -8,7 +8,7 @@ Personal NixOS configuration. Security decisions and procedures are in
 | Host       | Device                      | Arch            | Role             |
 | ---------- | --------------------------- | --------------- | ---------------- |
 | `desuwa`   | Desktop (RTX 3080, 32 GiB) | `x86_64-linux`  | Gaming machine   |
-| `dane`     | ROCK 5T (24 GiB)            | `aarch64-linux` | Router, backups  |
+| `dayo`     | ROCK 5T (24 GiB)            | `aarch64-linux` | Router, backups  |
 | `nanodesu` | Laptop                      | `x86_64-linux`  | Laptop           |
 | `kamo`     | ROG Ally                    | `x86_64-linux`  | Portable machine |
 
@@ -65,7 +65,7 @@ Private SSH host keys are never committed. They are copied temporarily to `/tmp/
 | Host-specific boot, services, display, wallpaper, or package settings | `hosts/<host>/system.nix`                    |
 | Host-specific hardware modules and device quirks                      | `hosts/<host>/hardware.nix`                  |
 | Host install disk layout                                              | `hosts/<host>/storage/disko.nix`             |
-| Router line facts and backup quotas on `dane`                         | `hosts/dane/system.nix`                      |
+| Router line facts and backup quotas on `dayo`                         | `hosts/dayo/system.nix`                      |
 | Generated hardware facts or SSH host public key                       | `hosts/<host>/generated/` via `install-host` |
 | Home Manager host-only additions                                      | `hosts/<host>/home/default.nix`              |
 | Reusable NixOS or Home Manager features                               | `modules/`                                   |
@@ -268,4 +268,4 @@ Use the host's `storage/disko.nix`. Shared disko helpers are intentionally avoid
 ### Kernel
 
 Hosts use `pkgs.linuxPackages_latest`, selected in `modules/core/boot.nix`.
-`dane` overrides it with the LTS kernel in `hosts/dane/hardware.nix`.
+`dayo` overrides it with the LTS kernel in `hosts/dayo/hardware.nix`.

@@ -8,8 +8,8 @@
     aftr = "2001:c28:1:301::11";
   };
 
-  # Dane faces the network, so cracking its hash must not unlock the desktops.
-  age.secrets.user-password.rekeyFile = lib.mkForce ../../secrets/user-password-dane.age;
+  # Dayo faces the network, so cracking its hash must not unlock the desktops.
+  age.secrets.user-password.rekeyFile = lib.mkForce ../../secrets/user-password-dayo.age;
 
   my.backupServer.quotas = {
     desuwa = "400G";

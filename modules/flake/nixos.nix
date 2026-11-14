@@ -48,7 +48,7 @@ in
     nixosConfigurations = {
       desuwa = mkHost "desuwa" nixosModules.profileDesktopNiri { };
 
-      dane = mkHost "dane" nixosModules.profileMinimal {
+      dayo = mkHost "dayo" nixosModules.profileMinimal {
         system = "aarch64-linux";
         extraModules = [ nixosModules.profileSecret ];
       };
