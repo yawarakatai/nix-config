@@ -15,7 +15,7 @@
     ../../hardware/bluetooth.nix
     ../../desktop/greetd.nix
     ../../services/networkmanager.nix
-    ../../services/syncthing.nix
+    ../../syncthing/system.nix
     ../../services/tailscale.nix
     ../../input/keyboard/kanata.nix
   ];

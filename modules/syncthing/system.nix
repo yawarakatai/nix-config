@@ -1,4 +1,4 @@
-# Syncthing itself runs from Home Manager; only the system firewall lives here.
+# Syncthing itself runs from ./home.nix; only the system firewall lives here.
 _:
 
 {

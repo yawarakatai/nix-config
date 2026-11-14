@@ -28,6 +28,7 @@ modules/
   security/                # agenix and YubiKey support
   services/                # system services, including dayo's router and backup server
   ssh/                     # sshd, client and known hosts, desktop YubiKey identities (system.nix + home.nix)
+  syncthing/               # Syncthing peers (home.nix) and firewall (system.nix)
   storage/                 # Btrfs and zram
   theme/                   # palette and Stylix (see its README)
   home/                    # Home Manager features
