@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   lib,
   options,
   pkgs,
@@ -81,30 +82,57 @@ in
       ++ options.networking.timeServers.default;
     };
 
-    services.openssh = {
-      # SSH stays reachable from the LAN only, never from the WAN.
-      openFirewall = false;
-      # Only declared keys log in, so a foothold cannot persist through ~/.ssh.
-      authorizedKeysInHomedir = false;
-    };
+    services = {
+      openssh = {
+        # SSH stays reachable from the LAN only, never from the WAN.
+        openFirewall = false;
+        # Only declared keys log in, so a foothold cannot persist through ~/.ssh.
+        authorizedKeysInHomedir = false;
+      };
 
-    services.resolved.settings.Resolve = {
-      DNSStubListenerExtra = lanAddress;
-      # Multicast name lookups would also query the WAN link.
-      LLMNR = false;
-      MulticastDNS = false;
-      # The NGN's resolvers strip DNSSEC signatures, so validation fails on them.
-      # These validate and are reached over native IPv6, independent of the tunnel.
-      # resolved moves down the list only on failure: Cloudflare first, then Quad9.
-      # TLS, verified against the name after "#", keeps the path from reading or
-      # forging answers; DNSSEC alone can be downgraded on path.
-      DNS = [
-        "2606:4700:4700::1111#cloudflare-dns.com"
-        "2606:4700:4700::1001#cloudflare-dns.com"
-        "2620:fe::fe#dns.quad9.net"
-        "2620:fe::9#dns.quad9.net"
-      ];
-      DNSOverTLS = true;
+      resolved.settings.Resolve = {
+        # Multicast name lookups would also query the WAN link.
+        LLMNR = false;
+        MulticastDNS = false;
+        # The NGN's resolvers strip DNSSEC signatures, so validation fails on them.
+        # These validate and are reached over native IPv6, independent of the tunnel.
+        # resolved moves down the list only on failure: Cloudflare first, then Quad9.
+        # Both of these services block known malware domains.
+        # TLS, verified against the name after "#", keeps the path from reading or
+        # forging answers; DNSSEC alone can be downgraded on path.
+        DNS = [
+          "2606:4700:4700::1112#security.cloudflare-dns.com"
+          "2606:4700:4700::1002#security.cloudflare-dns.com"
+          "2620:fe::fe#dns.quad9.net"
+          "2620:fe::9#dns.quad9.net"
+        ];
+        DNSOverTLS = true;
+      };
+
+      # The LAN resolves through blocky, which drops listed ad and tracker domains with
+      # their subdomains, and answers whose CNAMEs lead to them. It forwards the rest
+      # to resolved, so DNS over TLS and DNSSEC stay in one place.
+      blocky = {
+        enable = true;
+        settings = {
+          ports = {
+            dns = "${lanAddress}:53";
+            # blocky can start before networkd assigns the LAN address.
+            freeBind = true;
+          };
+          upstreams.groups.default = [ "127.0.0.53" ];
+          blocking = {
+            denylists.ads = [ "${inputs.hagezi-pro}" ];
+            clientGroupsBlock.default = [ "ads" ];
+            # Clients fail at once instead of connecting to 0.0.0.0, which Linux treats as the local host.
+            blockType = "nxDomain";
+            # A newly allowed domain resolves within a minute.
+            blockTTL = "1m";
+          };
+          # Otherwise every lookup on the LAN would land in the persisted journal.
+          queryLog.type = "none";
+        };
+      };
     };
 
     # nixpkgs only orders the firewall before networking, so a firewall that

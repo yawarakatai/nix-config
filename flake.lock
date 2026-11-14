@@ -380,6 +380,18 @@
         "type": "gitlab"
       }
     },
+    "hagezi-pro": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-46aKwtt4WYo6hDDwbkNqqJXasvbyWe8zqOjOryXUzJ4=",
+        "type": "file",
+        "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/pro.txt"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/pro.txt"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -784,6 +796,7 @@
         "disko": "disko",
         "firefox-addons": "firefox-addons",
         "flake-parts": "flake-parts_2",
+        "hagezi-pro": "hagezi-pro",
         "home-manager": "home-manager",
         "jovian": "jovian",
         "niri": "niri",

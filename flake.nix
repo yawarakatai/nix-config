@@ -7,6 +7,11 @@
 
     disko.url = "github:nix-community/disko";
     preservation.url = "github:nix-community/preservation";
+    # Pinned rather than fetched by the router, so the list changes only with a reviewed update.
+    hagezi-pro = {
+      url = "file+https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/pro.txt";
+      flake = false;
+    };
     flake-parts.url = "github:hercules-ci/flake-parts";
     treefmt-nix.url = "github:numtide/treefmt-nix";
 
