@@ -1,11 +1,7 @@
-{ inputs, ... }:
-
 {
   imports = [
     ./base.nix
-    inputs.agenix.nixosModules.default
-    inputs.agenix-rekey.nixosModules.default
-    ../../security
+    ../../security/agenix.nix
     ../../services/openssh.nix
   ];
 }

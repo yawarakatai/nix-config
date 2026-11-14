@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
@@ -19,6 +20,11 @@ let
   };
 in
 {
+  imports = [
+    inputs.agenix.nixosModules.default
+    inputs.agenix-rekey.nixosModules.default
+  ];
+
   age.rekey = {
     # Host public key for rekeying, tracked under hosts/<host>/generated/.
     hostPubkey = keys.hosts.${config.networking.hostName};
