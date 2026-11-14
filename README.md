@@ -7,7 +7,6 @@ Personal NixOS configuration.
 | Host       | Device                      | Arch            | Role             |
 | ---------- | --------------------------- | --------------- | ---------------- |
 | `desuwa`   | Desktop (RTX 3080, 32 GiB) | `x86_64-linux`  | Gaming machine   |
-| `desuno`   | Desktop                     | `x86_64-linux`  | Headless host    |
 | `dane`     | ROCK 5T (24 GiB)            | `aarch64-linux` | Headless host    |
 | `nanodesu` | Laptop                      | `x86_64-linux`  | Laptop           |
 | `kamo`     | ROG Ally                    | `x86_64-linux`  | Portable machine |
@@ -196,7 +195,6 @@ in
 
   hosts = {
     desuwa = readKey ../hosts/desuwa/generated/ssh_host_ed25519_key.pub;
-    desuno = readKey ../hosts/desuno/generated/ssh_host_ed25519_key.pub;
     kamo = readKey ../hosts/kamo/generated/ssh_host_ed25519_key.pub;
     nanodesu = readKey ../hosts/nanodesu/generated/ssh_host_ed25519_key.pub;
   };
