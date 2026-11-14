@@ -102,6 +102,7 @@
         ./modules/flake/home.nix
         ./modules/flake/install-host.nix
         ./modules/flake/nixos.nix
+        ./modules/flake/tests.nix
       ];
       systems = [
         "x86_64-linux"

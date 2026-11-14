@@ -18,7 +18,7 @@ hosts/<host>/
   home/default.nix         # Home Manager host-only additions
   README.md                # optional operational notes
 modules/
-  flake/                   # flake-parts entry modules: outputs, checks, dev shell, install-host, diff-config
+  flake/                   # flake-parts entry modules: outputs, tests, checks, dev shell, install-host, diff-config
   profiles/                # aggregators only (system/, home/)
   core/                    # boot, Nix, users, locale, and networking for every host
   desktop/                 # Wayland desktop: Niri, Noctalia, greetd
@@ -89,6 +89,8 @@ for non-NixOS Linux (see [portable.md](portable.md)).
 | `dayo`'s router and backup server                        | `modules/services/router.nix`, `backup-server.nix`       |
 | `dayo`'s line facts and backup quotas                    | `hosts/dayo/system.nix`                                  |
 | Backup clients (not imported yet)                        | `modules/services/backup-client.nix`                     |
+| Evaluated host invariants (nix-unit)                     | `modules/flake/tests.nix`                                |
+| Checks that build or boot something, such as VM tests    | `modules/flake/checks.nix`                               |
 
 Display outputs are set with `my.display.outputs`, keyed by output name; set
 `enable = false` to keep a known external display disabled. The wallpaper,

@@ -26,8 +26,11 @@ Personal NixOS and Home Manager configuration, built with flake-parts.
 nix fmt
 
 # Full check: lint, dead code, formatting, evaluation of every host and
-# Home Manager output, host assertions, and VM tests (does not rewrite files)
+# Home Manager output, host invariants (nix-unit), and VM tests (does not rewrite files)
 nix flake check --all-systems
+
+# Run only the nix-unit host invariants, with per-test results
+nix shell nixpkgs#nix-unit -c nix-unit --flake .#tests
 
 # Build one host
 nh os build -H kamo
