@@ -107,8 +107,8 @@ re-encrypting alone protects only future values.
   `hosts/dayo/system.nix`. Inbound IPv4 cannot reach the home behind the AFTR,
   and new inbound IPv6 connections to the LAN are dropped. Only one DS-Lite B4
   works per line: testing `dayo` behind another DS-Lite router stalls IPv4.
-- **DNS:** `dayo` resolves through Cloudflare and Quad9 over native IPv6 with
-  DNSSEC validation, so DNS keeps working if the tunnel fails. It ignores the
+- **DNS:** `dayo` resolves through Cloudflare, then Quad9 if Cloudflare fails,
+  over native IPv6 with DNSSEC validation, so DNS keeps working if the tunnel fails. It ignores the
   NGN's resolvers, which strip DNSSEC signatures and make validation fail;
   only they resolve the AFTR's name, whose address is pinned instead.
 - **Exposure:** no port opens globally; the firewall admits SSH, DNS, and DHCP

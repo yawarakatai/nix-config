@@ -72,10 +72,11 @@ in
       DNSStubListenerExtra = lanAddress;
       # The NGN's resolvers strip DNSSEC signatures, so validation fails on them.
       # These validate and are reached over native IPv6, independent of the tunnel.
+      # resolved moves down the list only on failure: Cloudflare first, then Quad9.
       DNS = [
         "2606:4700:4700::1111"
-        "2620:fe::fe"
         "2606:4700:4700::1001"
+        "2620:fe::fe"
         "2620:fe::9"
       ];
     };
