@@ -10,6 +10,6 @@
     self.modules.homeManager.profiles.desktop
     ../../../modules/home/creative/pixelorama.nix
     ../../../modules/home/services/ura.nix
-    ../../../modules/home/services/steam.nix
+    ../../../modules/gaming/home.nix
   ];
 }

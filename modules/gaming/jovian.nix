@@ -8,7 +8,6 @@
 {
   imports = [
     inputs.jovian.nixosModules.default
-    ./steam-client.nix
   ];
 
   # The vendor session prefers any external connector before the handheld panel.
@@ -37,5 +36,16 @@
 
     # Keep the existing host's storage, memory, and kernel tuning.
     steamos.useSteamOSConfig = false;
+  };
+
+  programs.steam = {
+    enable = true;
+    # Steam Input's desktop layout needs uinput rather than X11 events on Niri.
+    extest.enable = true;
+
+    # This machine primarily receives Remote Play streams, rather than hosting.
+    remotePlay.openFirewall = false;
+    localNetworkGameTransfers.openFirewall = false;
+    dedicatedServer.openFirewall = false;
   };
 }
