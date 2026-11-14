@@ -9,10 +9,6 @@
       ];
       # Deduplicate on the weekly timer instead of adding I/O to every store import.
       auto-optimise-store = false;
-      trusted-users = [
-        "root"
-        username
-      ];
       accept-flake-config = true;
 
       substituters = [

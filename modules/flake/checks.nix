@@ -148,6 +148,14 @@
             touch "$out"
           '';
 
+        nix-trust =
+          assert lib.assertMsg (lib.all (host: host.config.nix.settings.trusted-users == [ "root" ]) (
+            lib.attrValues self.nixosConfigurations
+          )) "Only root may be a Nix trusted user; trusted users can take over root through the store.";
+          pkgs.runCommand "nix-trust-check" { } ''
+            touch "$out"
+          '';
+
         dane-backup =
           let
             inherit (self.nixosConfigurations.dane) config;
