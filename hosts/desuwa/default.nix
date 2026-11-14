@@ -5,7 +5,6 @@
     ./hardware.nix
     ./system.nix
     ../../modules/gaming
-    ../../modules/desktop/recording-user.nix
     ../../modules/services/udev.nix
   ];
 }

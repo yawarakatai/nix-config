@@ -45,9 +45,8 @@ imports in `hosts/<host>/default.nix`. System profiles build on each other:
 `kamo`), and `laptop` (`nanodesu`).
 
 Home Manager profiles: `default.nix` holds shared basics, `desktop.nix` adds
-desktop, development, and SSH features, `recording.nix` is `desuwa`'s
-screen-recording account, and `portable.nix` is the standalone configuration
-for non-NixOS Linux (see [portable.md](portable.md)).
+desktop, development, and SSH features, and `portable.nix` is the standalone
+configuration for non-NixOS Linux (see [portable.md](portable.md)).
 
 ## Ownership
 
@@ -87,7 +86,6 @@ for non-NixOS Linux (see [portable.md](portable.md)).
 | Default kernel (`dayo` overrides it in `hardware.nix`)   | `modules/core/boot.nix`                                  |
 | Portable account parameters and optional features        | `modules/flake/home.nix`                                 |
 | `kamo` gaming and session integration                    | `modules/gaming/jovian.nix`                              |
-| `desuwa`'s screen-recording account                      | `modules/desktop/recording-user.nix`                     |
 | `dayo`'s router and backup server                        | `modules/services/router.nix`, `backup-server.nix`       |
 | `dayo`'s line facts and backup quotas                    | `hosts/dayo/system.nix`                                  |
 | Backup clients (not imported yet)                        | `modules/services/backup-client.nix`                     |
