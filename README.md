@@ -41,7 +41,6 @@ modules/
 
 secrets/
   keys.nix
-  secrets.nix
 ```
 
 Host-specific machine data should live under `hosts/<hostname>/`.
