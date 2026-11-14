@@ -2,6 +2,7 @@
   config,
   lib,
   options,
+  pkgs,
   ...
 }:
 
@@ -106,6 +107,29 @@ in
       DNSOverTLS = true;
     };
 
+    # nixpkgs only orders the firewall before networking, so a firewall that
+    # fails or stops would leave the WAN open. The WAN link is up only while
+    # nftables is active; the LAN stays up for recovery over SSH.
+    systemd.services.wan-up = {
+      description = "WAN link, up only while the firewall is loaded";
+      bindsTo = [ "nftables.service" ];
+      after = [
+        "nftables.service"
+        "systemd-networkd.service"
+      ];
+      # nftables pulls it in, so starting the firewall again brings the WAN back.
+      wantedBy = [
+        "multi-user.target"
+        "nftables.service"
+      ];
+      serviceConfig = {
+        Type = "oneshot";
+        RemainAfterExit = true;
+        ExecStart = "${lib.getExe' pkgs.iproute2 "ip"} link set dev ${cfg.wan} up";
+        ExecStop = "${lib.getExe' pkgs.iproute2 "ip"} link set dev ${cfg.wan} down";
+      };
+    };
+
     systemd.network = {
       enable = true;
       config.networkConfig.IPv6Forwarding = true;
@@ -140,7 +164,11 @@ in
             UseDNS = false;
           };
           ipv6AcceptRAConfig.UseDNS = false;
-          linkConfig.RequiredForOnline = "routable";
+          linkConfig = {
+            RequiredForOnline = "routable";
+            # Only wan-up raises the link.
+            ActivationPolicy = "manual";
+          };
         };
 
         "20-${tunnel}" = {

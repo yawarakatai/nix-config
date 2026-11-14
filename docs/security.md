@@ -129,7 +129,8 @@ Noctalia starts, so copied passwords do not persist across sessions.
   `dayo-router-firewall` check enforces this, and the `dayo-router` VM test
   scans every router address from a simulated WAN and probes the LAN. Packets
   failing a strict reverse path check are dropped, and resolved sends no LLMNR
-  or mDNS queries.
+  or mDNS queries. The firewall fails closed: the WAN link is up only while
+  nftables is active, which the VM test also checks.
 - **SSH:** only keys declared in the configuration log in;
   `~/.ssh/authorized_keys` is ignored, so a foothold cannot plant a login key.
 - **Backups:** each client's borg repository is append-only, reached through

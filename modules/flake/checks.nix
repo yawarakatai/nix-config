@@ -189,6 +189,16 @@
                 isp.succeed("ping -c1 -W2 2001:db8:1::2")
                 isp.fail("curl -sf --max-time 3 'http://[2001:db8:1::2]:8000/'")
                 isp.fail(f"curl -sf --max-time 3 http://{client_ip}:8000/")
+
+            with subtest("Without the firewall the WAN goes down and the LAN stays up"):
+                router.succeed("systemctl stop nftables.service")
+                router.fail("systemctl is-active wan-up.service")
+                isp.fail("ping -c1 -W2 2001:db8::2")
+                client.succeed("nc -z -w 3 192.168.1.1 22")
+                router.succeed("systemctl start nftables.service")
+                router.wait_for_unit("wan-up.service")
+                isp.wait_until_succeeds("ping -c1 -W2 2001:db8::2", timeout=60)
+                client.wait_until_succeeds("curl -sf --max-time 3 http://203.0.113.1:8000/", timeout=60)
           '';
         };
       };

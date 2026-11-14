@@ -27,6 +27,11 @@ and a login console runs on the debug UART (`ttyS2`, 1500000 baud, 3.3 V). Do
 not leave a USB serial adapter wired but unpowered: noise on RX can stop the
 boot menu countdown.
 
+The WAN link is up only while nftables is active (`wan-up.service`). If the
+firewall fails to load, the WAN stays down and the LAN stays up: SSH to
+`192.168.1.1`, fix it, and `sudo systemctl start nftables`, which brings the
+WAN back.
+
 ## Updates and deployment
 
 There are no unattended upgrades. Periodically run `nix flake update`, review
