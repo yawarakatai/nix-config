@@ -271,6 +271,12 @@ in
           };
         };
 
+        # Any trusted key can sign any store path, so a cache key compromise would own the router.
+        "test trusts only the NixOS binary cache" = {
+          expr = config.nix.settings.trusted-public-keys;
+          expected = [ "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=" ];
+        };
+
         # The onboard Wi-Fi lacks Japanese radio certification.
         "test never loads the onboard Wi-Fi driver" = {
           expr = lib.subtractLists config.boot.blacklistedKernelModules rtw89;

@@ -31,6 +31,8 @@ in
       nftables.enable = true;
       firewall = {
         filterForward = true;
+        # The network edge must drop spoofed sources; nixpkgs defaults to loose.
+        checkReversePath = "strict";
         # IPv4 forwarding to the tunnel comes from networking.nat.
         extraForwardRules = ''
           iifname "${cfg.lan}" oifname "${cfg.wan}" accept
@@ -65,11 +67,18 @@ in
       };
     };
 
-    # SSH stays reachable from the LAN only, never from the WAN.
-    services.openssh.openFirewall = false;
+    services.openssh = {
+      # SSH stays reachable from the LAN only, never from the WAN.
+      openFirewall = false;
+      # Only declared keys log in, so a foothold cannot persist through ~/.ssh.
+      authorizedKeysInHomedir = false;
+    };
 
     services.resolved.settings.Resolve = {
       DNSStubListenerExtra = lanAddress;
+      # Multicast name lookups would also query the WAN link.
+      LLMNR = false;
+      MulticastDNS = false;
       # The NGN's resolvers strip DNSSEC signatures, so validation fails on them.
       # These validate and are reached over native IPv6, independent of the tunnel.
       # resolved moves down the list only on failure: Cloudflare first, then Quad9.

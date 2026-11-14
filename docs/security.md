@@ -107,7 +107,9 @@ re-encrypting alone protects only future values.
   users can import unsigned store paths and add substituters, which amounts to
   root without the sudo password.
 - A warning that the flake's `trusted-public-keys` setting is ignored is
-  expected: the same caches are configured system-wide.
+  expected: desktops configure the same caches system-wide. Any trusted key
+  can sign any store path, so each cache is trusted only by the module that
+  needs it, and `dayo` trusts only cache.nixos.org.
 - Pushing unsigned paths to `dayo` therefore fails; `dayo` builds its own
   system (see [hosts/dayo/README.md](../hosts/dayo/README.md)).
 
@@ -125,7 +127,11 @@ Noctalia starts, so copied passwords do not persist across sessions.
   behind the DS-Lite AFTR, new inbound IPv6 connections to the LAN are dropped,
   and the firewall admits SSH, DNS, and DHCP on the LAN interface only. The
   `dayo-router-firewall` check enforces this, and the `dayo-router` VM test
-  scans every router address from a simulated WAN and probes the LAN.
+  scans every router address from a simulated WAN and probes the LAN. Packets
+  failing a strict reverse path check are dropped, and resolved sends no LLMNR
+  or mDNS queries.
+- **SSH:** only keys declared in the configuration log in;
+  `~/.ssh/authorized_keys` is ignored, so a foothold cannot plant a login key.
 - **Backups:** each client's borg repository is append-only, reached through
   the existing SSH server, and authenticated by the client's host key. Clients
   encrypt with `repokey-blake2`, so `dayo` never holds a passphrase. Each
