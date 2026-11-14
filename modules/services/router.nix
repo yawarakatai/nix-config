@@ -82,6 +82,7 @@ in
         };
         tunnelConfig = {
           Mode = "ipip6";
+          Local = "slaac";
           Remote = cfg.aftr;
           # AFTRs commonly drop packets carrying the encapsulation limit option.
           EncapsulationLimit = "none";
