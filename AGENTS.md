@@ -17,7 +17,7 @@ Non-obvious edit locations:
 - Home Manager desktop aggregation, including development and SSH: `modules/profiles/home/desktop.nix`.
 - Standalone portable account parameters: `modules/flake/home.nix`; installation: `PORTABLE.md`.
 - Kamo gaming/session integration: `modules/gaming/jovian.nix`.
-- Dane's router and backup server: `modules/services/router.nix` and `modules/services/backup-server.nix`; line facts and quotas in `hosts/dane/system.nix`.
+- Dane's router and backup server: `modules/services/router.nix` and `modules/services/backup-server.nix`; line facts and quotas in `hosts/dane/system.nix`. Backup clients: `modules/services/backup-client.nix`, not yet imported until dane is installed.
 - Security model and procedures: `SECURITY.md`; update it when changing secrets, SSH, YubiKey use, or `dane`'s exposure.
 - Desuwa's screen-recording account: `modules/desktop/recording-user.nix`; its Home Manager profile: `modules/profiles/home/recording.nix`.
 
