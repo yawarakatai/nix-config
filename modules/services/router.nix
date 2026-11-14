@@ -32,9 +32,6 @@ in
 
       nftables.enable = true;
       firewall = {
-        # Global ports would also open on the WAN; routers expose services per interface only.
-        allowedTCPPorts = lib.mkForce [ ];
-        allowedUDPPorts = lib.mkForce [ ];
         filterForward = true;
         # IPv4 forwarding to the tunnel comes from networking.nat.
         extraForwardRules = ''
