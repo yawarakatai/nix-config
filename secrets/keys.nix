@@ -2,11 +2,6 @@ let
   readKey = path: builtins.replaceStrings [ "\n" ] [ "" ] (builtins.readFile path);
 in
 {
-  master = {
-    yubikey-5 = "age1xnx786rjc69fp65qqruglkqy8tlgjl3x7akvrlke4h3cpprsx9gsm88het";
-    yubikey-5c = "age1utpkhvtyhw77cq7zxhx6emtrwlwewasszrfuzncfnrax7us0eduswx8squ";
-  };
-
   # YubiKey SSH keys (for SSH client authentication)
   ssh = {
     yubikey-5 = "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIKoUC9mEqLf9q8geELb89t8I9P+0JBD2fvm51+jwNuu3AAAABHNzaDo= yubikey-5";
