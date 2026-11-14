@@ -15,10 +15,10 @@ Non-obvious edit locations:
 - Wallpaper: `my.wallpaper.*` in host `system.nix`; Noctalia writes wallpaper state.
 - NixOS login shell and global shell initialization: `modules/core/users.nix`.
 - Home Manager desktop aggregation, including development and SSH: `modules/profiles/home/desktop.nix`.
-- Standalone portable account parameters: `modules/flake/home.nix`; installation: `PORTABLE.md`.
+- Standalone portable account parameters: `modules/flake/home.nix`; installation: `docs/portable.md`.
 - Kamo gaming/session integration: `modules/gaming/jovian.nix`.
 - Dayo's router and backup server: `modules/services/router.nix` and `modules/services/backup-server.nix`; line facts and quotas in `hosts/dayo/system.nix`. Backup clients: `modules/services/backup-client.nix`, not imported yet.
-- Security model and procedures: `SECURITY.md`; update it when changing secrets, SSH, YubiKey use, or `dayo`'s exposure.
+- Security model and procedures: `docs/security.md`; update it when changing secrets, SSH, YubiKey use, or `dayo`'s exposure.
 - Desuwa's screen-recording account: `modules/desktop/recording-user.nix`; its Home Manager profile: `modules/profiles/home/recording.nix`.
 
 ## Design rules

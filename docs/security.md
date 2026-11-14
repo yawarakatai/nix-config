@@ -73,7 +73,7 @@ re-encrypting alone protects only future values.
 - User keys are resident `ed25519-sk` keys, one per YubiKey, created with
   `-O resident -O verify-required -O application=ssh:nix-config`. Their public
   keys are in `secrets/keys.nix`. agenix delivers the key handles to NixOS
-  hosts; elsewhere, `ssh-keygen -K` exports them (see `PORTABLE.md`).
+  hosts; elsewhere, `ssh-keygen -K` exports them (see [portable.md](portable.md)).
 - `sshd` accepts public keys only, refuses root, and sets
   `PubkeyAuthOptions verify-required`, so a FIDO key used without a PIN is
   refused. Non-FIDO keys, such as backup clients' host keys, are unaffected.

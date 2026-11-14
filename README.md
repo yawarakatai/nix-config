@@ -1,7 +1,7 @@
 # nix-config
 
 Personal NixOS configuration. Security decisions and procedures are in
-[SECURITY.md](SECURITY.md).
+[docs/security.md](docs/security.md).
 
 ## Hosts
 
@@ -49,7 +49,7 @@ Home Manager uses two NixOS-host profiles: `modules/profiles/home/default.nix`
 contains shared basics, and `desktop.nix` adds desktop, development, and SSH
 features. Host-only additions live in `hosts/<hostname>/home/default.nix`.
 The standalone `portable` Home Manager configuration supports non-NixOS Linux
-accounts; see [PORTABLE.md](PORTABLE.md) for installation and account overrides.
+accounts; see [docs/portable.md](docs/portable.md) for installation and account overrides.
 
 - `storage/disko.nix` contains the host's stable `/dev/disk/by-id/...` install disk layout.
 - `generated/hardware-configuration.nix` is generated from the NixOS ISO environment.
@@ -229,7 +229,7 @@ YubiKey PIN and touch). Track the generated `secrets/rekeyed/<host>/*-<name>.age
 before building or switching. Never add plaintext to Git. If rekeying has not
 been done, evaluation will report that the rekeyed secret is missing.
 Applications should read `config.age.secrets.<name>.path` at runtime, not the
-source ciphertext. [SECURITY.md](SECURITY.md) covers replacing values and
+source ciphertext. [docs/security.md](docs/security.md) covers replacing values and
 master keys.
 
 ### SSH host keys
