@@ -204,11 +204,6 @@ generate_hardware_config() {
 
   mkdir -p "hosts/${host}/generated"
 
-  if [[ -f "$file" ]]; then
-    cp "$file" "${file}.bak"
-    echo "backup: ${file}.bak"
-  fi
-
   remote_ssh "$target" \
     'nixos-generate-config --no-filesystems --show-hardware-config' \
     > "$file"
