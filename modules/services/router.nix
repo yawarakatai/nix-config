@@ -25,8 +25,6 @@ in
 
   config = {
     networking = {
-      # The router owns every link; NetworkManager would fight networkd over them.
-      networkmanager.enable = lib.mkForce false;
       useNetworkd = true;
       useDHCP = false;
 

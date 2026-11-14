@@ -1,32 +1,11 @@
 _:
 
 {
-  # Networking configuration
-  networking = {
-    # NetworkManager for easy network management
-    networkmanager.enable = true;
-
-    # Primary DNS: Cloudflare
-    networkmanager.insertNameservers = [
-      "1.1.1.1"
-      "1.0.0.1"
-    ];
-
-    # Firewall
-    firewall = {
-      enable = true;
-
-      # Allow DHCP
-      allowPing = true;
-    };
-
-    # Disable wireless (using NetworkManager instead)
-    # wireless.enable = lib.mkForce false;
+  networking.firewall = {
+    enable = true;
+    allowPing = true;
   };
 
-  systemd.services.NetworkManager-wait-online.enable = false;
-
-  # DNS
   services.resolved = {
     enable = true;
     settings.Resolve = {

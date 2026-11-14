@@ -26,7 +26,6 @@ in
       description = username;
       shell = pkgs.zsh;
       extraGroups = [
-        "networkmanager"
         "wheel"
         "video"
         "audio"

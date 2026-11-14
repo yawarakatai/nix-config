@@ -12,6 +12,7 @@
     ../../hardware/audio.nix
     ../../hardware/bluetooth.nix
     ../../desktop/greetd.nix
+    ../../services/networkmanager.nix
     ../../services/syncthing.nix
   ];
 }
