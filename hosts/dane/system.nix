@@ -1,4 +1,4 @@
-_:
+{ lib, ... }:
 
 {
   my.router = {
@@ -7,6 +7,9 @@ _:
     # dslite.v6connect.net (ASAHI Net); it only resolves through the FLET'S DNS.
     aftr = "2001:c28:1:301::11";
   };
+
+  # Dane faces the network, so cracking its hash must not unlock the desktops.
+  age.secrets.user-password.rekeyFile = lib.mkForce ../../secrets/user-password-dane.age;
 
   my.backupServer.quotas = {
     desuwa = "400G";
