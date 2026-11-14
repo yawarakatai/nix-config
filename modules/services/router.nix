@@ -68,7 +68,17 @@ in
     # SSH stays reachable from the LAN only, never from the WAN.
     services.openssh.openFirewall = false;
 
-    services.resolved.settings.Resolve.DNSStubListenerExtra = lanAddress;
+    services.resolved.settings.Resolve = {
+      DNSStubListenerExtra = lanAddress;
+      # The NGN's resolvers strip DNSSEC signatures, so validation fails on them.
+      # These validate and are reached over native IPv6, independent of the tunnel.
+      DNS = [
+        "2606:4700:4700::1111"
+        "2620:fe::fe"
+        "2606:4700:4700::1001"
+        "2620:fe::9"
+      ];
+    };
 
     systemd.network = {
       enable = true;
@@ -99,7 +109,11 @@ in
             IPv6AcceptRA = true;
             LinkLocalAddressing = "ipv6";
           };
-          dhcpV6Config.PrefixDelegationHint = "::/60";
+          dhcpV6Config = {
+            PrefixDelegationHint = "::/60";
+            UseDNS = false;
+          };
+          ipv6AcceptRAConfig.UseDNS = false;
           linkConfig.RequiredForOnline = "routable";
         };
 
