@@ -1,4 +1,4 @@
-{ self, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -7,7 +7,7 @@
   ];
 
   imports = [
-    self.modules.homeManager.profiles.desktop
+    ../../../modules/profiles/home/desktop.nix
     ../../../modules/home/creative/pixelorama.nix
     ../../../modules/home/services/ura.nix
     ../../../modules/gaming/home.nix

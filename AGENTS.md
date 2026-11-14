@@ -7,10 +7,9 @@ Read `docs/architecture.md` for the layout, ownership, and edit locations before
 ## Design rules
 
 - Importing an aspect enables it; do not add custom enable options unless asked.
-- Profiles are aggregators only: import feature modules directly instead of reaching back through `self.modules`.
-- `modules/flake/module-registry.nix` only publishes stable module names; keep feature implementation out of it.
+- Profiles are aggregators only. Profiles and hosts import feature modules by relative path; the flake publishes no module registry.
 - `hosts/<host>/` holds host-specific facts and exceptions only.
-- Keep aspect names stable when moving implementation files.
+- Keep `PORTABLE_FEATURES` names stable when moving implementation files.
 - Prefer explicit imports; do not introduce `import-tree` unless asked.
 - Refactors should preserve behavior and move in small phases, each validated and committed separately.
 

@@ -34,9 +34,6 @@ modules/
 secrets/                   # encrypted sources, master identities, keys.nix, rekeyed/<host>/
 ```
 
-`modules/flake/module-registry.nix` only publishes stable NixOS and Home
-Manager module names; it owns no feature implementation.
-
 ## Profiles
 
 Each host picks one system profile in `modules/flake/nixos.nix` and adds its own
@@ -80,7 +77,6 @@ configuration for non-NixOS Linux (see [portable.md](portable.md)).
 | Home Manager host-only additions                         | `hosts/<host>/home/default.nix`                          |
 | Reusable NixOS or Home Manager features                  | `modules/`                                               |
 | Profile aggregation                                      | `modules/profiles/`                                      |
-| Published flake module names                             | `modules/flake/module-registry.nix`                      |
 | NixOS login shell and global shell initialization        | `modules/core/users.nix`                                 |
 | User-facing shell settings                               | `modules/home/shell/`                                    |
 | Default kernel (`dayo` overrides it in `hardware.nix`)   | `modules/core/boot.nix`                                  |

@@ -5,7 +5,6 @@
 }:
 let
   inherit (inputs.nixpkgs.lib) filterAttrs nixosSystem;
-  nixosModules = self.modules.nixos;
 
   mkHost =
     hostname: profileModule:
@@ -46,16 +45,16 @@ in
 {
   flake = {
     nixosConfigurations = {
-      desuwa = mkHost "desuwa" nixosModules.profileDesktopNiri { };
+      desuwa = mkHost "desuwa" ../profiles/system/desktop-niri.nix { };
 
-      dayo = mkHost "dayo" nixosModules.profileMinimal {
+      dayo = mkHost "dayo" ../profiles/system/minimal.nix {
         system = "aarch64-linux";
-        extraModules = [ nixosModules.profileSecret ];
+        extraModules = [ ../profiles/system/secret.nix ];
       };
 
-      nanodesu = mkHost "nanodesu" nixosModules.profileLaptop { };
+      nanodesu = mkHost "nanodesu" ../profiles/system/laptop.nix { };
 
-      kamo = mkHost "kamo" nixosModules.profileDesktopNiri { };
+      kamo = mkHost "kamo" ../profiles/system/desktop-niri.nix { };
     };
 
     agenix-rekey = inputs.agenix-rekey.configure {
