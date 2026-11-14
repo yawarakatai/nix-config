@@ -12,6 +12,3 @@ application windows are opaque; Noctalia manages the wallpaper.
 
 The standalone portable Home Manager profile uses Helix's built-in `tokyonight`
 theme because it does not import Stylix.
-
-Compositor layout and shell behavior belong to their respective modules rather
-than this directory.

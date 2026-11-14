@@ -165,12 +165,6 @@ home-manager switch --impure -b portable-backup \
   --flake github:yawarakatai/nix-config#portable
 ```
 
-## Repository validation
-
-`nix flake check` evaluates every standalone Home Manager output, including
-ARM64, without building their packages. It uses pure evaluation and the
-reproducible default account, not the account overrides.
-
 ## WSL notes
 
 Use WSL2. Enabling systemd is recommended because it gives Nix's multi-user daemon
