@@ -17,7 +17,7 @@ let
     ghostty = ../home/terminal/ghostty-portable.nix;
     ssh = ../ssh/client.nix;
     shell = ../home/shell/portable.nix;
-    agents = ../home/dev/agents.nix;
+    agents = ../home/dev/claude-code.nix;
     git-identity = ../home/dev/git-identity.nix;
   };
   selectedFeatures = lib.filter (name: name != "") (

@@ -5,7 +5,7 @@
     ./default.nix
     ../../home/nix-config.nix
     ../../home/dev
-    ../../home/dev/agents.nix
+    ../../home/dev/claude-code.nix
     ../../home/dev/git-identity.nix
     ../../ssh/home.nix
     ../../github/home.nix

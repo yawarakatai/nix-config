@@ -84,7 +84,7 @@ export PORTABLE_FEATURES="shell,ghostty,ssh"
 - `shell`: Zsh and Starship. Because the login shell stays unchanged, an
   interactive top-level Bash starts Zsh in its place; running `bash` from there
   stays in Bash.
-- `agents`: Claude Code and pi.
+- `agents`: Claude Code.
 - `git-identity`: yawarakatai's Git name and email.
 - `ghostty`: the Ghostty configuration and its fonts. Install Ghostty itself from
   your distribution, because a Nix-built Ghostty cannot find the host's GPU
