@@ -9,7 +9,6 @@
       ];
       # Deduplicate on the weekly timer instead of adding I/O to every store import.
       auto-optimise-store = false;
-      accept-flake-config = true;
       # Any trusted key can sign any store path, so each cache is trusted only
       # by the modules that need it; nixpkgs already adds cache.nixos.org.
     };

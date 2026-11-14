@@ -106,10 +106,10 @@ re-encrypting alone protects only future values.
 - Only `root` is a trusted user (enforced by the `nix-trust` check). Trusted
   users can import unsigned store paths and add substituters, which amounts to
   root without the sudo password.
-- A warning that the flake's `trusted-public-keys` setting is ignored is
-  expected: desktops configure the same caches system-wide. Any trusted key
-  can sign any store path, so each cache is trusted only by the module that
-  needs it, and `dayo` trusts only cache.nixos.org.
+- Any trusted key can sign any store path, so each cache is trusted only by
+  the module that needs it, and `dayo` trusts only cache.nixos.org.
+- `accept-flake-config` stays off and this flake sets no `nixConfig`: run by
+  root, a flake's settings could add its own cache and key.
 - Pushing unsigned paths to `dayo` therefore fails; `dayo` builds its own
   system (see [hosts/dayo/README.md](../hosts/dayo/README.md)).
 

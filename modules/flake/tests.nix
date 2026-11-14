@@ -321,6 +321,12 @@ in
       expr = lib.mapAttrs (_: host: host.config.nix.settings.trusted-users) hosts;
       expected = lib.mapAttrs (_: _: [ "root" ]) hosts;
     };
+
+    # Run as root, a flake's nixConfig could add its own cache and key, and so supply any store path.
+    "test never applies a flake's Nix settings unprompted" = {
+      expr = lib.mapAttrs (_: host: host.config.nix.settings.accept-flake-config or false) hosts;
+      expected = lib.mapAttrs (_: _: false) hosts;
+    };
   };
 
   perSystem =
