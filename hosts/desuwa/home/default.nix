@@ -2,8 +2,6 @@
 
 {
   home.packages = with pkgs; [
-    firefox-devedition
-    parabolic
     bottles
     orca-slicer
   ];
