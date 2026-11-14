@@ -5,5 +5,7 @@ _:
     ./storage/disko.nix
     ./generated/hardware-configuration.nix
     ./hardware.nix
+    ./system.nix
+    ../../modules/services/router.nix
   ];
 }
