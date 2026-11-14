@@ -28,6 +28,7 @@ Encrypted `.age` files, SSH public keys, and generated hardware configurations a
 
 - Always: `nix flake check --all-systems` (read-only; treefmt is checked, not applied). Run `nix fmt` to fix formatting.
 - Desktop or system changes: also `nh os build -H desuwa`.
+- Refactors meant to preserve behavior: also `nix run .#diff-config -- <base-rev>` (default `HEAD`); every output must report `same`. For intended changes, check that its `nix-diff` output touches only what you meant to change.
 - Changes to `modules/flake/home.nix`: also evaluate with `PORTABLE_USERNAME`/`PORTABLE_HOME` overrides (requires `--impure`).
 
 ## Documentation

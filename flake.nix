@@ -97,6 +97,7 @@
         inputs.treefmt-nix.flakeModule
         ./modules/flake/module-registry.nix
         ./modules/flake/dev.nix
+        ./modules/flake/diff-config.nix
         ./modules/flake/checks.nix
         ./modules/flake/home.nix
         ./modules/flake/install-host.nix

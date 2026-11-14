@@ -18,7 +18,7 @@ hosts/<host>/
   home/default.nix         # Home Manager host-only additions
   README.md                # optional operational notes
 modules/
-  flake/                   # flake-parts entry modules: outputs, checks, dev shell, install-host
+  flake/                   # flake-parts entry modules: outputs, checks, dev shell, install-host, diff-config
   profiles/                # aggregators only (system/, home/)
   core/                    # boot, Nix, users, locale, and networking for every host
   desktop/                 # Wayland desktop: Niri, Noctalia, greetd
