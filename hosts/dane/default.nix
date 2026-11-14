@@ -7,5 +7,6 @@ _:
     ./hardware.nix
     ./system.nix
     ../../modules/services/router.nix
+    ../../modules/services/backup-server.nix
   ];
 }

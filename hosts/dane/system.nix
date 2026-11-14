@@ -7,4 +7,10 @@ _:
     # dslite.v6connect.net (ASAHI Net); it only resolves through the FLET'S DNS.
     aftr = "2001:c28:1:301::11";
   };
+
+  my.backupServer.quotas = {
+    desuwa = "400G";
+    nanodesu = "150G";
+    kamo = "150G";
+  };
 }

@@ -36,18 +36,34 @@ _:
     };
   };
 
-  disko.devices.disk.storage = {
+  # Dedicated to borg repositories, which checksum and encrypt their own data.
+  disko.devices.disk.backup = {
     type = "disk";
     device = "/dev/disk/by-id/nvme-WD_BLACK_SN770_1TB_22134E800783";
     content = {
       type = "gpt";
-      partitions.storage = {
+      partitions.backup = {
         size = "100%";
         content = {
           type = "filesystem";
           format = "ext4";
-          mountpoint = "/storage";
-          mountOptions = [ "noatime" ];
+          # Root never writes here, so the default 5% reservation would only waste space.
+          extraArgs = [
+            "-L"
+            "backup"
+            "-m"
+            "0"
+          ];
+          mountpoint = "/srv/backup";
+          mountOptions = [
+            "noatime"
+            "nodev"
+            "nosuid"
+            "noexec"
+            # A failed backup disk must not keep the router from booting.
+            "nofail"
+            "x-systemd.device-timeout=10s"
+          ];
         };
       };
     };

@@ -148,6 +148,28 @@
             touch "$out"
           '';
 
+        dane-backup =
+          let
+            inherit (self.nixosConfigurations.dane) config;
+            repos = config.services.borgbackup.repos;
+          in
+          assert lib.assertMsg (
+            repos != { }
+            && lib.all (
+              repo: repo.authorizedKeys == [ ] && repo.authorizedKeysAppendOnly != [ ] && repo.quota != null
+            ) (lib.attrValues repos)
+          ) "Backup clients must only append to their own quota-limited repository.";
+          assert lib.assertMsg (
+            lib.elem "nofail" config.fileSystems."/srv/backup".options
+            && lib.all (
+              name:
+              config.systemd.services."borgbackup-repo-${name}".unitConfig.RequiresMountsFor == "/srv/backup"
+            ) (lib.attrNames repos)
+          ) "The router must boot without the backup disk and never back up onto its root disk.";
+          pkgs.runCommand "dane-backup-check" { } ''
+            touch "$out"
+          '';
+
         # Simulates the NGN and the DS-Lite AFTR so dane's router rules can be probed from both sides.
         dane-router = pkgs.testers.runNixOSTest {
           name = "dane-router";
