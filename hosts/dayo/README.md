@@ -44,7 +44,8 @@ WAN back.
 lost at every reboot. `/nix` on the BC711 holds the store and `/nix/persist`,
 which keeps only the state listed in `modules/storage/ephemeral-root.nix`, such
 as the SSH host key that agenix decrypts with. A file edited by hand lasts until
-the next reboot; declare the change instead.
+the next reboot; declare the change instead. Logins use bash, which needs no
+files in the home directory.
 
 ## Updates and deployment
 

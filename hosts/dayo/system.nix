@@ -1,6 +1,15 @@
-{ lib, ... }:
+{
+  lib,
+  pkgs,
+  username,
+  ...
+}:
 
 {
+  # The home directory is a tmpfs and Home Manager sets up no zsh here, so zsh
+  # would ask to create ~/.zshrc at the first login after every boot.
+  users.users.${username}.shell = lib.mkForce pkgs.bashInteractive;
+
   my.router = {
     wan = "enP3p76s0";
     lan = "enP4p101s0";

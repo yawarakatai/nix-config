@@ -47,6 +47,9 @@ in
     ];
   };
 
+  # sudo's record of who has seen its first-use lecture is lost at every boot.
+  security.sudo.extraConfig = "Defaults lecture=never";
+
   # agenix decrypts with this key, so it is read in place rather than mounted.
   # Other key types would be regenerated at every boot.
   services.openssh.hostKeys = [
