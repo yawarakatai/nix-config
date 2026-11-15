@@ -12,7 +12,9 @@ let
   # Master ciphertexts are public, so they must withstand harvest-now-decrypt-later attacks.
   pqPrefix = "# public key (pq safe): ";
   masterIdentity = identity: {
-    inherit identity;
+    # rage reads this path at rekey time, but a path inside the flake's source may
+    # not exist on disk, so the identity is copied to the store on its own.
+    identity = builtins.path { path = identity; };
     pubkey = lib.removePrefix pqPrefix (
       lib.findFirst (lib.hasPrefix pqPrefix) (throw "${toString identity} lacks a post-quantum recipient")
         (lib.splitString "\n" (builtins.readFile identity))
