@@ -1,9 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, pkgs, ... }:
 
 {
   services.greetd = {
@@ -13,9 +8,6 @@
       user = "greeter";
     };
   };
-
-  # greetd's PAM stack delegates to `login`, so the keyring must be disabled there.
-  security.pam.services.login.enableGnomeKeyring = lib.mkForce false;
 
   environment.etc."greetd/sessions/tty.desktop".text = ''
     [Desktop Entry]
