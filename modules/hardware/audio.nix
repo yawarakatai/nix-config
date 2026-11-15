@@ -28,9 +28,6 @@
     # PulseAudio compatibility
     pulse.enable = true;
 
-    # JACK support (for professional audio)
-    jack.enable = true;
-
     # WirePlumber for session management (modern replacement for pipewire-media-session)
     wireplumber.enable = true;
   };
