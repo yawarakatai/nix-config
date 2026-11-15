@@ -10,9 +10,22 @@
   # would ask to create ~/.zshrc at the first login after every boot.
   users.users.${username}.shell = lib.mkForce pkgs.bashInteractive;
 
+  # Predictable names follow PCIe bus numbers, which the devicetree assigns
+  # differently between the firmware's and the kernel's copy.
+  systemd.network.links = {
+    "10-wan" = {
+      matchConfig.PermanentMACAddress = "00:48:54:20:72:89";
+      linkConfig.Name = "wan";
+    };
+    "10-lan" = {
+      matchConfig.PermanentMACAddress = "00:48:54:20:72:8a";
+      linkConfig.Name = "lan";
+    };
+  };
+
   my.router = {
-    wan = "enP3p76s0";
-    lan = "enP4p101s0";
+    wan = "wan";
+    lan = "lan";
     # dslite.v6connect.net (ASAHI Net); it only resolves through the FLET'S DNS.
     aftr = "2001:c28:1:301::11";
   };
