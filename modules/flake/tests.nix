@@ -315,21 +315,6 @@ in
           };
         };
 
-        # A wildcard or HTTP listener would widen exposure, and a query log would record every lookup on the LAN.
-        "test serves LAN DNS only on the LAN address and logs no queries" = {
-          expr = {
-            inherit (config.services.blocky.settings) ports;
-            queryLog = config.services.blocky.settings.queryLog.type;
-          };
-          expected = {
-            ports = {
-              dns = "192.168.1.1:53";
-              freeBind = true;
-            };
-            queryLog = "none";
-          };
-        };
-
         # A host key on the tmpfs root would be replaced at boot and leave every secret undecryptable.
         "test keeps its agenix identity off the tmpfs root" = {
           expr = {
@@ -370,11 +355,9 @@ in
             let
               path = prefix + name;
               input = flakeInputs.${name};
-              # A store path is read as a flake directory, so a single-file input needs a file URL.
-              url = if lock.nodes.${ref}.locked.type == "file" then "file+file://${input}" else "${input}";
             in
             lib.optionals (lib.isString ref) (
-              [ "--override-input ${path} ${url}" ] ++ overrideInputs "${path}/" ref (input.inputs or { })
+              [ "--override-input ${path} ${input}" ] ++ overrideInputs "${path}/" ref (input.inputs or { })
             )
           ) (lock.nodes.${node}.inputs or { })
         );

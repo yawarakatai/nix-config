@@ -62,8 +62,7 @@ configuration for non-NixOS Linux (see [portable.md](portable.md)).
 - Nix store deduplication runs on the weekly `nix-optimise` timer, not on every
   store import, so identical files can briefly use extra space.
 - On `dayo`, systemd-networkd and nftables own networking; NetworkManager comes
-  only from the desktop profile. blocky answers the LAN's DNS queries, and
-  resolved resolves them upstream.
+  only from the desktop profile.
 - On `kamo`, Jovian owns Gaming Mode, SDDM, input integration, and charging
   limits; Niri is the development desktop (see
   [hosts/kamo/README.md](../hosts/kamo/README.md)).

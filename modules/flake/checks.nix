@@ -43,7 +43,6 @@
         # Simulates the NGN and the DS-Lite AFTR so dayo's router rules can be probed from both sides.
         dayo-router = pkgs.testers.runNixOSTest {
           name = "dayo-router";
-          node.specialArgs = { inherit inputs; };
 
           nodes = {
             isp = {
@@ -173,14 +172,6 @@
             with subtest("Router services answer on the LAN"):
                 client.succeed("nc -z -w 3 192.168.1.1 22")
                 client.succeed("dig +time=2 +tries=1 @192.168.1.1 router")
-
-            with subtest("LAN DNS refuses listed domains and their subdomains"):
-                # Nothing upstream answers in the VM, so an NXDOMAIN can only come from the blocklist.
-                listed = router.succeed("grep -m1 '^[*][.]' ${inputs.hagezi-pro}").strip().removeprefix("*.")
-                for name in [listed, f"any.{listed}"]:
-                    for qtype in ["A", "AAAA", "HTTPS"]:
-                        answer = client.succeed(f"dig +time=2 +tries=1 @192.168.1.1 {name} {qtype}")
-                        assert "status: NXDOMAIN" in answer, answer
 
             with subtest("WAN sees no open router ports"):
                 isp.succeed("ping -c1 -W2 2001:db8::2")

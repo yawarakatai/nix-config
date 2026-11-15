@@ -140,9 +140,6 @@ Noctalia starts, so copied passwords do not persist across sessions.
   a YubiKey recovers it from Git if the client is lost. `borg compact` also
   applies deletions a compromised client requested, so check the archive list
   from a client before running it.
-- **DNS filtering:** blocky keeps no query log. Its lists can only block names,
-  not redirect them, so a bad list can break lookups but not hijack them, and the
-  list changes only with a reviewed `flake.lock` update.
 - **Ephemeral root:** `/` is a tmpfs, so anything planted outside `/nix`, such
   as in a home directory or `/etc`, is gone after a reboot. A root foothold can
   still persist through `/nix`, `/boot` (there is no Secure Boot), or the state
