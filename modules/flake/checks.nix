@@ -72,13 +72,6 @@
                     tunnel = [ "aftr" ];
                     networkConfig.IPv6SendRA = true;
                     ipv6Prefixes = [ { Prefix = "2001:db8::/64"; } ];
-                    # Lets WAN-side probes aim at the LAN directly.
-                    routes = [
-                      {
-                        Destination = "2001:db8:1::/64";
-                        Gateway = "2001:db8::2";
-                      }
-                    ];
                   };
                   "20-aftr" = {
                     matchConfig.Name = "aftr";
@@ -119,11 +112,7 @@
                 };
                 services.openssh.enable = true;
                 environment.systemPackages = [ pkgs.curl ];
-                systemd.network.networks = {
-                  "10-wan".ipv6AcceptRAConfig.Token = "::2";
-                  # Stands in for a delegated prefix, which the NGN may not provide.
-                  "30-lan".address = [ "2001:db8:1::1/64" ];
-                };
+                systemd.network.networks."10-wan".ipv6AcceptRAConfig.Token = "::2";
               };
 
             client = {
@@ -136,12 +125,7 @@
               };
               systemd.network.networks."10-lan" = {
                 matchConfig.Name = "lan";
-                networkConfig = {
-                  DHCP = "ipv4";
-                  IPv6AcceptRA = false;
-                };
-                address = [ "2001:db8:1::2/64" ];
-                routes = [ { Gateway = "2001:db8:1::1"; } ];
+                networkConfig.DHCP = "ipv4";
               };
               environment.systemPackages = with pkgs; [
                 curl
@@ -166,8 +150,9 @@
             with subtest("LAN reaches the IPv4 internet through DS-Lite"):
                 client.wait_until_succeeds("curl -sf --max-time 3 http://203.0.113.1:8000/", timeout=60)
 
-            with subtest("LAN reaches the IPv6 internet"):
-                client.succeed("curl -sf --max-time 3 'http://[2001:db8::1]:8000/'")
+            with subtest("LAN clients get no IPv6 default route"):
+                # The line delegates no prefix, so an RA would leave clients a route without an address.
+                client.fail("ip -6 route show default | grep -q .")
 
             with subtest("Router services answer on the LAN"):
                 client.succeed("nc -z -w 3 192.168.1.1 22")
@@ -176,7 +161,7 @@
             with subtest("WAN sees no open router ports"):
                 isp.succeed("ping -c1 -W2 2001:db8::2")
                 isp.succeed("ping -c1 -W2 192.0.0.2")
-                for target in ["2001:db8::2", "2001:db8:1::1", "192.0.0.2", "192.168.1.1"]:
+                for target in ["2001:db8::2", "192.0.0.2", "192.168.1.1"]:
                     family = "-6 " if ":" in target else ""
                     scan = isp.succeed(f"nmap {family}-Pn -T5 --min-rate 5000 --max-retries 1 -p- -oG - {target}")
                     assert "/open/" not in scan, scan
@@ -185,9 +170,6 @@
             with subtest("WAN cannot open connections into the LAN"):
                 # The LAN listener is up and routable, so a failure below can only be the router's filter.
                 router.succeed(f"curl -sf --max-time 3 http://{client_ip}:8000/")
-                router.succeed("curl -sf --max-time 3 'http://[2001:db8:1::2]:8000/'")
-                isp.succeed("ping -c1 -W2 2001:db8:1::2")
-                isp.fail("curl -sf --max-time 3 'http://[2001:db8:1::2]:8000/'")
                 isp.fail(f"curl -sf --max-time 3 http://{client_ip}:8000/")
 
             with subtest("Without the firewall the WAN goes down and the LAN stays up"):

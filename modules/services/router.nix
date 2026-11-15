@@ -133,7 +133,6 @@ in
 
     systemd.network = {
       enable = true;
-      config.networkConfig.IPv6Forwarding = true;
 
       netdevs."20-${tunnel}" = {
         netdevConfig = {
@@ -155,15 +154,12 @@ in
           matchConfig.Name = cfg.wan;
           tunnel = [ tunnel ];
           networkConfig = {
-            DHCP = "ipv6";
-            # Forwarding disables RA acceptance unless it is requested explicitly.
+            # The tunnel's local address comes from SLAAC.
             IPv6AcceptRA = true;
             LinkLocalAddressing = "ipv6";
           };
-          dhcpV6Config = {
-            PrefixDelegationHint = "::/60";
-            UseDNS = false;
-          };
+          # The RA's other-configuration flag still starts DHCPv6 for information.
+          dhcpV6Config.UseDNS = false;
           ipv6AcceptRAConfig.UseDNS = false;
           linkConfig = {
             RequiredForOnline = "routable";
@@ -185,18 +181,12 @@ in
           address = [ "${lanAddress}/24" ];
           networkConfig = {
             DHCPServer = true;
-            IPv6SendRA = true;
-            DHCPPrefixDelegation = true;
             ConfigureWithoutCarrier = true;
           };
           dhcpServerConfig = {
             PoolOffset = 100;
             PoolSize = 100;
             DNS = [ lanAddress ];
-          };
-          dhcpPrefixDelegationConfig = {
-            UplinkInterface = cfg.wan;
-            SubnetId = 1;
           };
           linkConfig.RequiredForOnline = "no";
         };

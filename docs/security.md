@@ -124,8 +124,8 @@ Noctalia starts, so copied passwords do not persist across sessions.
 [hosts/dayo/README.md](../hosts/dayo/README.md).
 
 - **Exposure:** no port opens globally. Inbound IPv4 cannot reach the home
-  behind the DS-Lite AFTR, new inbound IPv6 connections to the LAN are dropped,
-  and the firewall admits SSH, DNS, and DHCP on the LAN interface only. The
+  behind the DS-Lite AFTR, the LAN has no IPv6 and `dayo` forwards none, and
+  the firewall admits SSH, DNS, and DHCP on the LAN interface only. The
   `dayo-router-firewall` check enforces this, and the `dayo-router` VM test
   scans every router address from a simulated WAN and probes the LAN. Packets
   failing a strict reverse path check are dropped, and resolved sends no LLMNR

@@ -9,6 +9,11 @@ covered in [docs/security.md](../../docs/security.md#dayo).
   `system.nix`. Inbound IPv4 cannot reach the home behind the AFTR. Only one
   DS-Lite B4 works per line: testing `dayo` behind another DS-Lite router
   stalls IPv4.
+- **LAN IPv6:** none. The line (FLET'S Next without Hikari Denwa) advertises one
+  /64 for the WAN and delegates no prefix, so the LAN is IPv4-only and reaches
+  the internet through the tunnel. Its RA sets only the other-configuration flag,
+  so if the line later delegates a prefix, the WAN needs `DHCPv6Client =
+  "always"` to request it.
 - **DNS:** `dayo` resolves through Cloudflare's malware-blocking service, then
   Quad9 (which also blocks malware) if Cloudflare fails, over DNS over TLS on
   native IPv6 with DNSSEC validation, so DNS keeps working if the tunnel fails.
