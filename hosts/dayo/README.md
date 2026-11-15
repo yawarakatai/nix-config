@@ -24,7 +24,11 @@ covered in [docs/security.md](../../docs/security.md#dayo).
 - **Time:** TLS certificate checks need a correct clock, so time sync starts
   from NICT's IPv6 addresses and needs no DNS.
 - **Radio:** the onboard RTL8852BE Wi-Fi has no Japanese radio certification,
-  so its drivers are blacklisted.
+  so a devicetree overlay in `hardware.nix` switches its slot off, which also
+  removes the module's USB Bluetooth. The UEFI
+  firmware's own devicetree leaves the slot on, so systemd-boot loads the
+  kernel's devicetree with the overlay instead; the Wi-Fi drivers stay
+  blacklisted in case a boot entry without it is chosen.
 
 ## Recovery
 
