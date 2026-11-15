@@ -3,12 +3,14 @@
   lib,
   options,
   pkgs,
+  utils,
   ...
 }:
 
 let
   inherit (lib) mkOption types;
   cfg = config.my.router;
+  wanDevice = "sys-subsystem-net-devices-${utils.escapeSystemdPath cfg.wan}.device";
   lanAddress = "192.168.1.1";
   tunnel = "dslite";
 in
@@ -113,10 +115,15 @@ in
     # nftables is active; the LAN stays up for recovery over SSH.
     systemd.services.wan-up = {
       description = "WAN link, up only while the firewall is loaded";
-      bindsTo = [ "nftables.service" ];
+      # The NIC can appear after the firewall loads; without waiting for it, the WAN stays down.
+      bindsTo = [
+        "nftables.service"
+        wanDevice
+      ];
       after = [
         "nftables.service"
         "systemd-networkd.service"
+        wanDevice
       ];
       # nftables pulls it in, so starting the firewall again brings the WAN back.
       wantedBy = [
