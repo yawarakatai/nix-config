@@ -23,6 +23,12 @@ Modify only when the task explicitly covers them (for example host installation 
 
 Encrypted `.age` files, SSH public keys, and generated hardware configurations are versioned artifacts and may be committed. Never expose decrypted secret values.
 
+## Operating dayo
+
+- SSH needs the user's YubiKey touch for every connection. Ask the user to open a master in their own terminal (`ssh -fN -o ControlMaster=yes -o ControlPath=<socket> -o ControlPersist=30m dayo`, with a socket path you can reach), then run commands with `ssh -S <socket> -o BatchMode=yes dayo`.
+- When `dayo` is off the network, ask the user to start the serial console from `hosts/dayo/README.md` inside tmux (`tmux -S <socket> new -s dayo '<picocom command>'`) and log in; drive it with `tmux send-keys -l` and read it with `tmux capture-pane`.
+- The user types sudo passwords. Read `hosts/dayo/README.md` before rebooting `dayo`, and confirm reboots first: the household loses internet until it is back.
+
 ## Validation
 
 - Always: `nix flake check --all-systems` (read-only; treefmt is checked, not applied). Run `nix fmt` to fix formatting.
