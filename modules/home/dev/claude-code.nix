@@ -49,7 +49,27 @@
       # The package is pinned by Nix; the built-in updater cannot replace it.
       env.DISABLE_AUTOUPDATER = "1";
 
+      # Synced from the claude.ai account and never used; their descriptions
+      # cost ~2.4k tokens of context every session.
+      skillOverrides = lib.genAttrs (map (s: "anthropic-skills:${s}") [
+        "built-in-browser"
+        "chrome-browser"
+        "computer-use"
+        "deep-research"
+        "docs"
+        "docx"
+        "google-workspace"
+        "import-memory"
+        "morning"
+        "pdf"
+        "pptx"
+        "skill-creator"
+        "xlsx"
+      ]) (_: "off");
+
       permissions = {
+        defaultMode = "auto";
+
         # Routine read-only and validation commands that should not prompt.
         allow = [
           "Bash(git status:*)"
