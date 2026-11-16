@@ -1,10 +1,16 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
-  services.gvfs.enable = true;
+  services = {
+    gvfs.enable = true;
 
-  # Home Manager owns SSH authentication; keep GNOME Keyring for application secrets.
-  services.gnome.gcr-ssh-agent.enable = false;
+    # Home Manager owns SSH authentication.
+    gnome.gcr-ssh-agent.enable = false;
+
+    # Logins that skip the password (fingerprint, autologin) or a password change
+    # leave the login keyring locked and prompting; apps fall back to their own storage.
+    gnome.gnome-keyring.enable = lib.mkForce false;
+  };
 
   programs.dconf.enable = true;
 

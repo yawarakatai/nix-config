@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  username,
   ...
 }:
 
@@ -10,12 +9,6 @@ let
   dp2 = config.my.display.outputs."DP-2";
 in
 {
-  age.secrets.noctalia-storage-key = {
-    rekeyFile = ../../secrets/noctalia-storage-key.age;
-    owner = username;
-    mode = "0400";
-  };
-
   boot.tmp.useTmpfs = lib.mkForce false;
 
   zramSwap = {

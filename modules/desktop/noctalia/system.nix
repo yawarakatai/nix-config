@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, username, ... }:
 
 let
   inherit (lib) mkOption types;
@@ -26,9 +26,18 @@ in
     };
   };
 
-  # niri-flake's module adds its own cache; Noctalia's is added here.
-  config.nix.settings = {
-    substituters = [ "https://noctalia.cachix.org" ];
-    trusted-public-keys = [ "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4=" ];
+  config = {
+    # Encrypts Noctalia's stored history without a Secret Service.
+    age.secrets.noctalia-storage-key = {
+      rekeyFile = ../../../secrets/noctalia-storage-key.age;
+      owner = username;
+      mode = "0400";
+    };
+
+    # niri-flake's module adds its own cache; Noctalia's is added here.
+    nix.settings = {
+      substituters = [ "https://noctalia.cachix.org" ];
+      trusted-public-keys = [ "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4=" ];
+    };
   };
 }

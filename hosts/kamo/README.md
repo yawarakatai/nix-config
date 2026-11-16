@@ -10,8 +10,6 @@
 - Steam's vendor short-session auto-repair is inhibited: quick desktop switches
   can trigger it and overwrite the self-updated client with an old bootstrap.
   NixOS generation rollback does not roll back Steam's files in the home directory.
-- Noctalia uses an agenix storage key because autologin cannot unlock the login
-  keyring. Changing this key does not migrate existing encrypted history.
 
 Both modes share the same account and files. Autologin bypasses login-password
 entry. Keep long-running agents in tmux or on another host to survive logout.

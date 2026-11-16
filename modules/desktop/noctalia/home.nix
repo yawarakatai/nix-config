@@ -15,6 +15,11 @@ in
     systemd.enable = true;
 
     settings = {
+      storage = {
+        key_source = "file";
+        key_file = osConfig.age.secrets.noctalia-storage-key.path;
+      };
+
       accessibility = {
         ui_scale = ui.scale;
       };

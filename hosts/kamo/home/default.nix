@@ -1,7 +1,6 @@
 {
   inputs,
   lib,
-  osConfig,
   ...
 }:
 
@@ -18,12 +17,6 @@
   # Quick desktop switches count as short sessions; the vendor repair then
   # overlays an old Steam bootstrap onto the self-updated client.
   xdg.configFile."inhibit-short-session-tracker".text = "";
-
-  # Autologin cannot unlock the login keyring with a password.
-  programs.noctalia.settings.storage = {
-    key_source = "file";
-    key_file = osConfig.age.secrets.noctalia-storage-key.path;
-  };
 
   programs.niri = {
     # The touchscreen is attached to the internal panel, not external outputs.

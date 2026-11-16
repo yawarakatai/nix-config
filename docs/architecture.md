@@ -57,8 +57,11 @@ configuration for non-NixOS Linux (see [portable.md](portable.md)).
   keeping completion paths. Hosts without those features keep the NixOS
   defaults.
 - Desktop SSH authentication uses Home Manager's `ssh-agent`. The GCR SSH agent
-  is disabled to avoid a second agent; GNOME Keyring remains for application
-  secrets.
+  is disabled to avoid a second agent.
+- Desktops run no Secret Service: GNOME Keyring is disabled because fingerprint
+  logins, autologin, and declarative password changes leave it locked. Noctalia
+  encrypts its storage with the shared agenix `noctalia-storage-key`; changing
+  that key does not migrate existing encrypted history.
 - Nix store deduplication runs on the weekly `nix-optimise` timer, not on every
   store import, so identical files can briefly use extra space.
 - On `dayo`, systemd-networkd and nftables own networking; NetworkManager comes
