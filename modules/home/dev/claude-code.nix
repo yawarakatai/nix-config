@@ -25,6 +25,11 @@
       - Handle recoverable errors explicitly rather than panicking.
       - Comments explain why, not what.
 
+      ## Tests
+
+      - Where a project has tests, reproduce a bug with a failing test before fixing it, and cover new logic that has non-obvious edge cases; do not add a test framework unasked.
+      - Never weaken, skip, or delete a test to make it pass; fix the code or report the failure.
+
       ## Documentation
 
       - Write down in the project's documentation what its code and history cannot show: what was verified and how, what was decided and why (including rejected alternatives), what is still undecided, and the criteria behind judgment calls.
