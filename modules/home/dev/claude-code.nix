@@ -43,9 +43,17 @@
       - Ask before destructive or privileged actions.
     '';
     mcpServers.nixos.command = lib.getExe pkgs.mcp-nixos;
-    lspServers.nix = {
-      command = lib.getExe pkgs.nixd;
-      extensionToLanguage.".nix" = "nix";
+    lspServers = {
+      nix = {
+        command = lib.getExe pkgs.nixd;
+        extensionToLanguage.".nix" = "nix";
+      };
+      # Resolved from PATH rather than pinned, so each project's dev shell
+      # supplies the rust-analyzer that matches its toolchain.
+      rust-analyzer = {
+        command = "rust-analyzer";
+        extensionToLanguage.".rs" = "rust";
+      };
     };
 
     # Claude Code rewrites settings.json itself (theme, /config changes), so
