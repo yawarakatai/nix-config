@@ -55,9 +55,6 @@
     mutableSettings = true;
 
     settings = {
-      # The package is pinned by Nix; the built-in updater cannot replace it.
-      env.DISABLE_AUTOUPDATER = "1";
-
       # Synced from the claude.ai account and never used; their descriptions
       # cost ~2.4k tokens of context every session.
       skillOverrides = lib.genAttrs (map (s: "anthropic-skills:${s}") [
