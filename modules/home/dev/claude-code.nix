@@ -43,6 +43,8 @@
 
     # Claude Code rewrites settings.json itself (theme, /config changes), so
     # declared values are merged into a writable file instead of a store symlink.
+    # Declared values win on every activation, but a key removed here stays in
+    # the file until it is deleted there.
     mutableSettings = true;
 
     settings = {
@@ -86,10 +88,13 @@
         # privileged actions, so only keep plaintext secrets out of context.
         ask = [ ];
         deny = [
-          "Read(/run/agenix/**)"
+          # Read rules need `//` to mean the filesystem root: a single leading
+          # slash anchors at ~/.claude and no slash at the working directory
+          # (checked on 2.1.321). `.env.*` leaves `.envrc` readable.
+          "Read(//run/agenix/**)"
           "Read(~/.ssh/id_*)"
-          "Read(**/.env)"
-          "Read(**/.env.*)"
+          "Read(//**/.env)"
+          "Read(//**/.env.*)"
 
           # Comes from the claude.ai account, so there is no local config to remove.
           "mcp__claude_ai_Claude_Docs"
