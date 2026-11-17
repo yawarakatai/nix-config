@@ -73,6 +73,11 @@
     mutableSettings = true;
 
     settings = {
+      # The instructions are in English, which pulls replies toward English even
+      # in a Japanese conversation. The key exists in 2.1.321; whether it fully
+      # stops the drift is untested.
+      language = "japanese";
+
       # Synced from the claude.ai account and never used; their descriptions
       # cost ~2.4k tokens of context every session.
       skillOverrides = lib.genAttrs (map (s: "anthropic-skills:${s}") [
