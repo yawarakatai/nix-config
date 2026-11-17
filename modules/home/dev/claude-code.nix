@@ -31,6 +31,7 @@
       - Do it in the same change, where the project already keeps such notes: a comment for a fact about one piece of code, otherwise its docs. The conversation and agent memory do not count; later readers never see them.
       - Say whether each point is verified, assumed, or undecided, and replace an open question with the decision once it is settled.
       - Update existing text instead of appending a log of the task.
+      - Write comments and documentation in English, whatever language the conversation is in.
 
       ## Git
 
