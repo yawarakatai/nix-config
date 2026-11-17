@@ -38,7 +38,7 @@ Encrypted `.age` files, SSH public keys, and generated hardware configurations a
 
 ## Documentation
 
-Document lasting architecture, ownership, edit locations, and workflows by updating existing text. Omit task history and details already clear from code. State each fact in one place:
+Document lasting architecture, ownership, edit locations, and workflows, along with the decisions, verified findings, and open questions behind them, by updating existing text. Omit task history and details already clear from code. State each fact in one place:
 
 - `README.md`: overview, hosts, and an index only.
 - `docs/architecture.md`: layout, profiles, ownership, where to edit.
