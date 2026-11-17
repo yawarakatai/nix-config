@@ -90,9 +90,8 @@ in
       "Mod+H".action.spawn = [ "nautilus" ];
 
       # --- Screenshot ---
-      "Mod+S".action.spawn = [ "screenshot-copy" ];
-      "Mod+Shift+S".action.spawn =
-        sh "grim - | wl-copy && notify-send -u low 'Screenshot' 'Copied to clipboard'";
+      "Mod+S".action.screenshot = [ ];
+      "Mod+Shift+S".action.screenshot-screen = [ ];
 
       # --- Media ---
       "XF86AudioPlay".action.spawn = sh "playerctl play-pause";

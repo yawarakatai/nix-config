@@ -8,7 +8,6 @@ _:
     ./layout.nix
     ./outputs.nix
     ./settings.nix
-    ./screenshot.nix
     ./window-rules.nix
   ];
 }

@@ -40,6 +40,10 @@
 
     prefer-no-csd = true;
 
+    # The niri-flake default is under ~/Pictures, which xdg.userDirs avoids
+    # creating; niri creates this directory on the first save.
+    screenshot-path = "~/.screenshots/Screenshot %Y-%m-%d %H-%M-%S.png";
+
     environment = {
       DISPLAY = ":0";
       XDG_CURRENT_DESKTOP = "niri";
