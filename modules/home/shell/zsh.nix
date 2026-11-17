@@ -14,7 +14,6 @@
       la = "ls -a";
       ll = "ls -la";
       tree = "eza --tree";
-      cat = "bat --paging=never";
     };
 
     history = {
