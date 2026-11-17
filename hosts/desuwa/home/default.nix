@@ -2,6 +2,7 @@
 
 {
   home.packages = with pkgs; [
+    godot
     bottles
     orca-slicer
   ];
