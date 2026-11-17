@@ -13,7 +13,7 @@
       ls = "eza --icons --group-directories-first";
       la = "ls -a";
       ll = "ls -la";
-      tree = "eza --tree";
+      tree = "eza --tree --git-ignore";
     };
 
     history = {
