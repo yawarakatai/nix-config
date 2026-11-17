@@ -58,6 +58,9 @@ in
       "Mod+F".action.toggle-window-floating = [ ];
 
       # --- Workspaces ---
+      # Workspaces are dynamic: declaring named ones would keep them when emptied
+      # and leave gaps, while unnamed ones are removed so the rest close up.
+      # These binds target indices, so they keep working as workspaces shift.
       "Mod+1".action.focus-workspace = 1;
       "Mod+2".action.focus-workspace = 2;
       "Mod+3".action.focus-workspace = 3;

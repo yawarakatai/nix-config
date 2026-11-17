@@ -55,13 +55,6 @@ in
       }
     ];
 
-    workspaces = {
-      "1" = { };
-      "2" = { };
-      "3" = { };
-      "4" = { };
-    };
-
     overview = {
       backdrop-color = wallpaper.fallbackColor;
       workspace-shadow.enable = true;
