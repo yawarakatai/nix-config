@@ -21,7 +21,8 @@
   home.sessionVariables = {
     EDITOR = "hx";
     VISUAL = "hx";
-    PAGER = "bat";
+    PAGER = "less";
+    LESS = "-R";
   };
 
   xdg = {
