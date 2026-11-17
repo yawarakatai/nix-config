@@ -12,6 +12,10 @@
       - If a project tool is missing, use `direnv exec . <cmd>` when `.envrc` exists, otherwise `nix develop -c <cmd>`.
       - For one-off tools, use `nix shell nixpkgs#<pkg> -c <cmd>` instead of global or imperative installs (`pip install`, `npm -g`, `cargo install`).
 
+      ## Requests
+
+      - When asked whether something is worthwhile or how it would go, answer with a recommendation and its trade-offs; implement only once the user decides.
+
       ## Code
 
       - Less is more: prefer the smallest change that works; removing code is welcome.
