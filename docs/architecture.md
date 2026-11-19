@@ -18,7 +18,7 @@ hosts/<host>/
   home/default.nix         # Home Manager host-only additions
   README.md                # optional operational notes
 modules/
-  flake/                   # flake-parts entry modules: hosts, portable home, checks, nix-unit tests, dev shell, packages (install-host, diff-config)
+  flake/                   # flake-parts entry modules: hosts, portable shell, checks, nix-unit tests, dev shell, packages (install-host, diff-config)
   profiles/                # aggregators only (system/, home/)
   core/                    # boot, Nix, users, locale, and networking for every host
   desktop/                 # Wayland desktop: Niri, Noctalia, greetd
@@ -43,8 +43,8 @@ imports in `hosts/<host>/default.nix`. System profiles build on each other:
 `kamo`), and `laptop` (`nanodesu`).
 
 Home Manager profiles: `default.nix` holds shared basics, `desktop.nix` adds
-desktop, development, and SSH features, and `portable.nix` is the standalone
-configuration for non-NixOS Linux (see [portable.md](portable.md)).
+desktop, development, and SSH features, and `portable.nix` lists the tools of
+the portable shell (see [portable.md](portable.md)).
 
 ## Ownership
 
@@ -84,7 +84,8 @@ configuration for non-NixOS Linux (see [portable.md](portable.md)).
 | NixOS login shell and global shell initialization        | `modules/core/users.nix`                                 |
 | User-facing shell settings                               | `modules/home/shell/`                                    |
 | Default kernel (`dayo` overrides it in `hardware.nix`)   | `modules/core/boot.nix`                                  |
-| Portable account parameters and optional features        | `modules/flake/home.nix`                                 |
+| Portable shell tools                                     | `modules/profiles/home/portable.nix`                     |
+| How the portable shell finds their configuration         | `modules/flake/portable.nix`                             |
 | `kamo` gaming and session integration                    | `modules/gaming/jovian.nix`                              |
 | `dayo`'s router and backup server                        | `modules/services/router.nix`, `backup-server.nix`       |
 | `dayo`'s line facts and backup quotas                    | `hosts/dayo/system.nix`                                  |

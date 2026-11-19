@@ -88,7 +88,7 @@
         ./modules/flake/dev.nix
         ./modules/flake/packages.nix
         ./modules/flake/checks.nix
-        ./modules/flake/home.nix
+        ./modules/flake/portable.nix
         ./modules/flake/nixos.nix
         ./modules/flake/tests.nix
       ];

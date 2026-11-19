@@ -3,7 +3,7 @@ usage() {
 Usage:
   nix run .#diff-config -- [base-rev]
 
-Compares every host's system and every standalone Home Manager configuration
+Compares every host's system and every package for this machine's system
 between base-rev (default: HEAD) and the working tree, by derivation path.
 Identical paths mean identical builds; for each difference nix-diff explains
 what changed. Only evaluates; nothing is built.
@@ -32,10 +32,12 @@ drv_paths() {
   nix eval --json "$ref#nixosConfigurations" --apply \
     'builtins.mapAttrs (_: c: c.config.system.build.toplevel.drvPath)' |
     jq 'with_entries(.key |= "nixos/" + .)'
-  nix eval --json "$ref#homeConfigurations" --apply \
-    'builtins.mapAttrs (_: c: c.activationPackage.drvPath)' |
-    jq 'with_entries(.key |= "home/" + .)'
+  nix eval --json "$ref#packages.$system" --apply \
+    'builtins.mapAttrs (_: p: p.drvPath)' |
+    jq 'with_entries(.key |= "package/" + .)'
 }
+
+system=$(nix eval --raw --impure --expr builtins.currentSystem)
 
 echo "Evaluating base ${base:0:12}..." >&2
 old=$(drv_paths "git+file://$root?rev=$base" | jq -s add)

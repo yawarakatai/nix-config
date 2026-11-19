@@ -16,7 +16,7 @@ Personal NixOS and Home Manager configuration, built with flake-parts.
 - [Architecture](docs/architecture.md): layout, profiles, ownership, and where to edit
 - [Installing a host](docs/install.md)
 - [Security](docs/security.md): YubiKeys, secrets, SSH, and exposure
-- [Portable environment](docs/portable.md): Home Manager on non-NixOS Linux
+- [Portable shell](docs/portable.md): everyday tools on Linux without installing anything
 - Host operations: [dayo](hosts/dayo/README.md), [kamo](hosts/kamo/README.md)
 
 ## Common commands
@@ -26,7 +26,7 @@ Personal NixOS and Home Manager configuration, built with flake-parts.
 nix fmt
 
 # Full check: lint, dead code, formatting, evaluation of every host and
-# Home Manager output, host invariants (nix-unit), and VM tests (does not rewrite files)
+# package, host invariants (nix-unit), and VM tests (does not rewrite files)
 nix flake check --all-systems
 
 # Run only the nix-unit host invariants, with per-test results (dev shell)

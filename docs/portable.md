@@ -1,183 +1,113 @@
-# Portable development environment
+# Portable shell
 
-The standalone Home Manager configuration installs CLI tools, Helix, Nix tools
-(nixd, nixfmt, comma), Git, Lazygit, direnv, Python, and Plainix on non-NixOS
-Linux, and manages Bash so these tools' session variables are loaded. Optional
-features add more; see below. It does not install the NixOS desktop, Niri,
-hardware configuration, or system services, and it does not change your login
-shell.
+`packages.<system>.portable` is a Zsh with the everyday CLI tools and their
+configuration, for Linux machines where Nix cannot be installed system-wide,
+such as school PCs. It changes nothing on the machine: it does not touch
+`~/.bashrc`, `~/.profile`, or `~/.config`, and exiting the shell returns to the
+machine's own environment.
 
-Two outputs are available. Check your architecture with `uname -m`:
+It includes the CLI tools, Helix, Zsh and Starship, Git with yawarakatai's
+identity, Lazygit, direnv with nix-direnv, Nix tools (nixd, nixfmt, comma),
+Python, Plainix, Claude Code, and yawarakatai's SSH host settings
+(`modules/profiles/home/portable.nix`). It does not include the desktop,
+Ghostty, or system services.
 
-- `portable` for `x86_64-linux` (`x86_64`)
-- `portable-aarch64` for `aarch64-linux` (`aarch64`)
+## Before using
 
-On ARM64, replace `portable` with `portable-aarch64` in the commands below.
+On a school or other managed device, obtain permission to run these tools. Do
+not bypass device restrictions; if running programs from your home directory
+is blocked, ask the administrator.
 
-## Before installing
+## Run it
 
-On a school or other managed device, obtain permission to install Nix and use
-these tools. If installation requires administrator access, ask the administrator;
-do not bypass device restrictions. Apply Home Manager only to your own account,
-never with `sudo`.
-
-This is still a personal configuration: the optional `git-identity` and `ssh`
-features add yawarakatai's Git identity and SSH host settings. Review them
-before applying. Existing `~/.bashrc` and `~/.profile` are replaced (and backed
-up), so also review any existing shell, Git, and SSH configuration. Private SSH
-keys and API credentials are not installed by this profile.
-
-## Install Nix
-
-Skip this section if `nix --version` already works.
-
-On a normal Linux distribution or WSL with systemd enabled, use the multi-user
-installer with administrator approval:
+With Nix installed:
 
 ```bash
-sh <(curl -L https://nixos.org/nix/install) --daemon
+nix run github:yawarakatai/nix-config#portable
 ```
 
-For SELinux distributions such as Fedora or Bazzite, use a compatible installer,
-for example Determinate Nix, with administrator approval:
+Without root, use [nix-portable](https://github.com/DavHau/nix-portable), a
+single Nix binary that keeps its store in `~/.nix-portable`:
 
 ```bash
-curl --proto '=https' --tlsv1.2 -sSf -L \
-  https://install.determinate.systems/nix | \
-  sh -s -- install
+mkdir -p ~/.local/bin
+curl -L -o ~/.local/bin/nix-portable \
+  "https://github.com/DavHau/nix-portable/releases/latest/download/nix-portable-$(uname -m)"
+chmod +x ~/.local/bin/nix-portable
+~/.local/bin/nix-portable nix run github:yawarakatai/nix-config#portable
 ```
 
-Restart the shell after installation and verify it:
+Undecided: nix-portable has not been tried with this flake yet, and its latest
+release (v012, 2024) bundles an older Nix. nix-portable is fast only when
+unprivileged user namespaces work; otherwise it falls back to the much slower
+proot. Ubuntu 24.04 and later can restrict them through AppArmor. Check with:
 
 ```bash
-nix --version
+unshare --user --map-root-user true && echo userns-ok
+cat /proc/sys/kernel/apparmor_restrict_unprivileged_userns 2>/dev/null  # 1 = restricted
 ```
 
-Make sure flakes are enabled. For a per-user configuration:
+The first run downloads about 2.4 GiB. Arguments after `--` are passed to Zsh, so
+`nix run …#portable -- -c '<command>'` runs one command. To pick up new commits, add
+`--refresh` to `nix run`. Old versions stay in the store until
+`nix store gc` (`nix-portable nix store gc`).
 
-```bash
-mkdir -p ~/.config/nix
-printf '%s\n' 'experimental-features = nix-command flakes' >> ~/.config/nix/nix.conf
-```
+## What it writes to your home
 
-## Select your account
+Only what the tools write themselves: Zsh history in `~/.zsh_history`, caches
+and state under `~/.cache`, `~/.local/state`, and `~/.local/share`, and an
+empty `~/.config/lazygit`.
 
-Before every build or update, set the account explicitly in the current shell:
+## SSH
 
-```bash
-export PORTABLE_USERNAME="$(id -un)"
-export PORTABLE_HOME="$HOME"
-```
+The `ssh` command uses the bundled configuration. It reads the YubiKey handles
+from `~/.ssh/yubikey_5` and `~/.ssh/yubikey_5c` and pins host keys alongside
+your own `~/.ssh/known_hosts`. The handles are resident on each key; export them
+once with `cd ~/.ssh && ssh-keygen -K` (PIN required) and rename the
+`id_ed25519_sk_rk_nix-config` file to `yubikey_5` or `yubikey_5c`.
 
-These overrides are read only with `--impure`. They do not change NixOS host
-accounts. Without overrides, the username defaults to `yawarakatai` and the home
-directory to `/home/<username>`. Pure evaluation ignores the environment and uses
-`yawarakatai` and `/home/yawarakatai`, so repository checks remain reproducible.
+## How it works
 
-Optional features are off by default. Select them with a comma-separated list,
-also read only with `--impure`:
+`modules/flake/portable.nix` evaluates the Home Manager profile with a
+placeholder home, `/homeless-shelter`, and never activates it. The launcher
+points each tool at the rendered files in the store:
 
-```bash
-export PORTABLE_FEATURES="shell,ghostty,ssh"
-```
+| Tool                                           | How it finds its configuration                    |
+| ---------------------------------------------- | ------------------------------------------------- |
+| Git, Lazygit, Starship, Yazi, television, direnv | `GIT_CONFIG_GLOBAL`, `LG_CONFIG_FILE`, `STARSHIP_CONFIG`, `YAZI_CONFIG_HOME`, `TELEVISION_CONFIG`, `DIRENV_CONFIG` |
+| Helix                                          | an `hx` wrapper that sets `XDG_CONFIG_HOME` for Helix only |
+| SSH                                            | an `ssh` wrapper that passes `-F`                 |
+| Zsh                                            | `ZDOTDIR`, whose `.zshenv` also sets `PATH`, since `/etc/zshenv` may reset it (NixOS does) |
 
-- `shell`: Zsh and Starship. Because the login shell stays unchanged, an
-  interactive top-level Bash starts Zsh in its place; running `bash` from there
-  stays in Bash.
-- `agents`: Claude Code.
-- `git-identity`: yawarakatai's Git name and email.
-- `ghostty`: the Ghostty configuration and its fonts. Install Ghostty itself from
-  your distribution, because a Nix-built Ghostty cannot find the host's GPU
-  drivers.
-- `ssh`: yawarakatai's SSH host settings, public keys, and pinned host keys.
-  The YubiKey key handles are resident on each key; export them once with
-  `cd ~/.ssh && ssh-keygen -K` (PIN required) and rename the
-  `id_ed25519_sk_rk_nix-config` file to `yubikey_5` or `yubikey_5c`.
+A tool added to the profile that reads `~/.config` silently runs without its
+configuration until it gets a variable or wrapper here. Evaluation fails if a
+session variable still points into the placeholder home; the rendered files the
+launcher uses were checked for it by hand.
 
-Set the same list on every update; features omitted later are removed.
+Limits:
 
-## Install from a local checkout
+- Claude Code's global instructions, MCP servers, and LSP servers live under
+  `~/.claude`; only the binary is included, because relocating that directory
+  with `CLAUDE_CONFIG_DIR` would also move the login.
+- `bat` and `bottom` run with their defaults, as they have no rendered
+  configuration.
 
-```bash
-git clone https://github.com/yawarakatai/nix-config.git ~/.config/nix-config
-cd ~/.config/nix-config
-```
+Verified on desuwa with an empty `HOME` and `env -i`: every tool resolves from
+the package, and Helix (`hx --health`), Git, Starship (`starship print-config`),
+SSH (`ssh -G`), direnv (`direnv status`), television (`tv list-channels`),
+and Lazygit and Yazi (`strace` of their startup) read the bundled files.
+television writes a default `config.toml` when it is missing, so an empty one is
+rendered.
 
-Confirm that the configuration targets your own account:
+Rejected alternatives:
 
-```bash
-nix eval --impure --json .#homeConfigurations.portable.config.home \
-  --apply 'home: { inherit (home) username homeDirectory; }'
-```
-
-Build first. This downloads/builds packages and creates `result-portable`, but
-does not apply the configuration to your home directory:
-
-```bash
-nix build --impure --out-link result-portable \
-  .#homeConfigurations.portable.activationPackage
-```
-
-When ready, apply the built generation as your normal user:
-
-```bash
-HOME_MANAGER_BACKUP_EXT=portable-backup ./result-portable/activate
-```
-
-Existing conflicting files are backed up with a `.portable-backup` suffix. If
-that backup already exists, resolve the conflict manually rather than overwriting
-it. Keep backups until you are satisfied with the new configuration.
-
-Home Manager is now installed in your profile. Reopen your terminal to refresh
-the environment; with the `shell` feature it opens in Zsh. The system's default
-login shell is not changed.
-
-### Updates
-
-Set the account variables, and `PORTABLE_FEATURES` if used, again in each new
-shell before updating:
-
-```bash
-cd ~/.config/nix-config
-git pull
-export PORTABLE_USERNAME="$(id -un)"
-export PORTABLE_HOME="$HOME"
-home-manager switch --impure -b portable-backup --flake .#portable
-```
-
-The initial build uses the Home Manager version pinned by this flake, without
-bootstrapping a separate, potentially incompatible Home Manager CLI.
-
-## Install directly from GitHub
-
-After setting the account variables above, you can also build without a checkout:
-
-```bash
-nix build --impure --out-link result-portable \
-  github:yawarakatai/nix-config#homeConfigurations.portable.activationPackage
-HOME_MANAGER_BACKUP_EXT=portable-backup ./result-portable/activate
-```
-
-For subsequent updates, set the account variables again and use:
-
-```bash
-home-manager switch --impure -b portable-backup \
-  --flake github:yawarakatai/nix-config#portable
-```
-
-## WSL notes
-
-Use WSL2. Enabling systemd is recommended because it gives Nix's multi-user daemon
-and user services a conventional Linux environment. Add the following to
-`/etc/wsl.conf` when necessary and permitted:
-
-```ini
-[boot]
-systemd=true
-```
-
-Then shut WSL down from Windows and reopen it:
-
-```powershell
-wsl --shutdown
-```
+- Standalone Home Manager activated into the home. It replaced `~/.bashrc` and
+  `~/.profile`, needed `/nix`, and so root, and needed the account and features
+  passed through `PORTABLE_*` variables with `--impure` on every update. Under
+  nix-portable its `~/.config` symlinks would also dangle outside the sandbox
+  and break the host's own Git and other programs (assumed, not tried).
+- A private `XDG_CONFIG_HOME` holding symlinks to the rendered files. It hides
+  the rest of `~/.config` from the shell, and configuration that tools create
+  there is invisible outside it.
+- Selectable optional features: the shell has a single user, so one fixed set
+  is enough.

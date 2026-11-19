@@ -5,19 +5,11 @@
     ../../home/cli
     ../../home/editor/helix.nix
     ../../home/dev
+    ../../home/dev/git-identity.nix
+    ../../home/dev/claude-code.nix
+    ../../home/shell
+    ../../ssh/client.nix
   ];
-
-  programs.home-manager.enable = true;
-
-  # Home Manager's Bash files load the session variables below on non-NixOS hosts.
-  programs.bash.enable = true;
-
-  targets.genericLinux = {
-    enable = true;
-    gpu.enable = false;
-  };
-
-  xdg.enable = true;
 
   home.sessionVariables = {
     EDITOR = "hx";
