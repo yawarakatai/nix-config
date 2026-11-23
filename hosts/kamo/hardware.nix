@@ -15,7 +15,8 @@
   # LB/RB switches are broken on this unit, so M2/M1 take over their role.
   # With mainline hid-asus, InputPlumber cannot program the MCU, which then
   # reports both back buttons as the same key. Program them as F17/F18 the way
-  # Handheld Daemon does; the trailing commands make the MCU apply the mapping.
+  # Handheld Daemon does. Verified on kernel 7.3.4: without the leading ASUS
+  # handshake the MCU silently ignores every 0xD1 config command.
   systemd.services.ally-back-buttons = {
     description = "Program ROG Ally M1/M2 as F18/F17";
     serviceConfig.Type = "oneshot";
@@ -36,6 +37,7 @@
 
         EMPTY = [0] * 11
         CMDS = [
+            buf([0x5A] + list(b"ASUS Tech.Inc.")),
             # Back button pair: M2 (left) -> F17, M1 (right) -> F18.
             buf([0x5A, 0xD1, 0x02, 0x08, 0x2C]
                 + key(0x28) + EMPTY + key(0x30) + EMPTY),
