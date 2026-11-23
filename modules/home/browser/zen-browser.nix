@@ -163,6 +163,14 @@
         force = true;
         default = "ddg";
         privateDefault = "ddg";
+
+        # Type ": 3000" to open http://localhost:3000. Search terms are URL-encoded,
+        # so only a port (not a path) can follow the keyword.
+        engines.localhost = {
+          name = "localhost";
+          urls = [ { template = "http://localhost:{searchTerms}"; } ];
+          definedAliases = [ ":" ];
+        };
       };
     };
   };
