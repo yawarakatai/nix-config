@@ -5,6 +5,7 @@
     ./hardware.nix
     ./system.nix
     ../../modules/gaming
+    ../../modules/gaming/headless-host.nix
     ../../modules/services/udev.nix
   ];
 }

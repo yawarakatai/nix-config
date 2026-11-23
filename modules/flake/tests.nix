@@ -127,6 +127,29 @@ in
         };
       };
 
+    desuwa =
+      let
+        inherit (hosts.desuwa) config;
+        home = config.home-manager.users.yawarakatai;
+        unit = config.systemd.user.services.steam-headless;
+      in
+      {
+        "test runs Steam only as steamhost, from boot without a login" = {
+          expr = {
+            inherit (config.users.users.steamhost) linger;
+            inherit (unit.unitConfig) ConditionUser;
+            inherit (unit) wantedBy;
+            desktopSteam = home.systemd.user.services ? steam;
+          };
+          expected = {
+            linger = true;
+            ConditionUser = "steamhost";
+            wantedBy = [ "default.target" ];
+            desktopSteam = false;
+          };
+        };
+      };
+
     kamo =
       let
         inherit (hosts.kamo) config;
@@ -142,6 +165,11 @@ in
             autoStart = true;
             desktopSession = "niri";
           };
+        };
+
+        "test opens Remote Play ports, without which desuwa cannot connect" = {
+          expr = config.programs.steam.remotePlay.openFirewall;
+          expected = true;
         };
 
         "test quick desktop switches do not trigger Steam's old bootstrap repair" = {

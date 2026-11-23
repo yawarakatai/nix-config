@@ -6,7 +6,7 @@ Personal NixOS and Home Manager configuration, built with flake-parts.
 
 | Host       | Device                      | Arch            | Role             |
 | ---------- | --------------------------- | --------------- | ---------------- |
-| `desuwa`   | Desktop (RTX 3080, 32 GiB) | `x86_64-linux`  | Gaming machine   |
+| `desuwa`   | Desktop (RTX 3080, 32 GiB) | `x86_64-linux`  | Remote Play host |
 | `dayo`     | ROCK 5T (24 GiB)            | `aarch64-linux` | Router, backups  |
 | `nanodesu` | Laptop                      | `x86_64-linux`  | Laptop           |
 | `kamo`     | ROG Ally                    | `x86_64-linux`  | Portable machine |
@@ -17,7 +17,8 @@ Personal NixOS and Home Manager configuration, built with flake-parts.
 - [Installing a host](docs/install.md)
 - [Security](docs/security.md): YubiKeys, secrets, SSH, and exposure
 - [Portable shell](docs/portable.md): everyday tools on Linux without installing anything
-- Host operations: [dayo](hosts/dayo/README.md), [kamo](hosts/kamo/README.md)
+- Host operations: [dayo](hosts/dayo/README.md), [desuwa](hosts/desuwa/README.md),
+  [kamo](hosts/kamo/README.md)
 
 ## Common commands
 

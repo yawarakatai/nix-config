@@ -22,7 +22,7 @@ modules/
   profiles/                # aggregators only (system/, home/)
   core/                    # boot, Nix, users, locale, and networking for every host
   desktop/                 # Wayland desktop: Niri, Noctalia, greetd
-  gaming/                  # Steam and Jovian
+  gaming/                  # Steam, Jovian, and the headless Remote Play host
   hardware/ input/ laptop/ # device support
   github/                  # gh with a read-only token delivered by agenix (system.nix + home.nix)
   security/                # agenix and YubiKey support
@@ -66,6 +66,9 @@ the portable shell (see [portable.md](portable.md)).
   store import, so identical files can briefly use extra space.
 - On `dayo`, systemd-networkd and nftables own networking; NetworkManager comes
   only from the desktop profile.
+- On `desuwa`, Steam runs only as the `steamhost` user in a headless gamescope;
+  the desktop user has no Steam (see
+  [hosts/desuwa/README.md](../hosts/desuwa/README.md)).
 - On `kamo`, Jovian owns Gaming Mode, SDDM, input integration, and charging
   limits; Niri is the development desktop (see
   [hosts/kamo/README.md](../hosts/kamo/README.md)).
@@ -86,6 +89,7 @@ the portable shell (see [portable.md](portable.md)).
 | Default kernel (`dayo` overrides it in `hardware.nix`)   | `modules/core/boot.nix`                                  |
 | Portable shell tools                                     | `modules/profiles/home/portable.nix`                     |
 | How the portable shell finds their configuration         | `modules/flake/portable.nix`                             |
+| `desuwa`'s headless Remote Play host                     | `modules/gaming/headless-host.nix`                       |
 | `kamo` gaming and session integration                    | `modules/gaming/jovian.nix`                              |
 | `dayo`'s router and backup server                        | `modules/services/router.nix`, `backup-server.nix`       |
 | `dayo`'s line facts and backup quotas                    | `hosts/dayo/system.nix`                                  |
