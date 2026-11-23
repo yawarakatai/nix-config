@@ -1,10 +1,13 @@
 {
   inputs,
   lib,
+  pkgs,
   ...
 }:
 
 {
+  home.packages = [ pkgs.bottles ];
+
   imports = [
     ../../../modules/profiles/home/desktop.nix
     ../../../modules/home/services/ura.nix

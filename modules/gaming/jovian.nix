@@ -1,6 +1,7 @@
 {
   inputs,
   lib,
+  pkgs,
   username,
   ...
 }:
@@ -42,6 +43,7 @@
     enable = true;
     # Steam Input's desktop layout needs uinput rather than X11 events on Niri.
     extest.enable = true;
+    extraCompatPackages = [ pkgs.proton-ge-bin ];
 
     # Receiving streams also needs these ports: with them closed, desuwa reached
     # this client only through Steam's relay and every stream failed to connect.
