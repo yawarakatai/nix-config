@@ -4,12 +4,12 @@ Personal NixOS and Home Manager configuration, built with flake-parts.
 
 ## Hosts
 
-| Host       | Device                      | Arch            | Role             |
-| ---------- | --------------------------- | --------------- | ---------------- |
+| Host       | Device                     | Arch            | Role             |
+| ---------- | -------------------------- | --------------- | ---------------- |
 | `desuwa`   | Desktop (RTX 3080, 32 GiB) | `x86_64-linux`  | Remote Play host |
-| `dayo`     | ROCK 5T (24 GiB)            | `aarch64-linux` | Router, backups  |
-| `nanodesu` | Laptop                      | `x86_64-linux`  | Laptop           |
-| `kamo`     | ROG Ally                    | `x86_64-linux`  | Portable machine |
+| `dayo`     | ROCK 5T (24 GiB)           | `aarch64-linux` | Router, backups  |
+| `nanodesu` | Laptop                     | `x86_64-linux`  | Laptop           |
+| `kamo`     | ROG Ally                   | `x86_64-linux`  | Portable machine |
 
 ## Documentation
 
