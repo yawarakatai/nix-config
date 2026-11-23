@@ -6,7 +6,9 @@
 }:
 
 {
-  home.packages = [ pkgs.bottles ];
+  # The nixpkgs "Unsupported Environment" alert opens first and the first-run
+  # onboarding dialog then covers it, leaving the window unresponsive.
+  home.packages = [ (pkgs.bottles.override { removeWarningPopup = true; }) ];
 
   imports = [
     ../../../modules/profiles/home/desktop.nix
