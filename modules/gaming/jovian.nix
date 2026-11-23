@@ -43,8 +43,9 @@
     # Steam Input's desktop layout needs uinput rather than X11 events on Niri.
     extest.enable = true;
 
-    # This machine primarily receives Remote Play streams, rather than hosting.
-    remotePlay.openFirewall = false;
+    # Receiving streams also needs these ports: with them closed, desuwa reached
+    # this client only through Steam's relay and every stream failed to connect.
+    remotePlay.openFirewall = true;
     localNetworkGameTransfers.openFirewall = false;
     dedicatedServer.openFirewall = false;
   };
