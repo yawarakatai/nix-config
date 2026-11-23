@@ -3,8 +3,6 @@
 {
   home.packages = with pkgs; [
     godot
-    # See hosts/kamo/home/default.nix: the warning alert hides under onboarding.
-    (bottles.override { removeWarningPopup = true; })
     orca-slicer
   ];
 
