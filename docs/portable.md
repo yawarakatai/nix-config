@@ -6,7 +6,7 @@ such as school PCs. It changes nothing on the machine: it does not touch
 `~/.bashrc`, `~/.profile`, or `~/.config`, and exiting the shell returns to the
 machine's own environment.
 
-It includes the CLI tools, Helix, Zsh and Starship, Git with yawarakatai's
+It includes the CLI tools, Helix, Zsh with Starship and zoxide, Git with yawarakatai's
 identity, Lazygit, direnv with nix-direnv, Nix tools (nixd, nixfmt, comma),
 Python, Plainix, Claude Code, and yawarakatai's SSH host settings
 (`modules/profiles/home/portable.nix`). It does not include the desktop,
