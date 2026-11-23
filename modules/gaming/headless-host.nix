@@ -1,12 +1,34 @@
 # Steam Remote Play host that runs from boot, without a login or a display.
 # A dedicated user keeps it out of the desktop session; see the host README
 # for the first Steam login and library migration.
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   user = "steamhost";
+
+  # Shows a steamhost program, such as BSManager, on the caller's desktop.
+  # A full steamhost desktop login was rejected: it would need a password and a
+  # second desktop setup, and the headless Steam would have to stop meanwhile.
+  steamhostGui = pkgs.writeShellApplication {
+    name = "steamhost-gui";
+    runtimeInputs = [ pkgs.xhost ];
+    text = ''
+      program=$(command -v "$1")
+      shift
+      xhost +SI:localuser:${user} >/dev/null
+      trap 'xhost -SI:localuser:${user} >/dev/null' EXIT
+      sudo machinectl shell ${user}@ /run/current-system/sw/bin/env DISPLAY="$DISPLAY" "$program" "$@"
+    '';
+  };
 in
 {
+  environment.systemPackages = [ steamhostGui ];
+
   users.groups.${user} = { };
   users.users.${user} = {
     # Steam keeps its client and library in the home directory.
