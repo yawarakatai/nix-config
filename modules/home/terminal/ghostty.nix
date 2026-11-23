@@ -45,12 +45,13 @@ lib.mkMerge [
         quick-terminal-position = "bottom";
         quick-terminal-autohide = false;
 
+        # Leave alt+f and alt+d to the shell and Claude Code (forward-word,
+        # kill-word); search stays on Ghostty's default ctrl+shift+f.
         keybind = [
           # Tab navigation
           "alt+n=previous_tab"
           "alt+o=next_tab"
           "alt+t=new_tab"
-          "alt+f=start_search"
 
           # Prompt navigation (Colemak-DH: i = up, e = down)
           "alt+i=jump_to_prompt:-1"
@@ -63,16 +64,6 @@ lib.mkMerge [
           # Window
           "alt+enter=new_window"
           "alt+q=close_surface"
-
-          # Splits
-          "alt+s=new_split:right"
-          "alt+d=new_split:down"
-
-          # Split navigation (Colemak-DH neio)
-          "alt+shift+n=goto_split:left"
-          "alt+shift+e=goto_split:down"
-          "alt+shift+i=goto_split:up"
-          "alt+shift+o=goto_split:right"
         ];
       };
     };

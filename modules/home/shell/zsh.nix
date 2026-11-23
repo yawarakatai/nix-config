@@ -14,6 +14,8 @@
       la = "ls -a";
       ll = "ls -la";
       tree = "eza --tree --git-ignore";
+      c = "claude";
+      cr = "claude -r";
     };
 
     history = {
