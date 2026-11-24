@@ -11,42 +11,8 @@
 
   stylix.targets.zen-browser.profileNames = [ "default" ];
 
-  xdg.configFile."tridactyl/tridactylrc".text = ''
-    " Colemak-DH navigation, matching the Helix configuration.
-    bind n scrollpx -50 0
-    bind e scrollline 5
-    bind i scrollline -5
-    bind o scrollpx 50 0
-    bind / fillcmdline find
-    bind k findnext 1
-    bind K findnext -1
-
-    " Vertical tabs: down/up move to the next/previous tab.
-    bind E tabnext
-    bind I tabprev
-
-    " Let Zen handle empty new tabs; Tridactyl otherwise opens its own new-tab page.
-    command zennewtab exclaim_quiet ${pkgs.wtype}/bin/wtype -M ctrl -k t -m ctrl
-    bind t zennewtab
-    bind N back
-    bind O forward
-    bind u scrollpage 0.5
-    bind y scrollpage -0.5
-    bind x tabclose
-    bind U undo
-
-    bind <Enter> hint
-    bind <S-Enter> hint -b
-
-    " Browser extensions cannot invoke Zen's chrome command directly, so replay its shortcut.
-    command tabbar exclaim_quiet ${pkgs.wtype}/bin/wtype -M ctrl -k s -m ctrl
-    bind <Tab> tabbar
-  '';
-
   programs.zen-browser = {
     enable = true;
-    nativeMessagingHosts = [ pkgs.tridactyl-native ];
-
     policies = {
       AutofillAddressEnabled = false;
       AutofillCreditCardEnabled = false;
@@ -104,7 +70,6 @@
       extensions.packages = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
         ublock-origin
         bitwarden
-        tridactyl
       ];
 
       settings = {
@@ -124,7 +89,6 @@
         "browser.urlbar.suggest.clipboard" = false;
         "browser.urlbar.suggest.engines" = false;
         "browser.urlbar.suggest.history" = false;
-        "browser.urlbar.suggest.openpage" = false;
         "browser.urlbar.suggest.recentsearches" = false;
 
         "dom.forms.autocomplete.formautofill" = false;
