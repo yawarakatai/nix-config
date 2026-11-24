@@ -74,45 +74,45 @@
 
       settings = {
         "browser.download.useDownloadDir" = false;
-        "browser.tabs.allow_transparent_browser" = false;
         "browser.tabs.inTitlebar" = 0;
         "browser.tabs.dragDrop.createGroup.enabled" = false;
-        "widget.transparent-windows" = false;
         "zen.view.grey-out-inactive-windows" = true;
+
+        # Transparency never rendered correctly and cost performance.
+        "browser.tabs.allow_transparent_browser" = false;
         "gfx.webrender.opaque-backdrop-fallback" = true;
+        "widget.transparent-windows" = false;
+        "zen.widget.linux.transparency" = false;
 
         # Restore the previous window instead of opening an empty new tab.
         "browser.startup.page" = 3;
 
         "browser.search.region" = "JP";
-        "browser.urlbar.placeholderName.private" = "DuckDuckGo";
         "browser.urlbar.suggest.clipboard" = false;
         "browser.urlbar.suggest.engines" = false;
         "browser.urlbar.suggest.history" = false;
         "browser.urlbar.suggest.recentsearches" = false;
 
+        "browser.formfill.enable" = false;
         "dom.forms.autocomplete.formautofill" = false;
         "dom.security.https_only_mode" = true;
-        "dom.security.https_only_mode_ever_enable" = true;
 
         # Keep the browser UI in English while preferring Japanese web content.
         "intl.accept_languages" = "ja-JP, ja, en-US, en";
 
+        # Same malware-blocking resolver as dayo, so the browser keeps that filter
+        # away from home too. Mode 2 falls back to the system resolver on failure.
         "network.trr.mode" = 2;
-        "network.trr.uri" = "https://mozilla.cloudflare-dns.com/dns-query";
+        "network.trr.uri" = "https://security.cloudflare-dns.com/dns-query";
 
         "permissions.default.camera" = 2;
         "permissions.default.desktop-notification" = 2;
         "permissions.default.geo" = 2;
-        "permissions.default.microphone" = 0;
         "permissions.default.xr" = 2;
 
         "places.history.enabled" = false;
 
-        "privacy.clearOnShutdown_v2.formdata" = true;
-        "privacy.clearSiteData.browsingHistoryAndDownloads" = true;
-        "privacy.globalprivacycontrol.was_ever_enabled" = true;
-        "privacy.history.custom" = true;
+        "privacy.globalprivacycontrol.enabled" = true;
         "privacy.userContext.enabled" = false;
 
         "zen.tabs.show-newtab-vertical" = false;
@@ -120,7 +120,6 @@
         "zen.workspaces.continue-where-left-off" = true;
         "zen.window-sync.enabled" = true;
         "zen.window-sync.sync-only-pinned-tabs" = true;
-        "zen.widget.linux.transparency" = false;
       };
 
       search = {
