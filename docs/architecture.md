@@ -52,6 +52,13 @@ the portable shell (see [portable.md](portable.md)).
   cursor, and application theming only; do not set `stylix.image`.
 - Niri owns compositor behavior, keybindings, window rules, and output
   defaults. wlr-randr wrappers are for emergency display changes.
+- Niri's own session setup owns `DISPLAY` and the session environment: it
+  starts xwayland-satellite on the first free X display and imports
+  `WAYLAND_DISPLAY`, `DISPLAY`, and `XDG_CURRENT_DESKTOP` into systemd and
+  D-Bus (verified in the niri 26.04 source). Do not set them in the niri
+  config: on `desuwa` the headless Steam's gamescope holds `:0`, so niri
+  listens on `:1`, and the hard-coded `DISPLAY ":0"` removed in November 2026
+  sent X11 apps to Steam's server.
 - Where Home Manager manages Zsh and Starship, it owns their initialization;
   `modules/core/users.nix` disables the duplicate NixOS initialization while
   keeping completion paths. Hosts without those features keep the NixOS

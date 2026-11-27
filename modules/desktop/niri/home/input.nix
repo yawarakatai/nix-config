@@ -1,16 +1,9 @@
 {
   wayland.windowManager.niri.settings.input = {
     keyboard = {
-      xkb = {
-        layout = "";
-        model = "";
-        rules = "";
-        variant = "";
-        options = "caps:none";
-      };
+      xkb.options = "caps:none";
       repeat-delay = 300;
       repeat-rate = 50;
-      track-layout = "global";
     };
 
     touchpad = {

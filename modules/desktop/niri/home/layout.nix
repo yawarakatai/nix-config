@@ -10,7 +10,7 @@ in
         {
           window-rule = {
             draw-border-with-background = false;
-            geometry-corner-radius = lib.replicate 4 (niri.rounding * 1.0);
+            geometry-corner-radius = niri.rounding * 1.0;
             clip-to-geometry = true;
           };
         }
@@ -29,14 +29,7 @@ in
       background-color = wallpaper.fallbackColor;
 
       always-center-single-column = { };
-      center-focused-column = "never";
       inherit (niri) gaps;
-      struts = {
-        left = 0;
-        right = 0;
-        top = 0;
-        bottom = 0;
-      };
 
       border = {
         inherit (niri.border) width;

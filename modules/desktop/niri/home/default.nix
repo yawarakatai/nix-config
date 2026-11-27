@@ -19,6 +19,5 @@
     # owns the portals.
     systemd.enable = false;
     portalPackage = null;
-    xwaylandSatellitePackage = null;
   };
 }

@@ -1,6 +1,8 @@
 { pkgs, ... }:
 
 {
+  # Over SSH these read WAYLAND_DISPLAY from the user manager, which
+  # `niri --session` imports it into at startup.
   home.packages = [
     pkgs.wl-clipboard
 

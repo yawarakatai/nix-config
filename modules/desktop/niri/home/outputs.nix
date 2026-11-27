@@ -3,7 +3,6 @@
 let
   modeString =
     output: "${toString output.width}x${toString output.height}@${toString output.refresh}";
-  transformString = rotation: if rotation == 0 then "normal" else toString rotation;
 
   outputNode =
     name: output:
@@ -25,8 +24,8 @@ let
               modeString output;
           inherit (output) scale;
           position._props = output.position;
-          transform = transformString output.transform;
         }
+        // lib.optionalAttrs (output.transform != 0) { transform = toString output.transform; }
         // lib.optionalAttrs output.primary { focus-at-startup = { }; }
         // lib.optionalAttrs output.vrr { variable-refresh-rate._props.on-demand = true; }
     );
