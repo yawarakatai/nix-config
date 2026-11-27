@@ -379,12 +379,6 @@ in
           };
         };
 
-        # Any trusted key can sign any store path, so a cache key compromise would own the router.
-        "test trusts only the NixOS binary cache" = {
-          expr = config.nix.settings.trusted-public-keys;
-          expected = [ "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=" ];
-        };
-
         # The onboard Wi-Fi lacks Japanese radio certification.
         "test never loads the onboard Wi-Fi driver" = {
           expr = lib.subtractLists config.boot.blacklistedKernelModules rtw89;
@@ -440,6 +434,18 @@ in
     "test only root is a Nix trusted user" = {
       expr = lib.mapAttrs (_: host: host.config.nix.settings.trusted-users) hosts;
       expected = lib.mapAttrs (_: _: [ "root" ]) hosts;
+    };
+
+    # Any trusted key can sign any store path, so a cache key compromise would own
+    # every host, the router included.
+    "test every host trusts only the NixOS binary cache" = {
+      expr = lib.mapAttrs (_: host: {
+        inherit (host.config.nix.settings) substituters trusted-public-keys;
+      }) hosts;
+      expected = lib.mapAttrs (_: _: {
+        substituters = [ "https://cache.nixos.org/" ];
+        trusted-public-keys = [ "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=" ];
+      }) hosts;
     };
 
     # Each separate nixpkgs is about 500 MB for the nix-unit check and nix-direnv to fetch.

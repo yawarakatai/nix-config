@@ -106,8 +106,10 @@ re-encrypting alone protects only future values.
 - Only `root` is a trusted user (enforced by the `nix-trust` check). Trusted
   users can import unsigned store paths and add substituters, which amounts to
   root without the sudo password.
-- Any trusted key can sign any store path, so each cache is trusted only by
-  the module that needs it, and `dayo` trusts only cache.nixos.org.
+- Any trusted key can sign any store path, so every host substitutes only
+  from cache.nixos.org and trusts only its key (a nix-unit test in
+  `modules/flake/tests.nix`). Adding a cache means changing that test and
+  recording here why the cache is worth trusting with root on that host.
 - `accept-flake-config` stays off and this flake sets no `nixConfig`: run by
   root, a flake's settings could add its own cache and key.
 - Pushing unsigned paths to `dayo` therefore fails; `dayo` builds its own

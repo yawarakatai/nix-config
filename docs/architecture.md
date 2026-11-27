@@ -52,6 +52,28 @@ the portable shell (see [portable.md](portable.md)).
   cursor, and application theming only; do not set `stylix.image`.
 - Niri owns compositor behavior, keybindings, window rules, and output
   defaults. wlr-randr wrappers are for emergency display changes.
+- Niri is the nixpkgs release package from cache.nixos.org, set up by the
+  nixpkgs `programs.niri` NixOS module (`modules/desktop/niri/system.nix`) and
+  configured through Home Manager's free-form `wayland.windowManager.niri`
+  settings (`modules/desktop/niri/home/`), which runs `niri validate` on every
+  build. Stylix has no target for that module, so `modules/theme/system.nix`
+  sets niri's cursor. Rejected in November 2026: niri-flake, which had no
+  commit since August 2026, built an unreleased niri locally (no binary cache)
+  with libdisplay-info 0.2 from a second nixpkgs, and whose typed settings
+  could not express custom modes; keeping it only for that settings module
+  would still lock its inputs. Also rejected: pinning upstream main, which
+  means local builds of unreleased code on every update. Revisit only for a
+  wanted feature that no release has yet, such as `max-bpc` on `kamo`.
+- Niri ships no polkit agent, so `polkit-agent.service` runs polkit-kde-agent
+  in Niri sessions. Noctalia 5.6 has its own agent (`shell.polkit_agent`), off
+  by default (verified in its source); enabling it would need this unit gone.
+- `modules/desktop/wayland.nix` owns the portal configuration. It blanks the
+  nixpkgs niri module's `xdg.portal.config.niri`, because xdg-desktop-portal
+  1.22 reads `niri-portals.conf` before `portals.conf` in the same directory
+  (verified in its source), which would make GNOME the default portal and
+  route Secret to GNOME Keyring. Home Manager's niri `portalPackage` is null,
+  and `programs.niri.useNautilus` is off because the GTK portal is the file
+  chooser.
 - Niri's own session setup owns `DISPLAY` and the session environment: it
   starts xwayland-satellite on the first free X display and imports
   `WAYLAND_DISPLAY`, `DISPLAY`, and `XDG_CURRENT_DESKTOP` into systemd and
@@ -121,6 +143,7 @@ the portable shell (see [portable.md](portable.md)).
 | Portable shell tools                                     | `modules/profiles/home/portable.nix`                     |
 | How the portable shell finds their configuration         | `modules/flake/portable.nix`                             |
 | `desuwa`'s headless Remote Play host                     | `modules/gaming/headless-host.nix`                       |
+| Niri settings shared by the desktops                     | `modules/desktop/niri/home/`                             |
 | `kamo` gaming and session integration                    | `modules/gaming/jovian.nix`                              |
 | `dayo`'s router and backup server                        | `modules/services/router.nix`, `backup-server.nix`       |
 | `dayo`'s line facts and backup quotas                    | `hosts/dayo/system.nix`                                  |

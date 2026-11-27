@@ -9,8 +9,8 @@
       ];
       # Deduplicate on the weekly timer instead of adding I/O to every store import.
       auto-optimise-store = false;
-      # Any trusted key can sign any store path, so each cache is trusted only
-      # by the modules that need it; nixpkgs already adds cache.nixos.org.
+      # Any trusted key can sign any store path, so hosts use only
+      # cache.nixos.org, which nixpkgs already adds (asserted in tests.nix).
     };
 
     optimise = {
