@@ -23,7 +23,8 @@ modules/
   core/                    # boot, Nix, users, locale, and networking for every host
   desktop/                 # Wayland desktop: Niri, Noctalia, greetd
   gaming/                  # Steam, Jovian, and the headless Remote Play host
-  hardware/ input/ laptop/ # device support
+  hardware/ laptop/        # device support
+  input/                   # keyboard and mouse support, the karukan input method (see its README)
   github/                  # gh with a read-only token delivered by agenix (system.nix + home.nix)
   security/                # agenix and YubiKey support
   services/                # system services, including dayo's router and backup server
@@ -145,6 +146,7 @@ the portable shell (see [portable.md](portable.md)).
 | NixOS login shell and global shell initialization        | `modules/core/users.nix`                                 |
 | User-facing shell settings                               | `modules/home/shell/`                                    |
 | Default kernel (`dayo` overrides it in `hardware.nix`)   | `modules/core/boot.nix`                                  |
+| Input method: fcitx5 with Mozc; karukan as a trial       | `modules/core/i18n.nix`, `modules/input/karukan/`        |
 | Portable shell tools                                     | `modules/profiles/home/portable.nix`                     |
 | How the portable shell finds their configuration         | `modules/flake/portable.nix`                             |
 | `desuwa`'s headless Remote Play host                     | `modules/gaming/headless-host.nix`                       |
