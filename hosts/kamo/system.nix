@@ -97,7 +97,6 @@ in
         height = 2160;
         refresh = 120.0;
         customMode = true;
-        maxBpc = 10;
         scale = 1.0;
         vrr = true;
         position = {

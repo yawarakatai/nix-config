@@ -8,7 +8,7 @@
 let
   inherit (inputs.niri.lib.kdl) flag leaf node;
   outputs = osConfig.my.display.outputs;
-  requiresRawConfig = output: output.customMode || output.maxBpc != null;
+  requiresRawConfig = output: output.customMode;
   standardOutputs = lib.filterAttrs (_name: output: !requiresRawConfig output) outputs;
   rawOutputs = lib.filterAttrs (_name: requiresRawConfig) outputs;
 
@@ -32,7 +32,6 @@ let
             else
               modeString output
           ))
-          (lib.optional (output.maxBpc != null) (leaf "max-bpc" output.maxBpc))
           (lib.optional output.primary (flag "focus-at-startup"))
           (leaf "scale" output.scale)
           (leaf "position" output.position)
@@ -54,7 +53,7 @@ in
       transform.rotation = output.transform;
     }) standardOutputs;
 
-    # niri-flake does not yet expose custom modes or max-bpc in its typed output settings.
+    # niri-flake does not yet expose custom modes in its typed output settings.
     config = lib.mkIf (rawOutputs != { }) (
       lib.mkOptionDefault (lib.mkBefore (lib.mapAttrsToList renderRawOutput rawOutputs))
     );

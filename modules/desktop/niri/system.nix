@@ -1,23 +1,7 @@
-{
-  inputs,
-  lib,
-  pkgs,
-  ...
-}:
+{ lib, pkgs, ... }:
 
 let
   inherit (lib) mkOption types;
-
-  system = pkgs.stdenv.hostPlatform.system;
-  niriPkgs = pkgs.extend (
-    final: prev:
-    (inputs.niri.overlays.niri final prev)
-    // {
-      # This pinned niri still needs libdisplay-info 0.2, which newer nixpkgs removed.
-      libdisplay-info_0_2 =
-        inputs.niri.inputs.nixpkgs-stable.legacyPackages.${system}.libdisplay-info_0_2;
-    }
-  );
 in
 {
   options.my = {
@@ -59,21 +43,6 @@ in
               type = types.bool;
               default = false;
               description = "Whether to configure the display mode as a custom mode.";
-            };
-
-            maxBpc = mkOption {
-              type = types.nullOr (
-                types.enum [
-                  6
-                  8
-                  10
-                  12
-                  14
-                  16
-                ]
-              );
-              default = null;
-              description = "Maximum bits per channel used for the display link.";
             };
 
             scale = mkOption {
@@ -157,7 +126,7 @@ in
   config = {
     programs.niri = {
       enable = true;
-      package = niriPkgs.niri-unstable;
+      package = pkgs.niri;
     };
 
     programs.xwayland.enable = true;
