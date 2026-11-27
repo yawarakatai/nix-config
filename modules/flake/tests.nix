@@ -7,6 +7,81 @@
 
 let
   hosts = self.nixosConfigurations;
+  lock = lib.importJSON ../../flake.lock;
+
+  # Each locked node, keyed by its path from the root such as "niri/nixpkgs-stable",
+  # because node names like nixpkgs_2 change whenever the lock does. Follows are
+  # lists and point at a node reached on another path.
+  lockedInputs =
+    let
+      walk =
+        prefix: node:
+        lib.concatMapAttrs (
+          name: ref:
+          lib.optionalAttrs (lib.isString ref) (
+            { "${prefix}${name}" = lock.nodes.${ref}; } // walk "${prefix}${name}/" ref
+          )
+        ) (lock.nodes.${node}.inputs or { });
+    in
+    walk "" lock.root;
+
+  isNixpkgs =
+    node:
+    let
+      isChannel = url: builtins.match "https://(channels|releases)\\.nixos\\.org/.*" url != null;
+    in
+    lib.any
+      (
+        source:
+        (
+          source.type == "github"
+          && lib.toLower source.owner == "nixos"
+          && lib.toLower source.repo == "nixpkgs"
+        )
+        || (source.type == "tarball" && isChannel source.url)
+      )
+      [
+        node.original
+        node.locked
+      ];
+
+  # Root inputs referenced from Nix source. The inputs block of flake.nix must
+  # come before outputs, which is all of flake.nix that is read.
+  referencedInputs =
+    let
+      sourceText =
+        file:
+        let
+          text = builtins.readFile file;
+          parts = builtins.split "\n  outputs =" text;
+        in
+        if file != ../../flake.nix then
+          text
+        else if lib.length parts == 3 then
+          lib.last parts
+        else
+          throw "flake.nix needs exactly one top-level `outputs =` after its inputs";
+      captures = regex: text: map lib.head (lib.filter lib.isList (builtins.split regex text));
+      names =
+        text:
+        captures "inputs'?\\.([A-Za-z0-9_-]+)" text
+        ++ lib.concatMap (
+          list: lib.filter (s: lib.isString s && s != "") (builtins.split "[[:space:]]+" list)
+        ) (captures "inherit[[:space:]]*\\(inputs\\)([^;]*);" text);
+      nixFiles = lib.filter (lib.hasSuffix ".nix") (lib.filesystem.listFilesRecursive ../..);
+    in
+    lib.unique (lib.concatMap (file: names (sourceText file)) nixFiles);
+
+  # Only the root flake writes single-element follows; an input's own follows
+  # start with that input's name.
+  followedInputs = lib.unique (
+    lib.concatMap (
+      node:
+      map lib.head (
+        lib.filter (ref: lib.isList ref && lib.length ref == 1) (lib.attrValues (node.inputs or { }))
+      )
+    ) (lib.attrValues lock.nodes)
+  );
 in
 {
   # Evaluation-level invariants in nix-unit format; names state the requirement.
@@ -362,6 +437,23 @@ in
       expected = lib.mapAttrs (_: _: [ "root" ]) hosts;
     };
 
+    # Each separate nixpkgs is about 500 MB for the nix-unit check and nix-direnv to fetch.
+    "test locks only the allowlisted nixpkgs sources" = {
+      expr = lib.attrNames (lib.filterAttrs (_: isNixpkgs) lockedInputs);
+      expected = [
+        "niri/nixpkgs-stable"
+        "nixpkgs"
+        "nixpkgs-ytdlp"
+      ];
+    };
+
+    "test every flake input is referenced or followed" = {
+      expr = lib.subtractLists (referencedInputs ++ followedInputs) (
+        lib.attrNames (removeAttrs inputs [ "self" ])
+      );
+      expected = [ ];
+    };
+
     # Run as root, a flake's nixConfig could add its own cache and key, and so supply any store path.
     "test never applies a flake's Nix settings unprompted" = {
       expr = lib.mapAttrs (_: host: host.config.nix.settings.accept-flake-config or false) hosts;
@@ -372,7 +464,6 @@ in
   perSystem =
     { pkgs, system, ... }:
     let
-      lock = builtins.fromJSON (builtins.readFile ../../flake.lock);
       # The sandbox has no network, so every locked input (nested ones too) is
       # passed by store path; follows entries are lists and resolve on their own.
       overrideInputs =

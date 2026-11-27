@@ -84,6 +84,15 @@ the portable shell (see [portable.md](portable.md)).
   build with the host's pkgs (verified with `diff-config` for disko,
   nixos-hardware, and treefmt-nix). The nix-unit check and nix-direnv fetch
   every locked input, so each separate nixpkgs costs about 500 MB.
+- Two nix-unit tests in `modules/flake/tests.nix` keep the lock lean: the
+  nixpkgs sources it locks (GitHub `NixOS/nixpkgs` and nixos.org channel
+  tarballs, named by their path from the root such as `niri/nixpkgs-stable`)
+  must equal an allowlist, and every root input must be referenced from Nix
+  source outside the `inputs` block (`inputs.<name>`, `inputs'.<name>`,
+  `inherit (inputs) <name>`) or be the target of another input's `follows`.
+  Adding a nixpkgs or an input that only reaches the code some other way
+  means updating the allowlist or referencing it that way. Both were verified
+  to fail on a dropped `follows` and a re-added unused input.
 - Left as upstream locks them: the nested flake-parts, nixpkgs-lib, and
   treefmt-nix copies (about 5 MB together; following would evaluate Stylix and
   agenix-rekey with a flake-parts they were not tested with) and niri-flake's
@@ -112,7 +121,7 @@ the portable shell (see [portable.md](portable.md)).
 | `dayo`'s line facts and backup quotas                    | `hosts/dayo/system.nix`                                  |
 | State that survives reboots on `dayo`'s tmpfs root       | `modules/storage/ephemeral-root.nix`                     |
 | Backup clients (not imported yet)                        | `modules/services/backup-client.nix`                     |
-| Evaluated host invariants (nix-unit)                     | `modules/flake/tests.nix`                                |
+| Evaluated host and `flake.lock` invariants (nix-unit)    | `modules/flake/tests.nix`                                |
 | Checks that build or boot something, such as VM tests    | `modules/flake/checks.nix`                               |
 
 Display outputs are set with `my.display.outputs`, keyed by output name; set
