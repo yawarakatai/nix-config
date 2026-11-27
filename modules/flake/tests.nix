@@ -9,7 +9,7 @@ let
   hosts = self.nixosConfigurations;
   lock = lib.importJSON ../../flake.lock;
 
-  # Each locked node, keyed by its path from the root such as "niri/nixpkgs-stable",
+  # Each locked node, keyed by its path from the root such as "agenix-rekey/devshell",
   # because node names like nixpkgs_2 change whenever the lock does. Follows are
   # lists and point at a node reached on another path.
   lockedInputs =
@@ -92,7 +92,7 @@ in
         inherit (host) config;
         home = config.home-manager.users.yawarakatai;
         power = config.services.tlp.settings;
-        touchpad = home.programs.niri.settings.input.touchpad;
+        touchpad = home.wayland.windowManager.niri.settings.input.touchpad;
         btrfsConfig =
           (host.extendModules {
             modules = [ { fileSystems."/".fsType = lib.mkForce "btrfs"; } ];
@@ -193,8 +193,8 @@ in
           };
           expected = {
             libinput = false;
-            dwt = true;
-            middle-emulation = true;
+            dwt = { };
+            middle-emulation = { };
             scroll-method = "two-finger";
             accel-profile = "adaptive";
             accel-speed = 1.0;
@@ -232,6 +232,11 @@ in
         secret = config.age.secrets.noctalia-storage-key;
         storage = home.programs.noctalia.settings.storage;
         sessionTracker = home.xdg.configFile."inhibit-short-session-tracker";
+        niriOutputs = lib.listToAttrs (
+          map (child: lib.nameValuePair (lib.head child.output._args) child.output) (
+            lib.filter (child: child ? output) home.wayland.windowManager.niri.settings._children
+          )
+        );
       in
       {
         "test boots into Gaming Mode and switches to Niri" = {
@@ -324,7 +329,7 @@ in
 
         "test Niri prefers the internal panel without disabling the external display" = {
           expr = {
-            internalFocus = home.programs.niri.settings.outputs."eDP-1".focus-at-startup;
+            internalFocus = niriOutputs."eDP-1" ? focus-at-startup;
             inherit (config.my.display.outputs."DP-2") enable primary;
           };
           expected = {
@@ -441,7 +446,6 @@ in
     "test locks only the allowlisted nixpkgs sources" = {
       expr = lib.attrNames (lib.filterAttrs (_: isNixpkgs) lockedInputs);
       expected = [
-        "niri/nixpkgs-stable"
         "nixpkgs"
         "nixpkgs-ytdlp"
       ];

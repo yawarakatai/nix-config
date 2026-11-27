@@ -7,9 +7,9 @@
 
   programs.noctalia.settings.wallpaper.enabled = false;
 
-  programs.niri.settings.input.touchpad = {
-    dwt = true;
-    middle-emulation = true;
+  wayland.windowManager.niri.settings.input.touchpad = {
+    dwt = { };
+    middle-emulation = { };
     scroll-method = "two-finger";
     accel-profile = "adaptive";
   };

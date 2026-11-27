@@ -126,9 +126,26 @@ in
   config = {
     programs.niri = {
       enable = true;
-      package = pkgs.niri;
+      # FileChooser comes from the GTK portal (modules/desktop/wayland.nix), so
+      # the GNOME portal needs no Nautilus D-Bus service.
+      useNautilus = false;
     };
 
     programs.xwayland.enable = true;
+
+    # Niri ships no polkit agent and Noctalia's built-in one is off by default.
+    systemd.user.services.polkit-agent = {
+      description = "PolicyKit authentication agent";
+      wantedBy = [ "niri.service" ];
+      after = [ "graphical-session.target" ];
+      partOf = [ "graphical-session.target" ];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+    };
   };
 }

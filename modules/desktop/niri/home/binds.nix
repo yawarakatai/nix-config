@@ -24,7 +24,7 @@ in
 {
   home.packages = [ forceCloseWindow ];
 
-  programs.niri.settings.binds =
+  wayland.windowManager.niri.settings.binds =
     let
       sh = spawn: [
         "sh"
@@ -40,73 +40,73 @@ in
       #    n = left    e = down    i = up    o = right
       # =============================================
 
-      "Mod+Shift+Slash".action.show-hotkey-overlay = [ ];
-      "Mod+Tab".action.toggle-overview = [ ];
+      "Mod+Shift+Slash".show-hotkey-overlay = { };
+      "Mod+Tab".toggle-overview = { };
 
       # --- Window management (neio) ---
-      "Mod+Q".action.close-window = [ ];
-      "Mod+N".action.focus-column-left = [ ];
-      "Mod+O".action.focus-column-right = [ ];
-      "Mod+E".action.focus-window-or-monitor-down = [ ];
-      "Mod+I".action.focus-window-or-monitor-up = [ ];
-      "Mod+Shift+N".action.move-column-left = [ ];
-      "Mod+Shift+O".action.move-column-right = [ ];
-      "Mod+Shift+E".action.move-window-down = [ ];
-      "Mod+Shift+I".action.move-window-up = [ ];
-      "Mod+Comma".action.swap-window-left = [ ];
-      "Mod+Period".action.swap-window-right = [ ];
-      "Mod+F".action.toggle-window-floating = [ ];
+      "Mod+Q".close-window = { };
+      "Mod+N".focus-column-left = { };
+      "Mod+O".focus-column-right = { };
+      "Mod+E".focus-window-or-monitor-down = { };
+      "Mod+I".focus-window-or-monitor-up = { };
+      "Mod+Shift+N".move-column-left = { };
+      "Mod+Shift+O".move-column-right = { };
+      "Mod+Shift+E".move-window-down = { };
+      "Mod+Shift+I".move-window-up = { };
+      "Mod+Comma".swap-window-left = { };
+      "Mod+Period".swap-window-right = { };
+      "Mod+F".toggle-window-floating = { };
 
       # --- Workspaces ---
       # Workspaces are dynamic: declaring named ones would keep them when emptied
       # and leave gaps, while unnamed ones are removed so the rest close up.
       # These binds target indices, so they keep working as workspaces shift.
-      "Mod+1".action.focus-workspace = 1;
-      "Mod+2".action.focus-workspace = 2;
-      "Mod+3".action.focus-workspace = 3;
-      "Mod+4".action.focus-workspace = 4;
-      "Mod+5".action.focus-workspace = 5;
-      "Mod+Shift+1".action.move-window-to-workspace = 1;
-      "Mod+Shift+2".action.move-window-to-workspace = 2;
-      "Mod+Shift+3".action.move-window-to-workspace = 3;
-      "Mod+Shift+4".action.move-window-to-workspace = 4;
-      "Mod+Shift+5".action.move-window-to-workspace = 5;
+      "Mod+1".focus-workspace = 1;
+      "Mod+2".focus-workspace = 2;
+      "Mod+3".focus-workspace = 3;
+      "Mod+4".focus-workspace = 4;
+      "Mod+5".focus-workspace = 5;
+      "Mod+Shift+1".move-window-to-workspace = 1;
+      "Mod+Shift+2".move-window-to-workspace = 2;
+      "Mod+Shift+3".move-window-to-workspace = 3;
+      "Mod+Shift+4".move-window-to-workspace = 4;
+      "Mod+Shift+5".move-window-to-workspace = 5;
 
       # Workspace navigation: u/y (below neio row, easy reach)
-      "Mod+U".action.focus-workspace-down = [ ];
-      "Mod+Y".action.focus-workspace-up = [ ];
-      "Mod+Shift+U".action.move-column-to-workspace-down = [ ];
-      "Mod+Shift+Y".action.move-column-to-workspace-up = [ ];
+      "Mod+U".focus-workspace-down = { };
+      "Mod+Y".focus-workspace-up = { };
+      "Mod+Shift+U".move-column-to-workspace-down = { };
+      "Mod+Shift+Y".move-column-to-workspace-up = { };
 
       # --- Layout ---
-      "Mod+W".action.switch-preset-column-width = [ ];
-      "Mod+M".action.maximize-column = [ ];
+      "Mod+W".switch-preset-column-width = { };
+      "Mod+M".maximize-column = { };
 
       # --- Applications ---
-      "Mod+Space".action.spawn = sh "noctalia msg panel-toggle launcher";
-      "Mod+D".action.spawn = sh "noctalia msg panel-toggle control-center";
-      "Mod+Return".action.spawn = sh "exec ghostty +new-window --working-directory=\"$HOME\"";
-      "Mod+B".action.spawn = [ "zen-beta" ];
-      "Mod+H".action.spawn = [ "nautilus" ];
+      "Mod+Space".spawn = sh "noctalia msg panel-toggle launcher";
+      "Mod+D".spawn = sh "noctalia msg panel-toggle control-center";
+      "Mod+Return".spawn = sh "exec ghostty +new-window --working-directory=\"$HOME\"";
+      "Mod+B".spawn = [ "zen-beta" ];
+      "Mod+H".spawn = [ "nautilus" ];
 
       # --- Screenshot ---
-      "Mod+S".action.screenshot = [ ];
-      "Mod+Shift+S".action.screenshot-screen = [ ];
+      "Mod+S".screenshot = { };
+      "Mod+Shift+S".screenshot-screen = { };
 
       # --- Media ---
-      "XF86AudioPlay".action.spawn = sh "playerctl play-pause";
-      "XF86AudioNext".action.spawn = sh "playerctl next";
-      "XF86AudioPrev".action.spawn = sh "playerctl previous";
-      "XF86AudioStop".action.spawn = sh "playerctl stop";
-      "XF86AudioRaiseVolume".action.spawn = sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+";
-      "XF86AudioLowerVolume".action.spawn = sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";
-      "XF86AudioMute".action.spawn = sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
-      "XF86AudioMicMute".action.spawn = sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
-      "XF86MonBrightnessUp".action.spawn = sh "brightnessctl set 5%+";
-      "XF86MonBrightnessDown".action.spawn = sh "brightnessctl set 5%-";
+      "XF86AudioPlay".spawn = sh "playerctl play-pause";
+      "XF86AudioNext".spawn = sh "playerctl next";
+      "XF86AudioPrev".spawn = sh "playerctl previous";
+      "XF86AudioStop".spawn = sh "playerctl stop";
+      "XF86AudioRaiseVolume".spawn = sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+";
+      "XF86AudioLowerVolume".spawn = sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";
+      "XF86AudioMute".spawn = sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+      "XF86AudioMicMute".spawn = sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
+      "XF86MonBrightnessUp".spawn = sh "brightnessctl set 5%+";
+      "XF86MonBrightnessDown".spawn = sh "brightnessctl set 5%-";
 
       # --- System ---
-      "Mod+Shift+Q".action.spawn = [ "force-close-window" ];
-      "Mod+Escape".action.spawn = sh "noctalia msg panel-toggle session";
+      "Mod+Shift+Q".spawn = [ "force-close-window" ];
+      "Mod+Escape".spawn = sh "noctalia msg panel-toggle session";
     };
 }

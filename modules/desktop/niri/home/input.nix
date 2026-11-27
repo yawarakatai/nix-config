@@ -1,14 +1,21 @@
 {
-  programs.niri.settings.input = {
+  wayland.windowManager.niri.settings.input = {
     keyboard = {
-      xkb.options = "caps:none";
+      xkb = {
+        layout = "";
+        model = "";
+        rules = "";
+        variant = "";
+        options = "caps:none";
+      };
       repeat-delay = 300;
       repeat-rate = 50;
+      track-layout = "global";
     };
 
     touchpad = {
-      tap = true;
-      natural-scroll = true;
+      tap = { };
+      natural-scroll = { };
       accel-speed = 1.0;
     };
 

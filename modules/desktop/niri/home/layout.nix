@@ -4,60 +4,60 @@ let
   inherit (osConfig.my) niri wallpaper;
 in
 {
-  programs.niri.settings = {
-    window-rules = lib.mkBefore [
-      {
-        draw-border-with-background = false;
-        geometry-corner-radius =
-          let
-            radius = niri.rounding * 1.0;
-          in
-          {
-            top-left = radius;
-            top-right = radius;
-            bottom-left = radius;
-            bottom-right = radius;
+  wayland.windowManager.niri.settings = {
+    _children = lib.mkMerge [
+      (lib.mkBefore [
+        {
+          window-rule = {
+            draw-border-with-background = false;
+            geometry-corner-radius = lib.replicate 4 (niri.rounding * 1.0);
+            clip-to-geometry = true;
           };
-        clip-to-geometry = true;
-      }
+        }
+      ])
+      [
+        {
+          layer-rule = {
+            match._props.namespace = "^noctalia-overview";
+            place-within-backdrop = true;
+          };
+        }
+      ]
     ];
 
     layout = {
       background-color = wallpaper.fallbackColor;
 
-      always-center-single-column = true;
+      always-center-single-column = { };
+      center-focused-column = "never";
       inherit (niri) gaps;
-
-      border = {
-        enable = niri.border.enable;
-        width = niri.border.width;
-        active.color = niri.border.color;
-        inactive.color = niri.border.inactiveColor;
-        urgent.color = niri.border.urgentColor;
+      struts = {
+        left = 0;
+        right = 0;
+        top = 0;
+        bottom = 0;
       };
 
-      focus-ring.enable = false;
+      border = {
+        inherit (niri.border) width;
+        active-color = niri.border.color;
+        inactive-color = niri.border.inactiveColor;
+        urgent-color = niri.border.urgentColor;
+      }
+      // lib.optionalAttrs (!niri.border.enable) { off = { }; };
 
-      preset-column-widths = [
+      focus-ring.off = { };
+
+      preset-column-widths._children = [
         { proportion = 0.33333; }
         { proportion = 0.5; }
         { proportion = 0.66667; }
       ];
 
       default-column-width.proportion = 0.5;
-      preset-window-heights = [ { proportion = 0.5; } ];
+      preset-window-heights._children = [ { proportion = 0.5; } ];
     };
 
-    layer-rules = [
-      {
-        matches = [ { namespace = "^noctalia-overview"; } ];
-        place-within-backdrop = true;
-      }
-    ];
-
-    overview = {
-      backdrop-color = wallpaper.fallbackColor;
-      workspace-shadow.enable = true;
-    };
+    overview.backdrop-color = wallpaper.fallbackColor;
   };
 }

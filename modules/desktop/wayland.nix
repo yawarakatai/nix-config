@@ -25,6 +25,9 @@
       pkgs.xdg-desktop-portal-gtk
       pkgs.xdg-desktop-portal-gnome
     ];
+    # The nixpkgs niri module's niri-portals.conf would replace this file for
+    # Niri sessions, preferring the GNOME portal and GNOME Keyring's Secret portal.
+    config.niri = lib.mkForce { };
     config.common = {
       default = [
         "gtk"

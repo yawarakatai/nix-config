@@ -78,5 +78,16 @@ in
       stylix.targets.rofi.enable = false;
       stylix.targets.wayprompt.enable = false;
     }
+
+    # Stylix has no target for Home Manager's niri module.
+    (
+      { config, ... }:
+      {
+        wayland.windowManager.niri.settings.cursor = lib.mkIf (config.stylix.cursor != null) {
+          xcursor-theme = config.stylix.cursor.name;
+          xcursor-size = config.stylix.cursor.size;
+        };
+      }
+    )
   ];
 }

@@ -1,9 +1,4 @@
-{
-  inputs,
-  lib,
-  pkgs,
-  ...
-}:
+{ pkgs, ... }:
 
 {
   # The nixpkgs "Unsupported Environment" alert opens first and the first-run
@@ -23,17 +18,11 @@
   # overlays an old Steam bootstrap onto the self-updated client.
   xdg.configFile."inhibit-short-session-tracker".text = "";
 
-  programs.niri = {
+  wayland.windowManager.niri = {
     # The touchscreen is attached to the internal panel, not external outputs.
     settings.input.touch.map-to-output = "eDP-1";
 
-    config = lib.mkOptionDefault (
-      lib.mkAfter [
-        (inputs.niri.lib.kdl.leaf "include" [
-          { optional = true; }
-          "noctalia.kdl"
-        ])
-      ]
-    );
+    # Last, so that what Noctalia writes there overrides the settings above.
+    extraConfig = ''include "noctalia.kdl" optional=true'';
   };
 }

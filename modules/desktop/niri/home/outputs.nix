@@ -1,61 +1,38 @@
-{
-  inputs,
-  lib,
-  osConfig,
-  ...
-}:
+{ lib, osConfig, ... }:
 
 let
-  inherit (inputs.niri.lib.kdl) flag leaf node;
-  outputs = osConfig.my.display.outputs;
-  requiresRawConfig = output: output.customMode;
-  standardOutputs = lib.filterAttrs (_name: output: !requiresRawConfig output) outputs;
-  rawOutputs = lib.filterAttrs (_name: requiresRawConfig) outputs;
-
   modeString =
     output: "${toString output.width}x${toString output.height}@${toString output.refresh}";
   transformString = rotation: if rotation == 0 then "normal" else toString rotation;
 
-  renderRawOutput =
+  outputNode =
     name: output:
-    node "output" name (
+    {
+      _args = [ name ];
+    }
+    // (
       if !output.enable then
-        [ (flag "off") ]
+        { off = { }; }
       else
-        lib.flatten [
-          (leaf "mode" (
+        {
+          mode =
             if output.customMode then
-              [
-                { custom = true; }
-                (modeString output)
-              ]
+              {
+                _args = [ (modeString output) ];
+                _props.custom = true;
+              }
             else
-              modeString output
-          ))
-          (lib.optional output.primary (flag "focus-at-startup"))
-          (leaf "scale" output.scale)
-          (leaf "position" output.position)
-          (leaf "transform" (transformString output.transform))
-          (lib.optional output.vrr (leaf "variable-refresh-rate" { on-demand = true; }))
-        ]
+              modeString output;
+          inherit (output) scale;
+          position._props = output.position;
+          transform = transformString output.transform;
+        }
+        // lib.optionalAttrs output.primary { focus-at-startup = { }; }
+        // lib.optionalAttrs output.vrr { variable-refresh-rate._props.on-demand = true; }
     );
 in
 {
-  programs.niri = {
-    settings.outputs = lib.mapAttrs (_name: output: {
-      inherit (output) enable;
-      focus-at-startup = output.primary;
-      mode = {
-        inherit (output) width height refresh;
-      };
-      variable-refresh-rate = if output.vrr then "on-demand" else false;
-      inherit (output) scale position;
-      transform.rotation = output.transform;
-    }) standardOutputs;
-
-    # niri-flake does not yet expose custom modes in its typed output settings.
-    config = lib.mkIf (rawOutputs != { }) (
-      lib.mkOptionDefault (lib.mkBefore (lib.mapAttrsToList renderRawOutput rawOutputs))
-    );
-  };
+  wayland.windowManager.niri.settings._children = lib.mapAttrsToList (name: output: {
+    output = outputNode name output;
+  }) osConfig.my.display.outputs;
 }
