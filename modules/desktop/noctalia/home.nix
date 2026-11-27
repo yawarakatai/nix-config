@@ -27,6 +27,8 @@ in
       shell = {
         corner_radius_scale = 0;
         niri_overview_type_to_launch_enabled = true;
+        # Niri ships no polkit agent; Noctalia's prompt is a layer-shell panel.
+        polkit_agent = true;
 
         launcher = {
           layout = "simple";

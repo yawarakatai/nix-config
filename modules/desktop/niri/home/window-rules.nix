@@ -28,18 +28,6 @@ in
     # Fcitx5 Config
     (rule [ { app-id = "org.fcitx.fcitx5-config-qt"; } ] { open-floating = true; })
 
-    # Authentication
-    (rule
-      [
-        { app-id = "^org\\.gnome\\.Polkit.*"; } # Polkit agent
-        { app-id = "^lxqt-policykit-agent$"; }
-      ]
-      {
-        open-floating = true;
-        default-column-width.fixed = 600;
-      }
-    )
-
     # KiCad
     (rule [ { app-id = "kicad"; } ] { open-floating = true; })
 

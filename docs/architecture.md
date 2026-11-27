@@ -64,9 +64,11 @@ the portable shell (see [portable.md](portable.md)).
   would still lock its inputs. Also rejected: pinning upstream main, which
   means local builds of unreleased code on every update. Revisit only for a
   wanted feature that no release has yet, such as `max-bpc` on `kamo`.
-- Niri ships no polkit agent, so `polkit-agent.service` runs polkit-kde-agent
-  in Niri sessions. Noctalia 5.6 has its own agent (`shell.polkit_agent`), off
-  by default (verified in its source); enabling it would need this unit gone.
+- Noctalia is the polkit agent (`shell.polkit_agent`, off by default in 5.6),
+  because niri ships none. polkitd accepts one agent per session, so no other
+  agent may be added. Its prompt is a layer-shell panel, so no window rule
+  applies to it. Noctalia runs only with `niri.service`, so `kamo`'s Gaming
+  Mode has no agent, as before.
 - `modules/desktop/wayland.nix` owns the portal configuration. It blanks the
   nixpkgs niri module's `xdg.portal.config.niri`, because xdg-desktop-portal
   1.22 reads `niri-portals.conf` before `portals.conf` in the same directory
