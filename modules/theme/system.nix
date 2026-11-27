@@ -71,13 +71,9 @@ in
     targets.qt.platform = lib.mkForce "qtct";
   };
 
-  # These Stylix targets set Home Manager options that were renamed (`programs.rofi.font`)
-  # or removed (`programs.wayprompt`, an assertion error); neither program is used.
+  # Rofi is unused, and Stylix's rofi target sets the renamed `programs.rofi.font`.
   home-manager.sharedModules = [
-    {
-      stylix.targets.rofi.enable = false;
-      stylix.targets.wayprompt.enable = false;
-    }
+    { stylix.targets.rofi.enable = false; }
 
     # Stylix has no target for Home Manager's niri module.
     (
