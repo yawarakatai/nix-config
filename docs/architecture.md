@@ -28,7 +28,7 @@ modules/
   security/                # agenix and YubiKey support
   services/                # system services, including dayo's router and backup server
   ssh/                     # sshd, client and known hosts, desktop YubiKey identities (system.nix + home.nix)
-  syncthing/               # Syncthing peers (home.nix) and firewall (system.nix)
+  syncthing/               # Syncthing peers (home.nix), firewall (system.nix), fixed device IDs (identity.nix)
   storage/                 # Btrfs, zram, and the state a tmpfs root preserves
   theme/                   # palette and Stylix (see its README)
   home/                    # Home Manager features
@@ -154,6 +154,7 @@ the portable shell (see [portable.md](portable.md)).
 | `dayo`'s line facts and backup quotas                    | `hosts/dayo/system.nix`                                  |
 | State that survives reboots on `dayo`'s tmpfs root       | `modules/storage/ephemeral-root.nix`                     |
 | Backup clients (not imported yet)                        | `modules/services/backup-client.nix`                     |
+| Keep a host's Syncthing device ID across reinstalls      | `modules/syncthing/identity.nix` (see security.md)       |
 | Evaluated host and `flake.lock` invariants (nix-unit)    | `modules/flake/tests.nix`                                |
 | Checks that build or boot something, such as VM tests    | `modules/flake/checks.nix`                               |
 

@@ -32,6 +32,14 @@ procedures that the code alone does not explain.
 - Desktops share `user-password`; `dayo` uses `user-password-dayo`, so a
   network-facing host never holds the desktop password hash. Hashes are yescrypt
   (`mkpasswd -m yescrypt`).
+- A host that imports `modules/syncthing/identity.nix` (today `desuwa`) gets
+  its Syncthing `key.pem` from `secrets/syncthing-key-<host>.age` and its
+  public `cert.pem` from `hosts/<host>/syncthing-cert.pem`, so a reinstall keeps
+  the device ID that peers list in `modules/syncthing/home.nix`. To add a host,
+  encrypt its existing `~/.local/state/syncthing/key.pem` as in "Replace a
+  value", copy its `cert.pem`, and import the module from the host. Verified on
+  `desuwa`: the SHA-256 of the certificate's DER encoding, base32-encoded,
+  matches its listed ID once the check characters are removed.
 - `agenix rekey` skips hosts without
   `hosts/<host>/generated/ssh_host_ed25519_key.pub`; `install-host` creates the
   key and rekeys the host.
