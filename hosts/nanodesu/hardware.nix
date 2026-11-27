@@ -1,7 +1,6 @@
 {
-  imports = [
-    ../../modules/laptop/fingerprint.nix
-  ];
+  # The fingerprint reader is too unreliable to use, so
+  # modules/laptop/fingerprint.nix is not imported.
 
   # Audio and Bluetooth are unused on this host.
   disabledModules = [
