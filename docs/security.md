@@ -103,7 +103,7 @@ re-encrypting alone protects only future values.
 
 ## Nix daemon
 
-- Only `root` is a trusted user (enforced by the `nix-trust` check). Trusted
+- Only `root` is a trusted user (enforced by a nix-unit test). Trusted
   users can import unsigned store paths and add substituters, which amounts to
   root without the sudo password.
 - Any trusted key can sign any store path, so every host substitutes only

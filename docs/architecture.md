@@ -116,9 +116,10 @@ the portable shell (see [portable.md](portable.md)).
 - Two nix-unit tests in `modules/flake/tests.nix` keep the lock lean: the
   nixpkgs sources it locks (GitHub `NixOS/nixpkgs` and nixos.org channel
   tarballs, named by their path from the root such as `nixpkgs-ytdlp`) must
-  equal an allowlist (today the root `nixpkgs` and `nixpkgs-ytdlp`), and every root input must be referenced from Nix
-  source outside the `inputs` block (`inputs.<name>`, `inputs'.<name>`,
-  `inherit (inputs) <name>`) or be the target of another input's `follows`.
+  equal an allowlist (today the root `nixpkgs` and `nixpkgs-ytdlp`), and every
+  root input must be referenced from Nix source outside the `inputs` block
+  (`inputs.<name>`, `inputs'.<name>`, `inherit (inputs) <name>`) or be the
+  target of another input's `follows`.
   Adding a nixpkgs or an input that only reaches the code some other way
   means updating the allowlist or referencing it that way. Both were verified
   to fail on a dropped `follows` and a re-added unused input.

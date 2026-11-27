@@ -5,7 +5,7 @@
 - Steam's **Switch to Desktop** opens Niri; logging out (`Mod+Escape`) returns
   to Gaming Mode.
 - Both sessions prefer the internal `eDP-1` display; external displays remain
-  available. Niri places the external display to the right of the internal panel.
+  available. Niri places the external display above the internal panel.
 - The external `DP-2` runs a custom 3840x2160@120 mode at the default bit
   depth. Its `max-bpc 10` was dropped in November 2026 because niri has no
   `max-bpc` in any release up to v26.04 (verified: `niri validate` 26.04
