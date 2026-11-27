@@ -8,7 +8,11 @@ let
   # --display-driver; projects run from the editor do not.
   godotWayland = pkgs.symlinkJoin {
     name = "godot-wayland-${godot.version}";
-    paths = [ godot ];
+    # symlinkJoin links only the outputs listed, so `man godot` needs godot.man.
+    paths = [
+      godot
+      godot.man
+    ];
     nativeBuildInputs = [ pkgs.makeWrapper ];
     # The desktop entry runs Godot by absolute path, so it is rewritten too.
     postBuild = ''
