@@ -130,7 +130,5 @@ in
       # the GNOME portal needs no Nautilus D-Bus service.
       useNautilus = false;
     };
-
-    programs.xwayland.enable = true;
   };
 }

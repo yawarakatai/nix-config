@@ -82,7 +82,9 @@ the portable shell (see [portable.md](portable.md)).
   D-Bus (verified in the niri 26.04 source). Do not set them in the niri
   config: on `desuwa` the headless Steam's gamescope holds `:0`, so niri
   listens on `:1`, and the hard-coded `DISPLAY ":0"` removed in November 2026
-  sent X11 apps to Steam's server.
+  sent X11 apps to Steam's server. No system Xwayland is installed:
+  xwayland-satellite's wrapper and gamescope each reference their own
+  (verified in the store paths).
 - Where Home Manager manages Zsh and Starship, it owns their initialization;
   `modules/core/users.nix` disables the duplicate NixOS initialization while
   keeping completion paths. Hosts without those features keep the NixOS
