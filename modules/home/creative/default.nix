@@ -1,9 +1,6 @@
-{ pkgs, ... }:
-
 {
-  imports = [ ./pixelorama.nix ];
-
-  home.packages = with pkgs; [
-    godot
+  imports = [
+    ./godot.nix
+    ./pixelorama.nix
   ];
 }

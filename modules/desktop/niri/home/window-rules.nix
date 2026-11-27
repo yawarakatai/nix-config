@@ -38,13 +38,9 @@ in
       }
     ] { open-floating = false; })
 
-    # Godot Engine
-    # (rule [
-    #   {
-    #     app-id = "^Godot$";
-    #     title = "^Godot Engine - Project Manager$";
-    #   }
-    # ] { open-floating = true; })
+    # Godot's Project Manager under Wayland (modules/home/creative/godot.nix);
+    # its X11 app-id and initial title are both just "Godot".
+    (rule [ { app-id = "^org\\.godotengine\\.ProjectManager$"; } ] { open-floating = true; })
 
     # Davinci Resolve
     (rule [
