@@ -3,12 +3,25 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     # Updated separately so YouTube-driven yt-dlp fixes do not rebuild ura.
     nixpkgs-ytdlp.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixos-hardware.url = "github:NixOS/nixos-hardware";
+    # Only modules are used from these three, and they build with the host's
+    # pkgs; following avoids fetching a separate nixpkgs for each.
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    disko.url = "github:nix-community/disko";
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     preservation.url = "github:nix-community/preservation";
     flake-parts.url = "github:hercules-ci/flake-parts";
-    treefmt-nix.url = "github:numtide/treefmt-nix";
 
     jovian = {
       url = "github:Jovian-Experiments/Jovian-NixOS/development";
@@ -57,8 +70,6 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    noctalia.url = "github:noctalia-dev/noctalia";
 
     plainix = {
       url = "github:yawarakatai/plainix";
