@@ -73,6 +73,23 @@ the portable shell (see [portable.md](portable.md)).
   limits; Niri is the development desktop (see
   [hosts/kamo/README.md](../hosts/kamo/README.md)).
 
+## Flake inputs
+
+- `flake.lock` pins the inputs. tack, a replacement for it, was evaluated in
+  November 2026 and not adopted: its own resolver would evaluate every host
+  while the tool is six months old and on its second major version, and
+  nothing here needs its input patching or signature checks. Revisit if an
+  input needs standing patches or verified signatures.
+- An input follows `nixpkgs` when only its modules are used, because those
+  build with the host's pkgs (verified with `diff-config` for disko,
+  nixos-hardware, and treefmt-nix). The nix-unit check and nix-direnv fetch
+  every locked input, so each separate nixpkgs costs about 500 MB.
+- Left as upstream locks them: the nested flake-parts, nixpkgs-lib, and
+  treefmt-nix copies (about 5 MB together; following would evaluate Stylix and
+  agenix-rekey with a flake-parts they were not tested with) and niri-flake's
+  own pins, whose `nixpkgs-stable` supplies libdisplay-info 0.2 to the pinned
+  Niri.
+
 ## Where to edit
 
 | Change                                                   | Edit                                                     |
