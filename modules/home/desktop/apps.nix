@@ -8,6 +8,8 @@
     playerctl
     brightnessctl
     unar
+    # Helix's `clipboard-provider = "wayland"` runs wl-copy and wl-paste.
+    wl-clipboard
   ];
 
   programs.mpv = {
