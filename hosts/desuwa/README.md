@@ -11,8 +11,11 @@ local monitor.
 - Verified (manually, as the desktop user, before `steamhost` existed): a
   headless gamescope stream to `kamo` ran at 60 FPS with NVENC H.264, about
   2 ms ping and 3 ms encode, once `kamo` opened its Remote Play ports.
+- Verified: `steamhost-gui steam` shows Steam on the desktop, and the steps of
+  `steamhost-login` (run as a standalone script) quit the login Steam and leave
+  only the headless one running.
 - Not yet verified as `steamhost`: the stream, Steam Frame VR and its adapter,
-  controller input, audio, and `steamhost-gui`. The
+  controller input, and audio. The
   `input`, `uinput`, `networkmanager` groups and the Valve USB rule are there
   because seat ACLs never reach this user.
 - Decided: Beat Saber mods and maps are managed with BSManager running as
@@ -36,14 +39,15 @@ Exiting Steam from a client restarts it after 5 seconds.
 
 ## Log in to Steam
 
-Steam needs one interactive login (and again whenever its session expires).
-Only one Steam can run per user, so stop the headless one meanwhile:
+Steam needs one interactive login (and again whenever its session expires):
 
 ```sh
-sudo systemctl --user -M steamhost@ stop steam-headless
-steamhost-gui steam # log in, then quit Steam from its menu
-sudo systemctl --user -M steamhost@ start steam-headless
+steamhost-login
 ```
+
+It stops the headless Steam, shows a login Steam on the desktop, and after
+Enter in the terminal quits it and starts the headless one again. Closing the
+Steam window does not quit Steam, so do not run `steamhost-gui steam`.
 
 ## BSManager
 
