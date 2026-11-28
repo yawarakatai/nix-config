@@ -16,33 +16,34 @@
       - If a project tool is missing, use `direnv exec . <cmd>` when `.envrc` exists, otherwise `nix develop -c <cmd>`.
       - For one-off tools, use `nix shell nixpkgs#<pkg> -c <cmd>` instead of global or imperative installs (`pip install`, `npm -g`, `cargo install`).
 
-      ## Requests
+      ## Decisions
 
       - When asked whether something is worthwhile or how it would go, answer with a recommendation and its trade-offs; implement only once the user decides.
+      - When it is unclear which option is right or how something behaves, run a small experiment and decide from the result instead of guessing. What only the user can decide (preference, scope, risk) still goes to the user.
 
       ## Code
 
       - Fix the cause, not the symptom: when a problem comes from the structure, change the structure instead of adding a workaround, even if the diff is larger. If that reaches well beyond the task, propose it first.
-      - Simple means the resulting code, not the size of the diff; removing code is welcome.
+      - Simple means the resulting code, not the size of the diff.
       - Delete dead or superseded code instead of commenting it out or keeping compatibility shims; history preserves it.
       - Do not build for needs that are not there yet; prefer a little duplication over premature abstraction.
       - Prefer existing dependencies and the standard library; each new dependency needs a clear reason. Do not major-upgrade dependencies or update lockfiles unless the task needs it.
       - Handle recoverable errors explicitly rather than panicking.
-      - Comments explain why, not what.
+      - Comments explain why, not what, and are in English whatever language the conversation is in.
 
       ## Tests
 
-      - Where a project has tests, reproduce a bug with a failing test before fixing it, and cover new logic that has non-obvious edge cases; do not add a test framework unasked.
+      - Where a project has tests, whatever failed once stays as a test that would catch it again: reproduce a bug with a failing test before fixing it, and do the same for a regression or a wrong assumption found along the way.
+      - Cover new logic that has non-obvious edge cases; do not add a test framework unasked.
       - Never weaken, skip, or delete a test to make it pass; fix the code or report the failure.
 
       ## Documentation
 
-      - Write down in the project's documentation what its code and history cannot show: what was verified and how, what was decided and why (including rejected alternatives), what is still undecided, and the criteria behind judgment calls.
-      - Do it in the same change, where the project already keeps such notes: a comment for a fact about one piece of code, otherwise its docs. The conversation and agent memory do not count; later readers never see them.
-      - Anything document-shaped (a design, an investigation, a comparison, a procedure) goes in a committed Markdown file, not only in the conversation, a published artifact, or a temporary file.
-      - Say whether each point is verified, assumed, or undecided, and replace an open question with the decision once it is settled.
+      - Write down what the code and history cannot show: what was verified and how, what was decided and why (including rejected alternatives), what is still undecided, and the criteria behind judgment calls.
+      - Do it in the same change: a comment for a fact about one piece of code, otherwise a committed Markdown file, the one where the project already keeps such notes if there is one. A document you are asked to write (a design, an investigation, a procedure) goes there too.
+      - The conversation, agent memory, published artifacts, and temporary files do not count; they do not travel with the repository.
+      - Mark each point as verified, assumed, or undecided, and replace an open question with the decision once it is settled.
       - Update existing text instead of appending a log of the task.
-      - Write code comments in English, whatever language the conversation is in.
 
       ## Git
 
