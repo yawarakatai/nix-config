@@ -8,7 +8,7 @@
     ../../ssh/system.nix
     inputs.stylix.nixosModules.stylix
     ../../core/i18n.nix
-    ../../input/karukan
+    ../../input/karukan/system.nix
     ../../desktop/wayland.nix
     ../../desktop/noctalia/system.nix
     ../../theme

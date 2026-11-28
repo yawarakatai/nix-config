@@ -14,6 +14,7 @@
     ../../home/terminal/ghostty.nix
     ../../home/desktop/apps.nix
     ../../home/desktop/input-method.nix
+    ../../input/karukan/home.nix
     ../../home/desktop/mime-apps.nix
     ../../desktop/niri/home
     ../../desktop/noctalia/home.nix
