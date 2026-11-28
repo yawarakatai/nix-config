@@ -39,11 +39,8 @@
 
       ## Documentation
 
-      - Write down what the code and history cannot show: what was verified and how, what was decided and why (including rejected alternatives), what is still undecided, and the criteria behind judgment calls.
-      - Do it in the same change: a comment for a fact about one piece of code, otherwise a committed Markdown file, the one where the project already keeps such notes if there is one. A document you are asked to write (a design, an investigation, a procedure) goes there too.
+      - In the same change, record in a committed Markdown file what the code cannot show: what was verified and how, what was decided and why, what was tried and failed, and what is still undecided. Use the project's existing docs where they fit.
       - The conversation, agent memory, published artifacts, and temporary files do not count; they do not travel with the repository.
-      - Mark each point as verified, assumed, or undecided, and replace an open question with the decision once it is settled.
-      - Update existing text instead of appending a log of the task.
 
       ## Git
 
